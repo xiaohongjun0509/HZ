@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *area;
 @property (nonatomic, copy) NSString *salary;
 @property (nonatomic, copy) NSString *cityName;
-@property (nonatomic, assign) NSInteger requestPage;
+
 @property (nonatomic, strong) HZSegmentView *segmentView;
 @end
 
@@ -30,7 +30,6 @@
     self.salary = nil;
     [self registerCell:[HZJobHuntCell class]];
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView.mj_header beginRefreshing];
     [self attachBackButton];
     [self attachSegmentView];

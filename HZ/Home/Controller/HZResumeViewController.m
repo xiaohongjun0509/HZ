@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *area;
 @property (nonatomic, copy) NSString *salary;
 @property (nonatomic, copy) NSString *cityName;
-@property (nonatomic, assign) NSInteger requestPage;
+
 @property (nonatomic, strong) HZSegmentView *segmentView;
 @end
 

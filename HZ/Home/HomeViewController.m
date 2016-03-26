@@ -10,6 +10,7 @@
 #import "HomeBannerModel.h"
 #import "HZJobHuntViewController.h"
 #import "HZResumeViewController.h"
+#import "HZEnterpriseViewController.h"
 
 @interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -118,7 +119,9 @@
 }
 
 - (void)enterprise{
-    
+    HZEnterpriseViewController *controller = [HZEnterpriseViewController new];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navi animated:YES completion:nil];
 }
 
 - (void)resume{

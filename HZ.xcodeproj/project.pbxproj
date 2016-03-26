@@ -37,6 +37,10 @@
 		82912C2A1CA6BE8900098261 /* HZSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C291CA6BE8900098261 /* HZSegmentView.m */; };
 		82912C2F1CA6D0D900098261 /* HZResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C2E1CA6D0D900098261 /* HZResumeViewController.m */; };
 		82912C321CA6D3F400098261 /* HZResumeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C311CA6D3F400098261 /* HZResumeModel.m */; };
+		82912C351CA6D7C700098261 /* HZEnterpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C341CA6D7C700098261 /* HZEnterpriseViewController.m */; };
+		82912C391CA6D87F00098261 /* HZEnterpriseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C371CA6D87F00098261 /* HZEnterpriseCell.m */; };
+		82912C3A1CA6D87F00098261 /* HZEnterpriseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82912C381CA6D87F00098261 /* HZEnterpriseCell.xib */; };
+		82912C3D1CA6DA2200098261 /* HZEnterpriseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C3C1CA6DA2200098261 /* HZEnterpriseModel.m */; };
 		B2E8D2750D31D419724B34FE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72647898094ED1CB1FB960DC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +101,13 @@
 		82912C2E1CA6D0D900098261 /* HZResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZResumeViewController.m; sourceTree = "<group>"; };
 		82912C301CA6D3F400098261 /* HZResumeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZResumeModel.h; sourceTree = "<group>"; };
 		82912C311CA6D3F400098261 /* HZResumeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZResumeModel.m; sourceTree = "<group>"; };
+		82912C331CA6D7C700098261 /* HZEnterpriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEnterpriseViewController.h; sourceTree = "<group>"; };
+		82912C341CA6D7C700098261 /* HZEnterpriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEnterpriseViewController.m; sourceTree = "<group>"; };
+		82912C361CA6D87F00098261 /* HZEnterpriseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEnterpriseCell.h; sourceTree = "<group>"; };
+		82912C371CA6D87F00098261 /* HZEnterpriseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEnterpriseCell.m; sourceTree = "<group>"; };
+		82912C381CA6D87F00098261 /* HZEnterpriseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZEnterpriseCell.xib; sourceTree = "<group>"; };
+		82912C3B1CA6DA2200098261 /* HZEnterpriseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEnterpriseModel.h; sourceTree = "<group>"; };
+		82912C3C1CA6DA2200098261 /* HZEnterpriseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEnterpriseModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +199,8 @@
 				82912C181CA650B400098261 /* HZJobHuntViewController.m */,
 				82912C2D1CA6D0D900098261 /* HZResumeViewController.h */,
 				82912C2E1CA6D0D900098261 /* HZResumeViewController.m */,
+				82912C331CA6D7C700098261 /* HZEnterpriseViewController.h */,
+				82912C341CA6D7C700098261 /* HZEnterpriseViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -201,6 +214,8 @@
 				82912C201CA6543100098261 /* HZJobModel.m */,
 				82912C301CA6D3F400098261 /* HZResumeModel.h */,
 				82912C311CA6D3F400098261 /* HZResumeModel.m */,
+				82912C3B1CA6DA2200098261 /* HZEnterpriseModel.h */,
+				82912C3C1CA6DA2200098261 /* HZEnterpriseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +228,9 @@
 				82912C1C1CA6510A00098261 /* HZJobHuntCell.xib */,
 				82912C281CA6BE8900098261 /* HZSegmentView.h */,
 				82912C291CA6BE8900098261 /* HZSegmentView.m */,
+				82912C361CA6D87F00098261 /* HZEnterpriseCell.h */,
+				82912C371CA6D87F00098261 /* HZEnterpriseCell.m */,
+				82912C381CA6D87F00098261 /* HZEnterpriseCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,6 +455,7 @@
 				822B11641CA582FB0044CC8C /* HZTabBarViewController.xib in Resources */,
 				82912C271CA676AA00098261 /* HZNavigationController.xib in Resources */,
 				822B117A1CA589660044CC8C /* TableBaseViewController.xib in Resources */,
+				82912C3A1CA6D87F00098261 /* HZEnterpriseCell.xib in Resources */,
 				82912C1E1CA6510A00098261 /* HZJobHuntCell.xib in Resources */,
 				822B11591CA5822C0044CC8C /* LaunchScreen.storyboard in Resources */,
 				822B11561CA5822C0044CC8C /* Assets.xcassets in Resources */,
@@ -511,12 +530,15 @@
 				822B118F1CA614530044CC8C /* MineViewController.m in Sources */,
 				82912C211CA6543100098261 /* HZJobModel.m in Sources */,
 				822B11791CA589660044CC8C /* TableBaseViewController.m in Sources */,
+				82912C351CA6D7C700098261 /* HZEnterpriseViewController.m in Sources */,
 				822B114E1CA5822C0044CC8C /* AppDelegate.m in Sources */,
 				82912C191CA650B400098261 /* HZJobHuntViewController.m in Sources */,
 				822B114B1CA5822C0044CC8C /* main.m in Sources */,
 				82912C1D1CA6510A00098261 /* HZJobHuntCell.m in Sources */,
 				822B11801CA58E820044CC8C /* HomeViewController.m in Sources */,
 				822B11961CA61DF60044CC8C /* NetworkManager.m in Sources */,
+				82912C3D1CA6DA2200098261 /* HZEnterpriseModel.m in Sources */,
+				82912C391CA6D87F00098261 /* HZEnterpriseCell.m in Sources */,
 				82912C2F1CA6D0D900098261 /* HZResumeViewController.m in Sources */,
 				82912C251CA6767F00098261 /* HZNavigationController.m in Sources */,
 				82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */,

@@ -11,6 +11,7 @@
 @interface TableBaseViewController : UIViewController
 @property (nonatomic, strong) NSMutableArray *dataList;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSInteger requestPage;
 -(void)setTopInset:(CGFloat)top;
 
 - (void)loadMoreData;
