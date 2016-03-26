@@ -24,6 +24,16 @@
 		822B118B1CA614400044CC8C /* PublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B11891CA614400044CC8C /* PublishViewController.xib */; };
 		822B118F1CA614530044CC8C /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822B118D1CA614530044CC8C /* MineViewController.m */; };
 		822B11901CA614530044CC8C /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B118E1CA614530044CC8C /* MineViewController.xib */; };
+		822B11961CA61DF60044CC8C /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 822B11951CA61DF60044CC8C /* NetworkManager.m */; };
+		82912BF01CA63EC100098261 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BEF1CA63EC100098261 /* HomeBannerModel.m */; };
+		82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF41CA641E200098261 /* UIImageView+Extension.m */; };
+		82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */; };
+		82912C191CA650B400098261 /* HZJobHuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C181CA650B400098261 /* HZJobHuntViewController.m */; };
+		82912C1D1CA6510A00098261 /* HZJobHuntCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C1B1CA6510A00098261 /* HZJobHuntCell.m */; };
+		82912C1E1CA6510A00098261 /* HZJobHuntCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82912C1C1CA6510A00098261 /* HZJobHuntCell.xib */; };
+		82912C211CA6543100098261 /* HZJobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C201CA6543100098261 /* HZJobModel.m */; };
+		82912C251CA6767F00098261 /* HZNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C241CA6767F00098261 /* HZNavigationController.m */; };
+		82912C271CA676AA00098261 /* HZNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82912C261CA676AA00098261 /* HZNavigationController.xib */; };
 		B2E8D2750D31D419724B34FE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72647898094ED1CB1FB960DC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +70,24 @@
 		822B118D1CA614530044CC8C /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		822B118E1CA614530044CC8C /* MineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineViewController.xib; sourceTree = "<group>"; };
 		822B11911CA6166D0044CC8C /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		822B11941CA61DF60044CC8C /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		822B11951CA61DF60044CC8C /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		82912BEE1CA63EC100098261 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
+		82912BEF1CA63EC100098261 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
+		82912BF31CA641E200098261 /* UIImageView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extension.h"; sourceTree = "<group>"; };
+		82912BF41CA641E200098261 /* UIImageView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Extension.m"; sourceTree = "<group>"; };
+		82912BF61CA6455B00098261 /* UIViewController+AttachBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AttachBack.h"; sourceTree = "<group>"; };
+		82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AttachBack.m"; sourceTree = "<group>"; };
+		82912C171CA650B400098261 /* HZJobHuntViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZJobHuntViewController.h; sourceTree = "<group>"; };
+		82912C181CA650B400098261 /* HZJobHuntViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZJobHuntViewController.m; sourceTree = "<group>"; };
+		82912C1A1CA6510A00098261 /* HZJobHuntCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZJobHuntCell.h; sourceTree = "<group>"; };
+		82912C1B1CA6510A00098261 /* HZJobHuntCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZJobHuntCell.m; sourceTree = "<group>"; };
+		82912C1C1CA6510A00098261 /* HZJobHuntCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZJobHuntCell.xib; sourceTree = "<group>"; };
+		82912C1F1CA6543100098261 /* HZJobModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZJobModel.h; sourceTree = "<group>"; };
+		82912C201CA6543100098261 /* HZJobModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZJobModel.m; sourceTree = "<group>"; };
+		82912C231CA6767F00098261 /* HZNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZNavigationController.h; sourceTree = "<group>"; };
+		82912C241CA6767F00098261 /* HZNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZNavigationController.m; sourceTree = "<group>"; };
+		82912C261CA676AA00098261 /* HZNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZNavigationController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +175,8 @@
 				822B117D1CA58E820044CC8C /* HomeViewController.h */,
 				822B117E1CA58E820044CC8C /* HomeViewController.m */,
 				822B11821CA612F80044CC8C /* HomeViewController.xib */,
+				82912C171CA650B400098261 /* HZJobHuntViewController.h */,
+				82912C181CA650B400098261 /* HZJobHuntViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,6 +184,10 @@
 		822B11671CA588B00044CC8C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				82912BEE1CA63EC100098261 /* HomeBannerModel.h */,
+				82912BEF1CA63EC100098261 /* HomeBannerModel.m */,
+				82912C1F1CA6543100098261 /* HZJobModel.h */,
+				82912C201CA6543100098261 /* HZJobModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +195,9 @@
 		822B11681CA588B00044CC8C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				82912C1A1CA6510A00098261 /* HZJobHuntCell.h */,
+				82912C1B1CA6510A00098261 /* HZJobHuntCell.m */,
+				82912C1C1CA6510A00098261 /* HZJobHuntCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,14 +306,47 @@
 		822B11751CA5892E0044CC8C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				82912C221CA6765900098261 /* Controller */,
+				82912BF11CA6419800098261 /* Extension */,
+				822B11931CA61DDA0044CC8C /* Network */,
+			);
+			name = Lib;
+			sourceTree = "<group>";
+		};
+		822B11931CA61DDA0044CC8C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				822B11941CA61DF60044CC8C /* NetworkManager.h */,
+				822B11951CA61DF60044CC8C /* NetworkManager.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		82912BF11CA6419800098261 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				82912BF31CA641E200098261 /* UIImageView+Extension.h */,
+				82912BF41CA641E200098261 /* UIImageView+Extension.m */,
+				82912BF61CA6455B00098261 /* UIViewController+AttachBack.h */,
+				82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		82912C221CA6765900098261 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				822B11601CA582FB0044CC8C /* HZTabBarViewController.h */,
 				822B11611CA582FB0044CC8C /* HZTabBarViewController.m */,
 				822B11621CA582FB0044CC8C /* HZTabBarViewController.xib */,
 				822B11761CA589660044CC8C /* TableBaseViewController.h */,
 				822B11771CA589660044CC8C /* TableBaseViewController.m */,
 				822B11781CA589660044CC8C /* TableBaseViewController.xib */,
+				82912C231CA6767F00098261 /* HZNavigationController.h */,
+				82912C241CA6767F00098261 /* HZNavigationController.m */,
+				82912C261CA676AA00098261 /* HZNavigationController.xib */,
 			);
-			name = Lib;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		A8394D48B333B991C7FBC264 /* Pods */ = {
@@ -317,6 +387,7 @@
 		822B113E1CA5822C0044CC8C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = HZ;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = ihj;
 				TargetAttributes = {
@@ -349,7 +420,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				822B11641CA582FB0044CC8C /* HZTabBarViewController.xib in Resources */,
+				82912C271CA676AA00098261 /* HZNavigationController.xib in Resources */,
 				822B117A1CA589660044CC8C /* TableBaseViewController.xib in Resources */,
+				82912C1E1CA6510A00098261 /* HZJobHuntCell.xib in Resources */,
 				822B11591CA5822C0044CC8C /* LaunchScreen.storyboard in Resources */,
 				822B11561CA5822C0044CC8C /* Assets.xcassets in Resources */,
 				822B11541CA5822C0044CC8C /* Main.storyboard in Resources */,
@@ -414,15 +487,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82912BF01CA63EC100098261 /* HomeBannerModel.m in Sources */,
 				822B118A1CA614400044CC8C /* PublishViewController.m in Sources */,
 				822B11631CA582FB0044CC8C /* HZTabBarViewController.m in Sources */,
 				822B11511CA5822C0044CC8C /* ViewController.m in Sources */,
 				822B118F1CA614530044CC8C /* MineViewController.m in Sources */,
+				82912C211CA6543100098261 /* HZJobModel.m in Sources */,
 				822B11791CA589660044CC8C /* TableBaseViewController.m in Sources */,
 				822B114E1CA5822C0044CC8C /* AppDelegate.m in Sources */,
+				82912C191CA650B400098261 /* HZJobHuntViewController.m in Sources */,
 				822B114B1CA5822C0044CC8C /* main.m in Sources */,
+				82912C1D1CA6510A00098261 /* HZJobHuntCell.m in Sources */,
 				822B11801CA58E820044CC8C /* HomeViewController.m in Sources */,
+				822B11961CA61DF60044CC8C /* NetworkManager.m in Sources */,
+				82912C251CA6767F00098261 /* HZNavigationController.m in Sources */,
+				82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */,
 				822B11861CA614250044CC8C /* NewsViewController.m in Sources */,
+				82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +623,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HZ/PreHeader.h";
 				INFOPLIST_FILE = HZ/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -607,6 +689,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/ihj/Desktop/HZ/HZ/PreHeader.h ";
 				INFOPLIST_FILE = HZ/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

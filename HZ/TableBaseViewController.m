@@ -9,7 +9,7 @@
 #import "TableBaseViewController.h"
 
 @interface TableBaseViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) UITableView *tableView;
+
 
 @end
 
@@ -17,9 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataList = [NSMutableArray array];
     [self customTableView];
 }
 
+
+- (void)setTopInset:(CGFloat)top{
+    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0);
+}
 - (void)customTableView{
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
@@ -27,6 +32,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
    [self.view addSubview:self.tableView];
+}
+
+- (void)registerCell:(Class)clz{
+    NSString *cellName = NSStringFromClass(clz);
+    [self.tableView registerNib:[UINib nibWithNibName:cellName bundle:nil] forCellReuseIdentifier:cellName];
 }
 
 - (void)loadMoreData{
@@ -40,7 +50,7 @@
 
 #pragma  mark //    子类来实现
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

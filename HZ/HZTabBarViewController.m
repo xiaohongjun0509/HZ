@@ -11,6 +11,7 @@
 #import "MineViewController.h"
 #import "PublishViewController.h"
 #import "HomeViewController.h"
+#import "HZNavigationController.h"
 @interface HZTabBarViewController ()
 
 @end
@@ -31,7 +32,7 @@
 //    UIImage *origImage = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     controller.tabBarItem.image = [UIImage imageNamed:image];
 //    controller.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:controller];
+    HZNavigationController *nc = [[HZNavigationController alloc] initWithRootViewController:controller];
     [self addChildViewController:nc];
 }
 

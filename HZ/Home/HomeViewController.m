@@ -7,10 +7,11 @@
 //
 
 #import "HomeViewController.h"
-
+#import "HomeBannerModel.h"
+#import "HZJobHuntViewController.h"
 @interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, copy) NSArray *scrollImages;
+@property (nonatomic, copy) NSArray *scrollImageModels;
 @property (nonatomic, strong) UIPageControl *pageController;
 @end
 
@@ -23,6 +24,26 @@
     }];
     [self customScrollview];
     [self customButtons];
+    [self  requestBanner];
+}
+
+- (void)requestBanner{
+    WEAKSELF
+    [[NetworkManager manager] startRequest:banner completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (!error) {
+            NSDictionary *dict = responseObject;
+            weakSelf.scrollImageModels = [HomeBannerModel mj_objectArrayWithKeyValuesArray:[dict objectForKey:@"data" ]];
+            weakSelf.scrollView.contentSize = CGSizeMake(ScreenWidth * self.scrollImageModels.count,0);
+            [weakSelf.scrollImageModels enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                UIImageView *imageView = [[UIImageView alloc] init];
+                imageView.frame = CGRectMake(ScreenWidth*idx, 0, ScreenWidth, ScreenWidth/2);
+                HomeBannerModel *model = obj;
+                [imageView setImageUrl:model.image];
+                [weakSelf.scrollView addSubview:imageView];
+            }];
+            self.pageController.numberOfPages = self.scrollImageModels.count;
+        }
+    }];
 }
 
 - (void)customScrollview{
@@ -33,14 +54,14 @@
     self.scrollView.contentOffset = CGPointZero;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
-    //内容的大小(整体大小）
-    self.scrollView.contentSize = CGSizeMake(ScreenWidth * self.scrollImages.count,0);
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.scrollView];
     
-    self.pageController = [[UIPageControl alloc]initWithFrame:CGRectMake(ScreenWidth/2-50, ScreenWidth/2-20, 100, 0)];
+    self.pageController = [[UIPageControl alloc]initWithFrame:CGRectMake(ScreenWidth/2-50, CGRectGetMaxY(self.scrollView.frame) - 15, 100, 0)];
     self.pageController.currentPageIndicatorTintColor = [UIColor colorWithRed:57/255.0 green:141/255.0 blue:227/255.0 alpha:1];
     self.pageController.pageIndicatorTintColor = [UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:1];
-    self.pageController.numberOfPages = self.scrollImages.count;
+    self.pageController.numberOfPages = self.scrollImageModels.count;
+    self.pageController.currentPage = 0;
     [self.view addSubview:self.pageController];
 }
 
@@ -60,7 +81,6 @@
     label.text = title;
     label.font = [UIFont systemFontOfSize:labelText+3];
     label.textColor = [UIColor whiteColor];
-    
     label.frame = CGRectMake(button.frame.size.width/2 - 50, CGRectGetMaxY(imageView.frame)+12, 100, 30);
     [label sizeToFit];
     label.frame = CGRectMake(button.frame.size.width/2 - label.frame.size.width/2, CGRectGetMaxY(imageView.frame)+12, label.frame.size.width, label.frame.size.height);
@@ -70,23 +90,51 @@
 
 
 -(void)customButtons{
-    UIButton *jobButton = [self makeMenuButton:@"home_1_icon1.png" title:@"找工作" selector:@selector(findWork:) color:[UIColor colorWithRed:43/255.0 green:223/255.0 blue:252/255.0 alpha:1] frame:CGRectMake(15, CGRectGetMaxY(self.scrollView.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    UIButton *jobButton = [self makeMenuButton:@"home_1_icon1.png" title:@"找工作" selector:@selector(findWork) color:[UIColor colorWithRed:43/255.0 green:223/255.0 blue:252/255.0 alpha:1] frame:CGRectMake(15, CGRectGetMaxY(self.scrollView.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
     [jobButton setNeedsLayout];
     [jobButton layoutIfNeeded];
     
     
-    UIButton *resumeButton = [self makeMenuButton:@"home_1_icon2.png" title:@"看简历" selector:@selector(seeResume:) color:[UIColor colorWithRed:70/255.0 green:214/255.0 blue:202/255.0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(self.scrollView.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    UIButton *resumeButton = [self makeMenuButton:@"home_1_icon2.png" title:@"看简历" selector:@selector(resume) color:[UIColor colorWithRed:70/255.0 green:214/255.0 blue:202/255.0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(self.scrollView.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
     [resumeButton setNeedsLayout];
     [resumeButton layoutIfNeeded];
     
-    UIButton *enterpriseButton = [self makeMenuButton:@"home_1_icon3.png" title:@"企业通" selector:@selector(enterprise:) color:[UIColor colorWithRed:72/255.0 green:119/255.0 blue:255/255.0 alpha:1] frame:CGRectMake(15, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    UIButton *enterpriseButton = [self makeMenuButton:@"home_1_icon3.png" title:@"企业通" selector:@selector(enterprise) color:[UIColor colorWithRed:72/255.0 green:119/255.0 blue:255/255.0 alpha:1] frame:CGRectMake(15, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
     [enterpriseButton setNeedsLayout];
     [enterpriseButton layoutIfNeeded];
     
-    UIButton *zhaobiaoButton = [self makeMenuButton:@"home_1_icon4.png" title:@"招标通" selector:@selector(zhaibiao:) color:[UIColor colorWithRed:255/255.0 green:84/255.0 blue:0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    UIButton *zhaobiaoButton = [self makeMenuButton:@"home_1_icon4.png" title:@"招标通" selector:@selector(zhaibiao) color:[UIColor colorWithRed:255/255.0 green:84/255.0 blue:0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
     [zhaobiaoButton setNeedsLayout];
     [zhaobiaoButton layoutIfNeeded];
 }
 
+- (void)findWork{
+    HZJobHuntViewController *controller = [[HZJobHuntViewController alloc] init];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navi animated:YES completion:nil];
+    
+}
 
+- (void)enterprise{
+    
+}
+
+- (void)resume{
+    
+}
+
+- (void)zhaibiao{
+    
+}
+
+
+#pragma mark delegate
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+   self.pageController.currentPage = (int) scrollView.contentOffset.x / ScreenWidth;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    self.pageController.currentPage = (int) scrollView.contentOffset.x / ScreenWidth;
+}
 @end
