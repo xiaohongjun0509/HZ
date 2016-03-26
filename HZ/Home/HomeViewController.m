@@ -8,20 +8,85 @@
 
 #import "HomeViewController.h"
 
-@interface HomeViewController ()
-
+@interface HomeViewController ()<UIScrollViewDelegate>
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, copy) NSArray *scrollImages;
+@property (nonatomic, strong) UIPageControl *pageController;
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.hidden = YES;
+    }];
+    [self customScrollview];
+    [self customButtons];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)customScrollview{
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenWidth/2)];
+    self.scrollView.delegate = self;
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.userInteractionEnabled = YES;
+    self.scrollView.contentOffset = CGPointZero;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    //内容的大小(整体大小）
+    self.scrollView.contentSize = CGSizeMake(ScreenWidth * self.scrollImages.count,0);
+    [self.view addSubview:self.scrollView];
+    
+    self.pageController = [[UIPageControl alloc]initWithFrame:CGRectMake(ScreenWidth/2-50, ScreenWidth/2-20, 100, 0)];
+    self.pageController.currentPageIndicatorTintColor = [UIColor colorWithRed:57/255.0 green:141/255.0 blue:227/255.0 alpha:1];
+    self.pageController.pageIndicatorTintColor = [UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:1];
+    self.pageController.numberOfPages = self.scrollImages.count;
+    [self.view addSubview:self.pageController];
 }
+
+- (UIButton *)makeMenuButton:(NSString *)imageName title:(NSString *)title selector:(SEL)selector color:(UIColor *)color frame:(CGRect)frame{
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectZero];
+    [button setBackgroundColor:color];
+    button.frame = frame;
+    [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    button.layer.cornerRadius = 5;
+    [self.view addSubview:button];
+    //图片
+    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(button.frame.size.width/2-button.frame.size.height/6, button.frame.size.height/5.4, button.frame.size.height/3, button.frame.size.height/3)];
+    imageView.image = [UIImage imageNamed:imageName];
+    [button addSubview:imageView];
+    //找工作
+    UILabel* label = [[UILabel alloc]init];
+    label.text = title;
+    label.font = [UIFont systemFontOfSize:labelText+3];
+    label.textColor = [UIColor whiteColor];
+    
+    label.frame = CGRectMake(button.frame.size.width/2 - 50, CGRectGetMaxY(imageView.frame)+12, 100, 30);
+    [label sizeToFit];
+    label.frame = CGRectMake(button.frame.size.width/2 - label.frame.size.width/2, CGRectGetMaxY(imageView.frame)+12, label.frame.size.width, label.frame.size.height);
+    [button addSubview:label];
+    return button;
+}
+
+
+-(void)customButtons{
+    UIButton *jobButton = [self makeMenuButton:@"home_1_icon1.png" title:@"找工作" selector:@selector(findWork:) color:[UIColor colorWithRed:43/255.0 green:223/255.0 blue:252/255.0 alpha:1] frame:CGRectMake(15, CGRectGetMaxY(self.scrollView.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    [jobButton setNeedsLayout];
+    [jobButton layoutIfNeeded];
+    
+    
+    UIButton *resumeButton = [self makeMenuButton:@"home_1_icon2.png" title:@"看简历" selector:@selector(seeResume:) color:[UIColor colorWithRed:70/255.0 green:214/255.0 blue:202/255.0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(self.scrollView.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    [resumeButton setNeedsLayout];
+    [resumeButton layoutIfNeeded];
+    
+    UIButton *enterpriseButton = [self makeMenuButton:@"home_1_icon3.png" title:@"企业通" selector:@selector(enterprise:) color:[UIColor colorWithRed:72/255.0 green:119/255.0 blue:255/255.0 alpha:1] frame:CGRectMake(15, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    [enterpriseButton setNeedsLayout];
+    [enterpriseButton layoutIfNeeded];
+    
+    UIButton *zhaobiaoButton = [self makeMenuButton:@"home_1_icon4.png" title:@"招标通" selector:@selector(zhaibiao:) color:[UIColor colorWithRed:255/255.0 green:84/255.0 blue:0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    [zhaobiaoButton setNeedsLayout];
+    [zhaobiaoButton layoutIfNeeded];
+}
+
 
 @end

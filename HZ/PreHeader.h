@@ -24,4 +24,5 @@
 #define BGCOLOR [UIColor colorWithRed:219 / 255.0 green:219 / 255.0 blue:219 / 255.0 alpha:1]
 #define WORDCOLOR [UIColor colorWithRed:123 / 255.0 green:123 / 255.0 blue:123 / 255.0 alpha:1]
 #define WEAKSELF   typeof(self)     __weak weakSelf = self;
+#define labelText [UIScreen mainScreen].bounds.size.height/40
 

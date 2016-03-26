@@ -18,7 +18,12 @@
 		822B11791CA589660044CC8C /* TableBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822B11771CA589660044CC8C /* TableBaseViewController.m */; };
 		822B117A1CA589660044CC8C /* TableBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B11781CA589660044CC8C /* TableBaseViewController.xib */; };
 		822B11801CA58E820044CC8C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822B117E1CA58E820044CC8C /* HomeViewController.m */; };
-		822B11811CA58E820044CC8C /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B117F1CA58E820044CC8C /* HomeViewController.xib */; };
+		822B11831CA612F80044CC8C /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B11821CA612F80044CC8C /* HomeViewController.xib */; };
+		822B11861CA614250044CC8C /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822B11851CA614250044CC8C /* NewsViewController.m */; };
+		822B118A1CA614400044CC8C /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822B11881CA614400044CC8C /* PublishViewController.m */; };
+		822B118B1CA614400044CC8C /* PublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B11891CA614400044CC8C /* PublishViewController.xib */; };
+		822B118F1CA614530044CC8C /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 822B118D1CA614530044CC8C /* MineViewController.m */; };
+		822B11901CA614530044CC8C /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B118E1CA614530044CC8C /* MineViewController.xib */; };
 		B2E8D2750D31D419724B34FE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72647898094ED1CB1FB960DC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +50,16 @@
 		822B117C1CA58A310044CC8C /* PreHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreHeader.h; sourceTree = "<group>"; };
 		822B117D1CA58E820044CC8C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
 		822B117E1CA58E820044CC8C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
-		822B117F1CA58E820044CC8C /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = ../HomeViewController.xib; sourceTree = "<group>"; };
+		822B11821CA612F80044CC8C /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		822B11841CA614250044CC8C /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		822B11851CA614250044CC8C /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		822B11871CA614400044CC8C /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
+		822B11881CA614400044CC8C /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
+		822B11891CA614400044CC8C /* PublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishViewController.xib; sourceTree = "<group>"; };
+		822B118C1CA614530044CC8C /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		822B118D1CA614530044CC8C /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		822B118E1CA614530044CC8C /* MineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineViewController.xib; sourceTree = "<group>"; };
+		822B11911CA6166D0044CC8C /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +77,7 @@
 		53E82A71EF6831A7AB6071D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				822B11911CA6166D0044CC8C /* Reveal.framework */,
 				72647898094ED1CB1FB960DC /* libPods.a */,
 			);
 			name = Frameworks;
@@ -131,7 +146,7 @@
 			children = (
 				822B117D1CA58E820044CC8C /* HomeViewController.h */,
 				822B117E1CA58E820044CC8C /* HomeViewController.m */,
-				822B117F1CA58E820044CC8C /* HomeViewController.xib */,
+				822B11821CA612F80044CC8C /* HomeViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -163,6 +178,9 @@
 		822B116A1CA588BC0044CC8C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				822B118C1CA614530044CC8C /* MineViewController.h */,
+				822B118D1CA614530044CC8C /* MineViewController.m */,
+				822B118E1CA614530044CC8C /* MineViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,6 +212,8 @@
 		822B116E1CA588C60044CC8C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				822B11841CA614250044CC8C /* NewsViewController.h */,
+				822B11851CA614250044CC8C /* NewsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -225,6 +245,9 @@
 		822B11721CA588D00044CC8C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				822B11871CA614400044CC8C /* PublishViewController.h */,
+				822B11881CA614400044CC8C /* PublishViewController.m */,
+				822B11891CA614400044CC8C /* PublishViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -330,7 +353,9 @@
 				822B11591CA5822C0044CC8C /* LaunchScreen.storyboard in Resources */,
 				822B11561CA5822C0044CC8C /* Assets.xcassets in Resources */,
 				822B11541CA5822C0044CC8C /* Main.storyboard in Resources */,
-				822B11811CA58E820044CC8C /* HomeViewController.xib in Resources */,
+				822B118B1CA614400044CC8C /* PublishViewController.xib in Resources */,
+				822B11831CA612F80044CC8C /* HomeViewController.xib in Resources */,
+				822B11901CA614530044CC8C /* MineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,12 +414,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				822B118A1CA614400044CC8C /* PublishViewController.m in Sources */,
 				822B11631CA582FB0044CC8C /* HZTabBarViewController.m in Sources */,
 				822B11511CA5822C0044CC8C /* ViewController.m in Sources */,
+				822B118F1CA614530044CC8C /* MineViewController.m in Sources */,
 				822B11791CA589660044CC8C /* TableBaseViewController.m in Sources */,
 				822B114E1CA5822C0044CC8C /* AppDelegate.m in Sources */,
 				822B114B1CA5822C0044CC8C /* main.m in Sources */,
 				822B11801CA58E820044CC8C /* HomeViewController.m in Sources */,
+				822B11861CA614250044CC8C /* NewsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,10 +535,61 @@
 			baseConfigurationReference = 6E11108D39B730C740255C47 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HZ/PreHeader.h";
 				INFOPLIST_FILE = HZ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"CYLTabBarController\"",
+					"-l\"DACircularProgress\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"NJKWebViewProgress\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"YYKit\"",
+					"-l\"c++\"",
+					"-l\"pop\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"WebP\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = HJ.HZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -521,10 +600,61 @@
 			baseConfigurationReference = 108D8F136E3A745EC9ABE9AB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/ihj/Desktop/HZ/HZ/PreHeader.h ";
 				INFOPLIST_FILE = HZ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"CYLTabBarController\"",
+					"-l\"DACircularProgress\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"NJKWebViewProgress\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"YYKit\"",
+					"-l\"c++\"",
+					"-l\"pop\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"WebP\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = HJ.HZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
