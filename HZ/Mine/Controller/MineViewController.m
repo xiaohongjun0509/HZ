@@ -8,30 +8,57 @@
 
 #import "MineViewController.h"
 
-@interface MineViewController ()
-
+@interface MineViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSArray *titles;
+@property (nonatomic, copy) NSArray *images;
 @end
 
 @implementation MineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.title = @"用户中心";
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    [self.view addSubview:self.tableView];
+    
+    self.titles = @[@"我的账号",@"我的发布",@"我的收藏"];
+    self.images = @[@"home_7_uc1.png",@"home_7_uc2.png",@"home_7_uc3.png"];
+    [self attachBackButton];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.titles.count;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString* identifire = @"Cell";
+    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:identifire];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifire];
+    }
+  
+    NSString *imageName = self.images[2 - indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:imageName];
+    cell.textLabel.text = [self.titles objectAtIndex:indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row == 2) {
+        cell.separatorInset = UIEdgeInsetsZero;
+    }
+    return cell;
 }
-*/
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        return 15;
+    }
+    return 0.0000001;
+}
 
 @end

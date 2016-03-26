@@ -21,9 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self makeTabController:[HomeViewController new] title:@"首页" image:@"tab_h_col"];
-    [self makeTabController:[HomeViewController new] title:@"新闻" image:@"news"];
-    [self makeTabController:[HomeViewController new] title:@"发布" image:@"tab_p_col.png"];
-    [self makeTabController:[HomeViewController new] title:@"用户中心" image:@"tab_u_col.png"];
+    [self makeTabController:[NewsViewController new] title:@"新闻" image:@"news"];
+    [self makeTabController:[PublishViewController new] title:@"发布" image:@"tab_p_col.png"];
+    [self makeTabController:[MineViewController new] title:@"用户中心" image:@"tab_u_col.png"];
     
 }
 
