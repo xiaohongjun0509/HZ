@@ -1,16 +1,16 @@
 //
-//  HZJobHuntViewController.m
+//  HZResumeViewController.m
 //  HZ
 //
 //  Created by hongjunxiao on 16/3/26.
 //  Copyright © 2016年 ihj. All rights reserved.
 //
 
-#import "HZJobHuntViewController.h"
+#import "HZResumeViewController.h"
 #import "HZJobHuntCell.h"
-#import "HZJobModel.h"
+#import "HZResumeModel.h"
 #import "HZSegmentView.h"
-@interface HZJobHuntViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface HZResumeViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSString *job;
 @property (nonatomic, copy) NSString *area;
 @property (nonatomic, copy) NSString *salary;
@@ -19,12 +19,12 @@
 @property (nonatomic, strong) HZSegmentView *segmentView;
 @end
 
-@implementation HZJobHuntViewController
+@implementation HZResumeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cityName = @"北京";
-    self.title = [NSString stringWithFormat:@"找工作(%@)",self.cityName];
+    self.title = [NSString stringWithFormat:@"看简历(%@)",self.cityName];
     self.job = nil;
     self.area = nil;
     self.salary = nil;
@@ -38,7 +38,7 @@
 
 - (void)attachSegmentView{
     self.segmentView = [[HZSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
-   
+     self.segmentView.titleArray = @[@"意向职位",@"工作经验",@"期望薪资"];
     [self.view addSubview:self.segmentView];
 }
 
@@ -53,12 +53,12 @@
 }
 
 - (void)startRequest{
-    NSString *urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%d",findwork,self.cityName,self.requestPage];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?hasNext=%ld",seeresume,self.requestPage];
     WEAKSELF
     [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){
             NSDictionary *dict = responseObject;
-            NSArray *dataList = [HZJobModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+            NSArray *dataList = [HZResumeModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
             if(self.requestPage == 1){
                 [weakSelf.dataList removeAllObjects];
             }
@@ -76,27 +76,27 @@
             
         }
     }];
-
+    
 }
 
 
 #pragma mark network
 -(void)getPosition{
-//    NSURL *url = [NSURL URLWithString:hopeposition1];
-//    //第二步，创建请求
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-//    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
-//    NSString *str = @"type=focus-c";//设置参数
-//    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-//    [request setHTTPBody:data];
-//    //第三步，连接服务器
-//    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-//    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
-//    self.positionList = [MbPaser paserPositionByDic:dic];
-//    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.tableView1 reloadData];
-//    });
+    //    NSURL *url = [NSURL URLWithString:hopeposition1];
+    //    //第二步，创建请求
+    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    //    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    //    NSString *str = @"type=focus-c";//设置参数
+    //    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    //    [request setHTTPBody:data];
+    //    //第三步，连接服务器
+    //    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    //    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    //    self.positionList = [MbPaser paserPositionByDic:dic];
+    //
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //        [self.tableView1 reloadData];
+    //    });
 }
 
 
@@ -108,8 +108,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HZJobHuntCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZJobHuntCell"];
-    HZJobModel *model = self.dataList[indexPath.row];
-    cell.model = model;
+    HZResumeModel *model = self.dataList[indexPath.row];
+    cell.resumeModel = model;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

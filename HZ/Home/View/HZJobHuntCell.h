@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "HZJobModel.h"
+#import "HZResumeModel.h"
 static NSString * const kHZJobHuntCell = @"HZJobHuntCell";
 
 @interface HZJobHuntCell : UITableViewCell
 
 @property (nonatomic, strong) HZJobModel *model;
+
+@property (nonatomic, strong) HZResumeModel *resumeModel;
+
 
 + (CGFloat)cellHeight;
 

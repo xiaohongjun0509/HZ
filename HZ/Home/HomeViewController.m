@@ -9,6 +9,8 @@
 #import "HomeViewController.h"
 #import "HomeBannerModel.h"
 #import "HZJobHuntViewController.h"
+#import "HZResumeViewController.h"
+
 @interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, copy) NSArray *scrollImageModels;
@@ -47,7 +49,7 @@
 }
 
 - (void)customScrollview{
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenWidth/2)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
     self.scrollView.delegate = self;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.userInteractionEnabled = YES;
@@ -120,7 +122,9 @@
 }
 
 - (void)resume{
-    
+    HZResumeViewController *controller = [HZResumeViewController new];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navi animated:YES completion:nil];
 }
 
 - (void)zhaibiao{

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Home/HomeViewController.m"
-            timestampString = "480663484.753761"
+            timestampString = "480695031.347454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-scrollViewDidEndScrollingAnimation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,46 +25,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HZ/Home/Controller/HZJobHuntViewController.m"
-            timestampString = "480671173.682298"
+            filePath = "HZ/Home/Controller/HZResumeViewController.m"
+            timestampString = "480695195.098754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-startRequest"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Home/Controller/HZJobHuntViewController.m"
-            timestampString = "480671173.682298"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Home/Controller/HZJobHuntViewController.m"
-            timestampString = "480671173.682298"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HZResumeViewController startRequest]"
+                  moduleName = "HZ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ihj/Desktop/HZ/HZ/Home/Controller/HZResumeViewController.m"
+                  timestampString = "480695195.102621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "133">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[HZResumeViewController startRequest]_block_invoke"
+                  moduleName = "HZ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ihj/Desktop/HZ/HZ/Home/Controller/HZResumeViewController.m"
+                  timestampString = "480695195.102837"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "103">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
