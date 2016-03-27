@@ -9,5 +9,5 @@
 #import "TableBaseViewController.h"
 
 @interface HZPublishEnterpriseViewController : TableBaseViewController
-
+@property (nonatomic, assign) BOOL requestOfPublish;//是否是我的发布中的request
 @end

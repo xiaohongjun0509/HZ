@@ -278,6 +278,7 @@
 		822B116A1CA588BC0044CC8C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				82D8204C1CA8267700AF9857 /* Collection */,
 				82E887231CA77C7C00279FBE /* Publish */,
 				822B118C1CA614530044CC8C /* MineViewController.h */,
 				822B118D1CA614530044CC8C /* MineViewController.m */,
@@ -416,6 +417,13 @@
 				82912C261CA676AA00098261 /* HZNavigationController.xib */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		82D8204C1CA8267700AF9857 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Collection;
 			sourceTree = "<group>";
 		};
 		82E8871D1CA7737000279FBE /* Model */ = {

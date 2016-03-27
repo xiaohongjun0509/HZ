@@ -38,8 +38,9 @@
 
 - (void)startRequest{
     NSString *userid= [[HZUserManager manager] userid];
+    NSString *urlPath = self.requestOfPublish ? myfindwork : workCollect;
     WEAKSELF
-    [[NetworkManager manager] postRequest:myfindwork parameters:@{@"userid":userid,@"hasNext":[NSString stringWithFormat:@"%ld",self.requestPage] } completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    [[NetworkManager manager] postRequest:urlPath parameters:@{@"userid":userid,@"hasNext":[NSString stringWithFormat:@"%ld",self.requestPage] } completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             return ;
         }

@@ -71,6 +71,13 @@
     }
     if (indexPath.row == 1) {
         HZPublishViewController *controller = [HZPublishViewController new];
+        controller.requestOfPublish = YES;
+        HZNavigationController *navi = [[HZNavigationController alloc] initWithRootViewController:controller];
+        [self presentViewController:navi animated:YES completion:nil];
+    }
+    if (indexPath.row == 2) {
+        HZPublishViewController *controller = [HZPublishViewController new];
+        controller.requestOfPublish = NO;
         HZNavigationController *navi = [[HZNavigationController alloc] initWithRootViewController:controller];
         [self presentViewController:navi animated:YES completion:nil];
     }

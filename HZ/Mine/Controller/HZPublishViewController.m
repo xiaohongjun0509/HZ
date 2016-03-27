@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"我的发布";
+    self.title = self.requestOfPublish ? @"我的发布" : @"我的收藏";
     [self customScrollView];
     [self attachSegmentView];
     [self attachBackButton];
@@ -37,16 +37,19 @@
     
     
     HZPublishJobViewController *jobVC = [HZPublishJobViewController new];
+    jobVC.requestOfPublish = YES;
     [self addChildViewController:jobVC];
     jobVC.view.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:jobVC.view];
     
     HZPublishResumeViewController *resumeVC = [HZPublishResumeViewController new];
+    resumeVC.requestOfPublish = YES;
     [self addChildViewController:resumeVC];
     resumeVC.view.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:resumeVC.view];
     
     HZPublishEnterpriseViewController *enterpriseVC = [HZPublishEnterpriseViewController new];
+    enterpriseVC.requestOfPublish = YES;
     [self addChildViewController:enterpriseVC];
     enterpriseVC.view.frame = CGRectMake(ScreenWidth * 2, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:enterpriseVC.view];
