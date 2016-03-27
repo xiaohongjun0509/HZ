@@ -7,7 +7,7 @@
 //
 
 #import "MineViewController.h"
-
+#import "HZLoginViewController.h"
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) NSArray *titles;
@@ -59,6 +59,15 @@
         return 15;
     }
     return 0.0000001;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        HZLoginViewController *controller = [HZLoginViewController new];
+        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self presentViewController:navi animated:YES completion:nil];
+
+    }
 }
 
 @end

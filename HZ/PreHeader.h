@@ -16,6 +16,8 @@
 #import "UIImageView+Extension.h"
 #import "UIViewController+AttachBack.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "HZUserModel.h"
+#import "HZNavigationController.h"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
