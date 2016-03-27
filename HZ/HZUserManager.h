@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HZUserModel : NSObject
+@interface HZUserManager : NSObject
+
++(instancetype)manager;
 
 - (void)setName:(NSString *)name;
 -(NSString *)name;

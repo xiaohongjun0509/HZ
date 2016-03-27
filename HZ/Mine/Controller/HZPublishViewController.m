@@ -21,13 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.title = @"我的发布";
     [self customScrollView];
     [self attachSegmentView];
+    [self attachBackButton];
 }
 
 - (void)customScrollView{
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
-     self.scrollView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
+     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.scrollView.contentSize = CGSizeMake(3 * ScreenWidth, 0);
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -41,22 +43,32 @@
     
     HZPublishResumeViewController *resumeVC = [HZPublishResumeViewController new];
     [self addChildViewController:resumeVC];
-    jobVC.view.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight - 64);
+    resumeVC.view.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:resumeVC.view];
     
     HZPublishEnterpriseViewController *enterpriseVC = [HZPublishEnterpriseViewController new];
     [self addChildViewController:enterpriseVC];
-    jobVC.view.frame = CGRectMake(ScreenWidth * 2, 0, ScreenWidth, ScreenHeight - 64);
+    enterpriseVC.view.frame = CGRectMake(ScreenWidth * 2, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:enterpriseVC.view];
     
     
 }
 
 - (void)attachSegmentView{
-//    UIView
-    UIControl
     self.segmentView = [[HZSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
     self.segmentView.titleArray = @[@"找工作",@"看简历",@"企业通"];
+    WEAKSELF
+    self.segmentView.positionBlock = ^{
+        [weakSelf.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    };
+    weakSelf.segmentView.locationBlock = ^{
+        [weakSelf.scrollView setContentOffset:CGPointMake(ScreenWidth, 0) animated:YES];
+    };
+    
+    weakSelf.segmentView.salaryBlock = ^{
+        [weakSelf.scrollView setContentOffset:CGPointMake(ScreenWidth * 2, 0) animated:YES];
+
+    };
     [self.view addSubview:self.segmentView];
 }
 

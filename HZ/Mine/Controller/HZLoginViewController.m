@@ -139,6 +139,9 @@
 }
 //登录
 -(void)loginBtn:(UIButton*)sender{
+    
+    self.nameField.text = @"18510248898";
+    self.passWordField.text = @"901017";
     //手机号验证正则表达式
     NSString *regex = @"^((1[0-9][0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
     
@@ -158,16 +161,16 @@
         
         [alert show];
     }else{
-    
+        
         [JZQHttpTools postWithPath:login params:@{@"telephone":self.nameField.text,@"password":self.passWordField.text}
                            success:^(id JSON)
          {
              self.string = JSON[@"return"];
+             NSDictionary *d = JSON;
+             
              if ([JSON[@"return"] isEqualToString:@"200"]) {
-//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-//                 
-//                 [alert show];
                  NSDictionary* dic = JSON[@"data"];
+                 NSString * ueserID = [dic objectForKey:@"userid"];
                  [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userid"] forKey:@"userid"];
                  [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"telephone"] forKey:@"telephone"];
                  [[NSUserDefaults standardUserDefaults]synchronize];

@@ -44,7 +44,7 @@
 		82912C3F1CA6EAE200098261 /* HZLoginedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C3E1CA6EAE200098261 /* HZLoginedViewController.m */; };
 		82912C431CA6EC6E00098261 /* HZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912C421CA6EC6E00098261 /* HZLoginViewController.m */; };
 		82E887191CA7733400279FBE /* HZRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E887171CA7733400279FBE /* HZRegistViewController.m */; };
-		82E8871C1CA7736900279FBE /* HZUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E8871B1CA7736900279FBE /* HZUserModel.m */; };
+		82E8871C1CA7736900279FBE /* HZUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E8871B1CA7736900279FBE /* HZUserManager.m */; };
 		82E887211CA777DC00279FBE /* HZFindPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E887201CA777DC00279FBE /* HZFindPassWordViewController.m */; };
 		82E887271CA77F7700279FBE /* HZPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E887261CA77F7700279FBE /* HZPublishViewController.m */; };
 		82E8872A1CA7993400279FBE /* HZPublishJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E887291CA7993400279FBE /* HZPublishJobViewController.m */; };
@@ -124,8 +124,8 @@
 		82912C411CA6EC6E00098261 /* HZLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLoginViewController.h; sourceTree = "<group>"; };
 		82912C421CA6EC6E00098261 /* HZLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLoginViewController.m; sourceTree = "<group>"; };
 		82E887171CA7733400279FBE /* HZRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZRegistViewController.m; sourceTree = "<group>"; };
-		82E8871A1CA7736900279FBE /* HZUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZUserModel.h; sourceTree = "<group>"; };
-		82E8871B1CA7736900279FBE /* HZUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZUserModel.m; sourceTree = "<group>"; };
+		82E8871A1CA7736900279FBE /* HZUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZUserManager.h; sourceTree = "<group>"; };
+		82E8871B1CA7736900279FBE /* HZUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZUserManager.m; sourceTree = "<group>"; };
 		82E8871E1CA7751C00279FBE /* HZRegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZRegistViewController.h; sourceTree = "<group>"; };
 		82E8871F1CA777DC00279FBE /* HZFindPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZFindPassWordViewController.h; sourceTree = "<group>"; };
 		82E887201CA777DC00279FBE /* HZFindPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZFindPassWordViewController.m; sourceTree = "<group>"; };
@@ -421,8 +421,8 @@
 		82E8871D1CA7737000279FBE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				82E8871A1CA7736900279FBE /* HZUserModel.h */,
-				82E8871B1CA7736900279FBE /* HZUserModel.m */,
+				82E8871A1CA7736900279FBE /* HZUserManager.h */,
+				82E8871B1CA7736900279FBE /* HZUserManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -618,7 +618,7 @@
 				822B118F1CA614530044CC8C /* MineViewController.m in Sources */,
 				82912C211CA6543100098261 /* HZJobModel.m in Sources */,
 				822B11791CA589660044CC8C /* TableBaseViewController.m in Sources */,
-				82E8871C1CA7736900279FBE /* HZUserModel.m in Sources */,
+				82E8871C1CA7736900279FBE /* HZUserManager.m in Sources */,
 				82E887211CA777DC00279FBE /* HZFindPassWordViewController.m in Sources */,
 				82912C3F1CA6EAE200098261 /* HZLoginedViewController.m in Sources */,
 				82912C351CA6D7C700098261 /* HZEnterpriseViewController.m in Sources */,

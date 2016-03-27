@@ -16,7 +16,7 @@
 #import "UIImageView+Extension.h"
 #import "UIViewController+AttachBack.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "HZUserModel.h"
+#import "HZUserManager.h"
 #import "HZNavigationController.h"
 #import "JZQHttpTools.h"
 

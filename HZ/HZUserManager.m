@@ -6,9 +6,9 @@
 //  Copyright © 2016年 ihj. All rights reserved.
 //
 
-#import "HZUserModel.h"
+#import "HZUserManager.h"
 
-@interface HZUserModel (){
+@interface HZUserManager (){
     NSString *_name;
     NSString *_passwd;
     NSString *_userid;
@@ -16,7 +16,11 @@
 
 @end
 
-@implementation HZUserModel
+@implementation HZUserManager
+
++ (instancetype)manager{
+    return [[self class] new];
+}
 
 -(void)setName:(NSString *)name{
     _name = [name copy];

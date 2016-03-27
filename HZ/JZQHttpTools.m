@@ -19,10 +19,6 @@
                                   {
                                       if (success)
                                       {
-                                         
-                                       
-                                         
-                                          
                                           success(responseObject);
                                       }
                                   }

@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HZ/Mine/Controller/HZLoginViewController.m"
-            timestampString = "480749252.55612"
+            filePath = "HZ/Mine/Controller/HZPublishEnterpriseViewController.m"
+            timestampString = "480781175.579944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "-loginBtn:"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-startRequest"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
