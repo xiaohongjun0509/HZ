@@ -9,7 +9,9 @@
 #import "HZSegmentView.h"
 
 @interface HZSegmentView ()
-
+@property (nonatomic, strong) UIImageView *arraw1;
+@property (nonatomic, strong) UIImageView *arraw2;
+@property (nonatomic, strong) UIImageView *arraw3;
 @end
 
 @implementation HZSegmentView
@@ -41,6 +43,7 @@
         //职位下拉箭头
         UIImageView *positionImage = [[UIImageView alloc]initWithFrame:CGRectMake(self.positionBtn.frame.size.width/1.3,self.positionBtn.frame.size.height/2 - size1.width/6, size1.width/3, size1.width/3)];
         positionImage.image = [UIImage imageNamed:@"home_arrow42_d.png"];
+        self.arraw1 = positionImage;
         [self.positionBtn addSubview:positionImage];
     
         //线1
@@ -67,8 +70,8 @@
         UIImageView *locationImage = [[UIImageView alloc]initWithFrame:CGRectMake(self.locationBtn.frame.size.width/1.3,self.locationBtn.frame.size.height/2 - size2.width/6, size2.width/3, size2.width/3)];
         locationImage.image = [UIImage imageNamed:@"home_arrow42_d.png"];
         [self.locationBtn addSubview:locationImage];
-        
-        
+        self.arraw2 = locationImage;
+    
         
         //线2
         UILabel *line2 = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/3*2-0.5, 10, 1, 26)];
@@ -93,6 +96,7 @@
         //地区下拉箭头
         UIImageView *salarImage = [[UIImageView alloc]initWithFrame:CGRectMake(self.salaryBtn.frame.size.width/1.3,self.salaryBtn.frame.size.height/2 - size3.width/6, size3.width/3, size3.width/3)];
         salarImage.image = [UIImage imageNamed:@"home_arrow42_d.png"];
+         self.arraw3 = salarImage;
         [self.salaryBtn addSubview:salarImage];
         //横线
         UILabel *ling3 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.positionBtn.frame), ScreenWidth, 1)];
@@ -100,6 +104,13 @@
         [self addSubview:ling3];
         
     
+}
+
+
+- (void)hiddenAllArrors{
+    self.arraw2.hidden = YES;
+    self.arraw1.hidden = YES;
+    self.arraw3.hidden = YES;
 }
 
 - (void)setTitleArray:(NSArray *)titleArray{

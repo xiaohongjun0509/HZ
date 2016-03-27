@@ -159,40 +159,36 @@
         [alert show];
     }else{
     
-
-//        [JZQHttpTools postWithPath:login params:@{@"telephone":self.nameField.text,@"password":self.passWordField.text}
-//                           success:^(id JSON)
-//         {
-//             self.string = JSON[@"return"];
-//             if ([JSON[@"return"] isEqualToString:@"200"]) {
+        [JZQHttpTools postWithPath:login params:@{@"telephone":self.nameField.text,@"password":self.passWordField.text}
+                           success:^(id JSON)
+         {
+             self.string = JSON[@"return"];
+             if ([JSON[@"return"] isEqualToString:@"200"]) {
 //                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
 //                 
 //                 [alert show];
-//                 NSDictionary* dic = JSON[@"data"];
-//                 
-//                 
-//                 
-//                 [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userid"] forKey:@"userid"];
-//                 [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"telephone"] forKey:@"telephone"];
-//                 [[NSUserDefaults standardUserDefaults]synchronize];
-//                 
-//          
-//                 
-//             }else if ([JSON[@"return"] isEqualToString:@"3000"]){
-//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-//                 [alert show];
-//             
-//             }else if ([JSON[@"return"] isEqualToString:@"300"]){
-//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-//                 [alert show];
-//                 
-//             }
-//    
-//         }
-//                           failure:^(NSError *error)
-//         {
-//             NSLog(@"error:%@",[error localizedDescription]);
-//         }];
+                 NSDictionary* dic = JSON[@"data"];
+                 [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userid"] forKey:@"userid"];
+                 [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"telephone"] forKey:@"telephone"];
+                 [[NSUserDefaults standardUserDefaults]synchronize];
+                 [self dismissViewControllerAnimated:YES completion:nil];
+          
+                 
+             }else if ([JSON[@"return"] isEqualToString:@"3000"]){
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                 [alert show];
+             
+             }else if ([JSON[@"return"] isEqualToString:@"300"]){
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                 [alert show];
+                 
+             }
+    
+         }
+                           failure:^(NSError *error)
+         {
+             NSLog(@"error:%@",[error localizedDescription]);
+         }];
     }
 
 

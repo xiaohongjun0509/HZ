@@ -21,4 +21,6 @@
 @property (nonatomic, copy) void (^positionBlock)(void);
 @property (nonatomic, copy) void (^locationBlock)(void);
 @property (nonatomic, copy) void (^salaryBlock)(void);
+
+- (void)hiddenAllArrors;
 @end

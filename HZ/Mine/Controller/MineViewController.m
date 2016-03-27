@@ -8,6 +8,7 @@
 
 #import "MineViewController.h"
 #import "HZLoginViewController.h"
+#import "HZPublishViewController.h"
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) NSArray *titles;
@@ -27,9 +28,9 @@
     
     self.titles = @[@"我的账号",@"我的发布",@"我的收藏"];
     self.images = @[@"home_7_uc1.png",@"home_7_uc2.png",@"home_7_uc3.png"];
-    [self attachBackButton];
 }
 
+#pragma  mark tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.titles.count;
@@ -67,6 +68,11 @@
         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
         [self presentViewController:navi animated:YES completion:nil];
 
+    }
+    if (indexPath.row == 1) {
+        HZPublishViewController *controller = [HZPublishViewController new];
+        HZNavigationController *navi = [[HZNavigationController alloc] initWithRootViewController:controller];
+        [self presentViewController:navi animated:YES completion:nil];
     }
 }
 

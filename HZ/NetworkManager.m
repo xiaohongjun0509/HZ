@@ -27,4 +27,16 @@
     }];
     [dataTask resume];
 }
+
+- (void)postRequest:(NSString *)url parameters:(id)parameters completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:url parameters:parameters error:nil];
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (completionHandler) {
+            completionHandler(response,responseObject,error);
+        }
+    }];
+    [dataTask resume];
+}
 @end

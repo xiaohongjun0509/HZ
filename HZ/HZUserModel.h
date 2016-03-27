@@ -15,5 +15,7 @@
 -(void)setPasswd:(NSString *)passwd;
 - (NSString *)passwd;
 
+@property (nonatomic, copy) NSString *userid;
+
 
 @end

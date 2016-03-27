@@ -18,6 +18,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "HZUserModel.h"
 #import "HZNavigationController.h"
+#import "JZQHttpTools.h"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 

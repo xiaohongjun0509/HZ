@@ -11,6 +11,7 @@
 @interface HZUserModel (){
     NSString *_name;
     NSString *_passwd;
+    NSString *_userid;
 }
 
 @end
@@ -38,5 +39,15 @@
     return [[NSUserDefaults standardUserDefaults] valueForKey:@"passwd"];
 }
 
+
+- (NSString *)userid{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"userid"];
+}
+
+- (void)setUserid:(NSString *)userid{
+    _userid = [userid copy];
+    [[NSUserDefaults standardUserDefaults] setValue:userid forKey:@"passwd"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
 
 @end
