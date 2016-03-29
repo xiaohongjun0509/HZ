@@ -10,4 +10,5 @@
 
 @interface UIViewController (AttachBack)
 - (void)attachBackButton;
+- (void)presentVC:(UIViewController *)viewController;
 @end

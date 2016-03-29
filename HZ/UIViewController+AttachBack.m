@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+AttachBack.h"
-
+#import "HZNavigationController.h"
 @implementation UIViewController (AttachBack)
 - (void)attachBackButton
 {
@@ -44,4 +44,10 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
+- (void)presentVC:(UIViewController *)viewController{
+    [viewController attachBackButton];
+    HZNavigationController *nc = [[HZNavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:nc animated:YES completion:nil];
+}
 @end

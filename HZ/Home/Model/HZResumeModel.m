@@ -10,6 +10,8 @@
 
 @implementation HZResumeModel
 
-//@property (nonatomic, copy) NSString *
-//@property (nonatomic, copy) NSString *
+//+(NSDictionary *)mj_setupObjectClassInArray:^NSDictionary *{
+//    return @{@"experienced":@"HZResumeExperienceModel",@"business":@"HZResumeBusinessModel"};
+//};
+
 @end

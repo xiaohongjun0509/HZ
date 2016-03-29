@@ -10,6 +10,7 @@
 #import "HZJobHuntCell.h"
 #import "HZResumeModel.h"
 #import "HZSegmentView.h"
+#import "HZResumeDetailViewController.h"
 @interface HZResumeViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSString *job;
 @property (nonatomic, copy) NSString *area;
@@ -58,6 +59,9 @@
     [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){
             NSDictionary *dict = responseObject;
+            [HZResumeModel mj_setupObjectClassInArray:^NSDictionary *{
+                return @{@"experienced":@"HZResumeExperienceModel",@"business":@"HZResumeBusinessModel"};
+            }];
             NSArray *dataList = [HZResumeModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
             if(self.requestPage == 1){
                 [weakSelf.dataList removeAllObjects];
@@ -72,7 +76,6 @@
             
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
-            
             
         }
     }];
@@ -114,5 +117,12 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [HZJobHuntCell cellHeight];
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HZResumeDetailViewController *controller = [[HZResumeDetailViewController alloc] init];
+    controller.model = self.dataList[indexPath.row];
+    [self presentVC:controller];
 }
 @end
