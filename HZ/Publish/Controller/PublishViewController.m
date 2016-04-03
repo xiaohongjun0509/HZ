@@ -7,7 +7,7 @@
 //
 
 #import "PublishViewController.h"
-
+#import "HZResumeEditViewController.h"
 @interface PublishViewController ()
 @property(nonatomic,strong)UIButton* btn1;    //求职简历
 @property(nonatomic,strong)UIButton* btn2;    //职位招聘
@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布";
-    
+    self.cityName = @"北京";
     if (ScreenHeight==480) {
         //求职简历
         self.btn1 = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2-ScreenHeight/10, ScreenHeight/20-5, ScreenHeight/5, ScreenHeight/5)];
@@ -179,18 +179,18 @@
 }
 
 //求职简历
-//-(void)jianli:(UIButton*)sender{
-//    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
-//        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alertView show];
-//    }else{
-//        
-//        self.resumeVC = [[MbResumeViewController alloc]init];
-//        self.resumeVC.hidesBottomBarWhenPushed = YES;
-//        self.resumeVC.cityName = self.cityName;
-//        [self.navigationController pushViewController:self.resumeVC animated:YES];
-//    }
-//}
+-(void)jianli:(UIButton*)sender{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        
+        HZResumeEditViewController *resumeVC = [[HZResumeEditViewController alloc]init];
+        resumeVC.hidesBottomBarWhenPushed = YES;
+        resumeVC.cityName = self.cityName;
+        [self presentVC:resumeVC];
+    }
+}
 ////职位招聘
 //-(void)zhaopin:(UIButton*)sender{
 //    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {

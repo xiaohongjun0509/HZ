@@ -14,4 +14,7 @@
 
 -(void)startRequest:(NSString *)url completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
 -(void)postRequest:(NSString *)url parameters:(id)parameters completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+
+-(void)postRequest:(NSString *)url completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+
 @end

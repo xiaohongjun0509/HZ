@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PublishViewController : UIViewController
-
+@property (nonatomic, copy) NSString *cityName;
 @end

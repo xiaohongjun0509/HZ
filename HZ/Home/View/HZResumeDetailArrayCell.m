@@ -22,9 +22,10 @@
 }
 
 - (void)setArray:(NSArray *)array{
-    _array = array;
-    HZResumeExperienceModel * model = [HZResumeExperienceModel mj_objectWithKeyValues:array[0]];
-    [self.tableView reloadData];
+    if (array.count > 0) {
+        _array = array;
+        [self.tableView reloadData];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

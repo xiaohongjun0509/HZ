@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"简历详情";
     self.titleArray = @[@"标题",@"",@"工作经验",@"学历",@"求职意向",@"期望薪资",@"教育经历",@"工作经历",@"自我介绍"];
     self.dict  = @{self.titleArray[0]:self.model.title,
                    self.titleArray[1]:self.model.title,
