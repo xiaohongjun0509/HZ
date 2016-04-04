@@ -8,6 +8,8 @@
 
 #import "PublishViewController.h"
 #import "HZResumeEditViewController.h"
+#import "HZRecruitmentViewController.h"
+#import "HZEnterpriseinformationViewController.h"
 @interface PublishViewController ()
 @property(nonatomic,strong)UIButton* btn1;    //求职简历
 @property(nonatomic,strong)UIButton* btn2;    //职位招聘
@@ -191,30 +193,29 @@
         [self presentVC:resumeVC];
     }
 }
-////职位招聘
-//-(void)zhaopin:(UIButton*)sender{
-//    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
-//        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alertView show];
-//    }else{
-//        self.recruitmentVC = [[MbRecruitmentViewController alloc]init];
-//        self.recruitmentVC.hidesBottomBarWhenPushed = YES;
-//        self.recruitmentVC.cityName = self.cityName;
-//        [self.navigationController pushViewController:self.recruitmentVC animated:YES];
-//    }
-//}
+//职位招聘
+-(void)zhaopin:(UIButton*)sender{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        HZRecruitmentViewController *recruitmentVC = [[HZRecruitmentViewController alloc]init];
+        
+        recruitmentVC.cityName = self.cityName;
+        [self presentVC:recruitmentVC];
+    }
+}
 ////企业信息
-//-(void)xinxi:(UIButton*)sender{
-//    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
-//        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alertView show];
-//    }else{
-//        self.enterInformationVC = [[MbEnterpriseinformationViewController alloc]init];
-//        self.enterInformationVC.hidesBottomBarWhenPushed = YES;
-//        self.enterInformationVC.cityName = self.cityName;
-//        [self.navigationController pushViewController:self.enterInformationVC animated:YES];
-//    }
-//}
+-(void)xinxi:(UIButton*)sender{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        HZEnterpriseinformationViewController  *enterInformationVC = [[HZEnterpriseinformationViewController alloc]init];
+        enterInformationVC.cityName = self.cityName;
+        [self presentVC:enterInformationVC];
+    }
+}
 
 
 @end

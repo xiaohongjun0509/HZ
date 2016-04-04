@@ -1,22 +1,22 @@
 //
-//  MbEducationalExperienceViewController.m
+//  HZEducationalExperienceViewController.m
 //  Recruitment
 //
 //  Created by tusm on 15/12/4.
 //  Copyright (c) 2015年 Zs. All rights reserved.
 //
 
-#import "MbEducationalExperienceViewController.h"
+#import "HZEducationalExperienceViewController.h"
 
 #import "MbTimePickerView.h"
 #import "MbPickerView.h"
 #import "SRMonthPicker.h"
 
-@interface MbEducationalExperienceViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface HZEducationalExperienceViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
-UIButton *_ensureBtn;      //确定按钮
-UIButton *_cancelBtn;      //取消按钮
-SRMonthPicker *_datePicker; //时间选择器
+    UIButton *_ensureBtn;      //确定按钮
+    UIButton *_cancelBtn;      //取消按钮
+    SRMonthPicker *_datePicker; //时间选择器
      NSString *_datePickerDate; //时间
 }
 @property(nonatomic,strong)UITableView* tableView;
@@ -37,7 +37,7 @@ SRMonthPicker *_datePicker; //时间选择器
 
 @end
 
-@implementation MbEducationalExperienceViewController
+@implementation HZEducationalExperienceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -565,7 +565,7 @@ SRMonthPicker *_datePicker; //时间选择器
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写完整信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }else{
-    [self.navigationController popViewControllerAnimated:YES];
+    
     [self.dic setObject:self.schoolField.text forKey:@"school"];
     [self.dic setObject:self.degree forKey:@"degree"];
     [self.dic setObject:self.startTime forKey:@"startTime"];
@@ -576,6 +576,7 @@ SRMonthPicker *_datePicker; //时间选择器
                                                  encoding:NSUTF8StringEncoding];
     self.resumeVC.jsonString1 = jsonString;
     self.resumeVC.mutDic = self.dic;
-    }
+        [self dismissViewControllerAnimated:YES completion:nil];
+ }
 }
 @end

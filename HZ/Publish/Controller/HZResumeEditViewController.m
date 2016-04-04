@@ -9,6 +9,7 @@
 #import "HZResumeEditViewController.h"
 #import "HZPlaceModel.h"
 #import "HZPositionModel.h"
+#import "HZEducationalExperienceViewController.h"
 @interface HZResumeEditViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate>
 {
     CGSize textSize;
@@ -109,7 +110,7 @@
 @property(nonatomic,strong)NSArray* workArray;
 @property(nonatomic,strong)NSArray* jobs;
 @property(nonatomic,strong)UIImageView* titleImage;
-//@property(nonatomic,strong)MbEducationalExperienceViewController* edVC;   //添加教育经历页面
+@property(nonatomic,strong)HZEducationalExperienceViewController* edVC;   //添加教育经历页面
 //@property(nonatomic,strong)MbWorkExperienceViewController* workVC;        //添加教育经历
 @property(nonatomic,strong)UIButton* deleteBtn;                           //教育删除按钮
 @property(nonatomic,strong)UIButton* deleteBtn1;                          //工作删除按钮
@@ -192,17 +193,16 @@
     [[NetworkManager manager] postRequest:hopeposition completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         NSDictionary *dict = (NSDictionary *)responseObject;
         
-        self.experienceList = [HZPositionModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        self.positionList = [HZPositionModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
         [self.tableView1 reloadData];
     }];
 }
 ////期望薪资
 -(void)getSalary{
-    
-//    NSURL *url = [NSURL URLWithString:hopesalary];
+
     [[NetworkManager manager] postRequest:hopesalary completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         NSDictionary *dict = (NSDictionary *)responseObject;
-        self.experienceList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        self.salaryList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
         [self.tableView1 reloadData];
     }];
 }
@@ -1249,9 +1249,9 @@
     //}
     
     
-//    self.edVC = [[MbEducationalExperienceViewController alloc]init];
-//    self.edVC.resumeVC = self;
-//    [self.navigationController pushViewController:self.edVC animated:YES];
+    self.edVC = [[HZEducationalExperienceViewController alloc]init];
+    self.edVC.resumeVC = self;
+    [self presentVC:self.edVC];
 }
 //添加工作经历
 -(void)addwork:(UIButton*)sender{

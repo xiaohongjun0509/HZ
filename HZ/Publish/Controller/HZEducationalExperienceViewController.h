@@ -1,5 +1,5 @@
 //
-//  MbEducationalExperienceViewController.h
+//  HZEducationalExperienceViewController.h
 //  Recruitment
 //
 //  Created by tusm on 15/12/4.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "HZResumeEditViewController.h"
-@interface MbEducationalExperienceViewController : UIViewController
+@interface HZEducationalExperienceViewController : UIViewController
 @property(nonatomic,strong)HZResumeEditViewController* resumeVC;//添加简历信息页
 @end
