@@ -9,6 +9,7 @@
 #import "HZPublishResumeViewController.h"
 #import "HZJobHuntCell.h"
 #import "HZResumeModel.h"
+#import  "HZResumeDetailViewController.h"
 @interface HZPublishResumeViewController ()
 
 @end
@@ -48,6 +49,9 @@
             [self.dataList removeAllObjects];
         }
         NSDictionary *result = responseObject;
+        [HZResumeModel mj_setupObjectClassInArray:^NSDictionary *{
+            return @{@"experienced":@"HZResumeExperienceModel",@"business":@"HZResumeBusinessModel"};
+        }];
         NSArray *array = [HZResumeModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
         if (array.count == 0) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -81,7 +85,10 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    HZResumeDetailViewController *controller = [[HZResumeDetailViewController alloc] init];
+    HZResumeModel *model = self.dataList[indexPath.row];
+    controller.model = model;
+    [self presentVC:controller];
 }
 
 @end

@@ -72,11 +72,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *title = self.titleArray[indexPath.row];
     if ([title isEqualToString:@"教育经历"] || [title isEqualToString:@"工作经历"]) {
-//        HZResumeDetailArrayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZResumeDetailArrayCell"];
         return [HZResumeDetailArrayCell cellHeight:self.dict[title]];
         
     }else{
-//        HZResumeDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZResumeDetailCell"];
         return 44;
     }
 }
