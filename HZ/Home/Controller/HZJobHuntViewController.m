@@ -10,6 +10,7 @@
 #import "HZJobHuntCell.h"
 #import "HZJobModel.h"
 #import "HZSegmentView.h"
+#import "HZJobDetailController.h"
 @interface HZJobHuntViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSString *job;
 @property (nonatomic, copy) NSString *area;
@@ -29,7 +30,7 @@
     self.area = nil;
     self.salary = nil;
     [self registerCell:[HZJobHuntCell class]];
-    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
     [self.tableView.mj_header beginRefreshing];
     [self attachBackButton];
     [self attachSegmentView];
@@ -52,7 +53,7 @@
 }
 
 - (void)startRequest{
-    NSString *urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%d",findwork,self.cityName,self.requestPage];
+    NSString *urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%ld",findwork,self.cityName,self.requestPage];
     WEAKSELF
     [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){
@@ -114,4 +115,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [HZJobHuntCell cellHeight];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+   HZJobModel *model = self.dataList[indexPath.row];
+    HZJobDetailController *vc = [HZJobDetailController new];
+    vc.model = model;
+    [self presentVC:vc];
+}
+
 @end

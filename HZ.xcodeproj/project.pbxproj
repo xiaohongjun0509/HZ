@@ -54,6 +54,10 @@
 		82B943531CB21F5F009ECEA3 /* MbPaser.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943521CB21F5F009ECEA3 /* MbPaser.m */; };
 		82B943561CB21FC3009ECEA3 /* CommonActionStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943551CB21FC3009ECEA3 /* CommonActionStatus.m */; };
 		82B943591CB24D09009ECEA3 /* HZNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943581CB24D09009ECEA3 /* HZNewsTableViewCell.m */; };
+		82B9435C1CB2665F009ECEA3 /* HZJobDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B9435B1CB2665F009ECEA3 /* HZJobDetailController.m */; };
+		82B9435E1CB266D3009ECEA3 /* HZJobDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B9435D1CB266D3009ECEA3 /* HZJobDetailController.xib */; };
+		82B943651CB28FA4009ECEA3 /* HZEnterpriseDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943631CB28FA4009ECEA3 /* HZEnterpriseDetailController.m */; };
+		82B943661CB28FA4009ECEA3 /* HZEnterpriseDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B943641CB28FA4009ECEA3 /* HZEnterpriseDetailController.xib */; };
 		82BDE12D1CAAABD1007B035A /* HZResumeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BDE12B1CAAABD1007B035A /* HZResumeDetailViewController.m */; };
 		82BDE12E1CAAABD1007B035A /* HZResumeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82BDE12C1CAAABD1007B035A /* HZResumeDetailViewController.xib */; };
 		82BDE1321CAAAD5B007B035A /* HZResumeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BDE1301CAAAD5B007B035A /* HZResumeDetailCell.m */; };
@@ -168,6 +172,12 @@
 		82B943551CB21FC3009ECEA3 /* CommonActionStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonActionStatus.m; sourceTree = "<group>"; };
 		82B943571CB24D09009ECEA3 /* HZNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZNewsTableViewCell.h; sourceTree = "<group>"; };
 		82B943581CB24D09009ECEA3 /* HZNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZNewsTableViewCell.m; sourceTree = "<group>"; };
+		82B9435A1CB2665F009ECEA3 /* HZJobDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZJobDetailController.h; sourceTree = "<group>"; };
+		82B9435B1CB2665F009ECEA3 /* HZJobDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZJobDetailController.m; sourceTree = "<group>"; };
+		82B9435D1CB266D3009ECEA3 /* HZJobDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZJobDetailController.xib; sourceTree = "<group>"; };
+		82B943621CB28FA4009ECEA3 /* HZEnterpriseDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEnterpriseDetailController.h; sourceTree = "<group>"; };
+		82B943631CB28FA4009ECEA3 /* HZEnterpriseDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEnterpriseDetailController.m; sourceTree = "<group>"; };
+		82B943641CB28FA4009ECEA3 /* HZEnterpriseDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZEnterpriseDetailController.xib; sourceTree = "<group>"; };
 		82BDE12A1CAAABD1007B035A /* HZResumeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZResumeDetailViewController.h; sourceTree = "<group>"; };
 		82BDE12B1CAAABD1007B035A /* HZResumeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZResumeDetailViewController.m; sourceTree = "<group>"; };
 		82BDE12C1CAAABD1007B035A /* HZResumeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZResumeDetailViewController.xib; sourceTree = "<group>"; };
@@ -300,6 +310,9 @@
 				82BDE12A1CAAABD1007B035A /* HZResumeDetailViewController.h */,
 				82BDE12B1CAAABD1007B035A /* HZResumeDetailViewController.m */,
 				82BDE12C1CAAABD1007B035A /* HZResumeDetailViewController.xib */,
+				82B9435A1CB2665F009ECEA3 /* HZJobDetailController.h */,
+				82B9435B1CB2665F009ECEA3 /* HZJobDetailController.m */,
+				82B9435D1CB266D3009ECEA3 /* HZJobDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -575,6 +588,9 @@
 				82E8872C1CA7994800279FBE /* HZPublishResumeViewController.m */,
 				82E8872E1CA7995600279FBE /* HZPublishEnterpriseViewController.h */,
 				82E8872F1CA7995600279FBE /* HZPublishEnterpriseViewController.m */,
+				82B943621CB28FA4009ECEA3 /* HZEnterpriseDetailController.h */,
+				82B943631CB28FA4009ECEA3 /* HZEnterpriseDetailController.m */,
+				82B943641CB28FA4009ECEA3 /* HZEnterpriseDetailController.xib */,
 			);
 			name = Publish;
 			sourceTree = "<group>";
@@ -663,6 +679,7 @@
 				822B11641CA582FB0044CC8C /* HZTabBarViewController.xib in Resources */,
 				82912C271CA676AA00098261 /* HZNavigationController.xib in Resources */,
 				822B117A1CA589660044CC8C /* TableBaseViewController.xib in Resources */,
+				82B943661CB28FA4009ECEA3 /* HZEnterpriseDetailController.xib in Resources */,
 				82912C3A1CA6D87F00098261 /* HZEnterpriseCell.xib in Resources */,
 				82912C1E1CA6510A00098261 /* HZJobHuntCell.xib in Resources */,
 				82BDE13D1CAACAA5007B035A /* HZResumeExperienceCell.xib in Resources */,
@@ -672,6 +689,7 @@
 				82BDE1381CAAC410007B035A /* HZResumeDetailArrayCell.xib in Resources */,
 				82BDE1331CAAAD5B007B035A /* HZResumeDetailCell.xib in Resources */,
 				822B11541CA5822C0044CC8C /* Main.storyboard in Resources */,
+				82B9435E1CB266D3009ECEA3 /* HZJobDetailController.xib in Resources */,
 				822B118B1CA614400044CC8C /* PublishViewController.xib in Resources */,
 				822B11831CA612F80044CC8C /* HomeViewController.xib in Resources */,
 				822B11901CA614530044CC8C /* MineViewController.xib in Resources */,
@@ -739,6 +757,7 @@
 				82912C321CA6D3F400098261 /* HZResumeModel.m in Sources */,
 				82430CDA1CB0C1DF00D9979B /* HZPlaceModel.m in Sources */,
 				82912C2A1CA6BE8900098261 /* HZSegmentView.m in Sources */,
+				82B9435C1CB2665F009ECEA3 /* HZJobDetailController.m in Sources */,
 				82BDE1321CAAAD5B007B035A /* HZResumeDetailCell.m in Sources */,
 				82430CEF1CB0D28500D9979B /* SRMonthPicker.m in Sources */,
 				82912C431CA6EC6E00098261 /* HZLoginViewController.m in Sources */,
@@ -783,6 +802,7 @@
 				822B11861CA614250044CC8C /* NewsViewController.m in Sources */,
 				82430CE91CB0D20300D9979B /* MbPickerView.m in Sources */,
 				82E887351CA7A66E00279FBE /* JZQHttpTools.m in Sources */,
+				82B943651CB28FA4009ECEA3 /* HZEnterpriseDetailController.m in Sources */,
 				82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

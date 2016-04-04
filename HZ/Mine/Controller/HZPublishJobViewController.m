@@ -9,6 +9,7 @@
 #import "HZPublishJobViewController.h"
 #import "HZJobHuntCell.h"
 #import "HZJobModel.h"
+#import  "HZJobDetailController.h"
 @interface HZPublishJobViewController ()
 
 @end
@@ -82,7 +83,10 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    HZJobModel *model = self.dataList[indexPath.row];
+    HZJobDetailController *vc = [HZJobDetailController new];
+    vc.model = model;
+    [self presentVC:vc];
 }
 
 
