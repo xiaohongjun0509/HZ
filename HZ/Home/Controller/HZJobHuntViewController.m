@@ -11,34 +11,125 @@
 #import "HZJobModel.h"
 #import "HZSegmentView.h"
 #import "HZJobDetailController.h"
+#import "HZTwoSelectionViewController.h"
+#import "HZPositionTypeModel.h"
+#import "HZSingalSelectionViewController.h"
+
+
+
 @interface HZJobHuntViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, copy) NSString *job;
-@property (nonatomic, copy) NSString *area;
 @property (nonatomic, copy) NSString *salary;
 @property (nonatomic, copy) NSString *cityName;
-
+@property (nonatomic, strong) HZTwoSelectionViewController *postionController;
+@property (nonatomic, strong) HZSingalSelectionViewController *singlgSelectionController;
 @property (nonatomic, strong) HZSegmentView *segmentView;
+@property (nonatomic, copy) NSString *position;
+@property (nonatomic, copy) NSString *area;
+@property (nonatomic, copy) NSString *wage;
+
+@property (nonatomic, copy) NSArray *areaList;
+@property (nonatomic, copy) NSArray *wageList;
 @end
 
+
+
+
 @implementation HZJobHuntViewController
+
+
+- (HZTwoSelectionViewController *)postionController{
+    if (_postionController == nil) {
+        WEAKSELF
+        _postionController = [[HZTwoSelectionViewController alloc] init];
+        [self.view addSubview:_postionController.view];
+        _postionController.view.hidden = YES;
+        _postionController.view.frame = CGRectMake(0, 44, ScreenWidth, ScreenHeight - 44);
+        _postionController.updateBlock = ^(NSString *content){
+            weakSelf.segmentView.positionLabel.text = content;
+            weakSelf.position = content;
+            [weakSelf startRequest];
+        };
+    }
+    return _postionController;
+}
+
+- (HZSingalSelectionViewController *)singlgSelectionController{
+    if (!_singlgSelectionController) {
+        WEAKSELF
+        _singlgSelectionController = [[HZSingalSelectionViewController alloc] init];
+        _singlgSelectionController.updateBlock = ^(NSString *content){
+            if (_singlgSelectionController.singleType == HZSingleTypeArea) {
+                weakSelf.segmentView.locationLabel.text = content;
+                weakSelf.area = content;
+
+            }else{
+                weakSelf.segmentView.salarLabel.text = content;
+                weakSelf.wage = content;
+            }
+            weakSelf.requestPage = 1;
+            [weakSelf startRequest];
+        };
+        [self.view addSubview:_singlgSelectionController.view];
+        _singlgSelectionController.view.hidden = YES;
+        _singlgSelectionController.view.frame = CGRectMake(0, 44, ScreenWidth, ScreenHeight - 44);
+    }
+    return _singlgSelectionController;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cityName = @"北京";
+    
     self.title = [NSString stringWithFormat:@"找工作(%@)",self.cityName];
-    self.job = nil;
-    self.area = nil;
-    self.salary = nil;
     [self registerCell:[HZJobHuntCell class]];
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
     [self.tableView.mj_header beginRefreshing];
     [self attachBackButton];
     [self attachSegmentView];
+    [self requestArea];
+    [self requestWage];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
+//    [self.view addGestureRecognizer:tap];
+}
+
+- (void)hideController{
+    self.postionController.view.hidden = YES;
+    self.singlgSelectionController.view.hidden = YES;
 }
 
 - (void)attachSegmentView{
     self.segmentView = [[HZSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
-   
+    WEAKSELF
+    self.segmentView.positionBlock = ^{
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.postionController.view.hidden = NO;
+        }];
+        [weakSelf requestPosition];
+        
+    };
+    
+    self.segmentView.locationBlock = ^{
+        weakSelf.postionController.view.hidden = YES;
+        weakSelf.singlgSelectionController.singleType = HZSingleTypeArea;
+        weakSelf.singlgSelectionController.dataList = weakSelf.areaList;
+        [weakSelf.singlgSelectionController.tableView reloadData];
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.singlgSelectionController.view.hidden = NO;
+        }];
+        
+    };
+    
+    self.segmentView.salaryBlock = ^{
+        weakSelf.postionController.view.hidden = YES;
+        weakSelf.singlgSelectionController.singleType = HZSingleTypeWage;
+        weakSelf.singlgSelectionController.dataList = weakSelf.wageList;
+        [weakSelf.singlgSelectionController.tableView reloadData];
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.singlgSelectionController.view.hidden = NO;
+        }];
+        
+    };
     [self.view addSubview:self.segmentView];
 }
 
@@ -54,6 +145,9 @@
 
 - (void)startRequest{
     NSString *urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%ld",findwork,self.cityName,self.requestPage];
+    if (self.position || self.wage || self.area) {
+        urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%ld&position=%@&area=%@&wages=%@",findwork,self.cityName,self.requestPage,self.position,self.area,self.wage];
+    }
     WEAKSELF
     [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){
@@ -66,10 +160,9 @@
                 [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }else{
                 [weakSelf.dataList addObjectsFromArray:dataList];
-                [weakSelf.tableView reloadData];
                 weakSelf.requestPage++;
             }
-            
+            [weakSelf.tableView reloadData];
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
             
@@ -81,25 +174,49 @@
 
 
 #pragma mark network
--(void)getPosition{
-//    NSURL *url = [NSURL URLWithString:hopeposition1];
-//    //第二步，创建请求
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-//    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
-//    NSString *str = @"type=focus-c";//设置参数
-//    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-//    [request setHTTPBody:data];
-//    //第三步，连接服务器
-//    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-//    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
-//    self.positionList = [MbPaser paserPositionByDic:dic];
-//    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.tableView1 reloadData];
-//    });
+-(void)requestPosition{
+   
+    WEAKSELF
+//    NSString* path = [NSString stringWithFormat:@"%@area=%@",hopeposition1,self.cityName];
+    [[NetworkManager manager] startRequest:hopeposition1 completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (!error) {
+            NSDictionary *dict = responseObject;
+            [HZPositionTypeModel mj_setupObjectClassInArray:^NSDictionary *{
+                return @{@"position":@"HZPositionName"};
+            }];
+           weakSelf.postionController.leftList = [HZPositionTypeModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+            [weakSelf.postionController.leftTableView reloadData];
+            [weakSelf.postionController.leftTableView setNeedsLayout];
+            [weakSelf.postionController.leftTableView layoutIfNeeded];
+            weakSelf.postionController.selectedIndex = 0;
+            [weakSelf.postionController.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+    }];
 }
 
 
+- (void)requestArea{
+    WEAKSELF
+    NSString* path = [NSString stringWithFormat:@"%@area=%@",threeplace,self.cityName];
+    [[NetworkManager manager] startRequest:path completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (!error) {
+            NSDictionary *dict = responseObject;
+            
+            weakSelf.areaList = [HZPositionName mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+          
+        }
+    }];
+}
+- (void)requestWage{
+    WEAKSELF
+    [[NetworkManager manager] startRequest:hopesalary completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (!error) {
+            NSDictionary *dict = responseObject;
+
+            weakSelf.wageList = [HZPositionName mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        }
+    }];
+}
 #pragma mark UITableDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataList.count;

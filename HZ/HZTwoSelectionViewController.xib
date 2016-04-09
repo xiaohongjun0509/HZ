@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HZTwoSelectionViewController">
+            <connections>
+                <outlet property="leftTableView" destination="GmA-iP-K4F" id="d9D-2k-8TB"/>
+                <outlet property="rightTableView" destination="fff-AI-4sY" id="qbs-U5-LP7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GmA-iP-K4F">
+                    <rect key="frame" x="0.0" y="0.0" width="107" height="368"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fff-AI-4sY">
+                    <rect key="frame" x="107" y="0.0" width="213" height="368"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GmA-iP-K4F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1CK-jy-9Jj"/>
+                <constraint firstItem="fff-AI-4sY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8E9-bE-s0d"/>
+                <constraint firstAttribute="trailing" secondItem="fff-AI-4sY" secondAttribute="trailing" id="OcR-ip-Yni"/>
+                <constraint firstItem="fff-AI-4sY" firstAttribute="leading" secondItem="GmA-iP-K4F" secondAttribute="trailing" id="S0Q-7s-Ez3"/>
+                <constraint firstItem="GmA-iP-K4F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YCe-1N-a7E"/>
+                <constraint firstAttribute="bottom" secondItem="GmA-iP-K4F" secondAttribute="bottom" constant="200" id="cDc-Ro-eDp"/>
+                <constraint firstItem="fff-AI-4sY" firstAttribute="width" secondItem="GmA-iP-K4F" secondAttribute="width" multiplier="2:1" id="cWN-x2-BK0"/>
+                <constraint firstAttribute="bottom" secondItem="fff-AI-4sY" secondAttribute="bottom" constant="200" id="oKg-av-Zgt"/>
+                <constraint firstItem="fff-AI-4sY" firstAttribute="leading" secondItem="GmA-iP-K4F" secondAttribute="trailing" id="pme-sI-9z7"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
