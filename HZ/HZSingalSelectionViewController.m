@@ -23,8 +23,13 @@
     self.tableView.dataSource = self;
     self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
+    [self.view addGestureRecognizer:tap];
 }
 
+- (void)hideController{
+    self.view.hidden = YES;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -33,7 +38,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HZRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZRightTableViewCell"];
     HZPositionName *areaModel = self.dataList[indexPath.row];
-    cell.label.text = self.singleType == HZSingleTypeArea ? areaModel.name : areaModel.pay;
+    cell.label.text = self.singleType == HZSingleTypeArea ? (areaModel.name ? areaModel.name : areaModel.suffer) : areaModel.pay;
     return cell;
 }
 

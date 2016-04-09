@@ -38,7 +38,14 @@
     self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.leftTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.rightTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
+    [self.view addGestureRecognizer:tap];
 
+}
+
+
+- (void)hideController{
+    self.view.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{

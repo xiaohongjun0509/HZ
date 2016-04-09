@@ -88,8 +88,7 @@
     [self attachSegmentView];
     [self requestArea];
     [self requestWage];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
-//    [self.view addGestureRecognizer:tap];
+    
 }
 
 - (void)hideController{

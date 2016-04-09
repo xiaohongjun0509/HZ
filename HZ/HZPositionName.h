@@ -15,4 +15,5 @@
 @property (nonatomic, copy) NSString *positioname;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *pay;
+@property (nonatomic, copy) NSString *suffer;
 @end
