@@ -41,6 +41,13 @@
 		827F98EF1CB92B7E00439489 /* HZPositionName.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F98EE1CB92B7E00439489 /* HZPositionName.m */; };
 		827F98F31CB9403F00439489 /* HZSingalSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F98F11CB9403F00439489 /* HZSingalSelectionViewController.m */; };
 		827F98F41CB9403F00439489 /* HZSingalSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F98F21CB9403F00439489 /* HZSingalSelectionViewController.xib */; };
+		827F98F81CB96C9E00439489 /* HZEditSingleSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F98F61CB96C9E00439489 /* HZEditSingleSelectionViewController.m */; };
+		827F98F91CB96C9E00439489 /* HZEditSingleSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F98F71CB96C9E00439489 /* HZEditSingleSelectionViewController.xib */; };
+		827F98FC1CB9742E00439489 /* HZEditResumeItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F98FB1CB9742E00439489 /* HZEditResumeItemModel.m */; };
+		827F99001CB9755100439489 /* HZNewEditResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F98FE1CB9755100439489 /* HZNewEditResumeViewController.m */; };
+		827F99011CB9755100439489 /* HZNewEditResumeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F98FF1CB9755100439489 /* HZNewEditResumeViewController.xib */; };
+		827F99051CB9D3D000439489 /* HZResumeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99031CB9D3D000439489 /* HZResumeEditCell.m */; };
+		827F99061CB9D3D000439489 /* HZResumeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F99041CB9D3D000439489 /* HZResumeEditCell.xib */; };
 		82912BF01CA63EC100098261 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BEF1CA63EC100098261 /* HomeBannerModel.m */; };
 		82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF41CA641E200098261 /* UIImageView+Extension.m */; };
 		82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */; };
@@ -155,6 +162,17 @@
 		827F98F01CB9403F00439489 /* HZSingalSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZSingalSelectionViewController.h; sourceTree = "<group>"; };
 		827F98F11CB9403F00439489 /* HZSingalSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZSingalSelectionViewController.m; sourceTree = "<group>"; };
 		827F98F21CB9403F00439489 /* HZSingalSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZSingalSelectionViewController.xib; sourceTree = "<group>"; };
+		827F98F51CB96C9E00439489 /* HZEditSingleSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEditSingleSelectionViewController.h; sourceTree = "<group>"; };
+		827F98F61CB96C9E00439489 /* HZEditSingleSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEditSingleSelectionViewController.m; sourceTree = "<group>"; };
+		827F98F71CB96C9E00439489 /* HZEditSingleSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZEditSingleSelectionViewController.xib; sourceTree = "<group>"; };
+		827F98FA1CB9742E00439489 /* HZEditResumeItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEditResumeItemModel.h; sourceTree = "<group>"; };
+		827F98FB1CB9742E00439489 /* HZEditResumeItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEditResumeItemModel.m; sourceTree = "<group>"; };
+		827F98FD1CB9755100439489 /* HZNewEditResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZNewEditResumeViewController.h; sourceTree = "<group>"; };
+		827F98FE1CB9755100439489 /* HZNewEditResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZNewEditResumeViewController.m; sourceTree = "<group>"; };
+		827F98FF1CB9755100439489 /* HZNewEditResumeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZNewEditResumeViewController.xib; sourceTree = "<group>"; };
+		827F99021CB9D3D000439489 /* HZResumeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZResumeEditCell.h; sourceTree = "<group>"; };
+		827F99031CB9D3D000439489 /* HZResumeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZResumeEditCell.m; sourceTree = "<group>"; };
+		827F99041CB9D3D000439489 /* HZResumeEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZResumeEditCell.xib; sourceTree = "<group>"; };
 		82912BEE1CA63EC100098261 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		82912BEF1CA63EC100098261 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		82912BF31CA641E200098261 /* UIImageView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extension.h"; sourceTree = "<group>"; };
@@ -484,6 +502,8 @@
 				82430CD91CB0C1DF00D9979B /* HZPlaceModel.m */,
 				82430CDE1CB0C5E200D9979B /* HZPositionModel.h */,
 				82430CDF1CB0C5E200D9979B /* HZPositionModel.m */,
+				827F98FA1CB9742E00439489 /* HZEditResumeItemModel.h */,
+				827F98FB1CB9742E00439489 /* HZEditResumeItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -497,6 +517,9 @@
 				82430CEB1CB0D24300D9979B /* MbTimePickerView.m */,
 				82430CED1CB0D28500D9979B /* SRMonthPicker.h */,
 				82430CEE1CB0D28500D9979B /* SRMonthPicker.m */,
+				827F99021CB9D3D000439489 /* HZResumeEditCell.h */,
+				827F99031CB9D3D000439489 /* HZResumeEditCell.m */,
+				827F99041CB9D3D000439489 /* HZResumeEditCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -573,6 +596,12 @@
 				82B943461CB0FDBD009ECEA3 /* HZRecruitmentViewController.m */,
 				82B943481CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.h */,
 				82B943491CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m */,
+				827F98F51CB96C9E00439489 /* HZEditSingleSelectionViewController.h */,
+				827F98F61CB96C9E00439489 /* HZEditSingleSelectionViewController.m */,
+				827F98F71CB96C9E00439489 /* HZEditSingleSelectionViewController.xib */,
+				827F98FD1CB9755100439489 /* HZNewEditResumeViewController.h */,
+				827F98FE1CB9755100439489 /* HZNewEditResumeViewController.m */,
+				827F98FF1CB9755100439489 /* HZNewEditResumeViewController.xib */,
 			);
 			name = "填写简历";
 			sourceTree = "<group>";
@@ -717,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82BDE1491CAC000E007B035A /* HZResumeEditViewController.xib in Resources */,
+				827F99011CB9755100439489 /* HZNewEditResumeViewController.xib in Resources */,
 				82E887321CA79C2F00279FBE /* HZPublishViewController.xib in Resources */,
 				822B11641CA582FB0044CC8C /* HZTabBarViewController.xib in Resources */,
 				82912C271CA676AA00098261 /* HZNavigationController.xib in Resources */,
@@ -725,6 +755,7 @@
 				82912C3A1CA6D87F00098261 /* HZEnterpriseCell.xib in Resources */,
 				82912C1E1CA6510A00098261 /* HZJobHuntCell.xib in Resources */,
 				82BDE13D1CAACAA5007B035A /* HZResumeExperienceCell.xib in Resources */,
+				827F99061CB9D3D000439489 /* HZResumeEditCell.xib in Resources */,
 				822B11591CA5822C0044CC8C /* LaunchScreen.storyboard in Resources */,
 				822B11561CA5822C0044CC8C /* Assets.xcassets in Resources */,
 				82BDE12E1CAAABD1007B035A /* HZResumeDetailViewController.xib in Resources */,
@@ -739,6 +770,7 @@
 				822B11831CA612F80044CC8C /* HomeViewController.xib in Resources */,
 				822B11901CA614530044CC8C /* MineViewController.xib in Resources */,
 				827F98F41CB9403F00439489 /* HZSingalSelectionViewController.xib in Resources */,
+				827F98F91CB96C9E00439489 /* HZEditSingleSelectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,6 +841,7 @@
 				82912C431CA6EC6E00098261 /* HZLoginViewController.m in Sources */,
 				82430CE01CB0C5E200D9979B /* HZPositionModel.m in Sources */,
 				822B11631CA582FB0044CC8C /* HZTabBarViewController.m in Sources */,
+				827F99001CB9755100439489 /* HZNewEditResumeViewController.m in Sources */,
 				827F98E81CB8A24A00439489 /* HZRightTableViewCell.m in Sources */,
 				822B11511CA5822C0044CC8C /* ViewController.m in Sources */,
 				82BDE1371CAAC410007B035A /* HZResumeDetailArrayCell.m in Sources */,
@@ -832,6 +865,9 @@
 				82BDE1431CAAD9FB007B035A /* HZResumeBusinessModel.m in Sources */,
 				82B943531CB21F5F009ECEA3 /* MbPaser.m in Sources */,
 				822B114B1CA5822C0044CC8C /* main.m in Sources */,
+				827F99051CB9D3D000439489 /* HZResumeEditCell.m in Sources */,
+				827F98FC1CB9742E00439489 /* HZEditResumeItemModel.m in Sources */,
+				827F98F81CB96C9E00439489 /* HZEditSingleSelectionViewController.m in Sources */,
 				82912C1D1CA6510A00098261 /* HZJobHuntCell.m in Sources */,
 				82E8872D1CA7994800279FBE /* HZPublishResumeViewController.m in Sources */,
 				82B943591CB24D09009ECEA3 /* HZNewsTableViewCell.m in Sources */,

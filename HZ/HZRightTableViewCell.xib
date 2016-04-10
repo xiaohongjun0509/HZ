@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xeg-gQ-KDn">
@@ -21,8 +21,17 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xdt-ur-fzx">
+                        <rect key="frame" x="15" y="59" width="305" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="bz7-K4-bVo"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Xdt-ur-fzx" secondAttribute="bottom" id="35f-AQ-bPo"/>
+                    <constraint firstItem="Xdt-ur-fzx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="OqD-kJ-o9P"/>
+                    <constraint firstAttribute="trailing" secondItem="Xdt-ur-fzx" secondAttribute="trailing" id="RcB-uq-y3F"/>
                     <constraint firstAttribute="trailing" secondItem="Xeg-gQ-KDn" secondAttribute="trailing" id="V7e-Sm-fJt"/>
                     <constraint firstItem="Xeg-gQ-KDn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aev-Zx-qeB"/>
                     <constraint firstItem="Xeg-gQ-KDn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lIH-aQ-gjf"/>

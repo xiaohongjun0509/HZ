@@ -10,6 +10,7 @@
 #import "HZPlaceModel.h"
 #import "HZPositionModel.h"
 #import "HZEducationalExperienceViewController.h"
+#import "HZEditSingleSelectionViewController.h"
 @interface HZResumeEditViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate>
 {
     CGSize textSize;
@@ -127,10 +128,20 @@
 @property(nonatomic,strong)NSString* str;
 //@property(nonatomic,strong)MbCenterViewController* centerView;            //个人中心
 @property(nonatomic,assign)CGFloat heit;
+
+@property (nonatomic, strong) HZEditSingleSelectionViewController *selectionController;
 @end
 
 @implementation HZResumeEditViewController
 
+- (HZEditSingleSelectionViewController *)selectionController{
+    if (_selectionController == nil) {
+        _selectionController = [[HZEditSingleSelectionViewController alloc] init];
+        [self.view addSubview:_selectionController.view];
+        _selectionController.view.hidden = YES;
+    }
+    return _selectionController;
+}
 
 - (void)customArray{
     self.addeduArray = [NSMutableArray array];
@@ -160,6 +171,10 @@
     [super viewDidLoad];
     self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
     [self customArray];
+    [self getExperience];
+    [self getEducation];
+    [self getPosition];
+    [self getSalary];
 }
 //地区
 -(void)requestPlace{
@@ -352,7 +367,7 @@
     //        self.ageBtn.titleLabel.textAlignment =NSTextAlignmentLeft;
     self.ageBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.ageBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.ageBtn.tag=1;
+    self.ageBtn.tag=1000 + 1;
     [self.scrollView addSubview:self.ageBtn];
     
     //向下箭头
@@ -402,7 +417,7 @@
     self.educationBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
     self.educationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.educationBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.educationBtn.tag = 2;
+    self.educationBtn.tag = 1000 + 2;
     [self.scrollView addSubview:self.educationBtn];
     
     
@@ -453,7 +468,7 @@
     
     self.yearsBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.yearsBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.yearsBtn.tag = 3;
+    self.yearsBtn.tag = 1000 + 3;
     [self.scrollView addSubview:self.yearsBtn];
     
     //向下箭头
@@ -504,7 +519,7 @@
     self.typeBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
     self.typeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.typeBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.typeBtn.tag = 4;
+    self.typeBtn.tag = 1000 + 4;
     [self.scrollView addSubview:self.typeBtn];
     
     
@@ -554,7 +569,7 @@
     
     self.moneyBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
     [self.moneyBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.moneyBtn.tag = 5;
+    self.moneyBtn.tag = 1000 + 5;
     self.moneyBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.scrollView addSubview:self.moneyBtn];
     //向下箭头
@@ -681,12 +696,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     if (self.jsonString1.length==0) {
-        
     }else if(self.jsonString1.length>0){
-        
-        
         if ([self.addeduArrayStr containsObject:self.jsonString1]) {
             
         }else{
@@ -741,9 +752,6 @@
         }else{
             
         }
-        
-        
-        
     }
     if ([self.workDic count]==0) {
         
@@ -754,10 +762,6 @@
             
             
         }
-        
-        
-        
-        
     }
     
     [self.scrollView removeFromSuperview];
@@ -1355,55 +1359,29 @@
     
     self.tag = sender.tag;
     
-    
-    self.btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    //图层透明，控件不透明
-    UIColor *color = [UIColor blackColor];
-    self.btn1.backgroundColor = [color colorWithAlphaComponent:0.5];
-    self.btn1.userInteractionEnabled = YES;
-    [self.btn1 addTarget:self action:@selector(btn1:) forControlEvents:UIControlEventTouchUpInside];
-    //    self.view1.backgroundColor = [UIColor blackColor];
-    //    self.view1.alpha = 0.7;
-    
-    [self.view addSubview:self.btn1];
-    
-    
+    HZEditType type = sender.tag - 1000;
     //标题
     self.titleLabel = [[UILabel alloc]init];
-    if (sender.tag==1) {
-        self.titleLabel.text = @"年龄";
-    }else if (sender.tag==2){
-        self.titleLabel.text = @"学历";
-        [self getEducation];
-    }else if (sender.tag==3){
-        self.titleLabel.text = @"工作经验";
-        [self getExperience];
-    }else if (sender.tag==4){
-        self.titleLabel.text = @"意向职位";
-        [self getPosition];
-    }else if (sender.tag==5){
-        self.titleLabel.text = @"期望薪资";
-        [self getSalary];
+    if (type == 1) {
+        self.selectionController.label.text = @"年龄";
+        
+    }else if (type ==2){
+        self.selectionController.label.text = @"学历";
+        
+    }else if (type ==3){
+        self.selectionController.label.text = @"工作经验";
+        
+    }else if (type ==4){
+        self.selectionController.label.text = @"意向职位";
+        
+    }else if (type==5){
+        self.selectionController.label.text = @"期望薪资";
+        
     }
-    self.titleLabel.backgroundColor = [UIColor colorWithRed:11/255.0 green:111/255.0 blue:221/255.0 alpha:1];
-    self.titleLabel.font = [UIFont systemFontOfSize:labelText];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.frame = CGRectMake(15, (ScreenHeight - 344)/2, ScreenWidth - 30, 40);
-    [self.btn1 addSubview:self.titleLabel];
-    
-    //列表
-    self.tableView1 = [[UITableView alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), ScreenWidth - 30, 240)];
-    self.tableView1.dataSource = self;
-    self.tableView1.delegate = self;
-    self.tableView.scrollEnabled = NO;
-    [self.tableView1 reloadData];
-    [self.btn1 addSubview:self.tableView1];
-    
-    [self.titleDetail resignFirstResponder];
-    [self.name resignFirstResponder];
-    [self.telephoneField resignFirstResponder];
-    [self.introduction resignFirstResponder];
+    self.selectionController.type = type;
+    [self.selectionController.tableView reloadData];
+    self.selectionController.view.hidden = NO;
+    [self.view resignFirstResponder];
     
     
 }

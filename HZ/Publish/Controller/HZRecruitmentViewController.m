@@ -9,6 +9,7 @@
 #import "HZRecruitmentViewController.h"
 #import "HZPositionModel.h"
 #import "HZPlaceModel.h"
+#import "HZEditSingleSelectionViewController.h"
 @interface HZRecruitmentViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
 {
     CGSize textSize;
@@ -1194,7 +1195,8 @@
     
     self.tag = sender.tag;
     
-    
+    HZEditType type = sender.tag - 1000;
+    self.
     self.btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     //图层透明，控件不透明
     UIColor *color = [UIColor blackColor];
@@ -1240,13 +1242,13 @@
     [self.btn1 addSubview:self.tableView1];
     
     
-    
-    [self.titleDetail resignFirstResponder];
-    [self.company resignFirstResponder];
-    [self.placeField resignFirstResponder];
-    [self.jobRequirements resignFirstResponder];
-    [self.companyProfile resignFirstResponder];
-    [self.telephoneNumber resignFirstResponder];
+    [self.view resignFirstResponder];
+//    [self.titleDetail resignFirstResponder];
+//    [self.company resignFirstResponder];
+//    [self.placeField resignFirstResponder];
+//    [self.jobRequirements resignFirstResponder];
+//    [self.companyProfile resignFirstResponder];
+//    [self.telephoneNumber resignFirstResponder];
 }
 
 //防骚扰

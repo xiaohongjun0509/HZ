@@ -780,10 +780,10 @@
 
 }
 
--(void)btn1:(UIButton*)sender{
-    [self.btn1 removeFromSuperview];
-    self.tableView.scrollEnabled = YES;
-}
+//-(void)btn1:(UIButton*)sender{
+//    [self.btn1 removeFromSuperview];
+//    self.tableView.scrollEnabled = YES;
+//}
 //发布按钮
 -(void)releaseBtn:(UIButton*)sender{
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
