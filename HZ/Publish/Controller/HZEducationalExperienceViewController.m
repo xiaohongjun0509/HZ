@@ -11,7 +11,7 @@
 #import "MbTimePickerView.h"
 #import "MbPickerView.h"
 #import "SRMonthPicker.h"
-
+#import "HZEditDetailStudyModel.h"
 @interface HZEducationalExperienceViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     UIButton *_ensureBtn;      //确定按钮
@@ -571,12 +571,17 @@
     [self.dic setObject:self.startTime forKey:@"startTime"];
     [self.dic setObject:self.endTime forKey:@"endTime"];
     [self.dic setObject:self.professional.text forKey:@"professional"];
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.dic options:0 error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData
-                                                 encoding:NSUTF8StringEncoding];
-    self.resumeVC.jsonString1 = jsonString;
-    self.resumeVC.mutDic = self.dic;
-        [self dismissViewControllerAnimated:YES completion:nil];
- }
+        
+    
+    HZEditDetailStudyModel *model = [[HZEditDetailStudyModel alloc]init];
+    model.school = self.schoolField.text;
+    model.degree = self.degree;
+    model.startTime = self.startTime;
+    model.endTime = self.endTime;
+    model.professional = self.professional.text;
+    [self.item.studyList addObject:model];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+    }
 }
-@end
+    @end

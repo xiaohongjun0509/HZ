@@ -1254,7 +1254,7 @@
     
     
     self.edVC = [[HZEducationalExperienceViewController alloc]init];
-    self.edVC.resumeVC = self;
+//    self.edVC.resumeVC = self;
     [self presentVC:self.edVC];
 }
 //添加工作经历

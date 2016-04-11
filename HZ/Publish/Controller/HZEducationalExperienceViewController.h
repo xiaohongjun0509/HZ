@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HZResumeEditViewController.h"
+#import "HZEditResumeItemModel.h"
 @interface HZEducationalExperienceViewController : UIViewController
-@property(nonatomic,strong)HZResumeEditViewController* resumeVC;//添加简历信息页
+//@property(nonatomic,weak)HZResumeEditViewController* resumeVC;//添加简历信息页
+@property (nonatomic, strong) HZEditResumeItemModel *item;
 @end

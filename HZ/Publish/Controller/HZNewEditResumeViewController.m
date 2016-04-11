@@ -12,12 +12,16 @@
 #import "HZEditSingleSelectionViewController.h"
 #import "HZPlaceModel.h"
 #import "HZPositionModel.h"
+#import "HZEditEducationCell.h"
+#import "HZEducationalExperienceViewController.h"
+#import "MbWorkExperienceViewController.h"
 @interface HZNewEditResumeViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *showList;
 @property (nonatomic, strong) HZEditSingleSelectionViewController *selectionController;
 @property (nonatomic, strong) NSMutableDictionary *selectionDataSource;
 @property (nonatomic, copy) NSArray *titleArray;
+@property (nonatomic, strong) HZEducationalExperienceViewController *eduvc;
 @end
 
 @implementation HZNewEditResumeViewController
@@ -27,12 +31,17 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"HZResumeEditCell" bundle:nil] forCellReuseIdentifier:@"HZResumeEditCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HZEditEducationCell" bundle:nil] forCellReuseIdentifier:@"HZEditEducationCell"];
     [self makeItems];
     self.selectionDataSource = [NSMutableDictionary dictionary];
     [self requestData];
     
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+}
 
 - (void)requestData{
     [self requestAge];
@@ -54,6 +63,8 @@
         item.placeHolder = placeHolderArray[i];
         item.showSexButton = i == 1;
         item.index = 1000 + i;
+        item.studyList = [NSMutableArray array];
+        item.workList = [NSMutableArray array];
         [self.showList addObject:item];
     }
 }
@@ -65,6 +76,27 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 7 || indexPath.row == 8){
+        HZEditEducationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZEditEducationCell"];
+        HZEditResumeItemModel *model = self.showList[indexPath.row];
+        cell.model = model;
+        [cell.button setTitle: (indexPath.row == 7 ? @"教育经历"  : @"工作经历") forState:UIControlStateNormal];
+        cell.study = indexPath.row == 7;
+        cell.editBlock = ^{
+            if (indexPath.row == 7) {
+                self.eduvc = [[HZEducationalExperienceViewController alloc]init];
+                self.eduvc.item = model;
+                [self presentVC:self.eduvc];
+            }else{
+                MbWorkExperienceViewController *vc = [[MbWorkExperienceViewController alloc] init];
+                vc.item = model;
+                [self presentVC:vc];
+            }
+            
+        };
+        return cell;
+    }
+    
     HZResumeEditCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"HZResumeEditCell"];
     __block HZEditResumeItemModel *model = self.showList[indexPath.row];
     cell.model = model;
@@ -84,7 +116,29 @@
 }
 
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 40)];
+    button.center = CGPointMake(0.5 * ScreenWidth, 20);
+    [button setTitle:@"发布" forState:UIControlStateNormal];
+    [view addSubview:button];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 40;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 7 || indexPath.row == 8){
+        HZEditResumeItemModel *model = self.showList[indexPath.row];
+        if (indexPath.row == 7) {
+            return  [HZEditEducationCell cellHeight:model.studyList];
+        }else{
+            return  [HZEditEducationCell cellHeight:model.workList];
+        }
+       
+    }
     return 44;
 }
 
@@ -102,15 +156,7 @@
     }
     [self.selectionDataSource setValue:array forKey:@"0"];
 }
-//地区
-//-(void)requestPlace{
-//
-//    [[NetworkManager manager] postRequest:hopeplace completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//        NSDictionary *dict = (NSDictionary *)responseObject;
-//        NSArray *placeList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-//
-//    }];
-//}
+
 ////学历
 -(void)getEducation{
     [[NetworkManager manager] postRequest:hopeeducation completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {

@@ -48,6 +48,12 @@
 		827F99011CB9755100439489 /* HZNewEditResumeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F98FF1CB9755100439489 /* HZNewEditResumeViewController.xib */; };
 		827F99051CB9D3D000439489 /* HZResumeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99031CB9D3D000439489 /* HZResumeEditCell.m */; };
 		827F99061CB9D3D000439489 /* HZResumeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F99041CB9D3D000439489 /* HZResumeEditCell.xib */; };
+		827F990A1CBA001B00439489 /* HZEditEducationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99081CBA001B00439489 /* HZEditEducationCell.m */; };
+		827F990B1CBA001B00439489 /* HZEditEducationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F99091CBA001B00439489 /* HZEditEducationCell.xib */; };
+		827F990F1CBA26C800439489 /* HZStudyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F990D1CBA26C800439489 /* HZStudyDetailCell.m */; };
+		827F99101CBA26C800439489 /* HZStudyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F990E1CBA26C800439489 /* HZStudyDetailCell.xib */; };
+		827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */; };
+		827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */; };
 		82912BF01CA63EC100098261 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BEF1CA63EC100098261 /* HomeBannerModel.m */; };
 		82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF41CA641E200098261 /* UIImageView+Extension.m */; };
 		82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */; };
@@ -173,6 +179,16 @@
 		827F99021CB9D3D000439489 /* HZResumeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZResumeEditCell.h; sourceTree = "<group>"; };
 		827F99031CB9D3D000439489 /* HZResumeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZResumeEditCell.m; sourceTree = "<group>"; };
 		827F99041CB9D3D000439489 /* HZResumeEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZResumeEditCell.xib; sourceTree = "<group>"; };
+		827F99071CBA001B00439489 /* HZEditEducationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEditEducationCell.h; sourceTree = "<group>"; };
+		827F99081CBA001B00439489 /* HZEditEducationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEditEducationCell.m; sourceTree = "<group>"; };
+		827F99091CBA001B00439489 /* HZEditEducationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZEditEducationCell.xib; sourceTree = "<group>"; };
+		827F990C1CBA26C800439489 /* HZStudyDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZStudyDetailCell.h; sourceTree = "<group>"; };
+		827F990D1CBA26C800439489 /* HZStudyDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZStudyDetailCell.m; sourceTree = "<group>"; };
+		827F990E1CBA26C800439489 /* HZStudyDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZStudyDetailCell.xib; sourceTree = "<group>"; };
+		827F99111CBA2B0B00439489 /* HZEditDetailStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEditDetailStudyModel.h; sourceTree = "<group>"; };
+		827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEditDetailStudyModel.m; sourceTree = "<group>"; };
+		827F99141CBA53FA00439489 /* MbWorkExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbWorkExperienceViewController.h; sourceTree = "<group>"; };
+		827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbWorkExperienceViewController.m; sourceTree = "<group>"; };
 		82912BEE1CA63EC100098261 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		82912BEF1CA63EC100098261 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		82912BF31CA641E200098261 /* UIImageView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extension.h"; sourceTree = "<group>"; };
@@ -504,6 +520,8 @@
 				82430CDF1CB0C5E200D9979B /* HZPositionModel.m */,
 				827F98FA1CB9742E00439489 /* HZEditResumeItemModel.h */,
 				827F98FB1CB9742E00439489 /* HZEditResumeItemModel.m */,
+				827F99111CBA2B0B00439489 /* HZEditDetailStudyModel.h */,
+				827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -520,6 +538,12 @@
 				827F99021CB9D3D000439489 /* HZResumeEditCell.h */,
 				827F99031CB9D3D000439489 /* HZResumeEditCell.m */,
 				827F99041CB9D3D000439489 /* HZResumeEditCell.xib */,
+				827F99071CBA001B00439489 /* HZEditEducationCell.h */,
+				827F99081CBA001B00439489 /* HZEditEducationCell.m */,
+				827F99091CBA001B00439489 /* HZEditEducationCell.xib */,
+				827F990C1CBA26C800439489 /* HZStudyDetailCell.h */,
+				827F990D1CBA26C800439489 /* HZStudyDetailCell.m */,
+				827F990E1CBA26C800439489 /* HZStudyDetailCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -589,6 +613,8 @@
 			children = (
 				82430CE41CB0D1BE00D9979B /* HZEducationalExperienceViewController.h */,
 				82430CE51CB0D1BE00D9979B /* HZEducationalExperienceViewController.m */,
+				827F99141CBA53FA00439489 /* MbWorkExperienceViewController.h */,
+				827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */,
 				82BDE1451CAC000E007B035A /* HZResumeEditViewController.h */,
 				82BDE1461CAC000E007B035A /* HZResumeEditViewController.m */,
 				82BDE1471CAC000E007B035A /* HZResumeEditViewController.xib */,
@@ -750,12 +776,14 @@
 				82E887321CA79C2F00279FBE /* HZPublishViewController.xib in Resources */,
 				822B11641CA582FB0044CC8C /* HZTabBarViewController.xib in Resources */,
 				82912C271CA676AA00098261 /* HZNavigationController.xib in Resources */,
+				827F990B1CBA001B00439489 /* HZEditEducationCell.xib in Resources */,
 				822B117A1CA589660044CC8C /* TableBaseViewController.xib in Resources */,
 				82B943661CB28FA4009ECEA3 /* HZEnterpriseDetailController.xib in Resources */,
 				82912C3A1CA6D87F00098261 /* HZEnterpriseCell.xib in Resources */,
 				82912C1E1CA6510A00098261 /* HZJobHuntCell.xib in Resources */,
 				82BDE13D1CAACAA5007B035A /* HZResumeExperienceCell.xib in Resources */,
 				827F99061CB9D3D000439489 /* HZResumeEditCell.xib in Resources */,
+				827F99101CBA26C800439489 /* HZStudyDetailCell.xib in Resources */,
 				822B11591CA5822C0044CC8C /* LaunchScreen.storyboard in Resources */,
 				822B11561CA5822C0044CC8C /* Assets.xcassets in Resources */,
 				82BDE12E1CAAABD1007B035A /* HZResumeDetailViewController.xib in Resources */,
@@ -835,6 +863,7 @@
 				82912C321CA6D3F400098261 /* HZResumeModel.m in Sources */,
 				82430CDA1CB0C1DF00D9979B /* HZPlaceModel.m in Sources */,
 				82912C2A1CA6BE8900098261 /* HZSegmentView.m in Sources */,
+				827F990F1CBA26C800439489 /* HZStudyDetailCell.m in Sources */,
 				82B9435C1CB2665F009ECEA3 /* HZJobDetailController.m in Sources */,
 				82BDE1321CAAAD5B007B035A /* HZResumeDetailCell.m in Sources */,
 				82430CEF1CB0D28500D9979B /* SRMonthPicker.m in Sources */,
@@ -879,8 +908,11 @@
 				82E887191CA7733400279FBE /* HZRegistViewController.m in Sources */,
 				82BDE13C1CAACAA5007B035A /* HZResumeExperienceCell.m in Sources */,
 				82BDE1481CAC000E007B035A /* HZResumeEditViewController.m in Sources */,
+				827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */,
 				82912C391CA6D87F00098261 /* HZEnterpriseCell.m in Sources */,
 				827F98DE1CB89C0C00439489 /* HZTwoSelectionViewController.m in Sources */,
+				827F990A1CBA001B00439489 /* HZEditEducationCell.m in Sources */,
+				827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */,
 				82B943471CB0FDBD009ECEA3 /* HZRecruitmentViewController.m in Sources */,
 				82B9434A1CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m in Sources */,
 				82912C2F1CA6D0D900098261 /* HZResumeViewController.m in Sources */,
