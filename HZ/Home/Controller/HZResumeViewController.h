@@ -9,5 +9,6 @@
 #import "TableBaseViewController.h"
 
 @interface HZResumeViewController : TableBaseViewController
+@property (nonatomic, copy) NSString *cityName;
 
 @end

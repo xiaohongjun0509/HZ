@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *position;
 @property (nonatomic, copy) NSString *area;
 @property (nonatomic, copy) NSString *wage;
-@property (nonatomic, copy) NSString *cityName;
+
 @property (nonatomic, strong) HZTwoSelectionViewController *postionController;
 @property (nonatomic, strong) HZSingalSelectionViewController *singlgSelectionController;
 @property (nonatomic, strong) HZSegmentView *segmentView;
@@ -71,7 +71,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cityName = @"北京";
+
     self.title = [NSString stringWithFormat:@"看简历(%@)",self.cityName];
     [self registerCell:[HZJobHuntCell class]];
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);

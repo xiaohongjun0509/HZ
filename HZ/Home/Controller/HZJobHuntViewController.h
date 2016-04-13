@@ -9,5 +9,5 @@
 #import "TableBaseViewController.h"
 
 @interface HZJobHuntViewController : TableBaseViewController
-
+@property (nonatomic, copy) NSString *cityName;
 @end

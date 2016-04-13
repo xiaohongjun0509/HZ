@@ -170,7 +170,6 @@
 		82780CD31CBE859E00A7C759 /* ChineseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseString.m; sourceTree = "<group>"; };
 		82780CD51CBE85B300A7C759 /* pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pinyin.m; sourceTree = "<group>"; };
 		82780CD61CBE85B300A7C759 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
-		82780CD81CBE8E5700A7C759 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		827F98DB1CB89C0C00439489 /* HZTwoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZTwoSelectionViewController.h; sourceTree = "<group>"; };
 		827F98DC1CB89C0C00439489 /* HZTwoSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZTwoSelectionViewController.m; sourceTree = "<group>"; };
 		827F98DD1CB89C0C00439489 /* HZTwoSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZTwoSelectionViewController.xib; sourceTree = "<group>"; };
@@ -350,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				822B117C1CA58A310044CC8C /* PreHeader.h */,
-				82780CD81CBE8E5700A7C759 /* Header.h */,
 				822B11751CA5892E0044CC8C /* Lib */,
 				822B11711CA588D00044CC8C /* Publish */,
 				822B116D1CA588C60044CC8C /* News */,
@@ -1169,7 +1167,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/ihj/Desktop/HZ/HZ/PreHeader.h ";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HZ/PreHeader.h";
 				INFOPLIST_FILE = HZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -47,7 +47,7 @@
     NSString *imageName = self.images[2 - indexPath.row];
     cell.imageView.image = [UIImage imageNamed:imageName];
     cell.textLabel.text = [self.titles objectAtIndex:indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.se = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 2) {
         cell.separatorInset = UIEdgeInsetsZero;
     }

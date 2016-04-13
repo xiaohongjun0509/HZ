@@ -124,6 +124,7 @@
 
 - (void)findWork{
     HZJobHuntViewController *controller = [[HZJobHuntViewController alloc] init];
+    controller.cityName = self.cityName;
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navi animated:YES completion:nil];
     
@@ -137,6 +138,7 @@
 
 - (void)resume{
     HZResumeViewController *controller = [HZResumeViewController new];
+    controller.cityName = self.cityName;
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navi animated:YES completion:nil];
 }

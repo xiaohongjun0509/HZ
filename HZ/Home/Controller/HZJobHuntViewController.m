@@ -19,7 +19,7 @@
 
 @interface HZJobHuntViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSString *salary;
-@property (nonatomic, copy) NSString *cityName;
+
 @property (nonatomic, strong) HZTwoSelectionViewController *postionController;
 @property (nonatomic, strong) HZSingalSelectionViewController *singlgSelectionController;
 @property (nonatomic, strong) HZSegmentView *segmentView;
@@ -78,7 +78,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cityName = @"北京";
+//    self.cityName = @"北京";
     
     self.title = [NSString stringWithFormat:@"找工作(%@)",self.cityName];
     [self registerCell:[HZJobHuntCell class]];
