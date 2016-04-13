@@ -11,7 +11,7 @@
 #import "HZPositionTypeModel.h"
 #import "HZPositionName.h"
 #import "HZRightTableViewCell.h"
-@interface HZTwoSelectionViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface HZTwoSelectionViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *rightTableView;
 
@@ -39,6 +39,7 @@
     self.leftTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.rightTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
+    tap.delegate = self;
     [self.view addGestureRecognizer:tap];
 
 }
@@ -106,4 +107,16 @@
     self.rightList = model.position;
     [self.rightTableView reloadData];
 }
+
+#pragma mark - 
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
+
+}
+
+
 @end

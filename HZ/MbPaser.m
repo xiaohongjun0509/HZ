@@ -8,6 +8,7 @@
 
 #import "MbPaser.h"
 #import "AFNetworking.h"
+#import "MbUserInfo.h"
 @implementation MbPaser
 
 
@@ -381,6 +382,20 @@
 
 
 }
+
++(NSMutableArray*)paserCityListByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    
+    NSArray* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.name = [dictionary objectForKey:@"name"];
+        info.areaid = [[dictionary objectForKey:@"areaid"]intValue];
+        [list addObject:info];
+    }
+    return list;
+}
+
 //我的发布 简历删除
 +(void)sendMyReleaseResumeDeleteByUserid:(NSString*)userid resumeid:(NSString*)resumeid result:(void(^)(MyReleaseResumeDeleteResponse *response, NSError *error))result{
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];

@@ -31,6 +31,10 @@
 		82430CE91CB0D20300D9979B /* MbPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82430CE81CB0D20300D9979B /* MbPickerView.m */; };
 		82430CEC1CB0D24300D9979B /* MbTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82430CEB1CB0D24300D9979B /* MbTimePickerView.m */; };
 		82430CEF1CB0D28500D9979B /* SRMonthPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 82430CEE1CB0D28500D9979B /* SRMonthPicker.m */; };
+		82780CC51CBE7AD200A7C759 /* MbCityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82780CC41CBE7AD200A7C759 /* MbCityListViewController.m */; };
+		82780CCB1CBE7E3C00A7C759 /* MbUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 82780CCA1CBE7E3C00A7C759 /* MbUserInfo.m */; };
+		82780CD41CBE859E00A7C759 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 82780CD31CBE859E00A7C759 /* ChineseString.m */; };
+		82780CD71CBE85B300A7C759 /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 82780CD51CBE85B300A7C759 /* pinyin.m */; };
 		827F98DE1CB89C0C00439489 /* HZTwoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F98DC1CB89C0C00439489 /* HZTwoSelectionViewController.m */; };
 		827F98DF1CB89C0C00439489 /* HZTwoSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F98DD1CB89C0C00439489 /* HZTwoSelectionViewController.xib */; };
 		827F98E31CB8A23E00439489 /* HZLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F98E11CB8A23E00439489 /* HZLeftTableViewCell.m */; };
@@ -158,6 +162,15 @@
 		82430CEB1CB0D24300D9979B /* MbTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbTimePickerView.m; sourceTree = "<group>"; };
 		82430CED1CB0D28500D9979B /* SRMonthPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRMonthPicker.h; sourceTree = "<group>"; };
 		82430CEE1CB0D28500D9979B /* SRMonthPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRMonthPicker.m; sourceTree = "<group>"; };
+		82780CC31CBE7AD200A7C759 /* MbCityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbCityListViewController.h; sourceTree = "<group>"; };
+		82780CC41CBE7AD200A7C759 /* MbCityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbCityListViewController.m; sourceTree = "<group>"; };
+		82780CC91CBE7E3C00A7C759 /* MbUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbUserInfo.h; sourceTree = "<group>"; };
+		82780CCA1CBE7E3C00A7C759 /* MbUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbUserInfo.m; sourceTree = "<group>"; };
+		82780CD21CBE859E00A7C759 /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseString.h; sourceTree = "<group>"; };
+		82780CD31CBE859E00A7C759 /* ChineseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseString.m; sourceTree = "<group>"; };
+		82780CD51CBE85B300A7C759 /* pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pinyin.m; sourceTree = "<group>"; };
+		82780CD61CBE85B300A7C759 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		82780CD81CBE8E5700A7C759 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		827F98DB1CB89C0C00439489 /* HZTwoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZTwoSelectionViewController.h; sourceTree = "<group>"; };
 		827F98DC1CB89C0C00439489 /* HZTwoSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZTwoSelectionViewController.m; sourceTree = "<group>"; };
 		827F98DD1CB89C0C00439489 /* HZTwoSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZTwoSelectionViewController.xib; sourceTree = "<group>"; };
@@ -337,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				822B117C1CA58A310044CC8C /* PreHeader.h */,
+				82780CD81CBE8E5700A7C759 /* Header.h */,
 				822B11751CA5892E0044CC8C /* Lib */,
 				822B11711CA588D00044CC8C /* Publish */,
 				822B116D1CA588C60044CC8C /* News */,
@@ -376,6 +390,14 @@
 		822B11661CA588B00044CC8C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				82780CC91CBE7E3C00A7C759 /* MbUserInfo.h */,
+				82780CCA1CBE7E3C00A7C759 /* MbUserInfo.m */,
+				82780CD21CBE859E00A7C759 /* ChineseString.h */,
+				82780CD31CBE859E00A7C759 /* ChineseString.m */,
+				82780CD61CBE85B300A7C759 /* pinyin.h */,
+				82780CD51CBE85B300A7C759 /* pinyin.m */,
+				82780CC31CBE7AD200A7C759 /* MbCityListViewController.h */,
+				82780CC41CBE7AD200A7C759 /* MbCityListViewController.m */,
 				822B117D1CA58E820044CC8C /* HomeViewController.h */,
 				822B117E1CA58E820044CC8C /* HomeViewController.m */,
 				822B11821CA612F80044CC8C /* HomeViewController.xib */,
@@ -905,6 +927,7 @@
 				827F99001CB9755100439489 /* HZNewEditResumeViewController.m in Sources */,
 				827F98E81CB8A24A00439489 /* HZRightTableViewCell.m in Sources */,
 				822B11511CA5822C0044CC8C /* ViewController.m in Sources */,
+				82780CC51CBE7AD200A7C759 /* MbCityListViewController.m in Sources */,
 				82BDE1371CAAC410007B035A /* HZResumeDetailArrayCell.m in Sources */,
 				827F99191CBDCA3600439489 /* MbModifyViewController.m in Sources */,
 				82BDE1401CAAD9DC007B035A /* HZResumeExperienceModel.m in Sources */,
@@ -942,10 +965,13 @@
 				82E887191CA7733400279FBE /* HZRegistViewController.m in Sources */,
 				82BDE13C1CAACAA5007B035A /* HZResumeExperienceCell.m in Sources */,
 				827F99241CBDCE5000439489 /* MbZhongBiaoTableViewCell.m in Sources */,
+				82780CD71CBE85B300A7C759 /* pinyin.m in Sources */,
 				82BDE1481CAC000E007B035A /* HZResumeEditViewController.m in Sources */,
 				827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */,
 				82912C391CA6D87F00098261 /* HZEnterpriseCell.m in Sources */,
 				827F98DE1CB89C0C00439489 /* HZTwoSelectionViewController.m in Sources */,
+				82780CD41CBE859E00A7C759 /* ChineseString.m in Sources */,
+				82780CCB1CBE7E3C00A7C759 /* MbUserInfo.m in Sources */,
 				827F990A1CBA001B00439489 /* HZEditEducationCell.m in Sources */,
 				827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */,
 				82B943471CB0FDBD009ECEA3 /* HZRecruitmentViewController.m in Sources */,
@@ -1022,7 +1048,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1060,7 +1086,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

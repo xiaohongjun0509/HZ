@@ -12,10 +12,12 @@
 #import "HZResumeViewController.h"
 #import "HZEnterpriseViewController.h"
 #import "MbTenderViewController.h"
+#import "MbCityListViewController.h"
 @interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, copy) NSArray *scrollImageModels;
 @property (nonatomic, strong) UIPageControl *pageController;
+@property (nonatomic, strong) UIButton *cityButton;
 @end
 
 @implementation HomeViewController
@@ -28,8 +30,17 @@
     [self customScrollview];
     [self customButtons];
     [self  requestBanner];
+    if(!self.cityName){
+        self.cityName = @"北京";
+    }
+    [self attachCity:self.cityName];
 }
 
+
+- (void)setCityName:(NSString *)cityName{
+    _cityName = cityName;
+    [self.cityButton setTitle:cityName forState:UIControlStateNormal];
+}
 - (void)requestBanner{
     WEAKSELF
     [[NetworkManager manager] startRequest:banner completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -147,4 +158,34 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     self.pageController.currentPage = (int) scrollView.contentOffset.x / ScreenWidth;
 }
+
+
+
+
+#pragma merk - 
+- (void)attachCity:(NSString *)city{
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.cityButton = backButton;
+    [backButton setTitle:city forState:UIControlStateNormal];
+    [backButton addTarget:self
+                   action:@selector(showLictController)
+         forControlEvents:UIControlEventTouchUpInside];
+    CGFloat space = 5.0;
+    [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, space)];
+    [backButton sizeToFit];
+    CGRect frame = backButton.frame;
+    frame.size.width += space;
+    backButton.frame = frame;
+    [backButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+}
+
+- (void)showLictController{
+    MbCityListViewController *vc = [[MbCityListViewController alloc] init];
+    vc.homeVC = self;
+    [self presentVC:vc];
+}
+
 @end

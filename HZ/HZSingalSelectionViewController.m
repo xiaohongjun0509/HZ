@@ -9,7 +9,7 @@
 #import "HZSingalSelectionViewController.h"
 #import "HZRightTableViewCell.h"
 #import "HZPositionName.h"
-@interface HZSingalSelectionViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HZSingalSelectionViewController ()<UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @end
 
@@ -24,6 +24,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
+    tap.delegate = self;
     [self.view addGestureRecognizer:tap];
 }
 
@@ -60,4 +61,12 @@
     
 }
 
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
+    
+}
 @end

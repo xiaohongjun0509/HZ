@@ -100,7 +100,7 @@
     self.segmentView = [[HZSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
     WEAKSELF
     self.segmentView.positionBlock = ^{
-        
+        weakSelf.singlgSelectionController.view.hidden = YES;
         [UIView animateWithDuration:0.3 animations:^{
             weakSelf.postionController.view.hidden = NO;
         }];

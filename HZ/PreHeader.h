@@ -9,6 +9,7 @@
 
 
 
+
 #import "AFNetworking.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
@@ -19,6 +20,7 @@
 #import "HZUserManager.h"
 #import "HZNavigationController.h"
 #import "JZQHttpTools.h"
+#import "pinyin.h"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define viewWidth ScreenWidth
@@ -140,7 +142,6 @@
 
 //企业通刷新
 #define qiyeRefresh @"http://haozhu.shiliuyun.net/index.php/Home/Distributelist/hz_company_break?"
-
 
 
 

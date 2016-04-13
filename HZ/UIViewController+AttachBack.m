@@ -8,6 +8,8 @@
 
 #import "UIViewController+AttachBack.h"
 #import "HZNavigationController.h"
+#import "MbCityListViewController.h"
+
 @implementation UIViewController (AttachBack)
 - (void)attachBackButton
 {
@@ -40,6 +42,24 @@
     
 }
 
+- (void)attachCity:(NSString *)city{
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setTitle:city forState:UIControlStateNormal];
+    [backButton addTarget:self
+                   action:@selector(showLictController)
+         forControlEvents:UIControlEventTouchUpInside];
+    CGFloat space = 5.0;
+    [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, space)];
+    [backButton sizeToFit];
+    CGRect frame = backButton.frame;
+    frame.size.width += space;
+    backButton.frame = frame;
+    [backButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+
+}
+
 - (void)backButtonPressed{
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -50,4 +70,9 @@
     HZNavigationController *nc = [[HZNavigationController alloc] initWithRootViewController:viewController];
     [self presentViewController:nc animated:YES completion:nil];
 }
+
+- (void)showLictController{
+    MbCityListViewController *vc = [[MbCityListViewController alloc] init];
+}
+
 @end
