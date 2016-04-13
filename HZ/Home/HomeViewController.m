@@ -11,7 +11,7 @@
 #import "HZJobHuntViewController.h"
 #import "HZResumeViewController.h"
 #import "HZEnterpriseViewController.h"
-
+#import "MbTenderViewController.h"
 @interface HomeViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, copy) NSArray *scrollImageModels;
@@ -131,7 +131,10 @@
 }
 
 - (void)zhaibiao{
-    
+    MbTenderViewController * tenderVC = [[MbTenderViewController alloc]init];
+    [self presentVC:tenderVC];
+//        [self.navigationController pushViewController:self.tenderVC animated:YES];
+
 }
 
 

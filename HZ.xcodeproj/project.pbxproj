@@ -55,6 +55,11 @@
 		827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */; };
 		827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */; };
 		827F99191CBDCA3600439489 /* MbModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99181CBDCA3600439489 /* MbModifyViewController.m */; };
+		827F991C1CBDCE3100439489 /* MbTenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F991B1CBDCE3100439489 /* MbTenderViewController.m */; };
+		827F99231CBDCE5000439489 /* MbZhaoBiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F991E1CBDCE5000439489 /* MbZhaoBiaoViewController.m */; };
+		827F99241CBDCE5000439489 /* MbZhongBiaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99201CBDCE5000439489 /* MbZhongBiaoTableViewCell.m */; };
+		827F99251CBDCE5000439489 /* MbZhongBiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99221CBDCE5000439489 /* MbZhongBiaoViewController.m */; };
+		827F99281CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99271CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m */; };
 		82912BF01CA63EC100098261 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BEF1CA63EC100098261 /* HomeBannerModel.m */; };
 		82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF41CA641E200098261 /* UIImageView+Extension.m */; };
 		82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */; };
@@ -192,6 +197,16 @@
 		827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbWorkExperienceViewController.m; sourceTree = "<group>"; };
 		827F99171CBDCA3600439489 /* MbModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbModifyViewController.h; sourceTree = "<group>"; };
 		827F99181CBDCA3600439489 /* MbModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbModifyViewController.m; sourceTree = "<group>"; };
+		827F991A1CBDCE3100439489 /* MbTenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbTenderViewController.h; sourceTree = "<group>"; };
+		827F991B1CBDCE3100439489 /* MbTenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbTenderViewController.m; sourceTree = "<group>"; };
+		827F991D1CBDCE5000439489 /* MbZhaoBiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbZhaoBiaoViewController.h; sourceTree = "<group>"; };
+		827F991E1CBDCE5000439489 /* MbZhaoBiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbZhaoBiaoViewController.m; sourceTree = "<group>"; };
+		827F991F1CBDCE5000439489 /* MbZhongBiaoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbZhongBiaoTableViewCell.h; sourceTree = "<group>"; };
+		827F99201CBDCE5000439489 /* MbZhongBiaoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbZhongBiaoTableViewCell.m; sourceTree = "<group>"; };
+		827F99211CBDCE5000439489 /* MbZhongBiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbZhongBiaoViewController.h; sourceTree = "<group>"; };
+		827F99221CBDCE5000439489 /* MbZhongBiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbZhongBiaoViewController.m; sourceTree = "<group>"; };
+		827F99261CBDCEC100439489 /* MbZhaoBiaoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbZhaoBiaoTableViewCell.h; sourceTree = "<group>"; };
+		827F99271CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbZhaoBiaoTableViewCell.m; sourceTree = "<group>"; };
 		82912BEE1CA63EC100098261 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		82912BEF1CA63EC100098261 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		82912BF31CA641E200098261 /* UIImageView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extension.h"; sourceTree = "<group>"; };
@@ -376,6 +391,16 @@
 				82B9435A1CB2665F009ECEA3 /* HZJobDetailController.h */,
 				82B9435B1CB2665F009ECEA3 /* HZJobDetailController.m */,
 				82B9435D1CB266D3009ECEA3 /* HZJobDetailController.xib */,
+				827F991A1CBDCE3100439489 /* MbTenderViewController.h */,
+				827F991B1CBDCE3100439489 /* MbTenderViewController.m */,
+				827F991D1CBDCE5000439489 /* MbZhaoBiaoViewController.h */,
+				827F991E1CBDCE5000439489 /* MbZhaoBiaoViewController.m */,
+				827F991F1CBDCE5000439489 /* MbZhongBiaoTableViewCell.h */,
+				827F99201CBDCE5000439489 /* MbZhongBiaoTableViewCell.m */,
+				827F99211CBDCE5000439489 /* MbZhongBiaoViewController.h */,
+				827F99221CBDCE5000439489 /* MbZhongBiaoViewController.m */,
+				827F99261CBDCEC100439489 /* MbZhaoBiaoTableViewCell.h */,
+				827F99271CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -867,7 +892,9 @@
 				82E887271CA77F7700279FBE /* HZPublishViewController.m in Sources */,
 				82912C321CA6D3F400098261 /* HZResumeModel.m in Sources */,
 				82430CDA1CB0C1DF00D9979B /* HZPlaceModel.m in Sources */,
+				827F99251CBDCE5000439489 /* MbZhongBiaoViewController.m in Sources */,
 				82912C2A1CA6BE8900098261 /* HZSegmentView.m in Sources */,
+				827F99231CBDCE5000439489 /* MbZhaoBiaoViewController.m in Sources */,
 				827F990F1CBA26C800439489 /* HZStudyDetailCell.m in Sources */,
 				82B9435C1CB2665F009ECEA3 /* HZJobDetailController.m in Sources */,
 				82BDE1321CAAAD5B007B035A /* HZResumeDetailCell.m in Sources */,
@@ -899,6 +926,7 @@
 				82912C191CA650B400098261 /* HZJobHuntViewController.m in Sources */,
 				82BDE1431CAAD9FB007B035A /* HZResumeBusinessModel.m in Sources */,
 				82B943531CB21F5F009ECEA3 /* MbPaser.m in Sources */,
+				827F99281CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m in Sources */,
 				822B114B1CA5822C0044CC8C /* main.m in Sources */,
 				827F99051CB9D3D000439489 /* HZResumeEditCell.m in Sources */,
 				827F98FC1CB9742E00439489 /* HZEditResumeItemModel.m in Sources */,
@@ -913,6 +941,7 @@
 				827F98EF1CB92B7E00439489 /* HZPositionName.m in Sources */,
 				82E887191CA7733400279FBE /* HZRegistViewController.m in Sources */,
 				82BDE13C1CAACAA5007B035A /* HZResumeExperienceCell.m in Sources */,
+				827F99241CBDCE5000439489 /* MbZhongBiaoTableViewCell.m in Sources */,
 				82BDE1481CAC000E007B035A /* HZResumeEditViewController.m in Sources */,
 				827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */,
 				82912C391CA6D87F00098261 /* HZEnterpriseCell.m in Sources */,
@@ -921,6 +950,7 @@
 				827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */,
 				82B943471CB0FDBD009ECEA3 /* HZRecruitmentViewController.m in Sources */,
 				82B9434A1CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m in Sources */,
+				827F991C1CBDCE3100439489 /* MbTenderViewController.m in Sources */,
 				82912C2F1CA6D0D900098261 /* HZResumeViewController.m in Sources */,
 				82912C251CA6767F00098261 /* HZNavigationController.m in Sources */,
 				82E8872A1CA7993400279FBE /* HZPublishJobViewController.m in Sources */,
