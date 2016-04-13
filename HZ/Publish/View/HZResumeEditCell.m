@@ -10,7 +10,8 @@
 
 
 
-@interface HZResumeEditCell ()
+@interface HZResumeEditCell ()<UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UIButton *button;
@@ -22,7 +23,7 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.button addTarget:self action:@selector(select) forControlEvents:UIControlEventTouchUpInside];
-    
+    self.textField.delegate = self;
 }
 
 - (void)setModel:(HZEditResumeItemModel *)model{
@@ -48,5 +49,17 @@
     if (self.showSelectionView) {
         self.showSelectionView(_model.index - 1000 - 2);
     }
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+//    self.placeHolderLabel.hidden = YES;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    self.placeHolderLabel.hidden = textField.text.length > 0;
+    if (textField.text.length > 0) {
+        _model.placeHolder = textField.text;
+    }
+    return YES;
 }
 @end

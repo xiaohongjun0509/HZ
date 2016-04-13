@@ -21,10 +21,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"HZRightTableViewCell" bundle:nil] forCellReuseIdentifier:@"HZRightTableViewCell"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.userInteractionEnabled = YES;
     self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
-//    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:tap];
     self.label.backgroundColor = [UIColor colorWithRed:11/255.0 green:111/255.0 blue:221/255.0 alpha:1];
 }
 

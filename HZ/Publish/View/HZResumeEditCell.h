@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "HZEditResumeItemModel.h"
 @interface HZResumeEditCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, strong) HZEditResumeItemModel* model;
+@property (weak, nonatomic) IBOutlet UIImageView *arrow;
 @property (nonatomic, copy) void (^showSelectionView)(NSInteger );
 @end

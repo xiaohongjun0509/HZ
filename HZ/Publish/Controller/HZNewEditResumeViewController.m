@@ -15,6 +15,7 @@
 #import "HZEditEducationCell.h"
 #import "HZEducationalExperienceViewController.h"
 #import "MbWorkExperienceViewController.h"
+#import "MbPaser.h"
 @interface HZNewEditResumeViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *showList;
@@ -22,14 +23,17 @@
 @property (nonatomic, strong) NSMutableDictionary *selectionDataSource;
 @property (nonatomic, copy) NSArray *titleArray;
 @property (nonatomic, strong) HZEducationalExperienceViewController *eduvc;
+@property (nonatomic, copy) NSString *userid;
 @end
 
 @implementation HZNewEditResumeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [self footer];
     [self.tableView registerNib:[UINib nibWithNibName:@"HZResumeEditCell" bundle:nil] forCellReuseIdentifier:@"HZResumeEditCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HZEditEducationCell" bundle:nil] forCellReuseIdentifier:@"HZEditEducationCell"];
     [self makeItems];
@@ -94,6 +98,8 @@
             }
             
         };
+        
+       
         return cell;
     }
     
@@ -111,13 +117,21 @@
         weakSelf.selectionController.item = model;
         
     };
-    
+    if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 9 || indexPath.row == 10) {
+        cell.textField.hidden = NO;
+        cell.arrow.hidden = YES;
+        
+    }else{
+        cell.textField.hidden = YES;
+        cell.arrow.hidden = NO;
+    }
     return cell;
 }
 
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+- (UIView *)footer{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    view.backgroundColor = [UIColor redColor];
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 40)];
     button.center = CGPointMake(0.5 * ScreenWidth, 20);
     [button setTitle:@"发布" forState:UIControlStateNormal];
@@ -125,9 +139,7 @@
     return view;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 40;
-}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row == 7 || indexPath.row == 8){
@@ -205,5 +217,86 @@
         };
     }
     return _selectionController;
+}
+
+
+- (void)releaseResume{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        alertView.tag = 200;
+        [alertView show];
+    }else{
+    
+//        NSString *name;
+//        NSString * intro;
+//        NSString *sex;
+//        NSInteger age;
+//        NSString *exp;
+        BOOL needShow = NO;
+        for (int i = 0; i < self.showList.count; i++) {
+            HZEditResumeItemModel *model = self.showList[i];
+            if (i == 7 ) {
+                if(model.studyList.count == 0){
+                    needShow = YES;
+                }
+            }else if(i == 8){
+                needShow = model.workList.count == 0;
+            }else{
+               needShow = model.placeHolder.length == 0;
+            }
+        }
+        if (needShow) {
+            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写完整信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            HZEditResumeItemModel *model = self.showList[0];
+            if (model.placeHolder.length > 10) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"自我介绍字数不能大于10" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }else{
+                 HZEditResumeItemModel *model = self.showList[1];
+                if(model.placeHolder.length > 6){
+                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"姓名字数不能大于6" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                }else{
+                    HZEditResumeItemModel *model = self.showList[2];
+                    NSInteger age = model.placeHolder.integerValue;
+                    
+                    
+                    [MbPaser sendResumeInformationByUserid:self.userid area:self.cityName
+                                                introduces:[self.showList[0] placeHolder]
+                                                      name:[self.showList[1] placeHolder]
+                                                       sex:0
+                                                       age:age
+                                                 education:[self.showList[3] placeHolder]
+                                                experience:@" "
+                                                  position:@"  "
+                                                    salary:@"  "
+                                                 telephone:@"11111111"
+                                               addeduArray:@"  "
+                                              addworkArray:@"  "
+                                                   jieshao:[self.showList[10] placeHolder]
+                                                    result:^(ResumeSaveResponse *response, NSError *error) {
+                        
+                        NSString *str = [NSString stringWithFormat:@"%d",response.turn];
+                        
+                        if (response.turn == 200) {
+                            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            [alert show];
+                        }else{
+                            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            [alert show];
+                            
+                        }
+                        
+                    }];
+
+                }
+            }
+            
+            
+        }
+    }
+
 }
 @end

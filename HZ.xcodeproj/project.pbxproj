@@ -54,6 +54,7 @@
 		827F99101CBA26C800439489 /* HZStudyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F990E1CBA26C800439489 /* HZStudyDetailCell.xib */; };
 		827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */; };
 		827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */; };
+		827F99191CBDCA3600439489 /* MbModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99181CBDCA3600439489 /* MbModifyViewController.m */; };
 		82912BF01CA63EC100098261 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BEF1CA63EC100098261 /* HomeBannerModel.m */; };
 		82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF41CA641E200098261 /* UIImageView+Extension.m */; };
 		82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */; };
@@ -189,6 +190,8 @@
 		827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEditDetailStudyModel.m; sourceTree = "<group>"; };
 		827F99141CBA53FA00439489 /* MbWorkExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbWorkExperienceViewController.h; sourceTree = "<group>"; };
 		827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbWorkExperienceViewController.m; sourceTree = "<group>"; };
+		827F99171CBDCA3600439489 /* MbModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbModifyViewController.h; sourceTree = "<group>"; };
+		827F99181CBDCA3600439489 /* MbModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbModifyViewController.m; sourceTree = "<group>"; };
 		82912BEE1CA63EC100098261 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		82912BEF1CA63EC100098261 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		82912BF31CA641E200098261 /* UIImageView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extension.h"; sourceTree = "<group>"; };
@@ -663,6 +666,8 @@
 				82E887201CA777DC00279FBE /* HZFindPassWordViewController.m */,
 				82E8871E1CA7751C00279FBE /* HZRegistViewController.h */,
 				82E887171CA7733400279FBE /* HZRegistViewController.m */,
+				827F99171CBDCA3600439489 /* MbModifyViewController.h */,
+				827F99181CBDCA3600439489 /* MbModifyViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -874,6 +879,7 @@
 				827F98E81CB8A24A00439489 /* HZRightTableViewCell.m in Sources */,
 				822B11511CA5822C0044CC8C /* ViewController.m in Sources */,
 				82BDE1371CAAC410007B035A /* HZResumeDetailArrayCell.m in Sources */,
+				827F99191CBDCA3600439489 /* MbModifyViewController.m in Sources */,
 				82BDE1401CAAD9DC007B035A /* HZResumeExperienceModel.m in Sources */,
 				82B943561CB21FC3009ECEA3 /* CommonActionStatus.m in Sources */,
 				827F98F31CB9403F00439489 /* HZSingalSelectionViewController.m in Sources */,

@@ -9,6 +9,7 @@
 #import "MineViewController.h"
 #import "HZLoginViewController.h"
 #import "HZPublishViewController.h"
+#import "HZLoginedViewController.h"
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) NSArray *titles;
@@ -64,23 +65,40 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        HZLoginViewController *controller = [HZLoginViewController new];
-        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
-        [self presentViewController:navi animated:YES completion:nil];
-
+        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+            HZLoginViewController *controller = [HZLoginViewController new];
+            UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+            [self presentViewController:navi animated:YES completion:nil];
+        }else{
+            HZLoginedViewController *controller = [[HZLoginedViewController alloc] init];
+            [self presentVC:controller];
+        }
+        
     }
     if (indexPath.row == 1) {
+        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+            HZLoginViewController *controller = [HZLoginViewController new];
+            UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+            [self presentViewController:navi animated:YES completion:nil];
+        }else{
         HZPublishViewController *controller = [HZPublishViewController new];
         controller.requestOfPublish = YES;
         HZNavigationController *navi = [[HZNavigationController alloc] initWithRootViewController:controller];
-        [self presentViewController:navi animated:YES completion:nil];
+            [self presentViewController:navi animated:YES completion:nil];
+        }
     }
     if (indexPath.row == 2) {
+        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+            HZLoginViewController *controller = [HZLoginViewController new];
+            UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
+            [self presentViewController:navi animated:YES completion:nil];
+        }else{
         HZPublishViewController *controller = [HZPublishViewController new];
         controller.requestOfPublish = NO;
         HZNavigationController *navi = [[HZNavigationController alloc] initWithRootViewController:controller];
         [self presentViewController:navi animated:YES completion:nil];
     }
+}
 }
 
 @end

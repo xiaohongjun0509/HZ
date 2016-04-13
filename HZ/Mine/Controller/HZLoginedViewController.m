@@ -7,7 +7,7 @@
 //
 
 #import "HZLoginedViewController.h"
-
+#import "MbModifyViewController.h"
 @interface HZLoginedViewController ()<UIAlertViewDelegate>
 @property(nonatomic,strong)UIImageView* imageView;
 @property(nonatomic,strong)UIImageView* userNameImage;
@@ -122,8 +122,8 @@
 //修改密码
 -(void)modifyBtn:(UIButton*)sender{
 
-//    self.modifyVC = [[HZModifyViewController alloc]init];
-//    [self.navigationController pushViewController:self.modifyVC animated:YES];
+    MbModifyViewController *modifyVC = [[MbModifyViewController alloc]init];
+    [self presentVC:modifyVC];
 
 }
 //退出登录
@@ -137,7 +137,7 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userid"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"telephone"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else{
     
     
