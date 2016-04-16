@@ -11,5 +11,6 @@
 @interface HZResumeDetailTimeUpdateCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *updateTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *zhaoTypeButton;
 
 @end

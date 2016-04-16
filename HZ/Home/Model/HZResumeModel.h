@@ -24,6 +24,7 @@
 @property (nonatomic, copy) NSString *phone;
 @property (nonatomic, copy) NSArray *experienced;
 @property (nonatomic, copy) NSArray *business;
+@property (nonatomic, copy) NSString *linkman;
 @end
 
 

@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boz-13-9yJ">
@@ -33,20 +33,28 @@
                             <constraint firstAttribute="height" constant="1" id="Isa-ID-jbE"/>
                         </constraints>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsY-Tw-SLH">
+                        <rect key="frame" x="259" y="7" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Jpu-nt-NEj" secondAttribute="trailing" constant="15" id="2on-dK-VVX"/>
                     <constraint firstItem="Jpu-nt-NEj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="98I-IA-oau"/>
+                    <constraint firstItem="nsY-Tw-SLH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="98h-Js-cte"/>
                     <constraint firstAttribute="bottom" secondItem="Tj1-C9-wZl" secondAttribute="bottom" constant="1" id="HcU-CN-cFv"/>
+                    <constraint firstItem="Tj1-C9-wZl" firstAttribute="top" secondItem="nsY-Tw-SLH" secondAttribute="bottom" constant="5" id="HqO-m7-0bF"/>
                     <constraint firstItem="Tj1-C9-wZl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="1" id="ZgE-Ca-SBa"/>
                     <constraint firstItem="Boz-13-9yJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gSi-DF-CA0"/>
                     <constraint firstItem="Boz-13-9yJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="qQd-1Y-5jA"/>
+                    <constraint firstAttribute="trailing" secondItem="nsY-Tw-SLH" secondAttribute="trailing" constant="15" id="yu0-XN-PVF"/>
                     <constraint firstAttribute="trailing" secondItem="Tj1-C9-wZl" secondAttribute="trailing" constant="1" id="zpS-n0-TBI"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="Boz-13-9yJ" id="jQL-qB-RMh"/>
                 <outlet property="updateTimeLabel" destination="Jpu-nt-NEj" id="Edx-of-Odf"/>
+                <outlet property="zhaoTypeButton" destination="nsY-Tw-SLH" id="ep8-Ln-r5S"/>
             </connections>
         </tableViewCell>
     </objects>

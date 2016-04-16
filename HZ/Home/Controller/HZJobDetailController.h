@@ -10,4 +10,5 @@
 #import "HZJobModel.h"
 @interface HZJobDetailController : UIViewController
 @property (nonatomic, strong) HZJobModel *model;
+@property (nonatomic, copy) NSString *cityName;
 @end

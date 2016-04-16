@@ -23,6 +23,7 @@
 @property (nonatomic, copy) NSString *aboutus;
 @property (nonatomic, copy) NSString *experience;
 @property (nonatomic, copy) NSString *phone;
+@property (nonatomic, copy) NSString *linkman;
 
 
 @end

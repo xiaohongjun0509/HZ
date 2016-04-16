@@ -31,7 +31,7 @@
     [self customButtons];
     [self  requestBanner];
     if(!self.cityName){
-        self.cityName = @"北京市";
+        self.cityName = @"北京";
     }
     [self attachCity:self.cityName];
 }
@@ -117,7 +117,8 @@
     [enterpriseButton setNeedsLayout];
     [enterpriseButton layoutIfNeeded];
     
-    UIButton *zhaobiaoButton = [self makeMenuButton:@"home_1_icon4.png" title:@"招标通" selector:@selector(zhaibiao) color:[UIColor colorWithRed:255/255.0 green:84/255.0 blue:0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    UIButton *zhaobiaoButton = [self makeMenuButton:@"home_1_icon4.png" title:@"商脉通" selector:@selector(zhaibiao) color:[UIColor colorWithRed:255/255.0 green:84/255.0 blue:0 alpha:1] frame:CGRectMake((ScreenWidth-45)/2+30, CGRectGetMaxY(resumeButton.frame)+15, (ScreenWidth-45)/2, (ScreenWidth-45)/3.1)];
+    zhaobiaoButton.backgroundColor = HEXCOLOR(0x999999);
     [zhaobiaoButton setNeedsLayout];
     [zhaobiaoButton layoutIfNeeded];
 }
@@ -144,8 +145,8 @@
 }
 
 - (void)zhaibiao{
-    MbTenderViewController * tenderVC = [[MbTenderViewController alloc]init];
-    [self presentVC:tenderVC];
+//    MbTenderViewController * tenderVC = [[MbTenderViewController alloc]init];
+//    [self presentVC:tenderVC];
 //        [self.navigationController pushViewController:self.tenderVC animated:YES];
 
 }
