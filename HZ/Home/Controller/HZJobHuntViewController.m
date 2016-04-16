@@ -194,6 +194,7 @@
 
 - (void)requestArea{
     WEAKSELF
+//   这里有个接口上的问题。
     NSString* path = [NSString stringWithFormat:@"%@area=%@",threeplace,self.cityName];
     [[NetworkManager manager] startRequest:path completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
