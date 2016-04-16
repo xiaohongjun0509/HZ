@@ -10,11 +10,15 @@
 #import "HZResumeDetailCell.h"
 #import "HZResumeModel.h"
 #import "HZResumeDetailArrayCell.h"
+#import "HZResumeDetailTimeUpdateCell.h"
 @interface HZResumeDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, copy) NSDictionary *dict;
 @property (nonatomic, copy) NSArray *titleArray;
+
+@property (nonatomic, strong) UIView *footer;
+@property (nonatomic, strong) UILabel *footerLabel;
 
 @end
 
@@ -30,17 +34,57 @@
                    self.titleArray[3]:self.model.diploma,
                    self.titleArray[4]:self.model.position,
                    self.titleArray[5]:self.model.wages,
-                   self.titleArray[6]:self.model.experienced,
-                   self.titleArray[7]:self.model.business,
+                   self.titleArray[6]:self.model.experienced.count > 0 ? self.model.experienced : @"未填写",
+                   self.titleArray[7]:self.model.business.count > 0 ? self.model.business : @"未填写",
                    self.titleArray[8]:self.model.intruduction
                    };
     
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HZResumeDetailCell" bundle:nil] forCellReuseIdentifier:@"HZResumeDetailCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HZResumeDetailTimeUpdateCell" bundle:nil] forCellReuseIdentifier:@"HZResumeDetailTimeUpdateCell"];
+
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"HZResumeDetailArrayCell" bundle:nil] forCellReuseIdentifier:@"HZResumeDetailArrayCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableFooterView = self.footer;
 }
 
+-(void)apply:(UIButton* )sender{
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.phone];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
+    
+}
+- (UIView *)footer{
+    if (!_footer) {
+        UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+        _footer = containerView;
+        
+        UIButton *applyBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth/2-viewWidth/6, 15, viewWidth/3, 30)];
+        [applyBtn setBackgroundColor:[UIColor colorWithRed:0 green:193/255.0 blue:90/255.0 alpha:1]];
+        applyBtn.userInteractionEnabled = YES;
+        [applyBtn addTarget:self action:@selector(apply:) forControlEvents:UIControlEventTouchUpInside];
+        applyBtn.layer.cornerRadius = 15;
+        applyBtn.layer.masksToBounds = YES;
+        [containerView addSubview:applyBtn];
+        
+        UIImageView* callImage = [[UIImageView alloc]initWithFrame:CGRectMake(13, 5, 20, 20)];
+        callImage.image = [UIImage imageNamed:@"home_icon_call.png"];
+        [applyBtn addSubview:callImage];
+        
+        UILabel* applyLabel = [[UILabel alloc]init];
+        applyLabel.text = @"申请职位";
+        applyLabel.font = [UIFont systemFontOfSize:14];
+        applyLabel.textColor = [UIColor whiteColor];
+        CGSize applySize = [applyLabel.text sizeWithFont:applyLabel.font constrainedToSize:CGSizeMake(100, 100) lineBreakMode:NSLineBreakByWordWrapping];
+        applyLabel.frame = CGRectMake(CGRectGetMaxX(callImage.frame)+5, 15-applySize.height/2, applySize.width, applySize.height);
+        [applyBtn addSubview:applyLabel];
+        applyBtn.center = containerView.center;
+        [_footer addSubview:applyBtn];
+    }
+    return _footer;
+}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -49,13 +93,41 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if(indexPath.row == 1){
+        HZResumeDetailTimeUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZResumeDetailTimeUpdateCell"];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@     %@     %@岁",self.model.username, self.model.sex.integerValue == 1 ? @"男":@"女", self.model.age];
+        
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.model.restime.integerValue];
+        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+        [fmt  setDateFormat:@"yyyy:MM:dd"];
+        NSString *time = [fmt stringFromDate:date];
+        cell.updateTimeLabel.text = [NSString stringWithFormat:@"%@更新",time];
+        return cell;
+    }
+    
     NSString *title = self.titleArray[indexPath.row];
     if ([title isEqualToString:@"教育经历"] || [title isEqualToString:@"工作经历"]) {
         HZResumeDetailArrayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZResumeDetailArrayCell"];
         if ([title isEqualToString:@"教育经历"]) {
-            cell.school = YES;
+            if(self.model.experienced.count > 0){
+                cell.school = YES;
+            }else{
+                HZResumeDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZResumeDetailCell"];
+                cell.titleLabel.text = self.titleArray[indexPath.row];
+                cell.contentLabel.text = self.dict[title];
+                return cell;
+            }
+            
         }else{
-            cell.school = NO;
+            if (self.model.business.count > 0) {
+                cell.school = NO;
+            }else{
+                HZResumeDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZResumeDetailCell"];
+                cell.titleLabel.text = self.titleArray[indexPath.row];
+                cell.contentLabel.text = self.dict[title];
+                return cell;
+            }
+            
         }
         
         cell.array = [self.dict objectForKey:title];

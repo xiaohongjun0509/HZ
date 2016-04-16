@@ -55,6 +55,13 @@
 
 
 + (CGFloat)cellHeight:(NSArray *)array{
-    return array.count * [HZResumeExperienceCell cellHeight];
+    if ([array isKindOfClass:[NSArray class]]) {
+        if(array.count > 0){
+            return array.count * [HZResumeExperienceCell cellHeight];
+        }
+    }else{
+        return 44;
+    }
+    return 0;
 }
 @end

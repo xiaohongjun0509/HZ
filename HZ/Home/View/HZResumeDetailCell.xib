@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGn-5X-Vv4">
@@ -44,6 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="2Zt-Vx-jk8" secondAttribute="trailing" id="9yu-UY-tFL"/>
                     <constraint firstItem="5fv-sI-GUW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BQc-SL-h0g"/>
@@ -56,6 +57,7 @@
                     <constraint firstItem="4Gn-Xa-mZW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yJ6-9s-fyu"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="contentLabel" destination="5fv-sI-GUW" id="yRt-DH-z2K"/>
                 <outlet property="titleLabel" destination="aGn-5X-Vv4" id="Eys-Jl-l6j"/>

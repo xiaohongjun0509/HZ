@@ -133,12 +133,14 @@
 
 - (UIView *)footer{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
-    view.backgroundColor = [UIColor redColor];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 40)];
+//    view.backgroundColor = [UIColor redColor];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 80, 30)];
     button.center = CGPointMake(0.5 * ScreenWidth, 20);
     [button setTitle:@"发布" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(releaseResume) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
+    [button setBackgroundImage:[UIImage imageNamed:@"home_7_btn.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"home_7_btn_col.png"] forState:UIControlStateSelected];
     return view;
 }
 

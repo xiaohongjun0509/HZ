@@ -165,7 +165,7 @@
     NSURL *url = [NSURL URLWithString:hopeposition];
     [[NetworkManager manager] postRequest:hopeposition completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         NSDictionary *dict = (NSDictionary *)responseObject;
-        self.experienceList = [HZPositionModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        self.positionList = [HZPositionModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
         [self.tableView1 reloadData];
     }];
 
@@ -774,7 +774,11 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    
+    [self getPlace];
+    [self getSalary];
+    [self getPosition];
+    [self getEducation];
+    [self getExperience];
     
     
 }
@@ -828,8 +832,7 @@
     static NSString* identifire = @"Cell";
     UITableViewCell* cell = nil;
    if (tableView==self.tableView1){
-    cell = [self.tableView1 cellForRowAtIndexPath:indexPath];
-        
+    cell = [self.tableView1 dequeueReusableCellWithIdentifier:identifire];
     }
   
     if (!cell) {

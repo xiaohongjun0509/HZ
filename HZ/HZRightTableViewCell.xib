@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xeg-gQ-KDn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                        <rect key="frame" x="10" y="0.0" width="310" height="60"/>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="0.0" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,7 +34,7 @@
                     <constraint firstItem="Xdt-ur-fzx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="OqD-kJ-o9P"/>
                     <constraint firstAttribute="trailing" secondItem="Xdt-ur-fzx" secondAttribute="trailing" id="RcB-uq-y3F"/>
                     <constraint firstAttribute="trailing" secondItem="Xeg-gQ-KDn" secondAttribute="trailing" id="V7e-Sm-fJt"/>
-                    <constraint firstItem="Xeg-gQ-KDn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aev-Zx-qeB"/>
+                    <constraint firstItem="Xeg-gQ-KDn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aev-Zx-qeB"/>
                     <constraint firstItem="Xeg-gQ-KDn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lIH-aQ-gjf"/>
                     <constraint firstAttribute="bottom" secondItem="Xeg-gQ-KDn" secondAttribute="bottom" id="yDc-Cy-6lE"/>
                 </constraints>

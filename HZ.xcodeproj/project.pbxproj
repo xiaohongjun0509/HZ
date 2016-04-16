@@ -86,6 +86,8 @@
 		82B8D9191CC10B6D00E24556 /* HZZiZhiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B8D9171CC10B6D00E24556 /* HZZiZhiViewController.xib */; };
 		82B8D91D1CC1C8C300E24556 /* HZCancelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D91B1CC1C8C300E24556 /* HZCancelTableViewCell.m */; };
 		82B8D91E1CC1C8C300E24556 /* HZCancelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B8D91C1CC1C8C300E24556 /* HZCancelTableViewCell.xib */; };
+		82B8D9221CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9201CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m */; };
+		82B8D9231CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B8D9211CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib */; };
 		82B943471CB0FDBD009ECEA3 /* HZRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943461CB0FDBD009ECEA3 /* HZRecruitmentViewController.m */; };
 		82B9434A1CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943491CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m */; };
 		82B943531CB21F5F009ECEA3 /* MbPaser.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943521CB21F5F009ECEA3 /* MbPaser.m */; };
@@ -262,6 +264,9 @@
 		82B8D91A1CC1C8C300E24556 /* HZCancelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZCancelTableViewCell.h; sourceTree = "<group>"; };
 		82B8D91B1CC1C8C300E24556 /* HZCancelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZCancelTableViewCell.m; sourceTree = "<group>"; };
 		82B8D91C1CC1C8C300E24556 /* HZCancelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZCancelTableViewCell.xib; sourceTree = "<group>"; };
+		82B8D91F1CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZResumeDetailTimeUpdateCell.h; sourceTree = "<group>"; };
+		82B8D9201CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZResumeDetailTimeUpdateCell.m; sourceTree = "<group>"; };
+		82B8D9211CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZResumeDetailTimeUpdateCell.xib; sourceTree = "<group>"; };
 		82B943451CB0FDBD009ECEA3 /* HZRecruitmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZRecruitmentViewController.h; sourceTree = "<group>"; };
 		82B943461CB0FDBD009ECEA3 /* HZRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZRecruitmentViewController.m; sourceTree = "<group>"; };
 		82B943481CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEnterpriseinformationViewController.h; sourceTree = "<group>"; };
@@ -472,6 +477,9 @@
 				82BDE1391CAACAA5007B035A /* HZResumeExperienceCell.h */,
 				82BDE13A1CAACAA5007B035A /* HZResumeExperienceCell.m */,
 				82BDE13B1CAACAA5007B035A /* HZResumeExperienceCell.xib */,
+				82B8D91F1CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.h */,
+				82B8D9201CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m */,
+				82B8D9211CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -866,6 +874,7 @@
 				822B11831CA612F80044CC8C /* HomeViewController.xib in Resources */,
 				822B11901CA614530044CC8C /* MineViewController.xib in Resources */,
 				827F98F41CB9403F00439489 /* HZSingalSelectionViewController.xib in Resources */,
+				82B8D9231CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib in Resources */,
 				827F98F91CB96C9E00439489 /* HZEditSingleSelectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -942,6 +951,7 @@
 				822B11631CA582FB0044CC8C /* HZTabBarViewController.m in Sources */,
 				827F99001CB9755100439489 /* HZNewEditResumeViewController.m in Sources */,
 				827F98E81CB8A24A00439489 /* HZRightTableViewCell.m in Sources */,
+				82B8D9221CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m in Sources */,
 				822B11511CA5822C0044CC8C /* ViewController.m in Sources */,
 				82780CC51CBE7AD200A7C759 /* MbCityListViewController.m in Sources */,
 				82BDE1371CAAC410007B035A /* HZResumeDetailArrayCell.m in Sources */,

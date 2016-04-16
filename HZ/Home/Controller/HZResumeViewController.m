@@ -88,7 +88,7 @@
      self.segmentView.titleArray = @[@"意向职位",@"工作经验",@"期望薪资"];
     WEAKSELF
     self.segmentView.positionBlock = ^{
-        
+        weakSelf.singlgSelectionController.view.hidden = YES;
         [UIView animateWithDuration:0.3 animations:^{
             weakSelf.postionController.view.hidden = NO;
         }];
