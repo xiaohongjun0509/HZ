@@ -9,6 +9,7 @@
 #import "HZRecruitmentViewController.h"
 #import "HZPositionModel.h"
 #import "HZPlaceModel.h"
+#import "MbPaser.h"
 #import "HZEditSingleSelectionViewController.h"
 @interface HZRecruitmentViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
 {
@@ -1167,21 +1168,18 @@
     }else{
 
     
-//    [MbPaser sendResumeRecruitByUserid:self.userid title:self.titleDetail.text company:self.company.text ways:self.zhao position:self.type.titleLabel.text area:self.workPlace.titleLabel.text address:self.placeField.text experience:self.years.titleLabel.text diploma:self.education.titleLabel.text wages:self.money.titleLabel.text demand:self.jobRequirements.text aboutus:self.companyProfile.text linkman:self.name.text phone:self.telephoneNumber.text result:^(RecruitSaveResponse *response, NSError *error) {
-//       
-//        if (response.turn == 200) {
-//            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            alert.tag = 200;
-//            [alert show];
-//        }else{
-//            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alert show];
-//            
-//        }
-//
-//        
-//        
-//    }];
+    [MbPaser sendResumeRecruitByUserid:self.userid title:self.titleDetail.text company:self.company.text ways:self.zhao position:self.type.titleLabel.text area:self.workPlace.titleLabel.text address:self.placeField.text experience:self.years.titleLabel.text diploma:self.education.titleLabel.text wages:self.money.titleLabel.text demand:self.jobRequirements.text aboutus:self.companyProfile.text linkman:self.name.text phone:self.telephoneNumber.text result:^(RecruitSaveResponse *response, NSError *error) {
+       
+        if (response.turn == 200) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            alert.tag = 200;
+            [alert show];
+        }else{
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            
+        }
+    }];
     
     }
 }

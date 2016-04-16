@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Mine/Controller/MineViewController.m"
-            timestampString = "482252841.537568"
+            timestampString = "482503205.215676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -269,22 +269,6 @@
             timestampString = "482468696.74474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
-            landmarkName = "-releaseResume"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Publish/Controller/HZNewEditResumeViewController.m"
-            timestampString = "482468696.74474"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "302"
             endingLineNumber = "302"
             landmarkName = "-releaseResume"
@@ -297,28 +281,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HZ/Publish/Controller/HZNewEditResumeViewController.m"
-            timestampString = "482468696.74474"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "-releaseResume"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "HZ/Publish/Controller/HZRecruitmentViewController.m"
-            timestampString = "482471432.029992"
+            timestampString = "482504558.537758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1217"
-            endingLineNumber = "1217"
+            startingLineNumber = "1215"
+            endingLineNumber = "1215"
             landmarkName = "-down:"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,44 +298,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Publish/Controller/HZRecruitmentViewController.m"
-            timestampString = "482471272.40603"
+            timestampString = "482503708.612321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "787"
-            endingLineNumber = "787"
+            startingLineNumber = "788"
+            endingLineNumber = "788"
             landmarkName = "-tableView:numberOfRowsInSection:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Publish/Controller/HZRecruitmentViewController.m"
-            timestampString = "482471425.255275"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "-getPlace"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Publish/Controller/HZRecruitmentViewController.m"
-            timestampString = "482471551.937682"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-getExperience"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -417,6 +353,54 @@
             endingLineNumber = "168"
             landmarkName = "-collect"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HZ/MbPaser.m"
+            timestampString = "482505747.662901"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "+sendResumeInformationByUserid:area:introduces:name:sex:age:education:experience:position:salary:telephone:addeduArray:addworkArray:jieshao:result:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[MbPaser sendResumeInformationByUserid:area:introduces:name:sex:age:education:experience:position:salary:telephone:addeduArray:addworkArray:jieshao:result:]"
+                  moduleName = "HZ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ihj/Desktop/HZ/HZ/MbPaser.m"
+                  timestampString = "482505747.675325"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1566">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__157+[MbPaser sendResumeInformationByUserid:area:introduces:name:sex:age:education:experience:position:salary:telephone:addeduArray:addworkArray:jieshao:result:]_block_invoke"
+                  moduleName = "HZ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ihj/Desktop/HZ/HZ/MbPaser.m"
+                  timestampString = "482505747.676601"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

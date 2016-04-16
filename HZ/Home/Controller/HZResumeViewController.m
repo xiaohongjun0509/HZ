@@ -74,7 +74,7 @@
 
     self.title = [NSString stringWithFormat:@"看简历(%@)",self.cityName];
     [self registerCell:[HZJobHuntCell class]];
-    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView.mj_header beginRefreshing];
     [self attachBackButton];

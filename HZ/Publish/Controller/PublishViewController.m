@@ -11,6 +11,7 @@
 #import "HZRecruitmentViewController.h"
 #import "HZEnterpriseinformationViewController.h"
 #import "HZNewEditResumeViewController.h"
+#import "MbResumeViewController.h"
 @interface PublishViewController ()
 @property(nonatomic,strong)UIButton* btn1;    //求职简历
 @property(nonatomic,strong)UIButton* btn2;    //职位招聘
@@ -188,7 +189,7 @@
         [alertView show];
     }else{
         
-        HZNewEditResumeViewController *resumeVC = [[HZNewEditResumeViewController alloc]init];
+        MbResumeViewController *resumeVC = [[MbResumeViewController alloc]init];
         resumeVC.hidesBottomBarWhenPushed = YES;
         resumeVC.cityName = self.cityName;
         [self presentVC:resumeVC];

@@ -68,6 +68,7 @@
 - (void)presentVC:(UIViewController *)viewController{
     [viewController attachBackButton];
     HZNavigationController *nc = [[HZNavigationController alloc] initWithRootViewController:viewController];
+//    nc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:nc animated:YES completion:nil];
 }
 

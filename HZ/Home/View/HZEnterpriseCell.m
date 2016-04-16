@@ -7,7 +7,7 @@
 //
 
 #import "HZEnterpriseCell.h"
-
+#import "NSDate+YYAdd.h"
 @interface HZEnterpriseCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -24,7 +24,12 @@
 - (void)setModel:(HZEnterpriseModel *)model{
     self.titleLabel.text = model.company;
     self.addressLabel.text = model.area;
-    self.timeLabel.text = model.comtime;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.comtime.integerValue];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt  setDateFormat:@"yyyy-MM-dd"];
+    NSString *time = [fmt stringFromDate:date];
+
+    self.timeLabel.text = time;
 }
 
 @end

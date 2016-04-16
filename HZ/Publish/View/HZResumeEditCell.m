@@ -21,7 +21,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+//    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.button addTarget:self action:@selector(select) forControlEvents:UIControlEventTouchUpInside];
     self.textField.delegate = self;
 }

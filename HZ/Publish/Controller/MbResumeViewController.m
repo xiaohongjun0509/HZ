@@ -6,12 +6,13 @@
 //  Copyright (c) 2015年 Zs. All rights reserved.
 //
 
-#import "HZResumeEditViewController.h"
-#import "HZPlaceModel.h"
-#import "HZPositionModel.h"
-#import "HZEducationalExperienceViewController.h"
-#import "HZEditSingleSelectionViewController.h"
-@interface HZResumeEditViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate>
+#import "MbResumeViewController.h"
+#import "MbWorkExperienceViewController.h"
+#import "MbEducationalExperienceViewController.h"
+#import "HZWorkExperienceViewController.h"
+#import "JZQHttpTools.h"
+
+@interface MbResumeViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate>
 {
     CGSize textSize;
     CGSize textSize1;
@@ -111,8 +112,8 @@
 @property(nonatomic,strong)NSArray* workArray;
 @property(nonatomic,strong)NSArray* jobs;
 @property(nonatomic,strong)UIImageView* titleImage;
-@property(nonatomic,strong)HZEducationalExperienceViewController* edVC;   //添加教育经历页面
-//@property(nonatomic,strong)HZWorkExperienceViewController* workVC;        //添加教育经历
+@property(nonatomic,strong)MbEducationalExperienceViewController* edVC;   //添加教育经历页面
+@property(nonatomic,strong)MbWorkExperienceViewController* workVC;        //添加教育经历
 @property(nonatomic,strong)UIButton* deleteBtn;                           //教育删除按钮
 @property(nonatomic,strong)UIButton* deleteBtn1;                          //工作删除按钮
 @property(nonatomic,strong)NSString* userid;
@@ -128,22 +129,15 @@
 @property(nonatomic,strong)NSString* str;
 //@property(nonatomic,strong)MbCenterViewController* centerView;            //个人中心
 @property(nonatomic,assign)CGFloat heit;
-
-@property (nonatomic, strong) HZEditSingleSelectionViewController *selectionController;
 @end
 
-@implementation HZResumeEditViewController
+@implementation MbResumeViewController
 
-- (HZEditSingleSelectionViewController *)selectionController{
-    if (_selectionController == nil) {
-        _selectionController = [[HZEditSingleSelectionViewController alloc] init];
-        [self.view addSubview:_selectionController.view];
-        _selectionController.view.hidden = YES;
-    }
-    return _selectionController;
-}
+- (void)viewDidLoad {
+    [super viewDidLoad];
 
-- (void)customArray{
+   self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.addeduArray = [NSMutableArray array];
     self.addworkArray = [NSMutableArray array];
     self.addeduArrayStr = [NSMutableArray array];
@@ -157,95 +151,156 @@
     self.experienceList = [NSMutableArray array];
     self.positionList = [NSMutableArray array];
     self.salaryList = [NSMutableArray array];
+   
+    self.ageArray = @[@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70"];
+
+    
+    self.text = [UILabel new];
+    self.text.text = @"测试详情";
+    self.text.font = [UIFont systemFontOfSize:labelText];
+    textSize = [self.text.text sizeWithFont:self.text.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
     
     
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = 16; i < 71; i ++) {
-        NSString *iS = [NSString stringWithFormat:@"%d",i];
-        [array addObject:iS];
-        
-    }
-    self.ageArray = array;
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
-    [self customArray];
-    [self getExperience];
-    [self getEducation];
-    [self getPosition];
-    [self getSalary];
+    
+    
+    
+    self.introduction = [[UITextField alloc]init];
+    self.introduction.text = @"本人对待工作认真负责，善于沟通、协商，参与管理过3000万的市政工程管理";
+    self.introduction.font = [UIFont systemFontOfSize:labelText];
+    textSize1 = [self.introduction.text sizeWithFont:self.introduction.font constrainedToSize:CGSizeMake(viewWidth-61-textSize.width, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    
+    self.text2 = [[UILabel alloc]init];
+    self.text2.numberOfLines = 0;
+    self.text2.text = @"本人对待工作认真负责，善于沟通、协商，参与管理过3000万的市政工程管理";
+    self.text2.font = [UIFont systemFontOfSize:labelText];
+   CGSize textSize2 = [self.text2.text sizeWithFont:self.text2.font constrainedToSize:CGSizeMake(viewWidth-61-textSize.width, 300) lineBreakMode:NSLineBreakByWordWrapping];
+    
+    self.heit = textSize2.height;
+ 
 }
 //地区
--(void)requestPlace{
+-(void)getPlace{
+    NSURL *url = [NSURL URLWithString:hopeplace];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = @"type=focus-c";//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    self.placeList = [MbPaser paserPlaceByDic:dic];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView1 reloadData];
+    });
     
-    [[NetworkManager manager] postRequest:hopeplace completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.placeList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-         [self.tableView1 reloadData];
-    }];
+
+
 }
-////学历
+//学历
 -(void)getEducation{
-    [[NetworkManager manager] postRequest:hopeeducation completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.educationList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+    NSURL *url = [NSURL URLWithString:hopeeducation];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = @"type=focus-c";//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    self.educationList = [MbPaser paserEducationByDic:dic];
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView1 reloadData];
-    }];
-}
-////工作经验
--(void)getExperience{
+    });
     
-    [[NetworkManager manager] postRequest:hopeexperience completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.experienceList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-        [self.tableView1 reloadData];
-    }];
+
+
 }
-////应聘职位
+//工作经验
+-(void)getExperience{
+
+    NSURL *url = [NSURL URLWithString:hopeexperience];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = @"type=focus-c";//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    self.experienceList = [MbPaser paserExperienceByDic:dic];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView1 reloadData];
+    });
+    
+
+}
+//应聘职位
 -(void)getPosition{
-//    NSURL *url = [NSURL URLWithString:hopeposition];
-    [[NetworkManager manager] postRequest:hopeposition completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        
-        self.positionList = [HZPositionModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+    NSURL *url = [NSURL URLWithString:hopeposition];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = @"type=focus-c";//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    self.positionList = [MbPaser paserPositionByDic:dic];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView1 reloadData];
-    }];
+    });
 }
-////期望薪资
+//期望薪资
 -(void)getSalary{
 
-    [[NetworkManager manager] postRequest:hopesalary completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.salaryList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+    NSURL *url = [NSURL URLWithString:hopesalary];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = @"type=focus-c";//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    self.salaryList = [MbPaser paserSalaryByDic:dic];
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView1 reloadData];
-    }];
+    });
+    
+
 }
-//
+
 
 
 
 //初始化控件
--(void)setup{
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64)];
+-(void)onCreate{
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight-64)];
     self.scrollView.delegate = self;
     self.scrollView.userInteractionEnabled = YES;
     [self.view addSubview:self.scrollView];
-    
-    
+
+
     //标题
-    UILabel *titleLabel = [[UILabel alloc]init];
-    self.titleLabel = titleLabel;
-    titleLabel.text = @"自我介绍";
-    titleLabel.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
-    titleLabel.font = [UIFont systemFontOfSize:labelText];
-    CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font constrainedToSize:CGSizeMake(200, 200) lineBreakMode:NSLineBreakByWordWrapping];
-    titleLabel.frame = CGRectMake(15, 15, titleSize.width, titleSize.height);
-    [self.scrollView addSubview:titleLabel];
+    self.titleLabel = [[UILabel alloc]init];
+    self.titleLabel.text = @"自我介绍";
+    self.titleLabel.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.titleLabel.font = [UIFont systemFontOfSize:labelText];
+    CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(200, 200) lineBreakMode:NSLineBreakByWordWrapping];
+    self.titleLabel.frame = CGRectMake(15, 15, titleSize.width, titleSize.height);
+    [self.scrollView addSubview:self.titleLabel];
     
-    self.line1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame)+15, 10, 1, titleLabel.frame.size.height+10)];
+    self.line1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel.frame)+15, 10, 1, self.titleLabel.frame.size.height+10)];
     self.line1.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
-    
+
     [self.scrollView addSubview:self.line1];
     
     self.titleDetail = [[UITextField alloc]init];
@@ -261,13 +316,13 @@
     self.titleDetail.delegate = self;
     self.titleDetail.font = [UIFont systemFontOfSize:labelText];
     self.titleDetail.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-    self.titleDetail.frame = CGRectMake(CGRectGetMaxX(self.line1.frame)+15, 15, ScreenWidth-61-titleSize.width, titleSize.height);
+    self.titleDetail.frame = CGRectMake(CGRectGetMaxX(self.line1.frame)+15, 15, viewWidth-61-titleSize.width, titleSize.height);
     [self.scrollView addSubview:self.titleDetail];
     //横线1
-    self.horizontal1 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(titleLabel.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal1 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame)+15, viewWidth, 0.5)];
     self.horizontal1.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal1];
-    
+
     
     
     //姓名
@@ -302,7 +357,7 @@
     
     
     //男
-    self.manBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-15-nameLabelSize.width/3*4, CGRectGetMaxY(self.horizontal1.frame) + 9, nameLabelSize.width/1.5, nameLabelSize.height+12)];
+    self.manBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-15-nameLabelSize.width/3*4, CGRectGetMaxY(self.horizontal1.frame) + 9, nameLabelSize.width/1.5, nameLabelSize.height+12)];
     [self.manBtn setBackgroundImage:[UIImage imageNamed:@"kuangz.png"] forState:UIControlStateNormal];
     [self.manBtn setBackgroundImage:[UIImage imageNamed:@"kuangd.png"] forState:UIControlStateSelected];
     [self.manBtn addTarget:self action:@selector(man:) forControlEvents:UIControlEventTouchUpInside];
@@ -326,9 +381,9 @@
     [self.womenBtn setTitle:@"女" forState:UIControlStateNormal];
     
     [self.scrollView addSubview:self.womenBtn];
-    
+
     //横线2
-    self.horizontal2 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.nameLabel.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal2 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.nameLabel.frame)+15, viewWidth, 0.5)];
     self.horizontal2.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal2];
     
@@ -344,8 +399,8 @@
     self.line3 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.age.frame)+15, CGRectGetMaxY(self.horizontal2.frame) + 10, 1, self.age.frame.size.height+10)];
     self.line3.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
     [self.scrollView addSubview:self.line3];
-    
-    self.ageBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line3.frame)+15, CGRectGetMaxY(self.horizontal2.frame) + 15, ScreenWidth-80-ageSize.width, ageSize.height)];
+
+    self.ageBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line3.frame)+15, CGRectGetMaxY(self.horizontal2.frame) + 15, viewWidth-80-ageSize.width, ageSize.height)];
     if (![self.dic objectForKey:@"nianling"]) {
         [self.ageBtn setTitle:@"请选择年龄" forState:UIControlStateNormal];
         [self.ageBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
@@ -362,16 +417,16 @@
     }
     
     self.ageBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
-    
+
     //这句无效
     //        self.ageBtn.titleLabel.textAlignment =NSTextAlignmentLeft;
     self.ageBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.ageBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.ageBtn.tag=1000 + 1;
+    self.ageBtn.tag=1;
     [self.scrollView addSubview:self.ageBtn];
     
     //向下箭头
-    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-35,CGRectGetMaxY(self.horizontal2.frame) + 15+ self.age.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
+    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-35,CGRectGetMaxY(self.horizontal2.frame) + 15+ self.age.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
     [self.downBtn setBackgroundImage:[UIImage imageNamed:@"home_arrow42_d.png"] forState:UIControlStateNormal];
     [self.downBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
     self.downBtn.tag = 1;
@@ -380,7 +435,7 @@
     
     
     //横线3
-    self.horizontal3 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.age.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal3 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.age.frame)+15, viewWidth, 0.5)];
     self.horizontal3.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal3];
     
@@ -398,7 +453,7 @@
     self.line4.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
     [self.scrollView addSubview:self.line4];
     
-    self.educationBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line4.frame)+15, CGRectGetMaxY(self.horizontal3.frame) + 15, ScreenWidth-80-educationRequirementSize.width, educationRequirementSize.height)];
+    self.educationBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line4.frame)+15, CGRectGetMaxY(self.horizontal3.frame) + 15, viewWidth-80-educationRequirementSize.width, educationRequirementSize.height)];
     if ([self.dic objectForKey:@"xueli"]==nil) {
         [self.educationBtn setTitle:@"请选择学历" forState:UIControlStateNormal];
         [self.educationBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
@@ -410,19 +465,19 @@
             [self.educationBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
             
         }else{
-            [self.educationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.educationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }
-    
+
     self.educationBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
     self.educationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.educationBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.educationBtn.tag = 1000 + 2;
+    self.educationBtn.tag = 2;
     [self.scrollView addSubview:self.educationBtn];
     
     
     //向下箭头
-    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-35, self.educationRequirement.frame.origin.y + self.educationRequirement.frame.size.height/8,self.age.frame.size.height/4*3 ,self.age.frame.size.height/4*3)];
+    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-35, self.educationRequirement.frame.origin.y + self.educationRequirement.frame.size.height/8,self.age.frame.size.height/4*3 ,self.age.frame.size.height/4*3)];
     [self.downBtn setBackgroundImage:[UIImage imageNamed:@"home_arrow42_d.png"] forState:UIControlStateNormal];
     [self.downBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
     self.downBtn.tag = 2;
@@ -430,7 +485,7 @@
     
     
     //横线4
-    self.horizontal4 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.educationRequirement.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal4 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.educationRequirement.frame)+15, viewWidth, 0.5)];
     self.horizontal4.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal4];
     
@@ -450,7 +505,7 @@
     
     
     
-    self.yearsBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line4.frame)+15, CGRectGetMaxY(self.horizontal4.frame) + 15, ScreenWidth-80-workingExperienceSize.width, workingExperienceSize.height)];
+    self.yearsBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line4.frame)+15, CGRectGetMaxY(self.horizontal4.frame) + 15, viewWidth-80-workingExperienceSize.width, workingExperienceSize.height)];
     if ([self.dic objectForKey:@"jingyan"]==nil) {
         [self.yearsBtn setTitle:@"请选择工作年限" forState:UIControlStateNormal];
         [self.yearsBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
@@ -459,31 +514,31 @@
         if ([[self.dic objectForKey:@"jingyan"] isEqualToString:@"请选择工作年限"]) {
             [self.yearsBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
         }else{
-            [self.yearsBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.yearsBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }
     
     self.yearsBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
-    
+
     
     self.yearsBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.yearsBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.yearsBtn.tag = 1000 + 3;
+    self.yearsBtn.tag = 3;
     [self.scrollView addSubview:self.yearsBtn];
     
     //向下箭头
-    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-35, self.workingExperience.frame.origin.y + self.workingExperience.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
+    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-35, self.workingExperience.frame.origin.y + self.workingExperience.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
     [self.downBtn setBackgroundImage:[UIImage imageNamed:@"home_arrow42_d.png"] forState:UIControlStateNormal];
     [self.downBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
     self.downBtn.tag = 3;
     [self.scrollView addSubview:self.downBtn];
     
-    
+
     
     
     
     //横线5
-    self.horizontal5 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.workingExperience.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal5 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.workingExperience.frame)+15, viewWidth, 0.5)];
     self.horizontal5.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal5];
     
@@ -504,10 +559,10 @@
     
     
     
-    self.typeBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line6.frame)+15, CGRectGetMaxY(self.horizontal5.frame)+15, ScreenWidth-80-jobIntentionSize.width, jobIntentionSize.height)];
+    self.typeBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line6.frame)+15, CGRectGetMaxY(self.horizontal5.frame)+15, viewWidth-80-jobIntentionSize.width, jobIntentionSize.height)];
     if ([self.dic objectForKey:@"zhiwei"]==nil) {
         [self.typeBtn setTitle:@"请选择职位意向" forState:UIControlStateNormal];
-        [self.typeBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
+         [self.typeBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
     }else{
         [self.typeBtn setTitle:[self.dic objectForKey:@"zhiwei"] forState:UIControlStateNormal];
         if ([[self.dic objectForKey:@"zhiwei"] isEqualToString:@"请选择职位意向"]) {
@@ -519,13 +574,13 @@
     self.typeBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
     self.typeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.typeBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.typeBtn.tag = 1000 + 4;
+    self.typeBtn.tag = 4;
     [self.scrollView addSubview:self.typeBtn];
     
     
     
     //向下箭头
-    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-35, self.jobIntention.frame.origin.y+self.jobIntention.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
+    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-35, self.jobIntention.frame.origin.y+self.jobIntention.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
     [self.downBtn setBackgroundImage:[UIImage imageNamed:@"home_arrow42_d.png"] forState:UIControlStateNormal];
     [self.downBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
     self.downBtn.tag = 4;
@@ -533,7 +588,7 @@
     
     
     //横线6
-    self.horizontal6 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.jobIntention.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal6 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.jobIntention.frame)+15, viewWidth, 0.5)];
     self.horizontal6.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal6];
     
@@ -552,7 +607,7 @@
     
     
     
-    self.moneyBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line7.frame)+15, CGRectGetMaxY(self.horizontal6.frame)+15, ScreenWidth-80-salarySize.width, salarySize.height)];
+    self.moneyBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line7.frame)+15, CGRectGetMaxY(self.horizontal6.frame)+15, viewWidth-80-salarySize.width, salarySize.height)];
     if ([self.dic objectForKey:@"xinzi"]==nil) {
         [self.moneyBtn setTitle:@"请选择期望薪资" forState:UIControlStateNormal];
         [self.moneyBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
@@ -561,19 +616,19 @@
         if ([[self.dic objectForKey:@"xinzi"] isEqualToString:@"请选择期望薪资"]) {
             [self.moneyBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1] forState:UIControlStateNormal];
         }else{
-            
-            [self.moneyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        [self.moneyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }
     
     
     self.moneyBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
     [self.moneyBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
-    self.moneyBtn.tag = 1000 + 5;
+    self.moneyBtn.tag = 5;
     self.moneyBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.scrollView addSubview:self.moneyBtn];
     //向下箭头
-    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-35, self.salary.frame.origin.y + self.salary.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
+    self.downBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-35, self.salary.frame.origin.y + self.salary.frame.size.height/8, self.age.frame.size.height/4*3, self.age.frame.size.height/4*3)];
     [self.downBtn setBackgroundImage:[UIImage imageNamed:@"home_arrow42_d.png"] forState:UIControlStateNormal];
     [self.downBtn addTarget:self action:@selector(down:) forControlEvents:UIControlEventTouchUpInside];
     self.downBtn.tag = 5;
@@ -582,24 +637,24 @@
     
     
     //横线7
-    self.horizontal7 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.salary.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal7 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.salary.frame)+15, viewWidth, 0.5)];
     self.horizontal7.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal7];
     
     
     //列表
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.horizontal7.frame), ScreenWidth, textSize.height*2+80+ (textSize.height*4+60)*self.addeduArray.count + (textSize.height*4+60)*self.addworkArray.count)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.horizontal7.frame), viewWidth, textSize.height*2+80+ (textSize.height*4+60)*self.addeduArray.count + (textSize.height*4+60)*self.addworkArray.count)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.scrollEnabled = NO;
     [self.tableView reloadData];
     [self.scrollView addSubview:self.tableView];
     //横线8
-    self.horizontal8 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), ScreenWidth, 0.5)];
+    self.horizontal8 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), viewWidth, 0.5)];
     self.horizontal8.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal8];
     
-    
+  
     
     //自我介绍
     self.selfIntroduction = [UILabel new];
@@ -626,14 +681,14 @@
     [self.introduction setReturnKeyType:(UIReturnKeyDone)];
     self.introduction.keyboardAppearance=UIKeyboardAppearanceDefault;
     self.introduction.returnKeyType=UIReturnKeyDone;
-    self.introduction.frame = CGRectMake(CGRectGetMaxX(self.line8.frame)+15,CGRectGetMaxY(self.tableView.frame) + 10, ScreenWidth-61-selfIntroductionSize.width, selfIntroductionSize.height+10);
+    self.introduction.frame = CGRectMake(CGRectGetMaxX(self.line8.frame)+15,CGRectGetMaxY(self.tableView.frame) + 10, viewWidth-61-selfIntroductionSize.width, selfIntroductionSize.height+10);
     [self.scrollView addSubview:self.introduction];
-    
+
     //横线9
-    self.horizontal9 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.selfIntroduction.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal9 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.selfIntroduction.frame)+15, viewWidth, 0.5)];
     self.horizontal9.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal9];
-    
+   
     
     
     
@@ -654,7 +709,7 @@
     
     
     
-    self.telephoneField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line9.frame)+15, CGRectGetMaxY(self.horizontal9.frame)+15, ScreenWidth-80-telephoneSize.width, telephoneSize.height)];
+    self.telephoneField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line9.frame)+15, CGRectGetMaxY(self.horizontal9.frame)+15, viewWidth-80-telephoneSize.width, telephoneSize.height)];
     self.telephoneField.placeholder = @"请填写手机或固话";
     self.telephoneField.text = [self.dic objectForKey:@"dianhua"];
     self.telephoneField.delegate = self;
@@ -666,16 +721,16 @@
     [self.telephoneField setValue:[UIColor colorWithRed:227/255.0 green:227/255.0 blue:229/255.0 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     
     [self.scrollView addSubview:self.telephoneField];
-    
+
     
     //横线10
-    self.horizontal10 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.telephoneField.frame)+15, ScreenWidth, 0.5)];
+    self.horizontal10 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.telephoneField.frame)+15, viewWidth, 0.5)];
     self.horizontal10.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.horizontal10];
     
     
     //发布按钮
-    self.releaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/4,CGRectGetMaxY(self.horizontal10.frame) + 15, ScreenWidth/2, 40)];
+    self.releaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth/4,CGRectGetMaxY(self.horizontal10.frame) + 15, viewWidth/2, 40)];
     //[self.releaseBtn setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
     [self.releaseBtn setTitle:@"发布" forState:UIControlStateNormal];
     [self.releaseBtn setBackgroundImage:[UIImage imageNamed:@"home_7_btn.png"] forState:UIControlStateNormal];
@@ -684,8 +739,8 @@
     
     
     self.releaseBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
-    //    self.releaseBtn.layer.cornerRadius = 20;
-    //    self.releaseBtn.layer.masksToBounds = YES;
+//    self.releaseBtn.layer.cornerRadius = 20;
+//    self.releaseBtn.layer.masksToBounds = YES;
     
     
     [self.scrollView addSubview:self.releaseBtn];
@@ -696,29 +751,33 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     if (self.jsonString1.length==0) {
+        
     }else if(self.jsonString1.length>0){
+        
+        
         if ([self.addeduArrayStr containsObject:self.jsonString1]) {
             
         }else{
-            
+           
             if (self.addeduArrayStr.count<=3) {
                 [self.addeduArrayStr insertObject:self.jsonString1 atIndex:0];
-                
+           
             }else{
                 UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"教育经历最多添加4个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
                 self.jsonString1 = nil;
-                
-            }
             
+            }
+           
             NSString* str = [self.addeduArrayStr componentsJoinedByString:@","];
             NSString* string1 = @"[";
             NSString* string2 = @"]";
             self.str1 = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
-            
-        }
         
+        }
+    
     }
     if (self.jsonString2.length==0) {
         
@@ -733,7 +792,7 @@
                 UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"工作经历最多添加5个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
                 self.jsonString2 = nil;
-                
+            
             }
             NSString* str = [self.addworkArrayStr componentsJoinedByString:@","];
             NSString* string1 = @"[";
@@ -746,28 +805,35 @@
     if ([self.mutDic count]==0) {
         
     }else{
-        //        [self.addeduArray addObject:self.mutDic];
+//        [self.addeduArray addObject:self.mutDic];
         if (self.addeduArray.count<=3) {
             [self.addeduArray insertObject:self.mutDic atIndex:0];
         }else{
-            
+        
         }
+        
+
+        
     }
     if ([self.workDic count]==0) {
         
     }else{
         if (self.addworkArray.count<=4) {
-            [self.addworkArray insertObject:self.workDic atIndex:0];
+          [self.addworkArray insertObject:self.workDic atIndex:0];
         }else{
-            
-            
+        
+        
         }
+        
+        
+        
+        
     }
-    
+
     [self.scrollView removeFromSuperview];
-    [self setup];
+    [self onCreate];
     
-    
+
     //设置导航栏按钮的颜色
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
@@ -777,14 +843,14 @@
     [super viewWillDisappear:animated];
     self.mutDic =nil;
     self.workDic = nil;
-    
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (tableView==self.tableView) {
         return 2;
     }else
-        return 1;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView==self.tableView) {
@@ -811,16 +877,16 @@
             
             return self.salaryList.count;
         }
-        
-        
-    }else if (tableView==self.tableView2){
-        
-//        MbUserInfo* info = [self.positionList objectAtIndex:self.tag1];
-//        
-//        
-//        return info.positionArray.count;
-    }
+
     
+    }else if (tableView==self.tableView2){
+
+        MbUserInfo* info = [self.positionList objectAtIndex:self.tag1];
+        
+
+        return info.positionArray.count;
+    }
+
     return 0;
     
 }
@@ -836,7 +902,7 @@
         cell = [self.tableView1 cellForRowAtIndexPath:indexPath];
         
     }else if (tableView==self.tableView2){
-        
+    
         cell = [self.tableView2 cellForRowAtIndexPath:indexPath];
     }
     if (!cell) {
@@ -846,218 +912,218 @@
     
     if (tableView==self.tableView) {
         if (indexPath.section==0){
-            if (indexPath.row==0) {
-                //教育经历
-                self.educationExperience = [[UIButton alloc]initWithFrame:CGRectMake(15, 8, ScreenWidth/5*3-20, self.telephone.frame.size.height + 24)];
-                [self.educationExperience setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
-                [self.educationExperience setTitle:@"教育经历（选填）" forState:UIControlStateNormal];
-                self.educationExperience.titleLabel.font = [UIFont systemFontOfSize:labelText];
-                [self.educationExperience addTarget:self action:@selector(addeducation:) forControlEvents:UIControlEventTouchUpInside];
-                self.educationExperience.layer.cornerRadius = self.telephone.frame.size.height/2+12;
-                self.educationExperience.layer.masksToBounds = YES;
-                
-                [cell addSubview:self.educationExperience];
-            }else if (self.addeduArray.count>0){
-                NSDictionary* dic = [self.addeduArray objectAtIndex:indexPath.row-1];
-                
-                //教育时间
-                self.yeartoyear = [UILabel new];
-                self.yeartoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"startTime"],[dic objectForKey:@"endTime"]];
-                self.yeartoyear.font = [UIFont systemFontOfSize:labelText];
-                self.yeartoyear.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize yeartoyearSize = [self.yeartoyear.text sizeWithFont:self.yeartoyear.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.yeartoyear.frame = CGRectMake(15, 15, yeartoyearSize.width, yeartoyearSize.height);
-                [cell addSubview:self.yeartoyear];
-                //学校
-                self.school = [UILabel new];
-                self.school.text = @"学校";
-                self.school.font = [UIFont systemFontOfSize:labelText];
-                self.school.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize schoolSize = [self.school.text sizeWithFont:self.school.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.school.frame = CGRectMake(15, CGRectGetMaxY(self.yeartoyear.frame)+10, schoolSize.width, schoolSize.height);
-                [cell addSubview:self.school];
-                
-                self.schoolLabel = [UILabel new];
-                self.schoolLabel.text = [dic objectForKey:@"school"];
-                self.schoolLabel.font = [UIFont systemFontOfSize:labelText];
-                self.schoolLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize schoolLabelSize = [self.schoolLabel.text sizeWithFont:self.schoolLabel.font constrainedToSize:CGSizeMake(ScreenWidth - schoolSize.width  - 110, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.schoolLabel.frame = CGRectMake(CGRectGetMaxX(self.school.frame) + 15, CGRectGetMaxY(self.yeartoyear.frame)+10, schoolLabelSize.width, schoolSize.height);
-                [cell addSubview:self.schoolLabel];
-                //学历
-                self.education = [UILabel new];
-                self.education.text = @"学历";
-                self.education.font = [UIFont systemFontOfSize:labelText];
-                self.education.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize educationSize = [self.education.text sizeWithFont:self.education.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.education.frame = CGRectMake(15, CGRectGetMaxY(self.school.frame)+10, educationSize.width, educationSize.height);
-                [cell addSubview:self.education];
-                
-                self.educationLevel = [UILabel new];
-                self.educationLevel.text = [dic objectForKey:@"degree"];
-                
-                self.educationLevel.font = [UIFont systemFontOfSize:labelText];
-                self.educationLevel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize educationLevelSize = [self.educationLevel.text sizeWithFont:self.educationLevel.font constrainedToSize:CGSizeMake(ScreenWidth-110-educationSize.width, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.educationLevel.frame = CGRectMake(CGRectGetMaxX(self.education.frame) + 15, CGRectGetMaxY(self.schoolLabel.frame)+10, educationLevelSize.width, schoolSize.height);
-                [cell addSubview:self.educationLevel];
-                //专业
-                self.professional = [UILabel new];
-                self.professional.text = @"专业";
-                self.professional.font = [UIFont systemFontOfSize:labelText];
-                self.professional.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize professionalSize = [self.professional.text sizeWithFont:self.professional.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.professional.frame = CGRectMake(15, CGRectGetMaxY(self.education.frame)+10, professionalSize.width, professionalSize.height);
-                [cell addSubview:self.professional];
-                
-                self.professionalType = [UILabel new];
-                self.professionalType.text = [dic objectForKey:@"professional"];
-                self.professionalType.font = [UIFont systemFontOfSize:labelText];
-                self.professionalType.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize professionalTypeSize = [self.professionalType.text sizeWithFont:self.professionalType.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.professionalType.frame = CGRectMake(CGRectGetMaxX(self.professional.frame) + 15, CGRectGetMaxY(self.educationLevel.frame)+10, professionalTypeSize.width, professionalTypeSize.height);
-                [cell addSubview:self.professionalType];
-                
-                
-                //删除按钮
-                self.deleteBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 65, (textSize.height*4+60)/2-10, 50, 20)];
-                [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
-                [self.deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                self.deleteBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
-                self.deleteBtn.backgroundColor = [UIColor redColor];
-                self.deleteBtn.layer.cornerRadius = 4;
-                self.deleteBtn.layer.masksToBounds = YES;
-                //            self.deleteBtn.layer.borderColor = [UIColor blackColor].CGColor;
-                //            self.deleteBtn.layer.borderWidth = 1;
-                self.deleteBtn.tag = indexPath.row-1;
-                
-                [self.deleteBtn addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-                [cell addSubview:self.deleteBtn];
-                
-            }
+        if (indexPath.row==0) {
+            //教育经历
+            self.educationExperience = [[UIButton alloc]initWithFrame:CGRectMake(15, 8, viewWidth/5*3-20, self.telephone.frame.size.height+24)];
+            [self.educationExperience setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
+            [self.educationExperience setTitle:@"教育经历（选填）" forState:UIControlStateNormal];
+            self.educationExperience.titleLabel.font = [UIFont systemFontOfSize:labelText];
+            [self.educationExperience addTarget:self action:@selector(addeducation:) forControlEvents:UIControlEventTouchUpInside];
+            self.educationExperience.layer.cornerRadius = self.telephone.frame.size.height/2+12;
+            self.educationExperience.layer.masksToBounds = YES;
+            
+            [cell addSubview:self.educationExperience];
+        }else if (self.addeduArray.count>0){
+            NSDictionary* dic = [self.addeduArray objectAtIndex:indexPath.row-1];
+           
+            //教育时间
+             self.yeartoyear = [UILabel new];
+             self.yeartoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"startTime"],[dic objectForKey:@"endTime"]];
+             self.yeartoyear.font = [UIFont systemFontOfSize:labelText];
+             self.yeartoyear.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+             CGSize yeartoyearSize = [self.yeartoyear.text sizeWithFont:self.yeartoyear.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+             self.yeartoyear.frame = CGRectMake(15, 15, yeartoyearSize.width, yeartoyearSize.height);
+             [cell addSubview:self.yeartoyear];
+             //学校
+             self.school = [UILabel new];
+             self.school.text = @"学校";
+             self.school.font = [UIFont systemFontOfSize:labelText];
+             self.school.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+             CGSize schoolSize = [self.school.text sizeWithFont:self.school.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+             self.school.frame = CGRectMake(15, CGRectGetMaxY(self.yeartoyear.frame)+10, schoolSize.width, schoolSize.height);
+             [cell addSubview:self.school];
+            
+             self.schoolLabel = [UILabel new];
+             self.schoolLabel.text = [dic objectForKey:@"school"];
+             self.schoolLabel.font = [UIFont systemFontOfSize:labelText];
+             self.schoolLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+             CGSize schoolLabelSize = [self.schoolLabel.text sizeWithFont:self.schoolLabel.font constrainedToSize:CGSizeMake(viewWidth - schoolSize.width  - 110, 300) lineBreakMode:NSLineBreakByWordWrapping];
+             self.schoolLabel.frame = CGRectMake(CGRectGetMaxX(self.school.frame) + 15, CGRectGetMaxY(self.yeartoyear.frame)+10, schoolLabelSize.width, schoolSize.height);
+             [cell addSubview:self.schoolLabel];
+             //学历
+             self.education = [UILabel new];
+             self.education.text = @"学历";
+             self.education.font = [UIFont systemFontOfSize:labelText];
+             self.education.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+             CGSize educationSize = [self.education.text sizeWithFont:self.education.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+             self.education.frame = CGRectMake(15, CGRectGetMaxY(self.school.frame)+10, educationSize.width, educationSize.height);
+             [cell addSubview:self.education];
+            
+             self.educationLevel = [UILabel new];
+             self.educationLevel.text = [dic objectForKey:@"degree"];
+           
+             self.educationLevel.font = [UIFont systemFontOfSize:labelText];
+             self.educationLevel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+             CGSize educationLevelSize = [self.educationLevel.text sizeWithFont:self.educationLevel.font constrainedToSize:CGSizeMake(viewWidth-110-educationSize.width, 300) lineBreakMode:NSLineBreakByWordWrapping];
+             self.educationLevel.frame = CGRectMake(CGRectGetMaxX(self.education.frame) + 15, CGRectGetMaxY(self.schoolLabel.frame)+10, educationLevelSize.width, schoolSize.height);
+             [cell addSubview:self.educationLevel];
+             //专业
+             self.professional = [UILabel new];
+             self.professional.text = @"专业";
+             self.professional.font = [UIFont systemFontOfSize:labelText];
+             self.professional.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+             CGSize professionalSize = [self.professional.text sizeWithFont:self.professional.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+             self.professional.frame = CGRectMake(15, CGRectGetMaxY(self.education.frame)+10, professionalSize.width, professionalSize.height);
+             [cell addSubview:self.professional];
+            
+             self.professionalType = [UILabel new];
+             self.professionalType.text = [dic objectForKey:@"professional"];
+             self.professionalType.font = [UIFont systemFontOfSize:labelText];
+             self.professionalType.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+             CGSize professionalTypeSize = [self.professionalType.text sizeWithFont:self.professionalType.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+             self.professionalType.frame = CGRectMake(CGRectGetMaxX(self.professional.frame) + 15, CGRectGetMaxY(self.educationLevel.frame)+10, professionalTypeSize.width, professionalTypeSize.height);
+             [cell addSubview:self.professionalType];
             
             
+            //删除按钮
+            self.deleteBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth - 65, (textSize.height*4+60)/2-10, 50, 20)];
+            [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+            [self.deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.deleteBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
+            self.deleteBtn.backgroundColor = [UIColor redColor];
+            self.deleteBtn.layer.cornerRadius = 4;
+            self.deleteBtn.layer.masksToBounds = YES;
+//            self.deleteBtn.layer.borderColor = [UIColor blackColor].CGColor;
+//            self.deleteBtn.layer.borderWidth = 1;
+            self.deleteBtn.tag = indexPath.row-1;
             
-            
-        }else if (indexPath.section==1){
-            if (indexPath.row==0) {
-                UILabel* line = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 0.5)];
-                line.backgroundColor = [UIColor lightGrayColor];
-                [cell addSubview:line];
-                
-                //工作经历
-                self.workExperience = [[UIButton alloc]initWithFrame:CGRectMake(15, 8, ScreenWidth/5*3-20, self.telephone.frame.size.height+24)];
-                [self.workExperience setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
-                [self.workExperience setTitle:@"工作经历（选填）" forState:UIControlStateNormal];
-                self.workExperience.titleLabel.font = [UIFont systemFontOfSize:labelText];
-                [self.workExperience addTarget:self action:@selector(addwork:) forControlEvents:UIControlEventTouchUpInside];
-                self.workExperience.layer.cornerRadius = self.telephone.frame.size.height/2+12;
-                self.workExperience.layer.masksToBounds = YES;
-                
-                [cell addSubview:self.workExperience];
-                
-            }else if (self.addworkArray.count>0){
-                NSDictionary* dic = [self.addworkArray objectAtIndex:indexPath.row-1];
-                //工作时间
-                self.worktoyear = [UILabel new];
-                self.worktoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"startTime"],[dic objectForKey:@"endTime"]];
-                self.worktoyear.font = [UIFont systemFontOfSize:labelText];
-                self.worktoyear.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize worktoyearSize = [self.worktoyear.text sizeWithFont:self.worktoyear.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.worktoyear.frame = CGRectMake(15, 15, worktoyearSize.width, worktoyearSize.height);
-                [cell addSubview:self.worktoyear];
-                //公司
-                self.company = [UILabel new];
-                self.company.text = @"公司";
-                self.company.font = [UIFont systemFontOfSize:labelText];
-                self.company.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize companySize = [self.company.text sizeWithFont:self.company.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.company.frame = CGRectMake(15, CGRectGetMaxY(self.worktoyear.frame)+10, companySize.width, companySize.height);
-                [cell addSubview:self.company];
-                
-                self.companyLabel = [UILabel new];
-                self.companyLabel.text = [dic objectForKey:@"company"];
-                self.companyLabel.font = [UIFont systemFontOfSize:labelText];
-                self.companyLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize companyLabelSize = [self.companyLabel.text sizeWithFont:self.companyLabel.font constrainedToSize:CGSizeMake(ScreenWidth - companySize.width - 110, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.companyLabel.frame = CGRectMake(CGRectGetMaxX(self.company.frame) + 15, CGRectGetMaxY(self.worktoyear.frame)+10, companyLabelSize.width, companySize.height);
-                [cell addSubview:self.companyLabel];
-                //职位
-                self.type = [UILabel new];
-                self.type.text = @"职位";
-                self.type.font = [UIFont systemFontOfSize:labelText];
-                self.type.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize typeSize = [self.type.text sizeWithFont:self.type.font constrainedToSize:CGSizeMake(ScreenWidth - companySize.width - 110, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.type.frame = CGRectMake(15, CGRectGetMaxY(self.company.frame)+10, typeSize.width, companySize.height);
-                [cell addSubview:self.type];
-                
-                self.typeLabel = [UILabel new];
-                self.typeLabel.text = [dic objectForKey:@"position"];
-                self.typeLabel.font = [UIFont systemFontOfSize:labelText];
-                self.typeLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize typeLabelSize = [self.typeLabel.text sizeWithFont:self.typeLabel.font constrainedToSize:CGSizeMake(ScreenWidth - typeSize.width - 45, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.type.frame) + 15, CGRectGetMaxY(self.companyLabel.frame)+10, typeLabelSize.width, typeLabelSize.height);
-                [cell addSubview:self.typeLabel];
-                
-                
-                //工作内容
-                self.workContentLabel = [UILabel new];
-                self.workContentLabel.text = @"工作内容";
-                self.workContentLabel.font = [UIFont systemFontOfSize:labelText];
-                self.workContentLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize workContentLabelSize = [self.workContentLabel.text sizeWithFont:self.workContentLabel.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.workContentLabel.frame = CGRectMake(15, CGRectGetMaxY(self.type.frame)+10, workContentLabelSize.width, workContentLabelSize.height);
-                [cell addSubview:self.workContentLabel];
-                
-                self.workContent = [UILabel new];
-                
-                self.workContent.text = [dic objectForKey:@"infor"];
-                self.workContent.numberOfLines = 0;
-                self.workContent.font = [UIFont systemFontOfSize:labelText];
-                self.workContent.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-                CGSize workContentSize = [self.workContent.text sizeWithFont:self.workContent.font constrainedToSize:CGSizeMake(ScreenWidth - workContentLabelSize.width - 45, 300) lineBreakMode:NSLineBreakByWordWrapping];
-                self.workContent.frame = CGRectMake(CGRectGetMaxX(self.workContentLabel.frame) + 15, CGRectGetMaxY(self.typeLabel.frame)+10, workContentSize.width, workContentSize.height);
-                [cell addSubview:self.workContent];
-                
-                
-                //删除按钮
-                self.deleteBtn1 = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 65, (textSize.height*4+60)/2-10, 50, 20)];
-                [self.deleteBtn1 setTitle:@"删除" forState:UIControlStateNormal];
-                [self.deleteBtn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                self.deleteBtn1.titleLabel.font = [UIFont systemFontOfSize:labelText];
-                self.deleteBtn1.backgroundColor = [UIColor redColor];
-                self.deleteBtn1.layer.cornerRadius = 4;
-                self.deleteBtn1.layer.masksToBounds = YES;
-                //            self.deleteBtn.layer.borderColor = [UIColor blackColor].CGColor;
-                //            self.deleteBtn.layer.borderWidth = 1;
-                self.deleteBtn1.tag = indexPath.row-1;
-                
-                [self.deleteBtn1 addTarget:self action:@selector(delete1:) forControlEvents:UIControlEventTouchUpInside];
-                [cell addSubview:self.deleteBtn1];
-                
-            }
-            
+            [self.deleteBtn addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+            [cell addSubview:self.deleteBtn];
+        
         }
+        
+
+            
+            
+    }else if (indexPath.section==1){
+        if (indexPath.row==0) {
+            UILabel* line = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, viewWidth, 0.5)];
+            line.backgroundColor = [UIColor lightGrayColor];
+            [cell addSubview:line];
+       
+        //工作经历
+        self.workExperience = [[UIButton alloc]initWithFrame:CGRectMake(15, 8, viewWidth/5*3-20, self.telephone.frame.size.height+24)];
+        [self.workExperience setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
+        [self.workExperience setTitle:@"工作经历（选填）" forState:UIControlStateNormal];
+        self.workExperience.titleLabel.font = [UIFont systemFontOfSize:labelText];
+        [self.workExperience addTarget:self action:@selector(addwork:) forControlEvents:UIControlEventTouchUpInside];
+        self.workExperience.layer.cornerRadius = self.telephone.frame.size.height/2+12;
+        self.workExperience.layer.masksToBounds = YES;
+        
+        [cell addSubview:self.workExperience];
+
+        }else if (self.addworkArray.count>0){
+        NSDictionary* dic = [self.addworkArray objectAtIndex:indexPath.row-1];
+            //工作时间
+            self.worktoyear = [UILabel new];
+            self.worktoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"startTime"],[dic objectForKey:@"endTime"]];
+            self.worktoyear.font = [UIFont systemFontOfSize:labelText];
+            self.worktoyear.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            CGSize worktoyearSize = [self.worktoyear.text sizeWithFont:self.worktoyear.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+            self.worktoyear.frame = CGRectMake(15, 15, worktoyearSize.width, worktoyearSize.height);
+            [cell addSubview:self.worktoyear];
+            //公司
+            self.company = [UILabel new];
+            self.company.text = @"公司";
+            self.company.font = [UIFont systemFontOfSize:labelText];
+            self.company.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            CGSize companySize = [self.company.text sizeWithFont:self.company.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+            self.company.frame = CGRectMake(15, CGRectGetMaxY(self.worktoyear.frame)+10, companySize.width, companySize.height);
+            [cell addSubview:self.company];
+            
+            self.companyLabel = [UILabel new];
+            self.companyLabel.text = [dic objectForKey:@"company"];
+            self.companyLabel.font = [UIFont systemFontOfSize:labelText];
+            self.companyLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            CGSize companyLabelSize = [self.companyLabel.text sizeWithFont:self.companyLabel.font constrainedToSize:CGSizeMake(viewWidth - companySize.width - 110, 300) lineBreakMode:NSLineBreakByWordWrapping];
+            self.companyLabel.frame = CGRectMake(CGRectGetMaxX(self.company.frame) + 15, CGRectGetMaxY(self.worktoyear.frame)+10, companyLabelSize.width, companySize.height);
+            [cell addSubview:self.companyLabel];
+            //职位
+            self.type = [UILabel new];
+            self.type.text = @"职位";
+            self.type.font = [UIFont systemFontOfSize:labelText];
+            self.type.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            CGSize typeSize = [self.type.text sizeWithFont:self.type.font constrainedToSize:CGSizeMake(viewWidth - companySize.width - 110, 300) lineBreakMode:NSLineBreakByWordWrapping];
+            self.type.frame = CGRectMake(15, CGRectGetMaxY(self.company.frame)+10, typeSize.width, companySize.height);
+            [cell addSubview:self.type];
+            
+            self.typeLabel = [UILabel new];
+            self.typeLabel.text = [dic objectForKey:@"position"];
+            self.typeLabel.font = [UIFont systemFontOfSize:labelText];
+            self.typeLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            CGSize typeLabelSize = [self.typeLabel.text sizeWithFont:self.typeLabel.font constrainedToSize:CGSizeMake(viewWidth - typeSize.width - 45, 300) lineBreakMode:NSLineBreakByWordWrapping];
+            self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.type.frame) + 15, CGRectGetMaxY(self.companyLabel.frame)+10, typeLabelSize.width, typeLabelSize.height);
+            [cell addSubview:self.typeLabel];
+            
+            
+            //工作内容
+            self.workContentLabel = [UILabel new];
+            self.workContentLabel.text = @"工作内容";
+            self.workContentLabel.font = [UIFont systemFontOfSize:labelText];
+            self.workContentLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            CGSize workContentLabelSize = [self.workContentLabel.text sizeWithFont:self.workContentLabel.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
+            self.workContentLabel.frame = CGRectMake(15, CGRectGetMaxY(self.type.frame)+10, workContentLabelSize.width, workContentLabelSize.height);
+            [cell addSubview:self.workContentLabel];
+            
+            self.workContent = [UILabel new];
+            
+            self.workContent.text = [dic objectForKey:@"infor"];
+            self.workContent.numberOfLines = 0;
+            self.workContent.font = [UIFont systemFontOfSize:labelText];
+            self.workContent.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            CGSize workContentSize = [self.workContent.text sizeWithFont:self.workContent.font constrainedToSize:CGSizeMake(viewWidth - workContentLabelSize.width - 45, 300) lineBreakMode:NSLineBreakByWordWrapping];
+            self.workContent.frame = CGRectMake(CGRectGetMaxX(self.workContentLabel.frame) + 15, CGRectGetMaxY(self.typeLabel.frame)+10, workContentSize.width, workContentSize.height);
+            [cell addSubview:self.workContent];
+        
+            
+            //删除按钮
+            self.deleteBtn1 = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth - 65, (textSize.height*4+60)/2-10, 50, 20)];
+            [self.deleteBtn1 setTitle:@"删除" forState:UIControlStateNormal];
+            [self.deleteBtn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.deleteBtn1.titleLabel.font = [UIFont systemFontOfSize:labelText];
+            self.deleteBtn1.backgroundColor = [UIColor redColor];
+            self.deleteBtn1.layer.cornerRadius = 4;
+            self.deleteBtn1.layer.masksToBounds = YES;
+            //            self.deleteBtn.layer.borderColor = [UIColor blackColor].CGColor;
+            //            self.deleteBtn.layer.borderWidth = 1;
+            self.deleteBtn1.tag = indexPath.row-1;
+            
+            [self.deleteBtn1 addTarget:self action:@selector(delete1:) forControlEvents:UIControlEventTouchUpInside];
+            [cell addSubview:self.deleteBtn1];
+        
+        }
+
+    }
     }else if (tableView==self.tableView1){
         if (self.tag==1) {
             cell.textLabel.text = [self.ageArray objectAtIndex:indexPath.row];
             
         }else if (self.tag==2){
-            HZPlaceModel* info = [self.educationList objectAtIndex:indexPath.row];
+            MbUserInfo* info = [self.educationList objectAtIndex:indexPath.row];
             cell.textLabel.text = info.diploma;
-            
+
             
         }else if (self.tag==3){
-            HZPlaceModel* info = [self.experienceList objectAtIndex:indexPath.row];
+            MbUserInfo* info = [self.experienceList objectAtIndex:indexPath.row];
             cell.textLabel.text = info.suffer;
             
             
         }else if (self.tag==4){
-            HZPlaceModel* info = [self.positionList objectAtIndex:indexPath.row];
+            MbUserInfo* info = [self.positionList objectAtIndex:indexPath.row];
             cell.textLabel.text = info.positioname;
             
         }else if (self.tag==5){
-            HZPlaceModel* info = [self.salaryList objectAtIndex:indexPath.row];
+            MbUserInfo* info = [self.salaryList objectAtIndex:indexPath.row];
             cell.textLabel.text = info.pay;
             
         }
@@ -1071,21 +1137,21 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifire];
         }
         
-//        MbUserInfo* info = [self.positionList objectAtIndex:self.tag1];
-//        NSDictionary* dic = [info.positionArray objectAtIndex:indexPath.row];
-//        cell.textLabel.text = [dic objectForKey:@"positioname"];
-//        
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        cell.textLabel.font = [UIFont systemFontOfSize:labelText];
+        MbUserInfo* info = [self.positionList objectAtIndex:self.tag1];
+        NSDictionary* dic = [info.positionArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = [dic objectForKey:@"positioname"];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont systemFontOfSize:labelText];
         
         
     }
-    
-    
+
+
     cell.textLabel.font = [UIFont systemFontOfSize:labelText];
     
-    
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -1095,14 +1161,14 @@
                 return textSize.height+40;
             }else
                 return textSize.height*4+60;
-            
+       
             
         }else if (indexPath.section==1){
             if (indexPath.row==0) {
                 return textSize.height+40;
             }else
                 return textSize.height*4+60;
-            
+  
         }
     }else{
         return 44;
@@ -1110,69 +1176,69 @@
     return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 0.000001;
+  
+        return 0.000001;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
+
     return 0.000000001;
-    
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     
     if (tableView==self.tableView1){
         if (self.tag==1) {
-            
+
             NSString* string = [self.ageArray objectAtIndex:indexPath.row];
             [self.ageBtn setTitle:string forState:UIControlStateNormal];
             [self.ageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
         }else if (self.tag==2){
-            HZPlaceModel* info = [self.educationList objectAtIndex:indexPath.row];
+            MbUserInfo* info = [self.educationList objectAtIndex:indexPath.row];
             [self.educationBtn setTitle:info.diploma forState:UIControlStateNormal];
             [self.educationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }else if (self.tag==3){
-            HZPlaceModel* info = [self.experienceList objectAtIndex:indexPath.row];
+            MbUserInfo* info = [self.experienceList objectAtIndex:indexPath.row];
             [self.yearsBtn setTitle:info.suffer forState:UIControlStateNormal];
             [self.yearsBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
         }else if (self.tag==4){
             
             self.tag1 = indexPath.row;
-            
+          
             self.btn1.hidden = YES;
             [self create];
-            
+
         }else if (self.tag==5){
             
-            HZPlaceModel* info = [self.salaryList objectAtIndex:indexPath.row];
+            MbUserInfo* info = [self.salaryList objectAtIndex:indexPath.row];
             [self.moneyBtn setTitle:info.pay forState:UIControlStateNormal];
             [self.moneyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
         self.btn1.hidden = YES;
         
     }else if (tableView==self.tableView2){
+
+        MbUserInfo* info = [self.positionList objectAtIndex:self.tag1];
+        NSDictionary* dic = [info.positionArray objectAtIndex:indexPath.row];
         
-        HZPlaceModel* info = [self.positionList objectAtIndex:self.tag1];
-//        NSDictionary* dic = [info.positionArray objectAtIndex:indexPath.row];
-//        
-//        NSString* string = [dic objectForKey:@"positioname"];
-//        [self.typeBtn setTitle:string forState:UIControlStateNormal];
-//        [self.typeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        
-//        [self.btn2 removeFromSuperview];
+        NSString* string = [dic objectForKey:@"positioname"];
+        [self.typeBtn setTitle:string forState:UIControlStateNormal];
+        [self.typeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+        [self.btn2 removeFromSuperview];
     }
     
-    self.tableView.scrollEnabled = YES;
+        self.tableView.scrollEnabled = YES;
     
 }
 
 
 -(void)create{
-    [self requestPlace];
-    self.btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    [self getPlace];
+    self.btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight)];
     //图层透明，控件不透明
     UIColor *color = [UIColor blackColor];
     self.btn2.backgroundColor = [color colorWithAlphaComponent:0.5];
@@ -1190,7 +1256,7 @@
     self.titleLabel.font = [UIFont systemFontOfSize:labelText];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.frame = CGRectMake(15, (ScreenHeight - 344)/2, ScreenWidth - 30, 40);
+    self.titleLabel.frame = CGRectMake(15, (viewHeight - 344)/2, viewWidth - 30, 40);
     [self.btn2 addSubview:self.titleLabel];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(15, 0, 0, 0)];
@@ -1201,7 +1267,7 @@
     [button addTarget:self action:@selector(dismissBtn2) forControlEvents:UIControlEventTouchUpInside];
     [self.btn2 addSubview:button];
     //列表
-    self.tableView2 = [[UITableView alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), ScreenWidth - 30, 240)];
+    self.tableView2 = [[UITableView alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), viewWidth - 30, 240)];
     self.tableView2.dataSource = self;
     self.tableView2.delegate = self;
     self.tableView.scrollEnabled = NO;
@@ -1220,94 +1286,94 @@
 -(void)addeducation:(UIButton*)sender{
     //自我介绍
     //if (self.titleDetail.text.length!=0) {
-    [self.dic setObject:self.titleDetail.text forKey:@"jieshao"];
-    //姓名
+        [self.dic setObject:self.titleDetail.text forKey:@"jieshao"];
+      //姓名
     //}else if (self.name.text.length!=0){
-    
-    
-    
-    [self.dic setObject:self.name.text forKey:@"xingming"];
+        
+ 
+        
+     [self.dic setObject:self.name.text forKey:@"xingming"];
     //年龄
     //}else if (self.ageBtn.currentTitle.length!=0){
-    
-    [self.dic setObject:self.ageBtn.titleLabel.text forKey:@"nianling"];
-    //学历
+
+         [self.dic setObject:self.ageBtn.titleLabel.text forKey:@"nianling"];
+     //学历
     //}else if (self.educationBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.educationBtn.titleLabel.text forKey:@"xueli"];
-    //工作经验
+         [self.dic setObject:self.educationBtn.titleLabel.text forKey:@"xueli"];
+     //工作经验
     //}else if (self.yearsBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.yearsBtn.titleLabel.text forKey:@"jingyan"];
-    //职位
+         [self.dic setObject:self.yearsBtn.titleLabel.text forKey:@"jingyan"];
+     //职位
     //}else if (self.typeBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.typeBtn.titleLabel.text forKey:@"zhiwei"];
-    //薪资
+         [self.dic setObject:self.typeBtn.titleLabel.text forKey:@"zhiwei"];
+     //薪资
     //}else if (self.moneyBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.moneyBtn.titleLabel.text forKey:@"xinzi"];
-    //电话
+         [self.dic setObject:self.moneyBtn.titleLabel.text forKey:@"xinzi"];
+     //电话
     //}else if (self.telephoneField.text.length!=0){
-    [self.dic setObject:self.telephoneField.text forKey:@"dianhua"];
-    //详细介绍
+         [self.dic setObject:self.telephoneField.text forKey:@"dianhua"];
+     //详细介绍
     //}else if (self.introduction.text.length!=0){
-    [self.dic setObject:self.introduction.text forKey:@"xiangxijieshao"];
-    
+         [self.dic setObject:self.introduction.text forKey:@"xiangxijieshao"];
+        
     //}
     
-    
-    self.edVC = [[HZEducationalExperienceViewController alloc]init];
-//    self.edVC.resumeVC = self;
-    [self presentVC:self.edVC];
+
+    self.edVC = [[MbEducationalExperienceViewController alloc]init];
+    self.edVC.resumeVC = self;
+    [self.navigationController pushViewController:self.edVC animated:YES];
 }
 //添加工作经历
 -(void)addwork:(UIButton*)sender{
     
     //自我介绍
     //if (self.titleDetail.text.length!=0) {
-    [self.dic setObject:self.titleDetail.text forKey:@"jieshao"];
-    //姓名
+        [self.dic setObject:self.titleDetail.text forKey:@"jieshao"];
+        //姓名
     //}else if (self.name.text.length!=0){
-    [self.dic setObject:self.name.text forKey:@"xingming"];
-    //年龄
+        [self.dic setObject:self.name.text forKey:@"xingming"];
+        //年龄
     //}else if (self.ageBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.ageBtn.titleLabel.text forKey:@"nianling"];
-    //学历
+        [self.dic setObject:self.ageBtn.titleLabel.text forKey:@"nianling"];
+        //学历
     //}else if (self.educationBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.educationBtn.titleLabel.text forKey:@"xueli"];
-    //工作经验
+        [self.dic setObject:self.educationBtn.titleLabel.text forKey:@"xueli"];
+        //工作经验
     //}else if (self.yearsBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.yearsBtn.titleLabel.text forKey:@"jingyan"];
-    //职位
+        [self.dic setObject:self.yearsBtn.titleLabel.text forKey:@"jingyan"];
+        //职位
     //}else if (self.typeBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.typeBtn.titleLabel.text forKey:@"zhiwei"];
-    //薪资
+        [self.dic setObject:self.typeBtn.titleLabel.text forKey:@"zhiwei"];
+        //薪资
     //}else if (self.moneyBtn.titleLabel.text.length!=0){
-    [self.dic setObject:self.moneyBtn.titleLabel.text forKey:@"xinzi"];
-    //电话
+        [self.dic setObject:self.moneyBtn.titleLabel.text forKey:@"xinzi"];
+        //电话
     //}else if (self.telephoneField.text.length!=0){
-    [self.dic setObject:self.telephoneField.text forKey:@"dianhua"];
-    //详细介绍
+        [self.dic setObject:self.telephoneField.text forKey:@"dianhua"];
+        //详细介绍
     //}else if (self.introduction.text.length!=0){
-    [self.dic setObject:self.introduction.text forKey:@"xiangxijieshao"];
-    
+        [self.dic setObject:self.introduction.text forKey:@"xiangxijieshao"];
+        
     //}
     
-//    self.workVC = [[HZWorkExperienceViewController alloc]init];
-//    self.workVC.resumeVC = self;
-//    [self.navigationController pushViewController:self.workVC animated:YES];
+    self.workVC = [[MbWorkExperienceViewController alloc]init];
+    self.workVC.resumeVC = self;
+    [self.navigationController pushViewController:self.workVC animated:YES];
 }
 
 
 //发布
 -(void)release:(UIButton*)sender{
-    
+
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         alertView.tag = 200;
         [alertView show];
     }else if(self.titleDetail.text.length==0||self.name.text.length==0||!self.sexing||self.educationBtn.titleLabel.text.length==0||self.yearsBtn.titleLabel.text.length==0||self.typeBtn.titleLabel.text.length==0||self.moneyBtn.titleLabel.text.length==0||self.telephoneField.text.length==0||self.introduction.text.length==0){
-        
+    
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写完整信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
-        
+    
     }else if (self.titleDetail.text.length>10||self.name.text.length>6||self.introduction.text.length>100){
         if (self.titleDetail.text.length>10) {
             UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"自我介绍字数不能大于10" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -1318,70 +1384,96 @@
         }else if (self.introduction.text.length>100){
             UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"详细介绍字数不能大于100" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
-            
+        
         }
     }else{
+
+    
+    int age = [self.ageBtn.titleLabel.text intValue];
+ 
+    
+    [MbPaser sendResumeInformationByUserid:self.userid area:self.cityName introduces:self.titleDetail.text name:self.name.text sex:self.sexing age:age education:self.educationBtn.titleLabel.text experience:self.yearsBtn.titleLabel.text position:self.typeBtn.titleLabel.text salary:self.moneyBtn.titleLabel.text telephone:self.telephoneField.text addeduArray:self.str1 addworkArray:self.str2 jieshao:self.introduction.text result:^(ResumeSaveResponse *response, NSError *error) {
+
+        self.str = [NSString stringWithFormat:@"%d",response.turn];
         
-        
-        int age = [self.ageBtn.titleLabel.text intValue];
-        
-        
-//        [MbPaser sendResumeInformationByUserid:self.userid area:self.cityName introduces:self.titleDetail.text name:self.name.text sex:self.sexing age:age education:self.educationBtn.titleLabel.text experience:self.yearsBtn.titleLabel.text position:self.typeBtn.titleLabel.text salary:self.moneyBtn.titleLabel.text telephone:self.telephoneField.text addeduArray:self.str1 addworkArray:self.str2 jieshao:self.introduction.text result:^(ResumeSaveResponse *response, NSError *error) {
-//            
-//            self.str = [NSString stringWithFormat:@"%d",response.turn];
-//            
-//            if (response.turn == 200) {
-//                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alert show];
-//            }else{
-//                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alert show];
-//                
-//            }
-//            
-//        }];
+        if (response.turn == 200) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }else{
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            
+        }
+
+    }];
     }
 }
 
 //取消
 -(void)cancle:(UIButton*)sender{
     [self.btn1 removeFromSuperview];
-    
-    
+
+
 }
 //确定
 -(void)sure:(UIButton*)sender{
     [self.btn1 removeFromSuperview];
-    
+
 }
 //向下箭头
 -(void)down:(UIButton*)sender{
-    
+
     self.tag = sender.tag;
     
-    HZEditType type = sender.tag - 1000;
+    
+    self.btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight)];
+    //图层透明，控件不透明
+    UIColor *color = [UIColor blackColor];
+    self.btn1.backgroundColor = [color colorWithAlphaComponent:0.5];
+    self.btn1.userInteractionEnabled = YES;
+    [self.btn1 addTarget:self action:@selector(btn1:) forControlEvents:UIControlEventTouchUpInside];
+    //    self.view1.backgroundColor = [UIColor blackColor];
+    //    self.view1.alpha = 0.7;
+    
+    [self.view addSubview:self.btn1];
+ 
+    
     //标题
     self.titleLabel = [[UILabel alloc]init];
-    if (type == 1) {
-        self.selectionController.label.text = @"年龄";
-        
-    }else if (type ==2){
-        self.selectionController.label.text = @"学历";
-        
-    }else if (type ==3){
-        self.selectionController.label.text = @"工作经验";
-        
-    }else if (type ==4){
-        self.selectionController.label.text = @"意向职位";
-        
-    }else if (type==5){
-        self.selectionController.label.text = @"期望薪资";
-        
+    if (sender.tag==1) {
+        self.titleLabel.text = @"年龄";
+    }else if (sender.tag==2){
+        self.titleLabel.text = @"学历";
+        [self getEducation];
+    }else if (sender.tag==3){
+        self.titleLabel.text = @"工作经验";
+        [self getExperience];
+    }else if (sender.tag==4){
+        self.titleLabel.text = @"意向职位";
+        [self getPosition];
+    }else if (sender.tag==5){
+        self.titleLabel.text = @"期望薪资";
+        [self getSalary];
     }
-    self.selectionController.type = type;
-    [self.selectionController.tableView reloadData];
-    self.selectionController.view.hidden = NO;
-    [self.view resignFirstResponder];
+    self.titleLabel.backgroundColor = [UIColor colorWithRed:11/255.0 green:111/255.0 blue:221/255.0 alpha:1];
+    self.titleLabel.font = [UIFont systemFontOfSize:labelText];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.frame = CGRectMake(15, (viewHeight - 344)/2, viewWidth - 30, 40);
+    [self.btn1 addSubview:self.titleLabel];
+    
+    //列表
+    self.tableView1 = [[UITableView alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), viewWidth - 30, 240)];
+    self.tableView1.dataSource = self;
+    self.tableView1.delegate = self;
+    self.tableView.scrollEnabled = NO;
+    [self.tableView1 reloadData];
+    [self.btn1 addSubview:self.tableView1];
+    
+    [self.titleDetail resignFirstResponder];
+    [self.name resignFirstResponder];
+    [self.telephoneField resignFirstResponder];
+    [self.introduction resignFirstResponder];
     
     
 }
@@ -1392,8 +1484,8 @@
         self.manBtn.selected = YES;
         
     }else{
-        sender.selected = !sender.selected;
-        self.womenBtn.selected = !self.womenBtn.selected;
+    sender.selected = !sender.selected;
+    self.womenBtn.selected = !self.womenBtn.selected;
     }
 }
 //女
@@ -1403,8 +1495,8 @@
         self.womenBtn.selected = YES;
         
     }else{
-        sender.selected = !sender.selected;
-        self.manBtn.selected = !self.manBtn.selected;
+    sender.selected = !sender.selected;
+    self.manBtn.selected = !self.manBtn.selected;
     }
 }
 
@@ -1418,13 +1510,13 @@
 }
 
 -(void)delete:(UIButton*)sender{
-    
+
     self.deleteTag = sender.tag+1;
     
     UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"删除这条数据" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alertView show];
-    
-    
+
+
 }
 
 -(void)delete1:(UIButton*)sender{
@@ -1437,33 +1529,33 @@
     
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    
+  
+ 
     if (buttonIndex==1) {
         if (self.deleteTag!=0) {
             [self.addeduArray removeObjectAtIndex:self.deleteTag-1];//移除数据源的数据
             [self.addeduArrayStr removeObjectAtIndex:self.deleteTag-1];
         }else if (self.deleteTag1!=0){
-            
-            [self.addworkArray removeObjectAtIndex:self.deleteTag1-1];//移除数据源的数据
-            [self.addworkArrayStr removeObjectAtIndex:self.deleteTag1-1];
+        
+        [self.addworkArray removeObjectAtIndex:self.deleteTag1-1];//移除数据源的数据
+        [self.addworkArrayStr removeObjectAtIndex:self.deleteTag1-1];
         }
         self.deleteTag = 0;
         self.deleteTag1 = 0;
         [self.scrollView removeFromSuperview];
-        [self setup];
+        [self onCreate];
     }else if (buttonIndex==0){
         if ([self.str isEqualToString:@"200"]) {
             [self.navigationController popViewControllerAnimated:YES];
         }else{
-            
+        
         }
-        
-        
+  
+    
     }
-    
-    
-    
+   
+
+
 }
 
 #pragma mark 触摸屏幕回收键盘
@@ -1477,12 +1569,12 @@
     if ([self.titleDetail isEditing]||[self.name isEditing]) {
         
     }else{
-        
-        [UIView beginAnimations:@"Animation" context:nil];
-        [UIView setAnimationDuration:0.20];
-        [UIView setAnimationBeginsFromCurrentState: YES];
-        self.scrollView.frame = CGRectMake(self.view.frame.origin.x, self.scrollView.frame.origin.y - 216, self.scrollView.frame.size.width, self.view.frame.size.height);
-        [UIView commitAnimations];
+    
+    [UIView beginAnimations:@"Animation" context:nil];
+    [UIView setAnimationDuration:0.20];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    self.scrollView.frame = CGRectMake(self.view.frame.origin.x, self.scrollView.frame.origin.y - 216, self.scrollView.frame.size.width, self.view.frame.size.height);
+    [UIView commitAnimations];
     }
 }
 #pragma mark 编辑之后frame弹回
@@ -1499,12 +1591,12 @@
     }
     
     
-    
+ 
     
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
+  
     [self.introduction resignFirstResponder];
     [self.telephoneField resignFirstResponder];
     return YES;

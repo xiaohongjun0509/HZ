@@ -14,7 +14,7 @@
 #import "HZPositionModel.h"
 #import "HZEditEducationCell.h"
 #import "HZEducationalExperienceViewController.h"
-#import "MbWorkExperienceViewController.h"
+#import "HZWorkExperienceViewController.h"
 #import "MbPaser.h"
 #import "HZEditDetailStudyModel.h"
 @interface HZNewEditResumeViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -94,7 +94,7 @@
                 self.eduvc.item = model;
                 [self presentVC:self.eduvc];
             }else{
-                MbWorkExperienceViewController *vc = [[MbWorkExperienceViewController alloc] init];
+                HZWorkExperienceViewController *vc = [[HZWorkExperienceViewController alloc] init];
                 vc.item = model;
                 [self presentVC:vc];
             }

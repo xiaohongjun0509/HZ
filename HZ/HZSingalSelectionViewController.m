@@ -22,7 +22,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+//    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
     tap.delegate = self;
     [self.view addGestureRecognizer:tap];

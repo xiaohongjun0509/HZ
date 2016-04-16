@@ -57,7 +57,7 @@
 		827F990F1CBA26C800439489 /* HZStudyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F990D1CBA26C800439489 /* HZStudyDetailCell.m */; };
 		827F99101CBA26C800439489 /* HZStudyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827F990E1CBA26C800439489 /* HZStudyDetailCell.xib */; };
 		827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */; };
-		827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */; };
+		827F99161CBA53FA00439489 /* HZWorkExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99151CBA53FA00439489 /* HZWorkExperienceViewController.m */; };
 		827F99191CBDCA3600439489 /* MbModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99181CBDCA3600439489 /* MbModifyViewController.m */; };
 		827F991C1CBDCE3100439489 /* MbTenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F991B1CBDCE3100439489 /* MbTenderViewController.m */; };
 		827F99231CBDCE5000439489 /* MbZhaoBiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F991E1CBDCE5000439489 /* MbZhaoBiaoViewController.m */; };
@@ -89,6 +89,9 @@
 		82B8D9221CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9201CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m */; };
 		82B8D9231CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B8D9211CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib */; };
 		82B8D9261CC2224E00E24556 /* HZZiZhiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9251CC2224E00E24556 /* HZZiZhiModel.m */; };
+		82B8D92A1CC270CC00E24556 /* MbResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9291CC270CC00E24556 /* MbResumeViewController.m */; };
+		82B8D92D1CC270F700E24556 /* MbEducationalExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D92C1CC270F700E24556 /* MbEducationalExperienceViewController.m */; };
+		82B8D9301CC2720A00E24556 /* MbWorkExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D92F1CC2720A00E24556 /* MbWorkExperienceViewController.m */; };
 		82B943471CB0FDBD009ECEA3 /* HZRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943461CB0FDBD009ECEA3 /* HZRecruitmentViewController.m */; };
 		82B9434A1CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943491CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m */; };
 		82B943531CB21F5F009ECEA3 /* MbPaser.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943521CB21F5F009ECEA3 /* MbPaser.m */; };
@@ -212,8 +215,8 @@
 		827F990E1CBA26C800439489 /* HZStudyDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZStudyDetailCell.xib; sourceTree = "<group>"; };
 		827F99111CBA2B0B00439489 /* HZEditDetailStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEditDetailStudyModel.h; sourceTree = "<group>"; };
 		827F99121CBA2B0B00439489 /* HZEditDetailStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZEditDetailStudyModel.m; sourceTree = "<group>"; };
-		827F99141CBA53FA00439489 /* MbWorkExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbWorkExperienceViewController.h; sourceTree = "<group>"; };
-		827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbWorkExperienceViewController.m; sourceTree = "<group>"; };
+		827F99141CBA53FA00439489 /* HZWorkExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZWorkExperienceViewController.h; sourceTree = "<group>"; };
+		827F99151CBA53FA00439489 /* HZWorkExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZWorkExperienceViewController.m; sourceTree = "<group>"; };
 		827F99171CBDCA3600439489 /* MbModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbModifyViewController.h; sourceTree = "<group>"; };
 		827F99181CBDCA3600439489 /* MbModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbModifyViewController.m; sourceTree = "<group>"; };
 		827F991A1CBDCE3100439489 /* MbTenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbTenderViewController.h; sourceTree = "<group>"; };
@@ -270,6 +273,12 @@
 		82B8D9211CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZResumeDetailTimeUpdateCell.xib; sourceTree = "<group>"; };
 		82B8D9241CC2224E00E24556 /* HZZiZhiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZZiZhiModel.h; sourceTree = "<group>"; };
 		82B8D9251CC2224E00E24556 /* HZZiZhiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZZiZhiModel.m; sourceTree = "<group>"; };
+		82B8D9281CC270CC00E24556 /* MbResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbResumeViewController.h; sourceTree = "<group>"; };
+		82B8D9291CC270CC00E24556 /* MbResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbResumeViewController.m; sourceTree = "<group>"; };
+		82B8D92B1CC270F700E24556 /* MbEducationalExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbEducationalExperienceViewController.h; sourceTree = "<group>"; };
+		82B8D92C1CC270F700E24556 /* MbEducationalExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbEducationalExperienceViewController.m; sourceTree = "<group>"; };
+		82B8D92E1CC2720A00E24556 /* MbWorkExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbWorkExperienceViewController.h; sourceTree = "<group>"; };
+		82B8D92F1CC2720A00E24556 /* MbWorkExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbWorkExperienceViewController.m; sourceTree = "<group>"; };
 		82B943451CB0FDBD009ECEA3 /* HZRecruitmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZRecruitmentViewController.h; sourceTree = "<group>"; };
 		82B943461CB0FDBD009ECEA3 /* HZRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZRecruitmentViewController.m; sourceTree = "<group>"; };
 		82B943481CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEnterpriseinformationViewController.h; sourceTree = "<group>"; };
@@ -572,6 +581,7 @@
 		822B11721CA588D00044CC8C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				82B8D9271CC270B500E24556 /* 老的填写简历 */,
 				82BDE1441CABFFE5007B035A /* 填写简历 */,
 				822B11871CA614400044CC8C /* PublishViewController.h */,
 				822B11881CA614400044CC8C /* PublishViewController.m */,
@@ -682,13 +692,26 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		82B8D9271CC270B500E24556 /* 老的填写简历 */ = {
+			isa = PBXGroup;
+			children = (
+				82B8D9281CC270CC00E24556 /* MbResumeViewController.h */,
+				82B8D9291CC270CC00E24556 /* MbResumeViewController.m */,
+				82B8D92B1CC270F700E24556 /* MbEducationalExperienceViewController.h */,
+				82B8D92C1CC270F700E24556 /* MbEducationalExperienceViewController.m */,
+				82B8D92E1CC2720A00E24556 /* MbWorkExperienceViewController.h */,
+				82B8D92F1CC2720A00E24556 /* MbWorkExperienceViewController.m */,
+			);
+			name = "老的填写简历";
+			sourceTree = "<group>";
+		};
 		82BDE1441CABFFE5007B035A /* 填写简历 */ = {
 			isa = PBXGroup;
 			children = (
 				82430CE41CB0D1BE00D9979B /* HZEducationalExperienceViewController.h */,
 				82430CE51CB0D1BE00D9979B /* HZEducationalExperienceViewController.m */,
-				827F99141CBA53FA00439489 /* MbWorkExperienceViewController.h */,
-				827F99151CBA53FA00439489 /* MbWorkExperienceViewController.m */,
+				827F99141CBA53FA00439489 /* HZWorkExperienceViewController.h */,
+				827F99151CBA53FA00439489 /* HZWorkExperienceViewController.m */,
 				82BDE1451CAC000E007B035A /* HZResumeEditViewController.h */,
 				82BDE1461CAC000E007B035A /* HZResumeEditViewController.m */,
 				82BDE1471CAC000E007B035A /* HZResumeEditViewController.xib */,
@@ -946,6 +969,7 @@
 				82430CDA1CB0C1DF00D9979B /* HZPlaceModel.m in Sources */,
 				827F99251CBDCE5000439489 /* MbZhongBiaoViewController.m in Sources */,
 				82912C2A1CA6BE8900098261 /* HZSegmentView.m in Sources */,
+				82B8D92D1CC270F700E24556 /* MbEducationalExperienceViewController.m in Sources */,
 				827F99231CBDCE5000439489 /* MbZhaoBiaoViewController.m in Sources */,
 				827F990F1CBA26C800439489 /* HZStudyDetailCell.m in Sources */,
 				82B9435C1CB2665F009ECEA3 /* HZJobDetailController.m in Sources */,
@@ -966,6 +990,7 @@
 				827F98F31CB9403F00439489 /* HZSingalSelectionViewController.m in Sources */,
 				82430CE61CB0D1BE00D9979B /* HZEducationalExperienceViewController.m in Sources */,
 				822B118F1CA614530044CC8C /* MineViewController.m in Sources */,
+				82B8D9301CC2720A00E24556 /* MbWorkExperienceViewController.m in Sources */,
 				82912C211CA6543100098261 /* HZJobModel.m in Sources */,
 				822B11791CA589660044CC8C /* TableBaseViewController.m in Sources */,
 				82E8871C1CA7736900279FBE /* HZUserManager.m in Sources */,
@@ -997,11 +1022,12 @@
 				827F98EF1CB92B7E00439489 /* HZPositionName.m in Sources */,
 				82E887191CA7733400279FBE /* HZRegistViewController.m in Sources */,
 				82B8D91D1CC1C8C300E24556 /* HZCancelTableViewCell.m in Sources */,
+				82B8D92A1CC270CC00E24556 /* MbResumeViewController.m in Sources */,
 				82BDE13C1CAACAA5007B035A /* HZResumeExperienceCell.m in Sources */,
 				827F99241CBDCE5000439489 /* MbZhongBiaoTableViewCell.m in Sources */,
 				82780CD71CBE85B300A7C759 /* pinyin.m in Sources */,
 				82BDE1481CAC000E007B035A /* HZResumeEditViewController.m in Sources */,
-				827F99161CBA53FA00439489 /* MbWorkExperienceViewController.m in Sources */,
+				827F99161CBA53FA00439489 /* HZWorkExperienceViewController.m in Sources */,
 				82912C391CA6D87F00098261 /* HZEnterpriseCell.m in Sources */,
 				827F98DE1CB89C0C00439489 /* HZTwoSelectionViewController.m in Sources */,
 				82780CD41CBE859E00A7C759 /* ChineseString.m in Sources */,

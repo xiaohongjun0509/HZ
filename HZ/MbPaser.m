@@ -70,6 +70,43 @@
 
 }
 
+//职位
++(NSMutableArray*)paserPositionByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    NSArray* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.positioname = [dictionary objectForKey:@"positioname"];
+        info.positionArray = [dictionary objectForKey:@"position"];
+        [list addObject:info];
+    }
+    return list;
+}
+//薪资
++(NSMutableArray*)paserSalaryByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    NSArray* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.pay = [dictionary objectForKey:@"pay"];
+        [list addObject:info];
+    }
+    return list;
+}
+
+
+//地区
++(NSMutableArray*)paserPlaceByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    NSArray* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.name = [dictionary objectForKey:@"name"];
+        
+        [list addObject:info];
+    }
+    return list;
+}
 
 //发布招聘信息
 +(void)sendResumeRecruitByUserid:(NSString*)userId title:(NSString*)title company:(NSString* )company ways:(NSString* )ways position:(NSString*)position area:(NSString*)area address:(NSString*)address experience:(NSString*)experience diploma:(NSString*)diploma wages:(NSString*)wages demand:(NSString*)demand aboutus:(NSString*)aboutus linkman:(NSString*)linkman phone:(NSString*)phone result:(void(^)(RecruitSaveResponse *response, NSError *error))result{
@@ -118,6 +155,29 @@
 
 
 
+}
+
+//经验
++(NSMutableArray*)paserExperienceByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    NSArray* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.suffer = [dictionary objectForKey:@"suffer"];
+        [list addObject:info];
+    }
+    return list;
+}
+
++(NSMutableArray*)paserEducationByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    NSArray* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.diploma = [dictionary objectForKey:@"diploma"];
+        [list addObject:info];
+    }
+    return list;
 }
 
 //发布企业信息
