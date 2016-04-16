@@ -7,7 +7,7 @@
 //
 
 #import "HZEnterpriseinformationViewController.h"
-
+#import "HZZiZhiViewController.h"
 #import "HZPlaceModel.h"
 #import "MbPaser.h"
 @interface HZEnterpriseinformationViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UISearchDisplayDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UITextViewDelegate>
@@ -57,7 +57,7 @@
 @property(nonatomic,strong)UILabel* horizontal6;
 @property(nonatomic,strong)UILabel* horizontal7;
 @property(nonatomic,strong)UIButton* releaseBtn;                  //发布按钮
-@property(nonatomic,strong)UISearchBar* searchBar;                //搜索框
+@property(nonatomic,strong)UILabel* searchBar;                //搜索框
 @property(nonatomic,strong)UILabel* label;
 @property(nonatomic,strong)NSArray* lists;
 @property(nonatomic,strong)NSMutableArray* searchArray;      //搜索的数组
@@ -181,25 +181,23 @@
     
     
     //搜索框
-    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.companyName.frame)+21,CGRectGetMaxY(self.horizontal1.frame) + 8, viewWidth-labelSize.width*3.2+10, labelSize.height+14)];
-    self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"请填写资质";
-    self.searchBar.backgroundColor = [UIColor blueColor];
+    self.searchBar = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.companyName.frame)+21,CGRectGetMaxY(self.horizontal1.frame) + 8, viewWidth-labelSize.width*3.2+10, labelSize.height+14)];
+//    self.searchBar.delegate = self;
+    self.searchBar.text = @"请填写资质";
+//    self.searchBar.backgroundColor = [UIColor blueColor];
     self.searchBar.layer.cornerRadius = 4;
     self.searchBar.layer.masksToBounds = YES;
 //    self.searchBar.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.searchBar.layer.borderColor = [UIColor clearColor].CGColor;
     self.searchBar.layer.borderWidth = 1;
-    [self.searchBar setBackgroundImage:[UIImage imageNamed:@"sosuodikuang@2x.png"]];
+//    [self.searchBar setBackgroundImage:[UIImage imageNamed:@"sosuodikuang@2x.png"]];
     //self.searchBar.barStyle = UIBarStyleDefault;
-    self.searchBar.returnKeyType = UIReturnKeyDone;
-    //[self.searchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    //self.searchBar.keyboardType = UIKeyboardAppearanceDefault;
+//    self.searchBar.returnKeyType = UIReturnKeyDone;
     [self.scrollView addSubview:self.searchBar];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showZiZhi)];
     
-    
-    
+    [self.searchBar addGestureRecognizer:tap];
     
     
     //添加按钮
@@ -519,7 +517,10 @@
     self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.releaseBtn.frame)+15);
 }
 
-
+-(void)showZiZhi{
+    HZZiZhiViewController *controller = [[HZZiZhiViewController alloc] init];
+    [self presentVC:controller];
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -662,20 +663,6 @@
             [self.muStr appendString:[NSString stringWithFormat:@"%@",jsonString]];
             [self.ziarray addObject:jsonString];
         }
-        
-
-//        [self.muStr replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self.muStr length])];
-//        [self.muStr replaceOccurrencesOfString:@"/" withString:@"\\/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self.muStr length])];
-//        [self.muStr replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self.muStr length])];
-//        [self.muStr replaceOccurrencesOfString:@"\b" withString:@"\\b" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self.muStr length])];
-//        [self.muStr replaceOccurrencesOfString:@"\f" withString:@"\\f" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self.muStr length])];
-//        [self.muStr replaceOccurrencesOfString:@"\r" withString:@"\\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self.muStr length])];
-//            [self.muStr replaceOccurrencesOfString:@"\t" withString:@"\\t" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [self.muStr length])];
-    
-        //[self.muStr insertString:@"," atIndex:@"}"];
-//        [self.muStr stringByReplacingOccurrencesOfString:@"}{" withString:@"},{"]
-        
-        
         NSString *ns=[self.ziarray componentsJoinedByString:@","];
         NSString* string1 = @"[";
         NSString* string2 = @"]";

@@ -579,6 +579,11 @@
     model.startTime = self.startTime;
     model.endTime = self.endTime;
     model.professional = self.professional.text;
+     
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.dic options:0 error:nil];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData
+                                                     encoding:NSUTF8StringEncoding];
+        model.modelString = jsonString;
     [self.item.studyList addObject:model];
     [self dismissViewControllerAnimated:YES completion:nil];
 

@@ -20,7 +20,8 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"HZStudyDetailCell" bundle:nil] forCellReuseIdentifier:@"HZStudyDetailCell"];
     [self.button addTarget:self action:@selector(gotoJump) forControlEvents:UIControlEventTouchUpInside];
-    
+    self.button.layer.cornerRadius = 15;
+    [self.button setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
 }
 
 
@@ -36,7 +37,16 @@
     return  44;
 }
 
-
+- (void)setStudy:(BOOL)study{
+    _study = study;
+    if (study) {
+        [self.button setTitle: @"教育经历 （选填）" forState:UIControlStateNormal];
+    }else{
+        [self.button setTitle: @"工作经历 （选填）" forState:UIControlStateNormal];
+    }
+    
+    
+}
 - (void)setModel:(HZEditResumeItemModel *)model{
     _model = model;
     [self.tableView reloadData];
@@ -50,6 +60,7 @@
     if(self.study){
         HZStudyDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"HZStudyDetailCell"];
         cell.isStudy = self.study;
+        
         cell.model = self.model.studyList[indexPath.row];
         return cell;
     }else{

@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, HZEditType) {
 @property (nonatomic, assign)  BOOL showSexButton;
 
 @property (nonatomic, strong) NSMutableArray *studyList;
+@property (nonatomic, strong) NSMutableArray *studyStringList;
 @property (nonatomic, strong) NSMutableArray *workList;
 @property (nonatomic, copy) void (^updateBlock)(NSInteger index,NSString *);
 @property (nonatomic, assign) NSInteger index;

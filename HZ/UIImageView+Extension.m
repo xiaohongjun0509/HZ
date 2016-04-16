@@ -10,6 +10,6 @@
 
 @implementation UIImageView (Extension)
 - (void)setImageUrl:(NSString *)url{
-    [self sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://haozhu.shiliuyun.net/%@",url]]];
+    [self sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 @end

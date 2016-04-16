@@ -15,6 +15,8 @@
 @property (nonatomic, copy) NSString *startTime;
 @property (nonatomic, copy) NSString *endTime;
 @property (nonatomic, copy) NSString *professional;
+@property (nonatomic, copy) NSString *modelString;
+@property (nonatomic, copy) NSString *modelWorkString;
 //@property (nonatomic, copy) NSString *
 //[self.dic setObject:self.schoolField.text forKey:@""];
 //[self.dic setObject:self.degree forKey:@"degree"];

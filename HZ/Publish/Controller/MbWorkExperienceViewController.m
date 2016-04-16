@@ -377,15 +377,14 @@
     }else{
     [self.navigationController popViewControllerAnimated:YES];
     
-//    [self.dic setObject:self.companyField.text forKey:@"company"];
-//    [self.dic setObject:self.position.text forKey:@"position"];
-//    [self.dic setObject:self.startTime forKey:@"startTime"];
-//    [self.dic setObject:self.endTime forKey:@"endTime"];
-//    [self.dic setObject:self.inforField.text forKey:@"infor"];
-//    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.dic options:0 error:nil];
-//        NSString *jsonString = [[NSString alloc] initWithData:jsonData;
+    [self.dic setObject:self.companyField.text forKey:@"company"];
+    [self.dic setObject:self.position.text forKey:@"position"];
+    [self.dic setObject:self.startTime forKey:@"startTime"];
+    [self.dic setObject:self.endTime forKey:@"endTime"];
+    [self.dic setObject:self.inforField.text forKey:@"infor"];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.dic options:0 error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
        
-                            
                             
     HZEditDetailStudyModel *model = [[HZEditDetailStudyModel alloc]init];
     model.school = self.companyField.text;
@@ -393,6 +392,7 @@
     model.startTime = self.startTime;
     model.endTime = self.endTime;
     model.professional = self.inforField.text;
+        model.modelWorkString = jsonString;
     [self.item.workList addObject:model];
     [self dismissViewControllerAnimated:YES completion:nil];
     

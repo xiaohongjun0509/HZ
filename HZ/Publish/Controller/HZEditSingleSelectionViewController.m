@@ -89,6 +89,7 @@
     if (self.updateBlock) {
         HZRightTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         self.item.btnTitle = cell.label.text;
+        self.item.placeHolder = cell.label.text;
         self.updateBlock();
         self.view.hidden = YES;
     }

@@ -16,6 +16,7 @@
 #import "HZEducationalExperienceViewController.h"
 #import "MbWorkExperienceViewController.h"
 #import "MbPaser.h"
+#import "HZEditDetailStudyModel.h"
 @interface HZNewEditResumeViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *showList;
@@ -30,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
     self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -135,6 +137,7 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 40)];
     button.center = CGPointMake(0.5 * ScreenWidth, 20);
     [button setTitle:@"发布" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(releaseResume) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     return view;
 }
@@ -227,11 +230,46 @@
         [alertView show];
     }else{
     
-//        NSString *name;
-//        NSString * intro;
-//        NSString *sex;
-//        NSInteger age;
-//        NSString *exp;
+        HZEditResumeItemModel *model = self.showList[0];
+        NSString *intro = model.placeHolder;
+        model = self.showList[1];
+        NSString *name = model.placeHolder;
+        model = self.showList[2];
+        int age = (int)[model.placeHolder integerValue];
+        NSString *education = [self.showList[3] placeHolder];
+        NSString *exp = [self.showList[4] placeHolder];
+        NSString *position = [self.showList[5] placeHolder];
+        NSString *salary = [self.showList[6] placeHolder];
+        NSString *telephone = [[self.showList lastObject] placeHolder];
+        
+//      学习经历
+        model = self.showList[7];
+        NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:0];
+        int i = 0;
+        while (i < model.studyList.count) {
+            HZEditDetailStudyModel *studyModel = model.studyList[i];
+            [tmp addObject:studyModel.modelString];
+            i++;
+        }
+        NSString* str = [tmp componentsJoinedByString:@","];
+        NSString* string1 = @"[";
+        NSString* string2 = @"]";
+        NSString *studyString = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
+        
+        
+        model = self.showList[8];
+        tmp = [NSMutableArray arrayWithCapacity:0];
+        i = 0;
+        while (i < model.workList.count) {
+            HZEditDetailStudyModel *studyModel = model.workList[i];
+            [tmp addObject:studyModel.modelWorkString];
+            i++;
+        }
+        NSString* str3 = [tmp componentsJoinedByString:@","];
+        NSString* string4 = @"[";
+        NSString* string5 = @"]";
+        NSString *workString = [NSString stringWithFormat:@"%@%@%@",string4,str3,string5];
+        
         BOOL needShow = NO;
         for (int i = 0; i < self.showList.count; i++) {
             HZEditResumeItemModel *model = self.showList[i];
@@ -259,22 +297,18 @@
                     UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"姓名字数不能大于6" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [alertView show];
                 }else{
-                    HZEditResumeItemModel *model = self.showList[2];
-                    NSInteger age = model.placeHolder.integerValue;
-                    
-                    
                     [MbPaser sendResumeInformationByUserid:self.userid area:self.cityName
-                                                introduces:[self.showList[0] placeHolder]
-                                                      name:[self.showList[1] placeHolder]
+                                                introduces:intro
+                                                      name:name
                                                        sex:0
                                                        age:age
-                                                 education:[self.showList[3] placeHolder]
-                                                experience:@" "
-                                                  position:@"  "
-                                                    salary:@"  "
-                                                 telephone:@"11111111"
-                                               addeduArray:@"  "
-                                              addworkArray:@"  "
+                                                 education:education
+                                                experience:exp
+                                                  position:position
+                                                    salary:salary
+                                                 telephone:telephone
+                                               addeduArray:studyString
+                                              addworkArray:workString
                                                    jieshao:[self.showList[10] placeHolder]
                                                     result:^(ResumeSaveResponse *response, NSError *error) {
                         
