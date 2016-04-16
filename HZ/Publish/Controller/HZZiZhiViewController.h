@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HZZiZhiViewController : UIViewController
-
+@property (nonatomic, strong) NSMutableArray *buttonTitles;
 @end

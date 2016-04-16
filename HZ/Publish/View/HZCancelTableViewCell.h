@@ -11,5 +11,6 @@
 @interface HZCancelTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-
+@property (nonatomic, assign)  NSInteger index;
+@property (nonatomic, copy) void (^deleteBlock)(NSInteger index);
 @end

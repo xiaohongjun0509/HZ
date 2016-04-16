@@ -12,8 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    [self.deleteButton addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
 }
 
-
+- (void)delete{
+    if (self.deleteBlock) {
+        self.deleteBlock(self.index);
+    }
+}
 @end

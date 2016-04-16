@@ -18,4 +18,7 @@
 }
 @property(nonatomic,strong)NSString* cityName;
 
+@property(nonatomic,strong)NSMutableArray* buttonTitles;
+
+
 @end

@@ -8,6 +8,7 @@
 
 #import "HZZiZhiViewController.h"
 #import  "HZCancelTableViewCell.h"
+#import "HZZiZhiModel.h"
 @interface HZZiZhiViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *upTableView;
 @property (weak, nonatomic) IBOutlet UITableView *downTableView;
@@ -20,14 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"资质详情";
     self.upTableView.delegate = self;
     self.upTableView.dataSource = self;
     [self.upTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-//    self.upTableV
-    
+    self.selectedList = [NSMutableArray array];
     self.downTableView.delegate = self;
     self.downTableView.dataSource = self;
     [self.downTableView registerNib:[UINib nibWithNibName:@"HZCancelTableViewCell" bundle:nil] forCellReuseIdentifier:@"cancel"];
+    
+    [[NetworkManager manager] postRequest:zizhiUrl parameters:@{@"g":@"all"} completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSDictionary *dict = responseObject;
+        self.qualityList = [HZZiZhiModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        [self.upTableView reloadData];
+    }];
 }
 
 
@@ -39,10 +46,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.upTableView) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        HZZiZhiModel *model = self.qualityList[indexPath.row];
+        cell.textLabel.text = model.aptitude;
         return cell;
     }
     if (tableView == self.downTableView) {
         HZCancelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cancel"];
+        cell.index = indexPath.row;
+        cell.deleteBlock = ^(NSInteger index){
+            [self.selectedList removeObjectAtIndex:index];
+            [self.downTableView reloadData];
+        };
+        HZZiZhiModel *model = self.selectedList[indexPath.row];
+        cell.contentLabel.text = model.aptitude;
         return cell;
     }
     return nil;
@@ -62,4 +78,24 @@
     return 0;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.upTableView == tableView) {
+        HZZiZhiModel *model = self.qualityList[indexPath.row];
+        if(![self.selectedList containsObject:model]){
+            [self.selectedList addObject:model];
+            [self.downTableView reloadData];
+        }
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.selectedList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        HZZiZhiModel *model = obj;
+        [self.buttonTitles addObject:model.aptitude];
+    }];
+
+}
 @end

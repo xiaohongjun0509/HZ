@@ -63,7 +63,7 @@
 @property(nonatomic,strong)NSMutableArray* searchArray;      //搜索的数组
 @property(nonatomic,assign)int count;
 @property(nonatomic,strong)UIButton* zizhiBtn;
-@property(nonatomic,strong)NSMutableArray* buttonTitles;
+//@property(nonatomic,strong)NSMutableArray* buttonTitles;
 @property(nonatomic,strong)UIButton* deleteBtn;              //删除按钮
 @property(nonatomic,strong)NSString* userid;
 @property(nonatomic,strong)NSMutableDictionary* dic;
@@ -81,10 +81,6 @@
     [super viewDidLoad];
     self.title = [NSString stringWithFormat:@"填写企业信息(%@)",self.cityName];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFiledEditChanged:) name:@"UITextFieldTextDidChangeNotification" object:self.workPlaceField.text];
-    
-    
     self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
     self.lists = @[@"市政公用施工总承包特级",@"市政公用工程总承包一级",@"市政公用工程总承包二级",@"市政公用工程总承包三级"];
     self.searchArray = [NSMutableArray array];
@@ -105,15 +101,9 @@
     suggestItems = @[@"市政公用施工总承包特级",@"市政公用施工总承包一级",@"市政公用施工总承包二级",@"市政公用施工总承包三级"];
  
 
-    [self onCreate];
-    
-//    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight) style:UITableViewStyleGrouped];
-//    self.tableView.dataSource = self;
-//    self.tableView.delegate = self;
-//    [self.tableView reloadData];
-//    [self.view addSubview:self.tableView];
-
 }
+
+
 
 //地区
 -(void)getPlace{
@@ -129,6 +119,11 @@
 
 
 -(void)onCreate{
+    NSArray *subViews = [self.view subviews];
+    [subViews enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *view = obj;
+        [view removeFromSuperview];
+    }];
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight-64)];
     self.scrollView.userInteractionEnabled = YES;
     self.scrollView.delegate = self;
@@ -196,19 +191,19 @@
     [self.scrollView addSubview:self.searchBar];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showZiZhi)];
-    
+    self.searchBar.userInteractionEnabled = YES;
     [self.searchBar addGestureRecognizer:tap];
     
     
     //添加按钮
-    self.addBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-55, CGRectGetMaxY(self.horizontal1.frame) + 8, 50, 30)];
-    [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
-    self.addBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
-    [self.addBtn setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
-    [self.addBtn addTarget:self action:@selector(addBtn:) forControlEvents:UIControlEventTouchUpInside];
-    self.addBtn.layer.cornerRadius = 15;
-    self.addBtn.layer.masksToBounds = YES;
-    [self.scrollView addSubview:self.addBtn];
+//    self.addBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-55, CGRectGetMaxY(self.horizontal1.frame) + 8, 50, 30)];
+//    [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
+//    self.addBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
+//    [self.addBtn setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
+//    [self.addBtn addTarget:self action:@selector(addBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    self.addBtn.layer.cornerRadius = 15;
+//    self.addBtn.layer.masksToBounds = YES;
+//    [self.scrollView addSubview:self.addBtn];
     self.count = 0;
     
     if (self.buttonTitles.count>0) {
@@ -238,7 +233,7 @@
                 self.deleteBtn.layer.cornerRadius = labelSize.height/2+5;
                 self.deleteBtn.layer.masksToBounds = YES;
                 [self.deleteBtn addTarget:self action:@selector(deleteBtn:) forControlEvents:UIControlEventTouchUpInside];
-                self.deleteBtn.tag = i;
+                self.deleteBtn.tag = i + 1000;
                 [self.scrollView addSubview:self.deleteBtn];
                 
             }
@@ -308,23 +303,6 @@
     self.businessCooperationView.font = [UIFont systemFontOfSize:labelText];
     [self.scrollView addSubview:self.businessCooperationView];
 
-    
-    
-    
-//    self.businessCooperationField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.line3.frame)+10, CGRectGetMaxY(self.horizontal2.frame) + 8, viewWidth-labelSize.width*2, self.line3.frame.size.height)];
-//    if (self.businessCooperationField.text.length==0) {
-//        self.businessCooperationField.text = [self.dic objectForKey:@"businessCooperation"];
-//    }
-//    self.businessCooperationField.placeholder = @"请介绍贵公司提供的商业合作";
-//    self.businessCooperationField.delegate =self;
-//    self.businessCooperationField.textColor = [UIColor blackColor];
-//    self.businessCooperationField.font = [UIFont systemFontOfSize:labelText];
-//    self.businessCooperationField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    [self.businessCooperationField setValue:[UIFont systemFontOfSize:labelText] forKeyPath:@"_placeholderLabel.font"];
-//    [self.businessCooperationField setValue:[UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
-//    [self.scrollView addSubview:self.businessCooperationField];
-    
-    
     //横线3
     self.horizontal3 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.businessCooperation.frame) + 15, viewWidth, 0.5)];
     self.horizontal3.backgroundColor = [UIColor lightGrayColor];
@@ -519,11 +497,13 @@
 
 -(void)showZiZhi{
     HZZiZhiViewController *controller = [[HZZiZhiViewController alloc] init];
+    controller.buttonTitles = self.buttonTitles;
     [self presentVC:controller];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self onCreate];
     //设置导航栏按钮的颜色
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
@@ -649,59 +629,59 @@
 //}
 
 //添加资质按钮
--(void)addBtn:(UIButton*)sender{
-   
-    [self.scrollView removeFromSuperview];
-    if (self.searchBar.text.length!=0) {
-        if ([self.buttonTitles containsObject:self.searchBar.text]) {
-            
-        }else{
-            [self.buttonTitles addObject:self.searchBar.text];
-            [self.zidic setObject:self.searchBar.text forKey:@"zizhi"];
-            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.zidic options:0 error:nil];
-            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            [self.muStr appendString:[NSString stringWithFormat:@"%@",jsonString]];
-            [self.ziarray addObject:jsonString];
-        }
-        NSString *ns=[self.ziarray componentsJoinedByString:@","];
-        NSString* string1 = @"[";
-        NSString* string2 = @"]";
-        self.zizhi = [NSString stringWithFormat:@"%@%@%@", string1, ns,string2 ];
-        
-    }else{
-        
-    
-    }
-    
+//-(void)addBtn:(UIButton*)sender{
+
+//    [self.scrollView removeFromSuperview];
+//    if (self.searchBar.text.length!=0) {
+//        if ([self.buttonTitles containsObject:self.searchBar.text]) {
+//            
+//        }else{
+//            [self.buttonTitles addObject:self.searchBar.text];
+//            [self.zidic setObject:self.searchBar.text forKey:@"zizhi"];
+//            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.zidic options:0 error:nil];
+//            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//            [self.muStr appendString:[NSString stringWithFormat:@"%@",jsonString]];
+//            [self.ziarray addObject:jsonString];
+//        }
+//        NSString *ns=[self.ziarray componentsJoinedByString:@","];
+//        NSString* string1 = @"[";
+//        NSString* string2 = @"]";
+//        self.zizhi = [NSString stringWithFormat:@"%@%@%@", string1, ns,string2 ];
+//        
+//    }else{
+//        
+//    
+//    }
+//    
+//
+//    
+//    if (self.companyField.text.length!=0) {
+//           [self.dic setObject:self.companyField.text forKey:@"company"];
+//    }else if (self.businessCooperationField.text.length!=0){
+//    
+//     [self.dic setObject:self.businessCooperationField.text forKey:@"businessCooperation"];
+//    }else if (self.workPlaceField.text.length != 0){
+//    
+//      [self.dic setObject:self.workPlaceField.text forKey:@"workPlace"];
+//    }else if (self.contactPersonField.text.length != 0){
+//    
+//        [self.dic setObject:self.contactPersonField.text forKey:@"contactPerson"];
+//    }else if (self.telephoneNumberField.text.length!=0){
+//    
+//       [self.dic setObject:self.telephoneNumberField.text forKey:@"telephoneNumber"];
+//    }else if (self.businessCooperationView.text.length!=0){
+//        [self.dic setObject:self.businessCooperationView.text forKey:@"textView"];
+//        
+//    }
+//
+//    
+//   
+//
+//    [self onCreate];
+//    [self.view1 removeFromSuperview];
 
     
-    if (self.companyField.text.length!=0) {
-           [self.dic setObject:self.companyField.text forKey:@"company"];
-    }else if (self.businessCooperationField.text.length!=0){
-    
-     [self.dic setObject:self.businessCooperationField.text forKey:@"businessCooperation"];
-    }else if (self.workPlaceField.text.length != 0){
-    
-      [self.dic setObject:self.workPlaceField.text forKey:@"workPlace"];
-    }else if (self.contactPersonField.text.length != 0){
-    
-        [self.dic setObject:self.contactPersonField.text forKey:@"contactPerson"];
-    }else if (self.telephoneNumberField.text.length!=0){
-    
-       [self.dic setObject:self.telephoneNumberField.text forKey:@"telephoneNumber"];
-    }else if (self.businessCooperationView.text.length!=0){
-        [self.dic setObject:self.businessCooperationView.text forKey:@"textView"];
-        
-    }
-
-    
-   
-
-    [self onCreate];
-    [self.view1 removeFromSuperview];
-
-    
-}
+//}
 
 //删除资质按钮
 -(void)deleteBtn:(UIButton*)sender{
@@ -726,7 +706,7 @@
     }
     
    
-    [self.buttonTitles removeObjectAtIndex:sender.tag];
+    [self.buttonTitles removeObjectAtIndex:sender.tag - 1000];
     [self onCreate];
 
 
