@@ -11,6 +11,7 @@
 #import "HZResumeModel.h"
 #import "HZResumeDetailArrayCell.h"
 #import "HZResumeDetailTimeUpdateCell.h"
+#import "MbPaser.h"
 @interface HZResumeDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -47,6 +48,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"HZResumeDetailArrayCell" bundle:nil] forCellReuseIdentifier:@"HZResumeDetailArrayCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = self.footer;
+    [self attachCollect];
 }
 
 -(void)apply:(UIButton* )sender{
@@ -153,5 +155,53 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dict.allKeys.count;
+}
+- (void)collect{
+    NSLog(@"----");
+        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            
+            [MbPaser sendResumeCollectByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] resumeid:self.model.resumeid result:^(ResumeidCollectResponse *response, NSError *error) {
+                if (response.message) {
+                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    [self judgetwo];
+                }
+                
+                
+            }];
+        }
+}
+
+-(void)judgetwo{
+    NSString* path = [NSString stringWithFormat:@"%@userid=%@&resumeid=%@",judge2,@"",self.model.resumeid];
+    
+    path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:path];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = @"type=focus-c";//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    
+    NSString* string = [dic objectForKey:@"collectionid"];
+    if ([string isEqualToString:@"0"]) {
+        UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_co_col.png"] style:UIBarButtonItemStyleDone target:self action:@selector(collect)];
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }else if ([string isEqualToString:@"1"]){
+        UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_co_sel_col.png"] style:UIBarButtonItemStyleDone target:self action:@selector(shoucang1)];
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }
+    
+}
+
+- (void)shoucang1{
+    
 }
 @end

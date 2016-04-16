@@ -377,13 +377,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "HZ/Publish/Controller/HZEnterpriseinformationViewController.m"
+            timestampString = "482493769.822946"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
+            landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "HZ/Home/Controller/HZResumeDetailViewController.m"
-            timestampString = "482476633.723319"
+            timestampString = "482497179.58986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-collect"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -393,29 +409,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HZ/Publish/Controller/HZEnterpriseinformationViewController.m"
-            timestampString = "482491325.740312"
+            filePath = "HZ/Home/Controller/HZResumeDetailViewController.m"
+            timestampString = "482497455.167284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "-onCreate"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Publish/Controller/HZEnterpriseinformationViewController.m"
-            timestampString = "482491325.740312"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
-            landmarkName = "-onCreate"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-collect"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

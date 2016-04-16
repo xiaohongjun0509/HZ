@@ -185,25 +185,12 @@
 //    self.searchBar.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.searchBar.layer.borderColor = [UIColor clearColor].CGColor;
     self.searchBar.layer.borderWidth = 1;
-//    [self.searchBar setBackgroundImage:[UIImage imageNamed:@"sosuodikuang@2x.png"]];
-    //self.searchBar.barStyle = UIBarStyleDefault;
-//    self.searchBar.returnKeyType = UIReturnKeyDone;
     [self.scrollView addSubview:self.searchBar];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showZiZhi)];
     self.searchBar.userInteractionEnabled = YES;
     [self.searchBar addGestureRecognizer:tap];
     
-    
-    //添加按钮
-//    self.addBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth-55, CGRectGetMaxY(self.horizontal1.frame) + 8, 50, 30)];
-//    [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
-//    self.addBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
-//    [self.addBtn setBackgroundColor:[UIColor colorWithRed:52/255.0 green:142/255.0 blue:221/255.0 alpha:1]];
-//    [self.addBtn addTarget:self action:@selector(addBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    self.addBtn.layer.cornerRadius = 15;
-//    self.addBtn.layer.masksToBounds = YES;
-//    [self.scrollView addSubview:self.addBtn];
     self.count = 0;
     
     if (self.buttonTitles.count>0) {
@@ -493,6 +480,7 @@
     [self.scrollView addSubview:self.releaseBtn];
     
     self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.releaseBtn.frame)+15);
+    [self restore];
 }
 
 -(void)showZiZhi{
@@ -686,6 +674,12 @@
 //删除资质按钮
 -(void)deleteBtn:(UIButton*)sender{
      [self.scrollView removeFromSuperview];
+    [self.buttonTitles removeObjectAtIndex:sender.tag - 1000];
+    [self onCreate];
+    [self restore];
+}
+
+- (void)restore{
     if (self.companyField.text.length!=0) {
         [self.dic setObject:self.companyField.text forKey:@"company"];
     }else if (self.businessCooperationField.text.length!=0){
@@ -702,14 +696,8 @@
         [self.dic setObject:self.telephoneNumberField.text forKey:@"telephoneNumber"];
     }else if (self.businessCooperationView.text.length!=0){
         [self.dic setObject:self.businessCooperationView.text forKey:@"textView"];
-    
+        
     }
-    
-   
-    [self.buttonTitles removeObjectAtIndex:sender.tag - 1000];
-    [self onCreate];
-
-
 }
 //选择地区
 -(void)down:(UIButton*)sender{
@@ -747,10 +735,10 @@
 
 }
 
-//-(void)btn1:(UIButton*)sender{
-//    [self.btn1 removeFromSuperview];
-//    self.tableView.scrollEnabled = YES;
-//}
+-(void)btn1:(UIButton*)sender{
+    [self.btn1 removeFromSuperview];
+    self.tableView.scrollEnabled = YES;
+}
 //发布按钮
 -(void)releaseBtn:(UIButton*)sender{
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
@@ -825,6 +813,25 @@
     return YES;
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (self.companyField ==textField) {
+        [self.dic setObject:self.companyField.text forKey:@"company"];
+    }else if (self.businessCooperationField == textField){
+        
+        [self.dic setObject:self.businessCooperationField.text forKey:@"businessCooperation"];
+    }else if (self.workPlaceField==textField){
+        
+        [self.dic setObject:self.workPlaceField.text forKey:@"workPlace"];
+    }else if (self.contactPersonField== textField){
+        
+        [self.dic setObject:self.contactPersonField.text forKey:@"contactPerson"];
+    }else if (self.telephoneNumberField== textField){
+        
+        [self.dic setObject:self.telephoneNumberField.text forKey:@"telephoneNumber"];
+    }else if (self.businessCooperationView.text.length!=0){
+        [self.dic setObject:self.businessCooperationView.text forKey:@"textView"];
+        
+    }
+
     if (textField==self.telephoneNumberField) {
         return [self validateNumber:string];
     }else
@@ -850,14 +857,7 @@
     [textField resignFirstResponder];
     return YES;
 }
-//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-//    [searchBar resignFirstResponder];
-//    return YES;
-//}
-//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar;{
-//    [searchBar resignFirstResponder];
-//    return YES;
-//}
+
 
 #pragma mark 触摸屏幕回收键盘
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -893,11 +893,8 @@
             self.scrollView.frame = CGRectMake(self.view.frame.origin.x, self.scrollView.frame.origin.y - 166, self.scrollView.frame.size.width, self.view.frame.size.height);
             [UIView commitAnimations];
         }
-
-    
-    
     }
-    }
+}
 #pragma mark 编辑之后frame弹回
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
@@ -917,14 +914,7 @@
             self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y + 166, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
             [UIView commitAnimations];
         }
-
-    
     }
-  
-    
-    
-    
-    
 }
 -(void)textViewDidChange:(UITextView *)textView{
     //计算文本的高度

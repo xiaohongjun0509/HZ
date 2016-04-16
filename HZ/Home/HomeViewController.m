@@ -31,7 +31,7 @@
     [self customButtons];
     [self  requestBanner];
     if(!self.cityName){
-        self.cityName = @"北京";
+        self.cityName = @"北京市";
     }
     [self attachCity:self.cityName];
 }

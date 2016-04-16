@@ -75,4 +75,24 @@
     MbCityListViewController *vc = [[MbCityListViewController alloc] init];
 }
 
+
+- (void)attachCollect{
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    UIImage *image = [UIImage imageNamed:@"nav_co_sel_col"];
+    [backButton setImage:image forState:UIControlStateNormal];
+    [backButton addTarget:self
+                   action:@selector(collect)
+         forControlEvents:UIControlEventTouchUpInside];
+    CGFloat space = 5.0;
+    [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [backButton sizeToFit];
+    CGRect frame = backButton.frame;
+    frame.size.width += space + image.size.width;
+    backButton.frame = frame;
+    [backButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+}
+
+
 @end

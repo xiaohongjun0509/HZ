@@ -21,7 +21,7 @@
     [super viewDidLoad];
     [self addSearchField];
     [self attachBackButton];
-    self.cityName = @"北京";
+    self.cityName = @"北京市";
     self.title = [NSString stringWithFormat:@"企业通(%@)",self.cityName];
     self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
     [self registerCell:[HZEnterpriseCell class]];

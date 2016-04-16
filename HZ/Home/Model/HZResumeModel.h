@@ -10,6 +10,7 @@
 #import "HZResumeExperienceModel.h"
 #import "HZResumeBusinessModel.h"
 @interface HZResumeModel : NSObject
+@property (nonatomic, copy) NSString *resumeid;
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *sex;
 @property (nonatomic, copy) NSString *wages;

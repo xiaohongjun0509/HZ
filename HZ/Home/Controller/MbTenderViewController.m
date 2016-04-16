@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"招标通（北京）";
+    self.title = @"招标通（北京市）";
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewWidth, 56)];

@@ -12,4 +12,6 @@
 - (void)attachBackButton;
 - (void)presentVC:(UIViewController *)viewController;
 - (void)attachCity:(NSString *)city;
+
+- (void)attachCollect;
 @end

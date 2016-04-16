@@ -38,7 +38,7 @@
     [super viewDidLoad];
     self.title = @"选择城市";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.arrayHotCity = [NSMutableArray arrayWithObjects:@"北京市",@"天津市",@"青岛市",@"济南市",@"深圳市", nil];
+    self.arrayHotCity = [NSMutableArray arrayWithObjects:@"北京市市",@"天津市",@"青岛市",@"济南市",@"深圳市", nil];
     self.arrayCitys = [NSMutableArray array];
     UISearchBar* searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(20, 10, viewWidth-40, 30)];
 //    searchBar.backgroundImage = [UIImage imageNamed:@"home_btn_wh.png"];

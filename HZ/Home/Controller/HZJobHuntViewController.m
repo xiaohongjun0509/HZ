@@ -78,7 +78,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.cityName = @"北京";
+//    self.cityName = @"北京市";
     
     self.title = [NSString stringWithFormat:@"找工作(%@)",self.cityName];
     [self registerCell:[HZJobHuntCell class]];
@@ -175,7 +175,7 @@
    
     WEAKSELF
 //    NSString* path = [NSString stringWithFormat:@"%@area=%@",hopeposition1,self.cityName];
-    [[NetworkManager manager] startRequest:hopeposition1 completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    [[NetworkManager manager] startRequest:hopeposition completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
             NSDictionary *dict = responseObject;
             [HZPositionTypeModel mj_setupObjectClassInArray:^NSDictionary *{
