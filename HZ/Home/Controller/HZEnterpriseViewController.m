@@ -9,6 +9,9 @@
 #import "HZEnterpriseViewController.h"
 #import "HZEnterpriseCell.h"
 #import "HZEnterpriseModel.h"
+#import "MbUserInfo.h"
+#import "MbEnterpriseTableViewCell.h"
+#import "MbEnterpriseDetailViewController.h"
 @interface HZEnterpriseViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *searchField;
 @property (nonatomic, copy) NSString *cityName;
@@ -24,7 +27,8 @@
     self.cityName = @"北京市";
     self.title = [NSString stringWithFormat:@"企业通(%@)",self.cityName];
     self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
-    [self registerCell:[HZEnterpriseCell class]];
+//    [self registerCell:[MbEnterpriseTableViewCell class]];
+    [self.tableView registerClass:[MbEnterpriseTableViewCell class] forCellReuseIdentifier:@"MbEnterpriseTableViewCell"];
     [self.tableView.mj_header beginRefreshing];
 }
 
@@ -80,7 +84,7 @@
         if (self.requestPage == 1) {
             [self.dataList removeAllObjects];
         }
-        NSArray *array = [HZEnterpriseModel mj_objectArrayWithKeyValuesArray:[dic objectForKey:@"data" ]];
+        NSArray *array = [self paserEnterpriseByDic:dic];
         [self.dataList addObjectsFromArray:array];
         [self.tableView reloadData];
         if (array.count > 1) {
@@ -96,7 +100,25 @@
 
 }
 
-
+-(NSMutableArray*)paserEnterpriseByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    NSDictionary* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.address = [dictionary objectForKey:@"address"];
+        info.area = [dictionary objectForKey:@"area"];
+        info.company = [dictionary objectForKey:@"company"];
+        info.companyid = [dictionary objectForKey:@"companyid"];
+        info.comtime = [dictionary objectForKey:@"comtime"];
+        info.contact = [dictionary objectForKey:@"contact"];
+        info.intelligence = [dictionary objectForKey:@"intelligence"];
+        info.phone = [dictionary objectForKey:@"phone"];
+        info.range = [dictionary objectForKey:@"range"];
+        info.tedail = [dictionary objectForKey:@"tedail"];
+        [list addObject:info];
+    }
+    return list;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataList.count;
@@ -104,13 +126,26 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    HZEnterpriseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZEnterpriseCell"];
-    HZEnterpriseModel *model = self.dataList[indexPath.row];
-    cell.model = model;
+    MbEnterpriseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MbEnterpriseTableViewCell"];
+    MbUserInfo *model = self.dataList[indexPath.row];
+    [cell loadContent:model];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    CGFloat cellHeight = 0.0f;
+    MbEnterpriseTableViewCell *cell = (MbEnterpriseTableViewCell *)[self tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath];
+    cellHeight = cell.finalH;
+    
+    return cellHeight;
+//    return 50;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MbEnterpriseDetailViewController *detailVC = [[MbEnterpriseDetailViewController alloc]init];
+    MbUserInfo* info = [self.dataList objectAtIndex:indexPath.row];
+    detailVC.info = info;
+//    [self presentVC:detailVC];
+    
 }
 
 @end

@@ -92,6 +92,9 @@
 		82B8D92A1CC270CC00E24556 /* MbResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9291CC270CC00E24556 /* MbResumeViewController.m */; };
 		82B8D92D1CC270F700E24556 /* MbEducationalExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D92C1CC270F700E24556 /* MbEducationalExperienceViewController.m */; };
 		82B8D9301CC2720A00E24556 /* MbWorkExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D92F1CC2720A00E24556 /* MbWorkExperienceViewController.m */; };
+		82B8D9331CC2928900E24556 /* MbEnterpriseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9321CC2928900E24556 /* MbEnterpriseDetailViewController.m */; };
+		82B8D9361CC2945000E24556 /* MbEnterpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9351CC2945000E24556 /* MbEnterpriseViewController.m */; };
+		82B8D9391CC2951900E24556 /* MbEnterpriseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8D9381CC2951900E24556 /* MbEnterpriseTableViewCell.m */; };
 		82B943471CB0FDBD009ECEA3 /* HZRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943461CB0FDBD009ECEA3 /* HZRecruitmentViewController.m */; };
 		82B9434A1CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943491CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.m */; };
 		82B943531CB21F5F009ECEA3 /* MbPaser.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B943521CB21F5F009ECEA3 /* MbPaser.m */; };
@@ -279,6 +282,12 @@
 		82B8D92C1CC270F700E24556 /* MbEducationalExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbEducationalExperienceViewController.m; sourceTree = "<group>"; };
 		82B8D92E1CC2720A00E24556 /* MbWorkExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbWorkExperienceViewController.h; sourceTree = "<group>"; };
 		82B8D92F1CC2720A00E24556 /* MbWorkExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbWorkExperienceViewController.m; sourceTree = "<group>"; };
+		82B8D9311CC2928900E24556 /* MbEnterpriseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbEnterpriseDetailViewController.h; sourceTree = "<group>"; };
+		82B8D9321CC2928900E24556 /* MbEnterpriseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbEnterpriseDetailViewController.m; sourceTree = "<group>"; };
+		82B8D9341CC2945000E24556 /* MbEnterpriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbEnterpriseViewController.h; sourceTree = "<group>"; };
+		82B8D9351CC2945000E24556 /* MbEnterpriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbEnterpriseViewController.m; sourceTree = "<group>"; };
+		82B8D9371CC2951900E24556 /* MbEnterpriseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbEnterpriseTableViewCell.h; sourceTree = "<group>"; };
+		82B8D9381CC2951900E24556 /* MbEnterpriseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbEnterpriseTableViewCell.m; sourceTree = "<group>"; };
 		82B943451CB0FDBD009ECEA3 /* HZRecruitmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZRecruitmentViewController.h; sourceTree = "<group>"; };
 		82B943461CB0FDBD009ECEA3 /* HZRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZRecruitmentViewController.m; sourceTree = "<group>"; };
 		82B943481CB21CE5009ECEA3 /* HZEnterpriseinformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZEnterpriseinformationViewController.h; sourceTree = "<group>"; };
@@ -432,6 +441,8 @@
 				82912C2E1CA6D0D900098261 /* HZResumeViewController.m */,
 				82912C331CA6D7C700098261 /* HZEnterpriseViewController.h */,
 				82912C341CA6D7C700098261 /* HZEnterpriseViewController.m */,
+				82B8D9341CC2945000E24556 /* MbEnterpriseViewController.h */,
+				82B8D9351CC2945000E24556 /* MbEnterpriseViewController.m */,
 				82BDE12A1CAAABD1007B035A /* HZResumeDetailViewController.h */,
 				82BDE12B1CAAABD1007B035A /* HZResumeDetailViewController.m */,
 				82BDE12C1CAAABD1007B035A /* HZResumeDetailViewController.xib */,
@@ -448,6 +459,8 @@
 				827F99221CBDCE5000439489 /* MbZhongBiaoViewController.m */,
 				827F99261CBDCEC100439489 /* MbZhaoBiaoTableViewCell.h */,
 				827F99271CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m */,
+				82B8D9311CC2928900E24556 /* MbEnterpriseDetailViewController.h */,
+				82B8D9321CC2928900E24556 /* MbEnterpriseDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -492,6 +505,8 @@
 				82B8D91F1CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.h */,
 				82B8D9201CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.m */,
 				82B8D9211CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib */,
+				82B8D9371CC2951900E24556 /* MbEnterpriseTableViewCell.h */,
+				82B8D9381CC2951900E24556 /* MbEnterpriseTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -986,6 +1001,7 @@
 				82BDE1371CAAC410007B035A /* HZResumeDetailArrayCell.m in Sources */,
 				827F99191CBDCA3600439489 /* MbModifyViewController.m in Sources */,
 				82BDE1401CAAD9DC007B035A /* HZResumeExperienceModel.m in Sources */,
+				82B8D9361CC2945000E24556 /* MbEnterpriseViewController.m in Sources */,
 				82B943561CB21FC3009ECEA3 /* CommonActionStatus.m in Sources */,
 				827F98F31CB9403F00439489 /* HZSingalSelectionViewController.m in Sources */,
 				82430CE61CB0D1BE00D9979B /* HZEducationalExperienceViewController.m in Sources */,
@@ -1019,6 +1035,7 @@
 				82B8D9261CC2224E00E24556 /* HZZiZhiModel.m in Sources */,
 				82912C3D1CA6DA2200098261 /* HZEnterpriseModel.m in Sources */,
 				82430CEC1CB0D24300D9979B /* MbTimePickerView.m in Sources */,
+				82B8D9331CC2928900E24556 /* MbEnterpriseDetailViewController.m in Sources */,
 				827F98EF1CB92B7E00439489 /* HZPositionName.m in Sources */,
 				82E887191CA7733400279FBE /* HZRegistViewController.m in Sources */,
 				82B8D91D1CC1C8C300E24556 /* HZCancelTableViewCell.m in Sources */,
@@ -1042,6 +1059,7 @@
 				82E8872A1CA7993400279FBE /* HZPublishJobViewController.m in Sources */,
 				82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */,
 				822B11861CA614250044CC8C /* NewsViewController.m in Sources */,
+				82B8D9391CC2951900E24556 /* MbEnterpriseTableViewCell.m in Sources */,
 				82430CE91CB0D20300D9979B /* MbPickerView.m in Sources */,
 				82E887351CA7A66E00279FBE /* JZQHttpTools.m in Sources */,
 				82B943651CB28FA4009ECEA3 /* HZEnterpriseDetailController.m in Sources */,
