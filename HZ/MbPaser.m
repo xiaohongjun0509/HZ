@@ -52,9 +52,7 @@
         NSString *str = [[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding];
 
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-        
-      
-        
+
         CommonActionStatus *response = [[CommonActionStatus alloc] initWithJSONObject:jsonObject];
         response.message = [jsonObject objectForKey:@"msg"];
         response.turn = [[jsonObject objectForKey:@"return"] intValue];

@@ -14,16 +14,30 @@
 @property (weak, nonatomic) IBOutlet UITableView *downTableView;
 @property (nonatomic, copy) NSArray *qualityList;
 @property (nonatomic, strong) NSMutableArray *selectedList;
+@property (weak, nonatomic) IBOutlet UITextField *textfield;
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (weak, nonatomic) IBOutlet UIView *containView;
 
 @end
 
 @implementation HZZiZhiViewController
+- (IBAction)add:(id)sender {
+    if (self.textfield.text.length > 0) {
+        HZZiZhiModel *model = [HZZiZhiModel new];
+        model.aptitude = self.textfield.text;
+        [self.selectedList addObject:model];
+        self.textfield.text = @"";
+        [self.downTableView reloadData];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"资质详情";
+    [self.view bringSubviewToFront:self.containView];
     self.upTableView.delegate = self;
     self.upTableView.dataSource = self;
+    
     [self.upTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     self.selectedList = [NSMutableArray array];
     self.downTableView.delegate = self;

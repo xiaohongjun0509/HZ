@@ -20,14 +20,20 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-ro-zVj">
-                        <rect key="frame" x="267" y="8" width="30" height="30"/>
-                        <state key="normal" title="删除"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-ro-zVj">
+                        <rect key="frame" x="285" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="HIs-JI-Bnv"/>
+                            <constraint firstAttribute="width" constant="20" id="UYa-yQ-fu9"/>
+                        </constraints>
+                        <state key="normal" image="shanchu"/>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="87Y-zn-mmg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="DR1-xd-dWs"/>
                     <constraint firstItem="87Y-zn-mmg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="b03-OG-HBu"/>
+                    <constraint firstAttribute="trailing" secondItem="hD0-ro-zVj" secondAttribute="trailing" constant="15" id="pPU-F4-fh6"/>
+                    <constraint firstItem="hD0-ro-zVj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ty2-05-GrB"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -36,4 +42,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="shanchu" width="36" height="36"/>
+    </resources>
 </document>

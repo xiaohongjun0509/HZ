@@ -7,7 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HZZiZhiViewController">
             <connections>
+                <outlet property="addButton" destination="eNG-vn-iet" id="Ef8-nh-NWI"/>
+                <outlet property="containView" destination="PQd-5f-n1M" id="Irl-xa-oZg"/>
                 <outlet property="downTableView" destination="UbL-dK-PbO" id="UAt-fl-6QE"/>
+                <outlet property="textfield" destination="egs-eM-EOk" id="nTk-uu-jMv"/>
                 <outlet property="upTableView" destination="JD6-3k-ZKa" id="u9u-3N-8pK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,7 +22,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1na-lS-Vzf">
                     <rect key="frame" x="0.0" y="259" width="320" height="50"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="yLF-kQ-BNc"/>
                     </constraints>
@@ -28,6 +31,37 @@
                     <rect key="frame" x="0.0" y="309" width="320" height="259"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQd-5f-n1M">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egs-eM-EOk">
+                            <rect key="frame" x="19" y="8" width="241" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNG-vn-iet">
+                            <rect key="frame" x="280" y="10" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="EPR-9m-6up"/>
+                                <constraint firstAttribute="height" constant="25" id="hC6-Fw-dbH"/>
+                            </constraints>
+                            <state key="normal" image="tianjia"/>
+                            <connections>
+                                <action selector="add:" destination="-1" eventType="touchUpInside" id="VRM-ET-2ty"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="egs-eM-EOk" firstAttribute="top" secondItem="PQd-5f-n1M" secondAttribute="top" constant="8" id="MZY-C6-hiS"/>
+                        <constraint firstAttribute="bottom" secondItem="egs-eM-EOk" secondAttribute="bottom" constant="6" id="NoU-sV-mmS"/>
+                        <constraint firstItem="eNG-vn-iet" firstAttribute="leading" secondItem="egs-eM-EOk" secondAttribute="trailing" constant="20" id="YDj-cI-ZW5"/>
+                        <constraint firstItem="egs-eM-EOk" firstAttribute="leading" secondItem="PQd-5f-n1M" secondAttribute="leading" constant="19" id="ZW1-yJ-DM6"/>
+                        <constraint firstAttribute="height" constant="44" id="oRr-g6-NE0"/>
+                        <constraint firstItem="eNG-vn-iet" firstAttribute="centerY" secondItem="PQd-5f-n1M" secondAttribute="centerY" id="wm7-hC-tzN"/>
+                        <constraint firstAttribute="trailing" secondItem="eNG-vn-iet" secondAttribute="trailing" constant="15" id="yj6-bM-vfc"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JD6-3k-ZKa">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="259"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,6 +70,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="JD6-3k-ZKa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ATj-z3-kqJ"/>
+                <constraint firstItem="PQd-5f-n1M" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="D6V-SD-XdM"/>
+                <constraint firstAttribute="trailing" secondItem="PQd-5f-n1M" secondAttribute="trailing" id="HF0-qK-poI"/>
+                <constraint firstItem="PQd-5f-n1M" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MeX-aF-ait"/>
                 <constraint firstAttribute="trailing" secondItem="JD6-3k-ZKa" secondAttribute="trailing" id="Ok9-iK-gI6"/>
                 <constraint firstItem="UbL-dK-PbO" firstAttribute="top" secondItem="1na-lS-Vzf" secondAttribute="bottom" id="Peh-VE-2Xw"/>
                 <constraint firstItem="1na-lS-Vzf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pul-mx-WUb"/>
@@ -53,4 +90,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="tianjia" width="72" height="72"/>
+    </resources>
 </document>
