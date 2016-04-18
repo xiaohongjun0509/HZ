@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.frame = [UIScreen mainScreen].bounds;
     self.title = @"用户中心";
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;

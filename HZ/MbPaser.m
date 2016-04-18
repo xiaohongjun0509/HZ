@@ -12,17 +12,19 @@
 @implementation MbPaser
 
 
-
-//eduArray:(NSMutableArray*)eduArray workArray:(NSMutableArray*)workArray
 +(void)sendResumeInformationByUserid:(NSString*)userId area:(NSString*)area introduces:(NSString* )introduces name:(NSString* )name sex:(int)sex age:(int)age education:(NSString*)education experience:(NSString*)experience position:(NSString*)position salary:(NSString*)salary telephone:(NSString*)telephone addeduArray:(NSString*)addeduArray addworkArray:(NSString*)addworkArray jieshao:(NSString*)jieshao result:(void(^)(ResumeSaveResponse *response, NSError *error))result{
 
 
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
+//    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     //2.设置登录参数
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
   
-  //dict = @{@"userid":userId,@"title":introduces,@"username":name,@"age":[NSNumber numberWithInt:age],@"sex":[NSNumber numberWithInt:sex],@"diploma":education,@"experience":experience,@"position":position,@"wages":salary,@"phone":telephone,@"intruduction":jieshao};
+
 
     [dict setObject:userId forKey:@"userid"];
     [dict setObject:area forKey:@"area"];
@@ -44,11 +46,24 @@
   
     [dict setObject:jieshao forKey:@"intruduction"];
 
-
+//
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *params = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
     //3.请求
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:sendjianli parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
  
+        NSLog(@"00000000%@",responseObject);
+        if ([responseObject isKindOfClass:[NSArray class]]) {
+            NSLog(@"ffff");
+        }
+        
         NSString *str = [[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding];
 
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
@@ -65,6 +80,10 @@
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"失败: %@", error);
     }];
+    
+    
+    
+   
 
 }
 
@@ -80,6 +99,27 @@
     }
     return list;
 }
+
++(NSMutableArray*)paserEnterpriseByDic:(NSDictionary*)dic{
+    NSMutableArray* list = [NSMutableArray array];
+    NSDictionary* data = [dic objectForKey:@"data"];
+    for (NSDictionary* dictionary in data) {
+        MbUserInfo* info = [[MbUserInfo alloc]init];
+        info.address = [dictionary objectForKey:@"address"];
+        info.area = [dictionary objectForKey:@"area"];
+        info.company = [dictionary objectForKey:@"company"];
+        info.companyid = [dictionary objectForKey:@"companyid"];
+        info.comtime = [dictionary objectForKey:@"comtime"];
+        info.contact = [dictionary objectForKey:@"contact"];
+        info.intelligence = [dictionary objectForKey:@"intelligence"];
+        info.phone = [dictionary objectForKey:@"phone"];
+        info.range = [dictionary objectForKey:@"range"];
+        info.tedail = [dictionary objectForKey:@"tedail"];
+        [list addObject:info];
+    }
+    return list;
+}
+
 //薪资
 +(NSMutableArray*)paserSalaryByDic:(NSDictionary*)dic{
     NSMutableArray* list = [NSMutableArray array];

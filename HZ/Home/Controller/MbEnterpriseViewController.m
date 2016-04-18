@@ -7,7 +7,7 @@
 //
 
 #import "MbEnterpriseViewController.h"
-//#import "JZQCommon.h"
+
 #import "MbEnterpriseTableViewCell.h"
 #import "MbEnterpriseDetailViewController.h"
 #import "MJRefresh.h"
@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self attachBackButton];
     self.freshCount=2;
     self.title = [NSString stringWithFormat:@"企业通(%@)",self.cityName];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -79,14 +80,14 @@
     self.freshCount++;
 }
 -(void)requestDongtaiByInt:(int)freshint{
-    [self.tableView.header endRefreshing];
-    [self.tableView.footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     
     if (freshint==1) {
         [self getMessage];
     }else if(freshint>1){
         NSString* path = nil;
-        NSURL *url = [NSURL URLWithString:enterpriseList];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?area=%@&hasNext=%d",enterpriseList,self.cityName,freshint]];
         //第二步，创建请求
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
         [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
@@ -134,12 +135,7 @@
 //获取数据
 -(void)getMessage{
     
-    //小菊花
-    //self.activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    //self.activity.center = self.view.center;//只能设置中心，不能设置大小
-    //[self.activity startAnimating];
-    //[self.view bringSubviewToFront:self.activity];
-    //[self.view addSubview:self.activity];
+  
     NSString* path = [NSString stringWithFormat:@"%@?area=%@&hasNext=1",enterpriseList,self.cityName];
     path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     

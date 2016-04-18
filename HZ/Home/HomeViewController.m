@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "HomeBannerModel.h"
+#import "MbEnterpriseViewController.h"
 #import "HZJobHuntViewController.h"
 #import "HZResumeViewController.h"
 #import "HZEnterpriseViewController.h"
@@ -31,7 +32,7 @@
     [self customButtons];
     [self  requestBanner];
     if(!self.cityName){
-        self.cityName = @"北京";
+        self.cityName = @"北京市";
     }
     [self attachCity:self.cityName];
 }
@@ -132,7 +133,8 @@
 }
 
 - (void)enterprise{
-    HZEnterpriseViewController *controller = [HZEnterpriseViewController new];
+    MbEnterpriseViewController *controller = [MbEnterpriseViewController new];
+    controller.cityName = self.cityName;
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navi animated:YES completion:nil];
 }

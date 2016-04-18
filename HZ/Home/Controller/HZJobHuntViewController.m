@@ -78,7 +78,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.cityName = @"北京市";
+    if ([self.cityName isEqualToString:@"北京市"]) {
+        self.cityName = @"北京";
+    }
     
     self.title = [NSString stringWithFormat:@"找工作(%@)",self.cityName];
     [self registerCell:[HZJobHuntCell class]];
@@ -195,7 +197,8 @@
 - (void)requestArea{
     WEAKSELF
 //   这里有个接口上的问题。
-    NSString* path = [NSString stringWithFormat:@"%@area=%@",threeplace,self.cityName];
+    NSString *city = [self.cityName isEqualToString:@"北京"] ? @"北京市" : self.cityName;
+    NSString* path = [NSString stringWithFormat:@"%@area=%@",threeplace,city];
     [[NetworkManager manager] startRequest:path completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
             NSDictionary *dict = responseObject;

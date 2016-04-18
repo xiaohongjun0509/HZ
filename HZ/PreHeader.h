@@ -71,6 +71,8 @@
 //简历收藏
 #define collectionresum @"http://www.bruli.cn/index.php/Index/hz_resume_collect"
 //企业通列表
+
+//#define enterpriseList @"http://haozhu.shiliuyun.net/index.php/Home/index/hz_company"
 #define enterpriseList @"http://www.bruli.cn/index.php/index/hz_company"
 //企业通收藏
 #define collectionenterprise @"http://www.bruli.cn/index.php/Index/hz_company_collect"
