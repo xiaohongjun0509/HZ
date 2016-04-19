@@ -52,35 +52,56 @@
     NSString *params = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
     //3.请求
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST:sendjianli parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
- 
-        NSLog(@"00000000%@",responseObject);
-        if ([responseObject isKindOfClass:[NSArray class]]) {
-            NSLog(@"ffff");
-        }
-        
-        NSString *str = [[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-
-        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-
-        CommonActionStatus *response = [[CommonActionStatus alloc] initWithJSONObject:jsonObject];
-        response.message = [jsonObject objectForKey:@"msg"];
-        response.turn = [[jsonObject objectForKey:@"return"] intValue];
-        
-        NSLog(@"%@===%d",response.message,response.turn);
-        result(response, nil);
-
-        
-        
-    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"失败: %@", error);
-    }];
     
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.HTTPMethod = @"POST";
+    request.URL = [NSURL URLWithString:sendjianli];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    request.HTTPBody = data;
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        NSLog(@"ooooooo");
+//        result(response, nil);
+//                NSString *str = [[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding];
+//        
+//                NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+//        
+//                CommonActionStatus *response = [[CommonActionStatus alloc] initWithJSONObject:jsonObject];
+//                response.message = [jsonObject objectForKey:@"msg"];
+//                response.turn = [[jsonObject objectForKey:@"return"] intValue];
+//        
+//                NSLog(@"%@===%d",response.message,response.turn);
+//                result(response, nil);
+
+    }];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    [manager POST:sendjianli parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+// 
+//        NSLog(@"00000000%@",responseObject);
+//        if ([responseObject isKindOfClass:[NSArray class]]) {
+//            NSLog(@"ffff");
+//        }
+//        
+//        NSString *str = [[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+//
+//        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+//
+//        CommonActionStatus *response = [[CommonActionStatus alloc] initWithJSONObject:jsonObject];
+//        response.message = [jsonObject objectForKey:@"msg"];
+//        response.turn = [[jsonObject objectForKey:@"return"] intValue];
+//        
+//        NSLog(@"%@===%d",response.message,response.turn);
+//        result(response, nil);
+//
+//        
+//        
+//    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"失败: %@", error);
+//    }];
+//    
     
     
    

@@ -164,7 +164,7 @@
 -(void)requestPosition{
     
     WEAKSELF
-    [[NetworkManager manager] startRequest:hopeposition1 completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    [[NetworkManager manager] startRequest:hopeposition completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
             NSDictionary *dict = responseObject;
             [HZPositionTypeModel mj_setupObjectClassInArray:^NSDictionary *{

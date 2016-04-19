@@ -22,6 +22,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 //    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideController)];
     tap.delegate = self;
@@ -38,6 +39,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HZRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZRightTableViewCell"];
+    cell.backgroundColor = [UIColor whiteColor];
     HZPositionName *areaModel = self.dataList[indexPath.row];
     cell.label.text = self.singleType == HZSingleTypeArea ? (areaModel.name ? areaModel.name : areaModel.suffer) : areaModel.pay;
     return cell;
@@ -55,7 +57,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.updateBlock) {
         HZPositionName *nameModel = self.dataList[indexPath.row];
-        self.updateBlock(self.singleType == HZSingleTypeArea ? nameModel.name : nameModel.pay);
+        self.updateBlock(self.singleType == HZSingleTypeArea ? nameModel.suffer : nameModel.pay);
         self.view.hidden = YES;
     }
     

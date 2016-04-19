@@ -28,6 +28,12 @@
                             <constraint firstAttribute="height" constant="1" id="bz7-K4-bVo"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TPw-s6-V9R">
+                        <rect key="frame" x="0.0" y="59" width="320" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="dNK-42-PrB"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Xdt-ur-fzx" secondAttribute="bottom" id="35f-AQ-bPo"/>
@@ -35,7 +41,10 @@
                     <constraint firstAttribute="trailing" secondItem="Xdt-ur-fzx" secondAttribute="trailing" id="RcB-uq-y3F"/>
                     <constraint firstAttribute="trailing" secondItem="Xeg-gQ-KDn" secondAttribute="trailing" id="V7e-Sm-fJt"/>
                     <constraint firstItem="Xeg-gQ-KDn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aev-Zx-qeB"/>
+                    <constraint firstAttribute="trailing" secondItem="TPw-s6-V9R" secondAttribute="trailing" id="d5c-c0-uO4"/>
+                    <constraint firstAttribute="bottom" secondItem="TPw-s6-V9R" secondAttribute="bottom" id="jJX-cG-Gkg"/>
                     <constraint firstItem="Xeg-gQ-KDn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lIH-aQ-gjf"/>
+                    <constraint firstItem="TPw-s6-V9R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nVB-jY-mDx"/>
                     <constraint firstAttribute="bottom" secondItem="Xeg-gQ-KDn" secondAttribute="bottom" id="yDc-Cy-6lE"/>
                 </constraints>
             </tableViewCellContentView>

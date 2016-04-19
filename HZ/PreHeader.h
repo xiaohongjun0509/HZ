@@ -102,7 +102,7 @@
 //工作经验
 #define hopeexperience @"http://www.bruli.cn/index.php/Options/hz_resume_experience"
 //应聘职位
-#define hopeposition1 @"http://www.bruli.cn/index.php/Options/hz_resume_position1"
+//#define hopeposition1 @"http://www.bruli.cn/index.php/Options/hz_resume_position1"
 //应聘职位
 #define hopeposition @"http://www.bruli.cn/index.php/Options/hz_resume_position"
 //期望薪资
