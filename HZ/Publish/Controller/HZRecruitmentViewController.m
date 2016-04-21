@@ -43,10 +43,10 @@
 @property(nonatomic,strong)UIButton* money;                //工资
 
 @property(nonatomic,strong)UILabel* jobRequirementsLabel;  //任职要求
-@property(nonatomic,strong)UITextField* jobRequirements;
+@property(nonatomic,strong)UITextView* jobRequirements;
 
 @property(nonatomic,strong)UILabel* companyProfileLabel;   //公司简介
-@property(nonatomic,strong)UITextField* companyProfile;        //公司简介
+@property(nonatomic,strong)UITextView* companyProfile;        //公司简介
 
 @property(nonatomic,strong)UILabel* nameLabel;            //联系人
 @property(nonatomic,strong)UITextField* name;
@@ -115,6 +115,8 @@
 @property(nonatomic,strong)NSMutableArray* experienceList;
 @property(nonatomic,strong)NSMutableArray* educationList;
 @property(nonatomic,strong)NSMutableArray* salaryList;
+@property (nonatomic, assign) CGFloat introduceWidth;
+
 @end
 
 @implementation HZRecruitmentViewController
@@ -593,29 +595,23 @@
     
     
     //任职要求介绍
-    self.jobRequirements = [UITextField new];
-    self.jobRequirements.placeholder = @"请描述工作职责等等";
-    self.jobRequirements.delegate = self;
+    self.jobRequirements = [[UITextView alloc] init];
+    //要优化
+//    self.jobRequirements.placeholder = @"请描述工作职责等等";
+//    self.jobRequirements.delegate = self;
     self.jobRequirements.returnKeyType = UIReturnKeyDone;
     self.jobRequirements.font = [UIFont systemFontOfSize:labelText];
     self.jobRequirements.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-    //self.jobRequirements.numberOfLines = 0;
-    //根据控件大小改变字体大小
-    //self.introduction.adjustsFontSizeToFitWidth = YES;
     
-    //        CGSize jobRequirementsSize = [self.jobRequirements.text sizeWithFont:self.jobRequirements.font constrainedToSize:CGSizeMake(ScreenWidth-61-jobRequirementsLabelSize.width, 1000) lineBreakMode:NSLineBreakByCharWrapping];
-    //        if (jobRequirementsLabelSize.height>jobRequirementsSize.height+15) {
-    //            self.line9 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.jobRequirementsLabel.frame)+15, 10, 1, jobRequirementsLabelSize.height+10)];
-    //        }else{
-    //            self.line9 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.jobRequirementsLabel.frame)+15, 10, 1, jobRequirementsSize.height+10)];
-    //        }
+    
     self.line9 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.jobRequirementsLabel.frame)+15, CGRectGetMaxY(self.horizontal8.frame) + 10, 1, jobRequirementsLabelSize.height+10)];
     self.line9.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
     [self.scrollView addSubview:self.line9];
     
+    self.introduceWidth = ScreenWidth-61-jobRequirementsLabelSize.width;
     
+    self.jobRequirements.frame = CGRectMake(CGRectGetMaxX(self.line9.frame)+15, CGRectGetMaxY(self.horizontal8.frame) , self.introduceWidth, 40);
     
-    self.jobRequirements.frame = CGRectMake(CGRectGetMaxX(self.line9.frame)+15, CGRectGetMaxY(self.horizontal8.frame) + 15, ScreenWidth-61-jobRequirementsLabelSize.width, jobRequirementsLabelSize.height);
     [self.scrollView addSubview:self.jobRequirements];
     
 
@@ -636,29 +632,19 @@
     
     
     //任职要求介绍
-    self.companyProfile = [UITextField new];
-    self.companyProfile.placeholder = @"请介绍贵公司的基本情况";
-    self.companyProfile.delegate = self;
+    self.companyProfile = [UITextView new];
+//    self.companyProfile.placeholder = @"请介绍贵公司的基本情况";
+//    self.companyProfile.delegate = self;
     self.companyProfile.returnKeyType = UIReturnKeyDone;
     self.companyProfile.font = [UIFont systemFontOfSize:labelText];
     self.companyProfile.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
     //self.companyProfile.numberOfLines = 0;
     //根据控件大小改变字体大小
-    //self.introduction.adjustsFontSizeToFitWidth = YES;
-    
-    //        CGSize companyProfileSize = [self.companyProfile.text sizeWithFont:self.companyProfile.font constrainedToSize:CGSizeMake(ScreenWidth-61-companyProfileLabelSize.width, 1000) lineBreakMode:NSLineBreakByCharWrapping];
-    //
-    //        if (companyProfileLabelSize.height>companyProfileSize.height+15) {
-    //            self.line10 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.companyProfileLabel.frame)+15, 10, 1, companyProfileLabelSize.height+10)];
-    //        }else{
-    //            self.line10 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.companyProfileLabel.frame)+15, 10, 1, companyProfileSize.height+10)];
-    //
-    //        }
     self.line10 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.companyProfileLabel.frame)+15, CGRectGetMaxY(self.horizontal9.frame) + 10, 1, companyProfileLabelSize.height+10)];
     self.line10.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
     [self.scrollView addSubview:self.line10];
     
-    self.companyProfile.frame = CGRectMake(CGRectGetMaxX(self.line10.frame)+15, CGRectGetMaxY(self.horizontal9.frame) + 15, ScreenWidth-61-companyProfileLabelSize.width, companyProfileLabelSize.height);
+    self.companyProfile.frame = CGRectMake(CGRectGetMaxX(self.line10.frame)+15, CGRectGetMaxY(self.horizontal9.frame), ScreenWidth-61-companyProfileLabelSize.width, 40);
     [self.scrollView addSubview:self.companyProfile];
 
     
@@ -806,21 +792,6 @@
         HZPositionModel* info = [self.positionList objectAtIndex:self.tag1];
         
         return info.position.count;
-        
-//        if (self.tag1==0) {
-//            return self.array1.count;
-//        }else if (self.tag1==1){
-//            return self.array2.count;
-//        }else if (self.tag1==2){
-//            
-//            return self.array3.count;
-//        }else if (self.tag1==3){
-//            return self.array4.count;
-//        }else if (self.tag1==4){
-//            
-//            return self.array5.count;
-//        }
-        
     }
 
     return 0;
@@ -840,53 +811,6 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifire];
         
     }
-    
-//    if (tableView==self.tableView) {
-//        
-//     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    if (indexPath.row==0) {
-//       
-//    }else if (indexPath.row==1){
-//        
-//    }else if (indexPath.row==2){
-//        
-//        
-//    }else if (indexPath.row==3){
-//       
-//
-//        
-//        
-//    }else if (indexPath.row==4){
-//        
-//        
-//        
-//    }else if (indexPath.row==5){
-//        
-//        
-//    }else if (indexPath.row==6){
-//        
-//        
-//       
-//    }else if (indexPath.row==7){
-//        
-//        
-//        
-//        
-//    }else if (indexPath.row==8){
-//        
-//        
-//    }else if (indexPath.row==9){
-//        
-//        
-//        
-//    }else if (indexPath.row==10){
-//        
-//        
-//        
-//    }else if (indexPath.row==11){
-//           }
-//    
-//    }else
         if (tableView==self.tableView1){
         if (self.tag==1) {
             HZPositionModel* info = [self.positionList objectAtIndex:indexPath.row];
@@ -1257,10 +1181,7 @@
     sender.selected = !sender.selected;
 
 }
-//删除弹出图层
-//-(void)remove:(UITapGestureRecognizer*)tap{
-//    [self.view1 removeFromSuperview];
-//}
+
 -(void)btn1:(UIButton*)sender{
     [self.btn1 removeFromSuperview];
  self.tableView.scrollEnabled = YES;
@@ -1274,12 +1195,18 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
-    [self.titleDetail resignFirstResponder];
-     [self.company resignFirstResponder];
-     [self.placeField resignFirstResponder];
-     [self.jobRequirements resignFirstResponder];
-     [self.companyProfile resignFirstResponder];
-     [self.telephoneNumber resignFirstResponder];
+//    [self.titleDetail resignFirstResponder];
+//     [self.company resignFirstResponder];
+//     [self.placeField resignFirstResponder];
+//     [self.jobRequirements resignFirstResponder];
+//     [self.companyProfile resignFirstResponder];
+//     [self.telephoneNumber resignFirstResponder];
+//    if (self.jobRequirements == textView) {
+//        CGRect rect = [textView.text boundingRectWithSize:CGSizeMake(self.introduceWidth, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
+//        
+//        
+//    }
+   
 
     return YES;
 }

@@ -63,12 +63,14 @@
     if (self.rightTableView == tableView) {
         HZRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZRightTableViewCell"];
         HZPositionName *model = self.rightList[indexPath.row];
+        cell.label.font = [UIFont systemFontOfSize:13];
         cell.label.text = model.positioname;
         return cell;
     }
     if (self.leftTableView == tableView) {
         HZLeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZLeftTableViewCell"];
         HZPositionTypeModel *model = self.leftList[indexPath.row];
+        cell.label.font = [UIFont systemFontOfSize:13];
         cell.label.text = model.positioname;
         return cell;
     }

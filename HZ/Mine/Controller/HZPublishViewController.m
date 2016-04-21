@@ -59,16 +59,27 @@
 
 - (void)attachSegmentView{
     self.segmentView = [[HZSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+    self.segmentView.positionLabel.textColor = [UIColor blueColor];
     self.segmentView.titleArray = @[@"找工作",@"看简历",@"企业通"];
+    [self.segmentView hiddenAllArrors];
     WEAKSELF
     self.segmentView.positionBlock = ^{
+        weakSelf.segmentView.positionLabel.textColor = [UIColor blueColor];
+        weakSelf.segmentView.salarLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        weakSelf.segmentView.locationLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
         [weakSelf.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     };
     weakSelf.segmentView.locationBlock = ^{
+        weakSelf.segmentView.positionLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        weakSelf.segmentView.salarLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        weakSelf.segmentView.locationLabel.textColor = [UIColor blueColor] ;
         [weakSelf.scrollView setContentOffset:CGPointMake(ScreenWidth, 0) animated:YES];
     };
     
     weakSelf.segmentView.salaryBlock = ^{
+        weakSelf.segmentView.positionLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        weakSelf.segmentView.salarLabel.textColor = [UIColor blueColor];
+        weakSelf.segmentView.locationLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1] ;
         [weakSelf.scrollView setContentOffset:CGPointMake(ScreenWidth * 2, 0) animated:YES];
 
     };

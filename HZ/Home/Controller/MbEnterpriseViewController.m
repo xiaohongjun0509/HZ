@@ -222,11 +222,11 @@ static NSString* identifire = @"Cell";
 //    return nil;
 //}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat cellHeight = 0.0f;
-    MbEnterpriseTableViewCell *cell = (MbEnterpriseTableViewCell *)[self tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath];
-    cellHeight = cell.finalH;
+//    CGFloat cellHeight = 0.0f;
+//    MbEnterpriseTableViewCell *cell = (MbEnterpriseTableViewCell *)[self tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath];
+//    cellHeight = cell.finalH;
     
-    return cellHeight;
+    return 93;
 }
 
 //搜索

@@ -113,6 +113,10 @@
     self.arraw3.hidden = YES;
 }
 
+- (void)setSelectedColor:(UIColor *)color{
+    
+}
+
 - (void)setTitleArray:(NSArray *)titleArray{
     _titleArray = titleArray;
     if (titleArray.count >= 3) {
@@ -124,6 +128,7 @@
 }
 
 - (void)position{
+//    self.positionLabel.textColor = [UIColor blueColor];
     if (self.positionBlock) {
         self.positionBlock();
     }

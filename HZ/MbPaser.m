@@ -13,14 +13,6 @@
 
 
 +(void)sendResumeInformationByUserid:(NSString*)userId area:(NSString*)area introduces:(NSString* )introduces name:(NSString* )name sex:(int)sex age:(int)age education:(NSString*)education experience:(NSString*)experience position:(NSString*)position salary:(NSString*)salary telephone:(NSString*)telephone addeduArray:(NSString*)addeduArray addworkArray:(NSString*)addworkArray jieshao:(NSString*)jieshao result:(void(^)(ResumeSaveResponse *response, NSError *error))result{
-
-
-    
-    
-//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-//    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     //2.设置登录参数
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
   
@@ -60,18 +52,13 @@
     NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     request.HTTPBody = data;
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        NSLog(@"ooooooo");
-//        result(response, nil);
-//                NSString *str = [[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding];
-//        
-//                NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-//        
-//                CommonActionStatus *response = [[CommonActionStatus alloc] initWithJSONObject:jsonObject];
-//                response.message = [jsonObject objectForKey:@"msg"];
-//                response.turn = [[jsonObject objectForKey:@"return"] intValue];
-//        
-//                NSLog(@"%@===%d",response.message,response.turn);
-//                result(response, nil);
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        CommonActionStatus *res = [[CommonActionStatus alloc] initWithJSONObject:jsonObject];
+        res.message = [jsonObject objectForKey:@"msg"];
+        res.turn = [[jsonObject objectForKey:@"return"] intValue];
+        NSLog(@"%@===%d",res.message,res.turn);
+        result(res, nil);
 
     }];
 //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

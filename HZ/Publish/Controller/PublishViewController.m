@@ -22,10 +22,6 @@
 @property(nonatomic,strong)UILabel* label1;
 @property(nonatomic,strong)UILabel* label2;
 @property(nonatomic,strong)UILabel* label3;
-//@property(nonatomic,strong)MbResumeViewController* resumeVC;  //填写简历页面
-//@property(nonatomic,strong)MbRecruitmentViewController* recruitmentVC;//填写招聘信息
-//@property(nonatomic,strong)MbEnterpriseinformationViewController* enterInformationVC;    //填写企业信息
-//@property(nonatomic,strong)MbCityListViewController* cityList;
 
 @end
 

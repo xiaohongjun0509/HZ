@@ -51,7 +51,7 @@
     self.nameLabel.text = data.company;
     
     CGSize nameSize = [self.nameLabel.text sizeWithFont:self.nameLabel.font constrainedToSize:CGSizeMake(viewWidth-30, 400) lineBreakMode:NSLineBreakByWordWrapping];
-    self.nameLabel.frame = CGRectMake(15, 10, viewWidth-30, nameSize.height);
+    self.nameLabel.frame = CGRectMake(15, 25, viewWidth-30, nameSize.height);
     self.placeLabel.text = data.area;
     CGSize placeSize = [self.placeLabel.text sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:labelText]}];
     self.placeLabel.frame = CGRectMake(15, CGRectGetMaxY(self.nameLabel.frame) + 15, placeSize.width, placeSize.height);

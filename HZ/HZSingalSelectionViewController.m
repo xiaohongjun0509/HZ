@@ -41,6 +41,7 @@
     HZRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZRightTableViewCell"];
     cell.backgroundColor = [UIColor whiteColor];
     HZPositionName *areaModel = self.dataList[indexPath.row];
+    cell.label.font = [UIFont systemFontOfSize:13];
     cell.label.text = self.singleType == HZSingleTypeArea ? (areaModel.name ? areaModel.name : areaModel.suffer) : areaModel.pay;
     return cell;
 }

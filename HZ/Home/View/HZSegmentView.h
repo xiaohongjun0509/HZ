@@ -22,5 +22,9 @@
 @property (nonatomic, copy) void (^locationBlock)(void);
 @property (nonatomic, copy) void (^salaryBlock)(void);
 
+
+
 - (void)hiddenAllArrors;
+
+- (void)setSelectedColor:(UIColor *)color;
 @end
