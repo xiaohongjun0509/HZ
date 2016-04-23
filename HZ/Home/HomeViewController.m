@@ -35,6 +35,7 @@
     [self  requestBanner];
     if(!self.cityName){
         self.cityName = @"北京市";
+        [[NSUserDefaults standardUserDefaults] setObject:@"北京市" forKey:@"cityname"];
     }
     [self attachCity:self.cityName];
 }
@@ -42,6 +43,7 @@
 
 - (void)setCityName:(NSString *)cityName{
     _cityName = cityName;
+    [[NSUserDefaults standardUserDefaults] setObject:cityName forKey:@"cityname"];
     [self.cityButton setTitle:cityName forState:UIControlStateNormal];
 }
 - (void)requestBanner{

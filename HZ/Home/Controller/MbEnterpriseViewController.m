@@ -193,7 +193,8 @@ static NSString* identifire = @"Cell";
     self.detailVC = [[MbEnterpriseDetailViewController alloc]init];
     MbUserInfo* info = [self.lists objectAtIndex:indexPath.row];
     self.detailVC.info = info;
-    [self.navigationController pushViewController:self.detailVC animated:YES];
+    
+    [self presentVC:self.detailVC];
 
 }
 

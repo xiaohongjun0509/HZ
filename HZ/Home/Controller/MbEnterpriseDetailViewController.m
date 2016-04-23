@@ -58,7 +58,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"企业详情(北京)";
+    [self attachBackButton];
+    NSString *name = [[NSUserDefaults standardUserDefaults] valueForKey:@"cityname"];
+    self.title =[NSString stringWithFormat:@"企业详情(%@)",name];
     self.view.backgroundColor = [UIColor whiteColor];
     self.array = @[@"钢结构钢一",@"钢结构钢二"];
     self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
@@ -364,7 +366,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.image = [UIImage imageNamed:@"home_icon_call"];
-    imageView.frame = CGRectMake(6, 7, 15, 15);
+    imageView.frame = CGRectMake(8, 8, 15, 15);
     [self.releaseBtn addSubview:imageView];
     self.releaseBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
     
