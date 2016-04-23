@@ -110,6 +110,9 @@
         }else{
             [cell.zhaoTypeButton setTitle:@"代招" forState:UIControlStateNormal];
         }
+        [cell.zhaoTypeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [cell.zhaoTypeButton setBackgroundColor:RGB(41, 117, 224)];
+        [cell.zhaoTypeButton setFont:[UIFont systemFontOfSize:14]];
         cell.contentLabel.text = self.model.company;
         cell.updateTimeLabel.hidden = YES;
         cell.zhaoTypeButton.hidden = NO;

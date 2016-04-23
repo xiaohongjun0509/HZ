@@ -173,12 +173,14 @@
     self.qualificationsName.frame = CGRectMake(15, CGRectGetMaxY(self.horizontal1.frame) + 15, labelSize.width, labelSize.height);
     [self.scrollView addSubview:self.qualificationsName];
     
-    
-    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.companyName.frame) + 15, CGRectGetMaxY(self.horizontal1.frame) + 15, 20, 20)];
+    imageView.image = [UIImage imageNamed:@"sousuo"];
+    [self.scrollView addSubview:imageView];
     //搜索框
-    self.searchBar = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.companyName.frame)+21,CGRectGetMaxY(self.horizontal1.frame) + 8, viewWidth-labelSize.width*3.2+10, labelSize.height+14)];
+    self.searchBar = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 5,CGRectGetMaxY(self.horizontal1.frame) + 8, viewWidth-labelSize.width*3.2+10, labelSize.height+14)];
 //    self.searchBar.delegate = self;
     self.searchBar.text = @"请填写资质";
+    
 //    self.searchBar.backgroundColor = [UIColor blueColor];
     self.searchBar.layer.cornerRadius = 4;
     self.searchBar.layer.masksToBounds = YES;

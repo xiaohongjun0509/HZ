@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSArray *scrollImageModels;
 @property (nonatomic, strong) UIPageControl *pageController;
 @property (nonatomic, strong) UIButton *cityButton;
+@property (nonatomic, strong) NSMutableArray *modelArray;
 @end
 
 @implementation HomeViewController
@@ -28,6 +29,7 @@
     [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.hidden = YES;
     }];
+    self.modelArray = [NSMutableArray array];
     [self customScrollview];
     [self customButtons];
     [self  requestBanner];
@@ -53,12 +55,26 @@
                 UIImageView *imageView = [[UIImageView alloc] init];
                 imageView.frame = CGRectMake(ScreenWidth*idx, 0, ScreenWidth, ScreenWidth/2);
                 HomeBannerModel *model = obj;
+                [weakSelf.modelArray addObject:model];
                 [imageView setImageUrl:model.image];
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jump:)];
+                imageView.tag = 1001 + idx;
+                imageView.userInteractionEnabled = YES;
+                [imageView addGestureRecognizer:tap];
                 [weakSelf.scrollView addSubview:imageView];
             }];
             self.pageController.numberOfPages = self.scrollImageModels.count;
         }
     }];
+}
+
+
+- (void)jump:(UITapGestureRecognizer *)rec{
+    UIImageView *im = (UIImageView *)rec.view;
+    NSInteger index =im.tag - 1001;
+    HomeBannerModel *model = self.modelArray[index];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
 }
 
 - (void)customScrollview{
