@@ -1117,12 +1117,9 @@
     [MbPaser sendResumeRecruitByUserid:self.userid title:self.titleDetail.text company:self.company.text ways:self.zhao position:self.type.titleLabel.text area:self.workPlace.titleLabel.text address:self.placeField.text experience:self.years.titleLabel.text diploma:self.education.titleLabel.text wages:self.money.titleLabel.text demand:self.jobRequirements.text aboutus:self.companyProfile.text linkman:self.name.text phone:self.telephoneNumber.text result:^(RecruitSaveResponse *response, NSError *error) {
        
         if (response.turn == 200) {
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            alert.tag = 200;
-            [alert show];
+            [self dismissModalViewControllerAnimated:YES];
         }else{
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
+            
             
         }
     }];
@@ -1132,7 +1129,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag==200) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissModalViewControllerAnimated:YES];
     }
 
 
