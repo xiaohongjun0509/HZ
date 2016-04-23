@@ -106,7 +106,7 @@
         
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.model.restime.integerValue];
         NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-        [fmt  setDateFormat:@"yyyy:MM:dd"];
+        [fmt  setDateFormat:@"yyyy-MM-dd"];
         NSString *time = [fmt stringFromDate:date];
         cell.updateTimeLabel.text = [NSString stringWithFormat:@"%@更新",time];
         return cell;

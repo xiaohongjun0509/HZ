@@ -7,7 +7,7 @@
 //
 
 #import "HZSegmentView.h"
-
+#import "UIView+YYAdd.h"
 @interface HZSegmentView ()
 @property (nonatomic, strong) UIImageView *arraw1;
 @property (nonatomic, strong) UIImageView *arraw2;
@@ -111,6 +111,10 @@
     self.arraw2.hidden = YES;
     self.arraw1.hidden = YES;
     self.arraw3.hidden = YES;
+    self.positionLabel.left = self.positionLabel.left + 5;
+     self.locationLabel.left = self.locationLabel.left + 5;
+     self.salarLabel.left = self.salarLabel.left + 5;
+    
 }
 
 - (void)setSelectedColor:(UIColor *)color{

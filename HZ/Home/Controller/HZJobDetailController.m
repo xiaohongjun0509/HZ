@@ -96,7 +96,7 @@
         cell.contentLabel.text = self.model.position;
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.model.rectime.integerValue];
         NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-        [fmt  setDateFormat:@"yyyy:MM:dd"];
+        [fmt  setDateFormat:@"yyyy-MM-dd"];
         NSString *time = [fmt stringFromDate:date];
         cell.updateTimeLabel.text = [NSString stringWithFormat:@"%@更新",time];
         cell.zhaoTypeButton.hidden = YES;

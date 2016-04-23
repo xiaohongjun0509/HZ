@@ -12,7 +12,7 @@
 #import "HZWorkExperienceViewController.h"
 #import "JZQHttpTools.h"
 
-@interface MbResumeViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate>
+@interface MbResumeViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UITextViewDelegate>
 {
     CGSize textSize;
     CGSize textSize1;
@@ -59,7 +59,7 @@
 @property(nonatomic,strong)UIButton* educationExperience; //教育经历
 @property(nonatomic,strong)UILabel* workExperienceDetail; //工作经历描述
 @property(nonatomic,strong)UILabel* selfIntroduction;     //自我介绍
-@property(nonatomic,strong)UITextField* introduction;     //具体介绍
+@property(nonatomic,strong)UITextView* introduction;     //具体介绍
 @property(nonatomic,strong)UIButton* releaseBtn;          //发布按钮
 
 
@@ -129,13 +129,45 @@
 @property(nonatomic,strong)NSString* str;
 //@property(nonatomic,strong)MbCenterViewController* centerView;            //个人中心
 @property(nonatomic,assign)CGFloat heit;
+@property (nonatomic, copy) NSString *tip;
+@property (nonatomic, assign) BOOL movingTV;
 @end
 
 @implementation MbResumeViewController
 
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (textView == self.introduction) {
+        self.movingTV = YES;
+        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y + 200)];
+        self.introduction.text = @"";
+        self.introduction.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    if (textView == self.introduction) {
+        self.movingTV = NO;
+        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y - 200)];
+        if (self.introduction.text.length == 0) {
+            self.introduction.text = self.tip;
+            self.introduction.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+        }
+    }
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (self.movingTV) {
+        
+    }else{
+        [self.scrollView resignFirstResponder];
+        [self.view endEditing:YES];
+    }
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.tip = @"详细描述自身的工作能力等等";
    self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
     self.view.backgroundColor = [UIColor whiteColor];
     self.addeduArray = [NSMutableArray array];
@@ -671,13 +703,16 @@
     self.line8.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
     [self.scrollView addSubview:self.line8];
     //自我具体介绍
-    self.introduction = [[UITextField alloc]init];
-    self.introduction.placeholder = @"详细描述自身的工作能力等等";
-    self.introduction.text = [self.dic objectForKey:@"xiangxijieshao"];
+    self.introduction = [[UITextView alloc]init];
+    if ([self.dic objectForKey:@"xiangxijieshao"]) {
+        [self.dic objectForKey:@"xiangxijieshao"];
+    }else{
+       self.introduction.text = self.tip;
+    }
     self.introduction.font = [UIFont systemFontOfSize:labelText];
     self.introduction.delegate = self;
     self.introduction.userInteractionEnabled = YES;
-    self.introduction.textColor = [UIColor blackColor];
+    self.introduction.textColor = [UIColor colorWithRed:227/255.0 green:227/255.0 blue:229/255.0 alpha:1];
     [self.introduction setReturnKeyType:(UIReturnKeyDone)];
     self.introduction.keyboardAppearance=UIKeyboardAppearanceDefault;
     self.introduction.returnKeyType=UIReturnKeyDone;
@@ -1597,8 +1632,8 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
   
-    [self.introduction resignFirstResponder];
-    [self.telephoneField resignFirstResponder];
+//    [self.introduction resignFirstResponder];
+//    [self.telephoneField resignFirstResponder];
     return YES;
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

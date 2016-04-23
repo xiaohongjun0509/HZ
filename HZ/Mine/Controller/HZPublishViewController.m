@@ -11,7 +11,7 @@
 #import "HZPublishResumeViewController.h"
 #import "HZPublishEnterpriseViewController.h"
 #import "HZSegmentView.h"
-@interface HZPublishViewController ()
+@interface HZPublishViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) HZSegmentView *segmentView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @end
@@ -29,6 +29,8 @@
 
 - (void)customScrollView{
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
+    self.scrollView.delegate = self;
+    
      self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.scrollView.contentSize = CGSizeMake(3 * ScreenWidth, 0);
     self.scrollView.pagingEnabled = YES;
@@ -56,6 +58,26 @@
     
     
 }
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSInteger index = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    if (index == 0) {
+        self.segmentView.positionLabel.textColor = [UIColor blueColor];
+        self.segmentView.salarLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        self.segmentView.locationLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    }else if(index == 1){
+        self.segmentView.positionLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        self.segmentView.salarLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        self.segmentView.locationLabel.textColor = [UIColor blueColor] ;
+    }else{
+        self.segmentView.positionLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        self.segmentView.salarLabel.textColor = [UIColor blueColor];
+        self.segmentView.locationLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1] ;
+        
+    }
+}
+
+
 
 - (void)attachSegmentView{
     self.segmentView = [[HZSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];

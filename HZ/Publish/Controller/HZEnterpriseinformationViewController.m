@@ -173,7 +173,7 @@
     self.qualificationsName.frame = CGRectMake(15, CGRectGetMaxY(self.horizontal1.frame) + 15, labelSize.width, labelSize.height);
     [self.scrollView addSubview:self.qualificationsName];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.companyName.frame) + 15, CGRectGetMaxY(self.horizontal1.frame) + 15, 20, 20)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.companyName.frame) + 17, CGRectGetMaxY(self.horizontal1.frame) + 15, 20, 20)];
     imageView.image = [UIImage imageNamed:@"sousuo"];
     [self.scrollView addSubview:imageView];
     //搜索框
@@ -203,7 +203,7 @@
             [self.zizhiBtn setTitle:string forState:UIControlStateNormal];
             [self.zizhiBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             self.zizhiBtn.titleLabel.font = [UIFont systemFontOfSize:labelText-1];
-            self.zizhiBtn.frame = CGRectMake(self.searchBar.frame.origin.x, CGRectGetMaxY(self.searchBar.frame) + 10 + self.count*(labelSize.height+20), self.searchBar.frame.size.width, labelSize.height+10);
+            self.zizhiBtn.frame = CGRectMake(imageView.frame.origin.x, CGRectGetMaxY(self.searchBar.frame) + 10 + self.count*(labelSize.height+20), self.searchBar.frame.size.width, labelSize.height+10);
             self.zizhiBtn.layer.cornerRadius = 3;
             self.zizhiBtn.layer.masksToBounds = YES;
             
@@ -283,6 +283,7 @@
     
     self.businessCooperationView.returnKeyType = UIReturnKeyDone;
 //    self.businessCooperationView.scrollEnabled = NO;
+    
     self.businessCooperationView.text = @"请介绍贵公司提供的商业合作";
     self.businessCooperationView.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     self.businessCooperationView.delegate =self;
@@ -733,6 +734,17 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if (self.businessCooperationView == textView) {
         self.businessCooperationView.text = @"";
+        self.businessCooperationView.textColor = [UIColor blackColor];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    if (self.businessCooperationView == textView) {
+        if (textView.text.length == 0) {
+            self.businessCooperationView.text = @"请介绍贵公司提供的商业合作";
+            self.businessCooperationView.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+        }
+    
     }
 }
 
