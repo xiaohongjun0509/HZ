@@ -52,10 +52,15 @@
 }
 
 -(void)apply:(UIButton* )sender{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
     NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.phone];
     UIWebView * callWebview = [[UIWebView alloc] init];
     [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
     [self.view addSubview:callWebview];
+}
     
 }
 - (UIView *)footer{

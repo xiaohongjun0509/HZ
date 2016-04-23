@@ -11,7 +11,7 @@
 #import "HZPlaceModel.h"
 #import "MbPaser.h"
 #import "HZEditSingleSelectionViewController.h"
-@interface HZRecruitmentViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
+@interface HZRecruitmentViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,UIScrollViewDelegate,UIAlertViewDelegate,UITextViewDelegate>
 {
     CGSize textSize;
         CGSize textSize1;
@@ -116,14 +116,33 @@
 @property(nonatomic,strong)NSMutableArray* educationList;
 @property(nonatomic,strong)NSMutableArray* salaryList;
 @property (nonatomic, assign) CGFloat introduceWidth;
-
+@property (nonatomic, copy) NSString *tip1;
+@property (nonatomic, copy) NSString *tip2;
 @end
 
 @implementation HZRecruitmentViewController
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (textView == self.jobRequirements) {
+        self.jobRequirements.text = @"";
+    }
+    if (textView == self.companyProfile) {
+        self.companyProfile.text = @"";
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    if (textView == self.jobRequirements &&  self.jobRequirements.text.length == 0) {
+        self.jobRequirements.text = self.tip1;
+    }
+    if (textView == self.companyProfile && self.companyProfile.text.length == 0) {
+        self.companyProfile.text = self.tip2;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tip1 = @"请描述工作职责等等";
+    self.tip2 = @"请介绍贵公司的基本情况";
    self.title = [NSString stringWithFormat:@"填写招聘信息(%@)",self.cityName];
     self.view.backgroundColor = [UIColor whiteColor];
   
@@ -154,15 +173,16 @@
     textSize2 = [self.companyProfile.text sizeWithFont:self.companyProfile.font constrainedToSize:CGSizeMake(ScreenWidth-61-textSize.width, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     
     [self onCreate];
-//    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-27) style:UITableViewStyleGrouped];
-//    self.tableView.dataSource = self;
-//    self.tableView.delegate = self;
-//    [self.tableView reloadData];
-//    [self.view addSubview:self.tableView];
+    
     
     
 }
 
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view resignFirstResponder];
+    [self.view endEditing:YES];
+}
 //应聘职位
 -(void)getPosition{
     NSURL *url = [NSURL URLWithString:hopeposition];
@@ -597,8 +617,9 @@
     //任职要求介绍
     self.jobRequirements = [[UITextView alloc] init];
     //要优化
-//    self.jobRequirements.placeholder = @"请描述工作职责等等";
-//    self.jobRequirements.delegate = self;
+    self.jobRequirements.text = self.tip1;
+    self.jobRequirements.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.jobRequirements.delegate = self;
     self.jobRequirements.returnKeyType = UIReturnKeyDone;
     self.jobRequirements.font = [UIFont systemFontOfSize:labelText];
     self.jobRequirements.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
@@ -633,8 +654,9 @@
     
     //任职要求介绍
     self.companyProfile = [UITextView new];
-//    self.companyProfile.placeholder = @"请介绍贵公司的基本情况";
-//    self.companyProfile.delegate = self;
+    self.companyProfile.text = self.tip2;
+    self.companyProfile.delegate = self;
+    self.companyProfile.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     self.companyProfile.returnKeyType = UIReturnKeyDone;
     self.companyProfile.font = [UIFont systemFontOfSize:labelText];
     self.companyProfile.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
@@ -1261,6 +1283,8 @@
     [UIView commitAnimations];
         
     }
+    
+   
 }
 
 //- (void)textFieldDidChange:(UITextField *)textField
@@ -1310,6 +1334,7 @@
         self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y + 216, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
         [UIView commitAnimations];
     }
+    
     
    
 }

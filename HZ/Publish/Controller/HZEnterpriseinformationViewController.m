@@ -178,10 +178,11 @@
     [self.scrollView addSubview:imageView];
     //搜索框
     self.searchBar = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 5,CGRectGetMaxY(self.horizontal1.frame) + 8, viewWidth-labelSize.width*3.2+10, labelSize.height+14)];
+    self.searchBar.font = [UIFont systemFontOfSize:labelText];
 //    self.searchBar.delegate = self;
     self.searchBar.text = @"请填写资质";
-    
-//    self.searchBar.backgroundColor = [UIColor blueColor];
+    self.searchBar.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+
     self.searchBar.layer.cornerRadius = 4;
     self.searchBar.layer.masksToBounds = YES;
 //    self.searchBar.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -214,15 +215,10 @@
             //删除按钮
             for (int i = 0; i<self.buttonTitles.count; i++) {
                 self.deleteBtn = [[UIButton alloc]init];
-                [self.deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
-                self.deleteBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
-                [self.deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [self.deleteBtn setBackgroundColor:[UIColor redColor]];
-                self.deleteBtn.frame = CGRectMake(viewWidth - 55 , CGRectGetMaxY(self.searchBar.frame) + 10 + i*(labelSize.height+20), 50, labelSize.height+10);
-                self.deleteBtn.layer.cornerRadius = labelSize.height/2+5;
-                self.deleteBtn.layer.masksToBounds = YES;
+                self.deleteBtn.frame = CGRectMake(viewWidth - 40 , CGRectGetMaxY(self.searchBar.frame) + 10 + i*(labelSize.height+20), 30, labelSize.height+10);
                 [self.deleteBtn addTarget:self action:@selector(deleteBtn:) forControlEvents:UIControlEventTouchUpInside];
                 self.deleteBtn.tag = i + 1000;
+                [self.deleteBtn setImage:[UIImage imageNamed:@"shanchu"] forState:UIControlStateNormal];
                 [self.scrollView addSubview:self.deleteBtn];
                 
             }
@@ -281,14 +277,15 @@
         self.businessCooperationView.text = [self.dic objectForKey:@"textView"];
         NSDictionary* tdic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:labelText],NSFontAttributeName, nil];
         CGSize acsize = [self.businessCooperationView.text boundingRectWithSize:CGSizeMake(viewWidth-labelSize.width*2, 300) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:tdic context:nil].size;
-        self.businessCooperationView.frame = CGRectMake(CGRectGetMaxX(self.line3.frame)+10, CGRectGetMaxY(self.horizontal2.frame) + 8, viewWidth-labelSize.width*2, acsize.height);
+        self.businessCooperationView.frame = CGRectMake(CGRectGetMaxX(self.line3.frame)+10, CGRectGetMaxY(self.horizontal2.frame) + 8, viewWidth-labelSize.width*2, acsize.height + 30);
     
     }
     
     self.businessCooperationView.returnKeyType = UIReturnKeyDone;
 //    self.businessCooperationView.scrollEnabled = NO;
+    self.businessCooperationView.text = @"请介绍贵公司提供的商业合作";
+    self.businessCooperationView.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     self.businessCooperationView.delegate =self;
-    self.businessCooperationView.textColor = [UIColor blackColor];
     self.businessCooperationView.font = [UIFont systemFontOfSize:labelText];
     [self.scrollView addSubview:self.businessCooperationView];
 
@@ -607,71 +604,8 @@
     return YES;
 }
 
-//- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller{
-//    
-//    [searchDisplayController_.searchResultsTableView setDelegate:self];
-//    
-//}
-
-//- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
-//    
-//    [self.searchBar resignFirstResponder];
-//}
-
-//添加资质按钮
-//-(void)addBtn:(UIButton*)sender{
-
-//    [self.scrollView removeFromSuperview];
-//    if (self.searchBar.text.length!=0) {
-//        if ([self.buttonTitles containsObject:self.searchBar.text]) {
-//            
-//        }else{
-//            [self.buttonTitles addObject:self.searchBar.text];
-//            [self.zidic setObject:self.searchBar.text forKey:@"zizhi"];
-//            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.zidic options:0 error:nil];
-//            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//            [self.muStr appendString:[NSString stringWithFormat:@"%@",jsonString]];
-//            [self.ziarray addObject:jsonString];
-//        }
-//        NSString *ns=[self.ziarray componentsJoinedByString:@","];
-//        NSString* string1 = @"[";
-//        NSString* string2 = @"]";
-//        self.zizhi = [NSString stringWithFormat:@"%@%@%@", string1, ns,string2 ];
-//        
-//    }else{
-//        
-//    
-//    }
-//    
-//
-//    
-//    if (self.companyField.text.length!=0) {
-//           [self.dic setObject:self.companyField.text forKey:@"company"];
-//    }else if (self.businessCooperationField.text.length!=0){
-//    
-//     [self.dic setObject:self.businessCooperationField.text forKey:@"businessCooperation"];
-//    }else if (self.workPlaceField.text.length != 0){
-//    
-//      [self.dic setObject:self.workPlaceField.text forKey:@"workPlace"];
-//    }else if (self.contactPersonField.text.length != 0){
-//    
-//        [self.dic setObject:self.contactPersonField.text forKey:@"contactPerson"];
-//    }else if (self.telephoneNumberField.text.length!=0){
-//    
-//       [self.dic setObject:self.telephoneNumberField.text forKey:@"telephoneNumber"];
-//    }else if (self.businessCooperationView.text.length!=0){
-//        [self.dic setObject:self.businessCooperationView.text forKey:@"textView"];
-//        
-//    }
-//
-//    
-//   
-//
-//    [self onCreate];
-//    [self.view1 removeFromSuperview];
-
     
-//}
+
 
 //删除资质按钮
 -(void)deleteBtn:(UIButton*)sender{
@@ -796,6 +730,11 @@
    
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (self.businessCooperationView == textView) {
+        self.businessCooperationView.text = @"";
+    }
+}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"]) {

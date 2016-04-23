@@ -319,44 +319,52 @@
     [self.scrollView addSubview:self.horizontal6];
     
     //电话
-    self.telephone = [[UILabel alloc]init];
-    self.telephone.text = @"电话";
-    self.telephone.font = [UIFont systemFontOfSize:labelText];
-    self.telephone.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
-    self.telephone.textAlignment = NSTextAlignmentRight;
-    self.telephone.frame = CGRectMake(15,CGRectGetMaxY(self.horizontal6.frame) + 15, textSize.width, textSize.height);
-    [self.scrollView addSubview:self.telephone];
+//    self.telephone = [[UILabel alloc]init];
+//    self.telephone.text = @"电话";
+//    self.telephone.font = [UIFont systemFontOfSize:labelText];
+//    self.telephone.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+//    self.telephone.textAlignment = NSTextAlignmentRight;
+//    self.telephone.frame = CGRectMake(15,CGRectGetMaxY(self.horizontal6.frame) + 15, textSize.width, textSize.height);
+//    [self.scrollView addSubview:self.telephone];
     //竖线6
-    self.line6 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.workplace.frame)+10,CGRectGetMaxY(self.horizontal6.frame) + 10, 1, textSize.height+10)];
-    self.line6.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
-    [self.scrollView addSubview:self.line6];
+//    self.line6 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.workplace.frame)+10,CGRectGetMaxY(self.horizontal6.frame) + 10, 1, textSize.height+10)];
+//    self.line6.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+//    [self.scrollView addSubview:self.line6];
     
     //号码
-    self.telephoneNumber = [[UILabel alloc]init];
-    self.telephoneNumber.text = self.info.phone;
-    self.telephoneNumber.font = [UIFont systemFontOfSize:labelText];
-    self.telephoneNumber.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-    
-    CGSize telephoneNumberSize = [self.telephoneNumber.text sizeWithFont:self.telephoneNumber.font constrainedToSize:CGSizeMake(viewWidth-61-textSize.width, 300) lineBreakMode:NSLineBreakByWordWrapping];
-    self.telephoneNumber.frame = CGRectMake(CGRectGetMaxX(self.line6.frame)+10,CGRectGetMaxY(self.horizontal6.frame) + 15, telephoneNumberSize.width, telephoneNumberSize.height);
-    [self.scrollView addSubview:self.telephoneNumber];
+//    self.telephoneNumber = [[UILabel alloc]init];
+//    self.telephoneNumber.text = self.info.phone;
+//    self.telephoneNumber.font = [UIFont systemFontOfSize:labelText];
+//    self.telephoneNumber.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+//    
+//    CGSize telephoneNumberSize = [self.telephoneNumber.text sizeWithFont:self.telephoneNumber.font constrainedToSize:CGSizeMake(viewWidth-61-textSize.width, 300) lineBreakMode:NSLineBreakByWordWrapping];
+//    self.telephoneNumber.frame = CGRectMake(CGRectGetMaxX(self.line6.frame)+10,CGRectGetMaxY(self.horizontal6.frame) + 15, telephoneNumberSize.width, telephoneNumberSize.height);
+//    [self.scrollView addSubview:self.telephoneNumber];
     
     //横线7
-    self.horizontal7 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.telephone.frame)+15, viewWidth, 1)];
-    self.horizontal7.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
-    [self.scrollView addSubview:self.horizontal7];
+//    self.horizontal7 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.telephone.frame)+15, viewWidth, 1)];
+//    self.horizontal7.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+//    [self.scrollView addSubview:self.horizontal7];
     
     
     //发布
-    self.releaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth/4,CGRectGetMaxY(self.horizontal7.frame) + 10, viewWidth/2, 40)];
+    
+
+    self.releaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth/3,CGRectGetMaxY(self.horizontal6.frame) + 10, viewWidth/3, 30)];
     [self.releaseBtn setTitle:@"洽谈合作" forState:UIControlStateNormal];
     self.releaseBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
     [self.releaseBtn setBackgroundColor:[UIColor colorWithRed:0 green:193/255.0 blue:90/255.0 alpha:1]];
-    self.releaseBtn.layer.cornerRadius = 20;
+    self.releaseBtn.layer.cornerRadius = 15;
     self.releaseBtn.layer.masksToBounds = YES;
     [self.releaseBtn addTarget:self action:@selector(releaseB:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.releaseBtn];
     self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.releaseBtn.frame)+15);
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.image = [UIImage imageNamed:@"home_icon_call"];
+    imageView.frame = CGRectMake(6, 7, 15, 15);
+    [self.releaseBtn addSubview:imageView];
+    self.releaseBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     
 }
 
@@ -650,7 +658,12 @@
         [cell addSubview:self.telephoneNumber];
     }else if (indexPath.row==6){
         //发布
+        
+        
         self.releaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth/4, 10, viewWidth/2, 40)];
+        
+        
+        
         [self.releaseBtn setTitle:@"洽谈合作" forState:UIControlStateNormal];
         self.releaseBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
         [self.releaseBtn setBackgroundColor:[UIColor colorWithRed:0 green:193/255.0 blue:90/255.0 alpha:1]];
@@ -702,10 +715,14 @@
 }
 //洽谈合作
 -(void)releaseB:(UIButton*)sender{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"userid"]) {
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
     NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.info.phone];
     UIWebView * callWebview = [[UIWebView alloc] init];
     [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
     [self.view addSubview:callWebview];
-    
+    }
 }
 @end

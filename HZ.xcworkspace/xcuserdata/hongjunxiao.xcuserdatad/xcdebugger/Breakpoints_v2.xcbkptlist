@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Publish/Controller/HZRecruitmentViewController.m"
-            timestampString = "482935395.653916"
+            timestampString = "483075264.603376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1139"
-            endingLineNumber = "1139"
+            startingLineNumber = "1161"
+            endingLineNumber = "1161"
             landmarkName = "-down:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Publish/Controller/HZRecruitmentViewController.m"
-            timestampString = "482935395.653916"
+            timestampString = "483075264.603376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "774"
-            endingLineNumber = "774"
+            startingLineNumber = "796"
+            endingLineNumber = "796"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Publish/Controller/HZEnterpriseinformationViewController.m"
-            timestampString = "482937728.295155"
+            timestampString = "483074461.838601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "837"
-            endingLineNumber = "837"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
             landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Home/Controller/HZResumeDetailViewController.m"
-            timestampString = "482497179.58986"
+            timestampString = "483070395.479516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-collect"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Home/Controller/HZResumeDetailViewController.m"
-            timestampString = "482497455.167284"
+            timestampString = "483070395.479516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "-collect"
             landmarkType = "5">
          </BreakpointContent>
@@ -368,38 +368,6 @@
             startingLineNumber = "1312"
             endingLineNumber = "1312"
             landmarkName = "-requestBySerializingRequest:withParameters:error:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Home/Controller/MbEnterpriseDetailViewController.m"
-            timestampString = "482686132.282468"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "-initWithScrollView"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HZ/Home/Controller/MbEnterpriseDetailViewController.m"
-            timestampString = "482686132.282468"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-initWithScrollView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -496,6 +464,22 @@
             startingLineNumber = "56"
             endingLineNumber = "56"
             landmarkName = "+sendResumeInformationByUserid:area:introduces:name:sex:age:education:experience:position:salary:telephone:addeduArray:addworkArray:jieshao:result:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HZ/Home/Controller/MbEnterpriseDetailViewController.m"
+            timestampString = "483071438.01965"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "663"
+            endingLineNumber = "663"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

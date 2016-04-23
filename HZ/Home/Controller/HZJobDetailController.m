@@ -65,7 +65,7 @@
         [applyBtn addSubview:callImage];
         
         UILabel* applyLabel = [[UILabel alloc]init];
-        applyLabel.text = @"申请职位";
+        applyLabel.text = @"职位邀请";
         applyLabel.font = [UIFont systemFontOfSize:14];
         applyLabel.textColor = [UIColor whiteColor];
         CGSize applySize = [applyLabel.text sizeWithFont:applyLabel.font constrainedToSize:CGSizeMake(100, 100) lineBreakMode:NSLineBreakByWordWrapping];
