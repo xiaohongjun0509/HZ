@@ -121,7 +121,9 @@
     
     //横线1
     self.horizontal1 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.dateLabel.frame)+15, viewWidth, 1)];
-    self.horizontal1.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.horizontal1.backgroundColor = HEXCOLOR(0xcdcdcd);
+    
+    
     [self.scrollView addSubview:self.horizontal1];
     
     //资质
@@ -176,7 +178,7 @@
     }
     
     self.line1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.qualifications.frame)+10,CGRectGetMaxY(self.horizontal1.frame) + 10, 1,h)];
-    self.line1.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.line1.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.line1];
     
   
@@ -190,7 +192,7 @@
         y = CGRectGetMaxY(self.btn.frame)+15;
     }
     self.horizontal2 = [[UILabel alloc]initWithFrame:CGRectMake(0, y, viewWidth, 1)];
-    self.horizontal2.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.horizontal2.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.horizontal2];
     
     //区域
@@ -203,7 +205,7 @@
     [self.scrollView addSubview:self.region];
     
     self.line2 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.region.frame)+10,CGRectGetMaxY(self.horizontal2.frame) + 10, 1, self.region.frame.size.height+10)];
-    self.line2.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.line2.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.line2];
     
     self.regionLabel = [[UILabel alloc]init];
@@ -216,7 +218,7 @@
     
     //横线3
     self.horizontal3 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.region.frame)+15, viewWidth, 1)];
-    self.horizontal3.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.horizontal3.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.horizontal3];
     
     
@@ -232,7 +234,7 @@
     [self.scrollView addSubview:self.workplace];
     //竖线3
     self.line3 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.workplace.frame)+10,CGRectGetMaxY(self.horizontal3.frame) + 10, 1, textSize.height+10)];
-    self.line3.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.line3.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.line3];
     
     //地址
@@ -246,7 +248,7 @@
     [self.scrollView addSubview:self.place];
     //横线4
     self.horizontal4 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.workplace.frame)+15, viewWidth, 1)];
-    self.horizontal4.backgroundColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    self.horizontal4.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.horizontal4];
     
     
@@ -278,7 +280,7 @@
         self.line4 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.details.frame)+10, CGRectGetMaxY(self.horizontal4.frame) + 10, 1, detailsIntroductionSize.height+10)];
     }
     
-    self.line4.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.line4.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.line4];
     self.detailsIntroduction.frame = CGRectMake(CGRectGetMaxX(self.line4.frame)+10, CGRectGetMaxY(self.horizontal4.frame) + 15, textSize1.width, textSize1.height);
     [self.scrollView addSubview:self.detailsIntroduction];
@@ -286,7 +288,7 @@
     
     //横线5
     self.horizontal5 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.detailsIntroduction.frame)+15, viewWidth, 1)];
-    self.horizontal5.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.horizontal5.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.horizontal5];
     
     
@@ -301,7 +303,7 @@
     [self.scrollView addSubview:self.contactPerson];
     //竖线5
     self.line5 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.contactPerson.frame)+10,CGRectGetMaxY(self.horizontal5.frame) + 10, 1, textSize.height+10)];
-    self.line5.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.line5.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.line5];
     
     //名字
@@ -315,7 +317,7 @@
     
     //横线6
     self.horizontal6 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.contactPerson.frame)+15, viewWidth, 1)];
-    self.horizontal6.backgroundColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+    self.horizontal6.backgroundColor = HEXCOLOR(0xcdcdcd);
     [self.scrollView addSubview:self.horizontal6];
     
     //电话

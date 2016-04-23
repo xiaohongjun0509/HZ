@@ -287,7 +287,7 @@
     self.line2.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
 //    [self.scrollView addSubview:self.line2];
     //
-    self.company = [[UITextField alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.horizontal1.frame) + 10, ScreenWidth/3, companyLabelSize.height+10)];
+    self.company = [[UITextField alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.horizontal1.frame) + 10, ScreenWidth - 70, companyLabelSize.height+10)];
     self.company.delegate = self;
     self.company.returnKeyType = UIReturnKeyDone;
     self.company.font = [UIFont systemFontOfSize:labelText];
