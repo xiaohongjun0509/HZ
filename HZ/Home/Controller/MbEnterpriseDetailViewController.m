@@ -354,7 +354,7 @@
 
     self.releaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth/3,CGRectGetMaxY(self.horizontal6.frame) + 10, viewWidth/3, 30)];
     [self.releaseBtn setTitle:@"洽谈合作" forState:UIControlStateNormal];
-    self.releaseBtn.titleLabel.font = [UIFont systemFontOfSize:labelText];
+    self.releaseBtn.titleLabel.font = [UIFont systemFontOfSize:labelText + 1];
     [self.releaseBtn setBackgroundColor:[UIColor colorWithRed:0 green:193/255.0 blue:90/255.0 alpha:1]];
     self.releaseBtn.layer.cornerRadius = 15;
     self.releaseBtn.layer.masksToBounds = YES;
@@ -366,7 +366,7 @@
     imageView.image = [UIImage imageNamed:@"home_icon_call"];
     imageView.frame = CGRectMake(6, 7, 15, 15);
     [self.releaseBtn addSubview:imageView];
-    self.releaseBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    self.releaseBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
     
 }
 
