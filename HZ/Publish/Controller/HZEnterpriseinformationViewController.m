@@ -706,18 +706,27 @@
         NSString *string = [self.buttonTitles componentsJoinedByString:@","];
         [MbPaser sendInfoCompanyByUserid:self.userid company:self.companyField.text aptitude:string range:self.businessCooperationView.text area:self.place.titleLabel.text address:self.workPlaceField.text contact:self.contactPersonField.text phone:self.telephoneNumberField.text result:^(InfoCompanySaveResponse *response, NSError *error) {
             if (response.turn==200) {
-//                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                self.str = [NSString stringWithFormat:@"%d",response.turn];
-//                [alertView show];
-                [self dismissModalViewControllerAnimated:YES];
+                NSLog(@"%@",[NSThread currentThread]);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    self.str = [NSString stringWithFormat:@"%d",response.turn];
+                    [alertView show];
+                    [self dismissModalViewControllerAnimated:YES];
+                });
+
             }else{
-                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 
-                [alertView show];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    
+                    [alertView show];
+                });
+                
                 
             }
 
         }];
+        
     }
 
 }

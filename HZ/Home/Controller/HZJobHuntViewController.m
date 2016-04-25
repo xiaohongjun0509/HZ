@@ -78,9 +78,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if ([self.cityName isEqualToString:@"北京市"]) {
-        self.cityName = @"北京";
-    }
+//    if ([self.cityName isEqualToString:@"北京市"]) {
+//        self.cityName = @"北京";
+//    }
     
     self.title = [NSString stringWithFormat:@"找工作(%@)",self.cityName];
     [self registerCell:[HZJobHuntCell class]];

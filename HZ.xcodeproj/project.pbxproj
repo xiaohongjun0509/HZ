@@ -125,6 +125,11 @@
 		82E887301CA7995600279FBE /* HZPublishEnterpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E8872F1CA7995600279FBE /* HZPublishEnterpriseViewController.m */; };
 		82E887321CA79C2F00279FBE /* HZPublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E887311CA79C2F00279FBE /* HZPublishViewController.xib */; };
 		82E887351CA7A66E00279FBE /* JZQHttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E887341CA7A66E00279FBE /* JZQHttpTools.m */; };
+		82EC22441CCE183400812550 /* HZHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EC22421CCE183400812550 /* HZHotCityCell.m */; };
+		82EC22451CCE183400812550 /* HZHotCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82EC22431CCE183400812550 /* HZHotCityCell.xib */; };
+		82EC22491CCE218B00812550 /* HZLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EC22471CCE218B00812550 /* HZLocationCell.m */; };
+		82EC224A1CCE218B00812550 /* HZLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82EC22481CCE218B00812550 /* HZLocationCell.xib */; };
+		82EC224C1CCE58EB00812550 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EC224B1CCE58EB00812550 /* CoreLocation.framework */; };
 		B2E8D2750D31D419724B34FE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72647898094ED1CB1FB960DC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +345,13 @@
 		82E887311CA79C2F00279FBE /* HZPublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZPublishViewController.xib; sourceTree = "<group>"; };
 		82E887331CA7A66E00279FBE /* JZQHttpTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZQHttpTools.h; sourceTree = "<group>"; };
 		82E887341CA7A66E00279FBE /* JZQHttpTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZQHttpTools.m; sourceTree = "<group>"; };
+		82EC22411CCE183400812550 /* HZHotCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZHotCityCell.h; sourceTree = "<group>"; };
+		82EC22421CCE183400812550 /* HZHotCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZHotCityCell.m; sourceTree = "<group>"; };
+		82EC22431CCE183400812550 /* HZHotCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZHotCityCell.xib; sourceTree = "<group>"; };
+		82EC22461CCE218B00812550 /* HZLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLocationCell.h; sourceTree = "<group>"; };
+		82EC22471CCE218B00812550 /* HZLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLocationCell.m; sourceTree = "<group>"; };
+		82EC22481CCE218B00812550 /* HZLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZLocationCell.xib; sourceTree = "<group>"; };
+		82EC224B1CCE58EB00812550 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +359,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82EC224C1CCE58EB00812550 /* CoreLocation.framework in Frameworks */,
 				B2E8D2750D31D419724B34FE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +370,7 @@
 		53E82A71EF6831A7AB6071D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82EC224B1CCE58EB00812550 /* CoreLocation.framework */,
 				822B11911CA6166D0044CC8C /* Reveal.framework */,
 				72647898094ED1CB1FB960DC /* libPods.a */,
 			);
@@ -507,6 +521,12 @@
 				82B8D9211CC1FE0200E24556 /* HZResumeDetailTimeUpdateCell.xib */,
 				82B8D9371CC2951900E24556 /* MbEnterpriseTableViewCell.h */,
 				82B8D9381CC2951900E24556 /* MbEnterpriseTableViewCell.m */,
+				82EC22411CCE183400812550 /* HZHotCityCell.h */,
+				82EC22421CCE183400812550 /* HZHotCityCell.m */,
+				82EC22431CCE183400812550 /* HZHotCityCell.xib */,
+				82EC22461CCE218B00812550 /* HZLocationCell.h */,
+				82EC22471CCE218B00812550 /* HZLocationCell.m */,
+				82EC22481CCE218B00812550 /* HZLocationCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -888,6 +908,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82EC224A1CCE218B00812550 /* HZLocationCell.xib in Resources */,
 				82B8D9191CC10B6D00E24556 /* HZZiZhiViewController.xib in Resources */,
 				82BDE1491CAC000E007B035A /* HZResumeEditViewController.xib in Resources */,
 				827F99011CB9755100439489 /* HZNewEditResumeViewController.xib in Resources */,
@@ -896,6 +917,7 @@
 				82912C271CA676AA00098261 /* HZNavigationController.xib in Resources */,
 				827F990B1CBA001B00439489 /* HZEditEducationCell.xib in Resources */,
 				822B117A1CA589660044CC8C /* TableBaseViewController.xib in Resources */,
+				82EC22451CCE183400812550 /* HZHotCityCell.xib in Resources */,
 				82B943661CB28FA4009ECEA3 /* HZEnterpriseDetailController.xib in Resources */,
 				82912C3A1CA6D87F00098261 /* HZEnterpriseCell.xib in Resources */,
 				82912C1E1CA6510A00098261 /* HZJobHuntCell.xib in Resources */,
@@ -1049,6 +1071,7 @@
 				827F98DE1CB89C0C00439489 /* HZTwoSelectionViewController.m in Sources */,
 				82780CD41CBE859E00A7C759 /* ChineseString.m in Sources */,
 				82780CCB1CBE7E3C00A7C759 /* MbUserInfo.m in Sources */,
+				82EC22491CCE218B00812550 /* HZLocationCell.m in Sources */,
 				827F990A1CBA001B00439489 /* HZEditEducationCell.m in Sources */,
 				827F99131CBA2B0B00439489 /* HZEditDetailStudyModel.m in Sources */,
 				82B943471CB0FDBD009ECEA3 /* HZRecruitmentViewController.m in Sources */,
@@ -1057,6 +1080,7 @@
 				82912C2F1CA6D0D900098261 /* HZResumeViewController.m in Sources */,
 				82912C251CA6767F00098261 /* HZNavigationController.m in Sources */,
 				82E8872A1CA7993400279FBE /* HZPublishJobViewController.m in Sources */,
+				82EC22441CCE183400812550 /* HZHotCityCell.m in Sources */,
 				82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */,
 				822B11861CA614250044CC8C /* NewsViewController.m in Sources */,
 				82B8D9391CC2951900E24556 /* MbEnterpriseTableViewCell.m in Sources */,

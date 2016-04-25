@@ -44,6 +44,7 @@
 - (void)setCityName:(NSString *)cityName{
     _cityName = cityName;
     [[NSUserDefaults standardUserDefaults] setObject:cityName forKey:@"cityname"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.cityButton setTitle:cityName forState:UIControlStateNormal];
 }
 - (void)requestBanner{
