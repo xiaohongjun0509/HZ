@@ -72,7 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = [NSString stringWithFormat:@"看简历(%@)",self.cityName];
+    self.title = @"看简历";
     [self registerCell:[HZJobHuntCell class]];
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -24,8 +24,8 @@
     [super viewDidLoad];
     [self addSearchField];
     [self attachBackButton];
-    self.cityName = @"北京市";
-    self.title = [NSString stringWithFormat:@"企业通(%@)",self.cityName];
+    self.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];
+    self.title = [NSString stringWithFormat:@"企业通"];
     self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
 //    [self registerCell:[MbEnterpriseTableViewCell class]];
     [self.tableView registerClass:[MbEnterpriseTableViewCell class] forCellReuseIdentifier:@"MbEnterpriseTableViewCell"];

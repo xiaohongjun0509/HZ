@@ -169,7 +169,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
+    self.title = @"填写简历信息";
     [self customArray];
     [self getExperience];
     [self getEducation];

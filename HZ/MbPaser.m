@@ -279,7 +279,7 @@
         res.message = [jsonObject objectForKey:@"msg"];
         res.turn = [[jsonObject objectForKey:@"return"] intValue];
         NSLog(@"%@===%d",res.message,res.turn);
-        result(res, nil);
+        result(res, connectionError);
         
     }];
     

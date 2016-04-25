@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
-    self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
+    self.title = [NSString stringWithFormat:@"填写简历信息"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [self footer];

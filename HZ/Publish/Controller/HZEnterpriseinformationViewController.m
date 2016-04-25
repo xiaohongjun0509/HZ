@@ -79,7 +79,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = [NSString stringWithFormat:@"填写企业信息(%@)",self.cityName];
+    self.title = [NSString stringWithFormat:@"填写企业信息"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
     self.lists = @[@"市政公用施工总承包特级",@"市政公用工程总承包一级",@"市政公用工程总承包二级",@"市政公用工程总承包三级"];
@@ -705,10 +705,10 @@
         
         NSString *string = [self.buttonTitles componentsJoinedByString:@","];
         [MbPaser sendInfoCompanyByUserid:self.userid company:self.companyField.text aptitude:string range:self.businessCooperationView.text area:self.place.titleLabel.text address:self.workPlaceField.text contact:self.contactPersonField.text phone:self.telephoneNumberField.text result:^(InfoCompanySaveResponse *response, NSError *error) {
-            if (response.turn==200) {
+            if(!error) {
                 NSLog(@"%@",[NSThread currentThread]);
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"发布成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     self.str = [NSString stringWithFormat:@"%d",response.turn];
                     [alertView show];
                     [self dismissModalViewControllerAnimated:YES];

@@ -162,13 +162,17 @@
     }else{
         [self.scrollView resignFirstResponder];
         [self.view endEditing:YES];
+//        [self.introduction resignFirstResponder];
+        
     }
+    
+    
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tip = @"详细描述自身的工作能力等等";
-   self.title = [NSString stringWithFormat:@"填写简历信息(%@)",self.cityName];
+   self.title = @"填写简历信息";
     self.view.backgroundColor = [UIColor whiteColor];
     self.addeduArray = [NSMutableArray array];
     self.addworkArray = [NSMutableArray array];
@@ -713,7 +717,6 @@
     self.introduction.delegate = self;
     self.introduction.userInteractionEnabled = YES;
     self.introduction.textColor = [UIColor colorWithRed:227/255.0 green:227/255.0 blue:229/255.0 alpha:1];
-    [self.introduction setReturnKeyType:(UIReturnKeyDone)];
     self.introduction.keyboardAppearance=UIKeyboardAppearanceDefault;
     self.introduction.returnKeyType=UIReturnKeyDone;
     self.introduction.frame = CGRectMake(CGRectGetMaxX(self.line8.frame)+15,CGRectGetMaxY(self.tableView.frame) + 10, viewWidth-61-selfIntroductionSize.width, selfIntroductionSize.height+10);
@@ -1595,10 +1598,10 @@
 }
 
 #pragma mark 触摸屏幕回收键盘
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [self.view endEditing:YES];
+//}
 #pragma mark textfield收起键盘方法
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -1631,12 +1634,7 @@
     
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-  
-//    [self.introduction resignFirstResponder];
-//    [self.telephoneField resignFirstResponder];
-    return YES;
-}
+#pragma mark - UITextField delegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField==self.telephoneField) {
         return [self validateNumber:string];
@@ -1663,6 +1661,17 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+#pragma mark - UITextView
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    return YES;
+}
+
 
 
 

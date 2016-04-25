@@ -9,7 +9,7 @@
 #import "HZZiZhiViewController.h"
 #import  "HZCancelTableViewCell.h"
 #import "HZZiZhiModel.h"
-@interface HZZiZhiViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface HZZiZhiViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *upTableView;
 @property (weak, nonatomic) IBOutlet UITableView *downTableView;
 @property (nonatomic, copy) NSArray *qualityList;
@@ -27,10 +27,16 @@
         model.aptitude = self.textfield.text;
         [self.selectedList addObject:model];
         self.textfield.text = @"";
+        self.textfield.delegate = self;
         [self.downTableView reloadData];
     }
 }
 
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"资质详情";

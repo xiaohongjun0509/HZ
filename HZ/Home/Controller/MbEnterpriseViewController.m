@@ -30,7 +30,7 @@
     [super viewDidLoad];
     [self attachBackButton];
     self.freshCount=2;
-    self.title = [NSString stringWithFormat:@"企业通(%@)",self.cityName];
+    self.title = @"企业通";
     self.view.backgroundColor = [UIColor whiteColor];
     self.lists = [NSMutableArray array];
     self.dictionary = [[NSDictionary alloc]init];

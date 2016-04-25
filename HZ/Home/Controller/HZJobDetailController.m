@@ -20,10 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = [NSString stringWithFormat:@"工作详情(%@)",self.cityName];
+    self.title = [NSString stringWithFormat:@"工作详情"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.titleArray = @[@"标题",@"",@"",@"薪资待遇",@"学历要求",@"经验要求",@"区域",@"工作地点",@"任职要求",@"公司简介",@"联系人",@"电话"];
+    self.titleArray = @[@"标题",@"",@"",@"薪资待遇",@"学历要求",@"经验要求",@"区域",@"工作地点",@"任职要求",@"公司简介",@"联系人"];
     self.dict  = @{self.titleArray[0]:self.model.title,
                    self.titleArray[1]:self.model.title,
                    self.titleArray[2]:self.model.experience,
@@ -35,7 +35,6 @@
                    self.titleArray[8]:self.model.demand,
                    self.titleArray[9]:self.model.aboutus,
                    self.titleArray[10]:self.model.linkman,
-                   self.titleArray[11]:self.model.phone
                    };
     
     
@@ -78,11 +77,15 @@
 }
 
 -(void)apply:(UIButton* )sender{
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.phone];
-    UIWebView * callWebview = [[UIWebView alloc] init];
-    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-    [self.view addSubview:callWebview];
-    
+    if(![[NSUserDefaults standardUserDefaults] stringForKey:@"userid"]){
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请先登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.phone];
+        UIWebView * callWebview = [[UIWebView alloc] init];
+        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+        [self.view addSubview:callWebview];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -135,7 +138,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    return 11;
 }
 
 @end

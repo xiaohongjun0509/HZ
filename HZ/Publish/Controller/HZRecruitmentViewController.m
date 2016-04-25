@@ -143,7 +143,7 @@
     [super viewDidLoad];
     self.tip1 = @"请描述工作职责等等";
     self.tip2 = @"请介绍贵公司的基本情况";
-   self.title = [NSString stringWithFormat:@"填写招聘信息(%@)",self.cityName];
+   self.title = @"填写招聘信息";
     self.view.backgroundColor = [UIColor whiteColor];
   
     self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
@@ -622,7 +622,7 @@
     self.jobRequirements.delegate = self;
     self.jobRequirements.returnKeyType = UIReturnKeyDone;
     self.jobRequirements.font = [UIFont systemFontOfSize:labelText];
-    self.jobRequirements.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+   
     
     
     self.line9 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.jobRequirementsLabel.frame)+15, CGRectGetMaxY(self.horizontal8.frame) + 10, 1, jobRequirementsLabelSize.height+10)];
@@ -659,7 +659,7 @@
     self.companyProfile.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     self.companyProfile.returnKeyType = UIReturnKeyDone;
     self.companyProfile.font = [UIFont systemFontOfSize:labelText];
-    self.companyProfile.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    
     //self.companyProfile.numberOfLines = 0;
     //根据控件大小改变字体大小
     self.line10 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.companyProfileLabel.frame)+15, CGRectGetMaxY(self.horizontal9.frame) + 10, 1, companyProfileLabelSize.height+10)];

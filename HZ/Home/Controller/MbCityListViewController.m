@@ -202,7 +202,7 @@
 {
 
     if(indexPath.section > 1){
-        NSArray* array = [self.letterResultArr objectAtIndex:indexPath.section];
+        NSArray* array = [self.letterResultArr objectAtIndex:indexPath.section - 2];
         NSString* str = [array objectAtIndex:indexPath.row];
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:str forKey:@"cityname"];

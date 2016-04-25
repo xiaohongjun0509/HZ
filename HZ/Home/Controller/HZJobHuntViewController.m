@@ -82,7 +82,7 @@
 //        self.cityName = @"北京";
 //    }
     
-    self.title = [NSString stringWithFormat:@"找工作(%@)",self.cityName];
+    self.title = [NSString stringWithFormat:@"找工作"];
     [self registerCell:[HZJobHuntCell class]];
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
     [self.tableView.mj_header beginRefreshing];
