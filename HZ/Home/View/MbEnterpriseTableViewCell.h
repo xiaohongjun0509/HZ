@@ -18,5 +18,5 @@
 @property (nonatomic, readonly) CGFloat finalH;
 
 - (void)loadContent:(MbUserInfo*)data;
-@property (nonatomic, strong)  UIViewController *delegate;
+
 @end

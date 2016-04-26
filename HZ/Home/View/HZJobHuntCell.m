@@ -31,7 +31,11 @@
     self.descLabel.text = model.company;
     self.jobLabel.text = model.position;
     self.wageLabel.text = model.wages;
-    self.timeLabel.text = @"2015-02-25";
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.rectime.integerValue];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt  setDateFormat:@"yyyy-MM-dd"];
+    NSString *time = [fmt stringFromDate:date];
+    self.timeLabel.text = time;
 }
 
 - (void)setResumeModel:(HZResumeModel *)resumeModel{
@@ -42,7 +46,11 @@
     self.jobLabel.text = desc;
     self.descLabel.text = resumeModel.title;
     self.wageLabel.text = resumeModel.wages;
-    self.timeLabel.text = @"2015-02-25";
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:resumeModel.restime.integerValue];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt  setDateFormat:@"yyyy-MM-dd"];
+    NSString *time = [fmt stringFromDate:date];
+    self.timeLabel.text = time;
 }
 
 +(CGFloat)cellHeight{

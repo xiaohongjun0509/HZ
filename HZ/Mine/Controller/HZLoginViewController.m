@@ -140,8 +140,8 @@
 //登录
 -(void)loginBtn:(UIButton*)sender{
     
-    self.nameField.text = @"18510248898";
-    self.passWordField.text = @"901017";
+    self.nameField.text = self.nameField.text;
+    self.passWordField.text = self.passWordField.text;
     //手机号验证正则表达式
     NSString *regex = @"^((1[0-9][0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
     
@@ -188,7 +188,7 @@
              }
     
          }
-                           failure:^(NSError *error)
+                    failure:^(NSError *error)
          {
              NSLog(@"error:%@",[error localizedDescription]);
          }];
@@ -211,7 +211,6 @@
 //新用户注册
 -(void)registBtn:(UIButton*)sender{
     HZRegistViewController *registVC = [[HZRegistViewController alloc]init];
-//    [self.navigationController pushViewController:registVC animated:YES];
     [self presentViewController:[[HZNavigationController alloc] initWithRootViewController:registVC] animated:YES completion:nil];
 
 }

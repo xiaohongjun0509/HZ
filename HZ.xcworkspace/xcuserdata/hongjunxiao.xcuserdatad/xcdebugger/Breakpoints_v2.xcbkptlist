@@ -202,12 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Home/Controller/MbEnterpriseViewController.m"
-            timestampString = "482569642.272841"
+            timestampString = "483356780.228865"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-requestDongtaiByInt:"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-startRequest"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -522,7 +522,7 @@
                   moduleName = "HZ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ihj/Desktop/HZ/HZ/Mine/Controller/MbModifyViewController.m"
-                  timestampString = "483328947.514974"
+                  timestampString = "483355697.833926"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "169"
@@ -537,7 +537,7 @@
                   moduleName = "HZ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ihj/Desktop/HZ/HZ/Mine/Controller/MbModifyViewController.m"
-                  timestampString = "483328947.515402"
+                  timestampString = "483355697.834087"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "170"
@@ -570,7 +570,7 @@
                   moduleName = "HZ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ihj/Desktop/HZ/HZ/MbPaser.m"
-                  timestampString = "483328947.516563"
+                  timestampString = "483355697.835415"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "698"
@@ -585,7 +585,7 @@
                   moduleName = "HZ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ihj/Desktop/HZ/HZ/MbPaser.m"
-                  timestampString = "483328947.516699"
+                  timestampString = "483355697.83568"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "698"
@@ -624,6 +624,22 @@
             startingLineNumber = "167"
             endingLineNumber = "167"
             landmarkName = "-verify"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HZ/Home/Controller/MbEnterpriseViewController.m"
+            timestampString = "483356780.228865"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-startRequest"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

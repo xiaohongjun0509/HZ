@@ -9,6 +9,9 @@
 #import "HZPublishEnterpriseViewController.h"
 #import "HZEnterpriseCell.h"
 #import "HZEnterpriseModel.h"
+#import "MbPaser.h"
+#import "MbEnterpriseTableViewCell.h"
+#import "MbEnterpriseDetailViewController.h"
 @interface HZPublishEnterpriseViewController ()
 
 @end
@@ -25,7 +28,7 @@
 
 - (void)adjustTableView{
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
-    [self registerCell:[HZEnterpriseCell class]];
+    [self.tableView registerClass:[MbEnterpriseTableViewCell class] forCellReuseIdentifier:@"MbEnterpriseTableViewCell"];
 }
 - (void)loadMoreData{
     [self refreshData];
@@ -48,7 +51,8 @@
             [self.dataList removeAllObjects];
         }
         NSDictionary *result = responseObject;
-        NSArray *array = [HZEnterpriseModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+        NSArray *array = [MbPaser paserEnterpriseByDic:result];
+//        NSArray *array = [HZEnterpriseModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
         if (array.count == 0) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }else{
@@ -66,9 +70,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    HZEnterpriseCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"HZEnterpriseCell"];
-    HZEnterpriseModel*model = self.dataList[indexPath.row];
-    cell.model = model;
+    MbEnterpriseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MbEnterpriseTableViewCell"];
+    MbUserInfo *model = self.dataList[indexPath.row];
+    [cell loadContent:model];
     return cell;
 }
 
@@ -83,7 +87,10 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    MbUserInfo *model = self.dataList[indexPath.row];
+    MbEnterpriseDetailViewController *controller = [[MbEnterpriseDetailViewController alloc]init];
+    controller.info = model;
+    [self presentVC:controller];
 }
 
 @end

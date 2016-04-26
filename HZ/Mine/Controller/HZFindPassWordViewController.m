@@ -182,20 +182,20 @@ static int count = 60;
         [alert show];
         
     }else{
-//    [JZQHttpTools postWithPath:CODE params:@{@"telephone":self.nameField.text}
-//                       success:^(id JSON)
-//     {
-//         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-//         [self.getNumber setEnabled:NO];
-//         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-//         [alert show];
-//         
-//         
-//     }
-//                       failure:^(NSError *error)
-//     {
-//         NSLog(@"error:%@",[error localizedDescription]);
-//     }];
+    [JZQHttpTools postWithPath:CODE params:@{@"telephone":self.nameField.text}
+                       success:^(id JSON)
+     {
+         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+         [self.getNumber setEnabled:NO];
+         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+         [alert show];
+         
+         
+     }
+                       failure:^(NSError *error)
+     {
+         NSLog(@"error:%@",[error localizedDescription]);
+     }];
     }
 }
 #pragma mark 更新时间
@@ -238,27 +238,27 @@ static int count = 60;
 
     
   
-//        [JZQHttpTools postWithPath:fingpassword params:@{@"telephone":self.nameField.text,@"code":self.safeWordField.text,@"password":self.passWordField.text}
-//                           success:^(id JSON)
-//         {
-//             if ([JSON[@"return"] isEqualToString:@"200"]) {
-//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-//                 alert.tag=1;
-//                 [alert show];
-//             }else{
-//                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-//                 alert.tag=2;
-//                 [alert show];
-//             
-//             }
-//             
-//            
-//             
-//         }
-//                           failure:^(NSError *error)
-//         {
-//             NSLog(@"error:%@",[error localizedDescription]);
-//         }];
+        [JZQHttpTools postWithPath:fingpassword params:@{@"telephone":self.nameField.text,@"code":self.safeWordField.text,@"password":self.passWordField.text}
+                           success:^(id JSON)
+         {
+             if ([JSON[@"return"] isEqualToString:@"200"]) {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                 alert.tag=1;
+                 [alert show];
+             }else{
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:JSON[@"msg"] message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                 alert.tag=2;
+                 [alert show];
+             
+             }
+             
+            
+             
+         }
+                           failure:^(NSError *error)
+         {
+             NSLog(@"error:%@",[error localizedDescription]);
+         }];
     
    
 }

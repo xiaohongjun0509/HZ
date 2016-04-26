@@ -8,11 +8,11 @@
 
 #import "MbEnterpriseTableViewCell.h"
 @interface MbEnterpriseTableViewCell()
-
+@property (nonatomic, weak) UIImageView *iv;
 @end
 
 @implementation MbEnterpriseTableViewCell
-@synthesize delegate;
+
 
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -20,28 +20,27 @@
 
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.array = @[@"钢结构一",@"钢结构二",@"钢结构三",@"钢结构四",@"钢结构五",@"钢结构六",@"钢结构七",@"钢结构八",@"......."];
         
       //公司名称
         self.nameLabel = [[UILabel alloc]init];
-        //self.nameLabel.text = @"浙江广发建设发展有限公司";
         self.nameLabel.numberOfLines = 0;
         self.nameLabel.font = [UIFont systemFontOfSize:labelText+2];
-
-        [self addSubview:self.nameLabel];
+        [self.contentView addSubview:self.nameLabel];
         
         //地区
         self.placeLabel = [[UILabel alloc]init];
-        //self.placeLabel.text = @"朝阳";
         self.placeLabel.font = [UIFont systemFontOfSize:labelText];
-        [self addSubview:self.placeLabel];
+        [self.contentView addSubview:self.placeLabel];
         //日期
         self.dateLabel = [[UILabel alloc]init];
-        //self.dateLabel.text = @"2015-06-01";
         self.dateLabel.font = [UIFont systemFontOfSize:labelText-1];
-        [self addSubview:self.dateLabel];
+        [self.contentView addSubview:self.dateLabel];
         
-      _finalH = CGRectGetMaxY(self.dateLabel.frame) + 10;
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.backgroundColor = HEXCOLOR(0xf8f8f8);
+        self.iv = imageView;
+        [self.contentView addSubview:self.iv];
+        
     }
     return self;
     
@@ -70,6 +69,10 @@
     self.dateLabel.text = currentDateStr;
     CGSize dateSize = [self.dateLabel.text sizeWithFont:self.dateLabel.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
     self.dateLabel.frame = CGRectMake(viewWidth-15-dateSize.width, CGRectGetMaxY(self.nameLabel.frame)+15, dateSize.width, dateSize.height);
-     _finalH = CGRectGetMaxY(self.dateLabel.frame) + 10;
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.iv.frame = CGRectMake(15, self.bounds.size.height - 1, ScreenWidth - 15, 1);
 }
 @end
