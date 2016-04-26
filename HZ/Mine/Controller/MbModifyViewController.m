@@ -172,43 +172,18 @@
             alertView.tag = response.turn;
                     [alertView show];
         }
-        
-        
-        
     }];
-    
-    
-//    if ([self.nePassWordField.text isEqualToString:self.surePassWordField.text]) {
-//        
-//        
-//    }else{
-//        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"两次输入的密码不一致" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alertView show];
-//    
-//    }
-
-
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag==200) {
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-        
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userid"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"telephone"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self dismissModalViewControllerAnimated:YES];
     }else{
     
     
     }
-
-//    for (UIViewController *controller in self.navigationController.viewControllers) {
-//        if ([controller isKindOfClass:[MbLoginViewController class]]) {
-//            
-//            MbLoginViewController*owr = (MbLoginViewController *)controller;
-//            [self.navigationController popToViewController:owr animated:YES];
-//            //[self.navigationController popToViewController:controller animated:YES];
-//        }
-//    }
 
 }
 

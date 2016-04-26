@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGn-5X-Vv4">
@@ -37,8 +37,8 @@
                             <constraint firstAttribute="height" constant="1" id="B5J-YR-EfM"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fv-sI-GUW">
-                        <rect key="frame" x="102" y="14" width="33" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fv-sI-GUW">
+                        <rect key="frame" x="102" y="14" width="203" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -48,13 +48,16 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="2Zt-Vx-jk8" secondAttribute="trailing" id="9yu-UY-tFL"/>
                     <constraint firstItem="5fv-sI-GUW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BQc-SL-h0g"/>
+                    <constraint firstAttribute="bottom" secondItem="4Gn-Xa-mZW" secondAttribute="bottom" constant="12" id="DXR-2f-0TU"/>
                     <constraint firstItem="2Zt-Vx-jk8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FMB-Ke-lyy"/>
                     <constraint firstItem="4Gn-Xa-mZW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="86" id="GGL-pv-emz"/>
                     <constraint firstItem="aGn-5X-Vv4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="O2o-uv-bgF"/>
                     <constraint firstItem="5fv-sI-GUW" firstAttribute="leading" secondItem="4Gn-Xa-mZW" secondAttribute="trailing" constant="15" id="ODp-KP-anM"/>
                     <constraint firstAttribute="bottom" secondItem="2Zt-Vx-jk8" secondAttribute="bottom" id="UK4-XL-4R7"/>
                     <constraint firstItem="4Gn-Xa-mZW" firstAttribute="leading" secondItem="aGn-5X-Vv4" secondAttribute="trailing" constant="15" id="lOb-aM-z86"/>
+                    <constraint firstItem="4Gn-Xa-mZW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="vDg-dd-ls9"/>
                     <constraint firstItem="4Gn-Xa-mZW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yJ6-9s-fyu"/>
+                    <constraint firstAttribute="trailing" secondItem="5fv-sI-GUW" secondAttribute="trailing" constant="15" id="zEB-dX-w2T"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

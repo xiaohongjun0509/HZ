@@ -99,7 +99,7 @@
          self.arraw3 = salarImage;
         [self.salaryBtn addSubview:salarImage];
         //横线
-        UILabel *ling3 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.positionBtn.frame), ScreenWidth, 1)];
+        UILabel *ling3 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.positionBtn.frame) - 2, ScreenWidth, 1)];
         ling3.backgroundColor = [UIColor colorWithRed:205/255.0 green:205/255.0 blue:205/255.0 alpha:1];
         [self addSubview:ling3];
         
@@ -132,19 +132,28 @@
 }
 
 - (void)position{
-//    self.positionLabel.textColor = [UIColor blueColor];
+    
+    self.arraw1.transform = CGAffineTransformMakeRotation(M_PI);
+    self.arraw2.transform = CGAffineTransformIdentity;
+    self.arraw3.transform = CGAffineTransformIdentity;
     if (self.positionBlock) {
         self.positionBlock();
     }
 }
 
 - (void)location{
+    self.arraw1.transform = CGAffineTransformIdentity;
+    self.arraw2.transform = CGAffineTransformMakeRotation(M_PI);
+    self.arraw3.transform = CGAffineTransformIdentity;
     if (self.locationBlock) {
         self.locationBlock();
     }
 }
 
 - (void)salary{
+    self.arraw1.transform = CGAffineTransformIdentity;
+    self.arraw3.transform = CGAffineTransformMakeRotation(M_PI);
+    self.arraw2.transform = CGAffineTransformIdentity;
     if (self.salaryBlock) {
         self.salaryBlock();
     }

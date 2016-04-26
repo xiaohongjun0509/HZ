@@ -16,5 +16,5 @@
 @interface HZResumeDetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-
++ (CGFloat)cellHeight:(NSString *)content;
 @end

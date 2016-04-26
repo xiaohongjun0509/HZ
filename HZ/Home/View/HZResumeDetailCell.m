@@ -15,6 +15,9 @@
 //    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-
++ (CGFloat)cellHeight:(NSString *)content{
+    CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(ScreenWidth - 102 - 15, 1000)];
+    return size.height + 28;
+}
 
 @end

@@ -31,7 +31,7 @@
                    self.titleArray[4]:self.model.diploma,
                    self.titleArray[5]:self.model.experience,
                    self.titleArray[6]:self.model.area,
-                   self.titleArray[7]:self.model.position,
+                   self.titleArray[7]:self.model.address,
                    self.titleArray[8]:self.model.demand,
                    self.titleArray[9]:self.model.aboutus,
                    self.titleArray[10]:self.model.linkman,
@@ -133,6 +133,12 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == self.titleArray.count - 2 || indexPath.row == self.titleArray.count - 3) {
+        NSString *title = self.titleArray[indexPath.row];
+        NSString *content = self.dict[title];
+        return [HZResumeDetailCell cellHeight:content];
+    }
+    
         return 44;
     
 }
