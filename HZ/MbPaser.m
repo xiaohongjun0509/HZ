@@ -691,7 +691,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSMutableDictionary* dic = [[NSMutableDictionary alloc]init];
     
-    [dic setObject:telePhone forKey:@"telephone"];
+      [dic setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"telephone"] forKey:@"telephone"];
       [dic setObject:oldWord forKey:@"password"];
       [dic setObject:newWordOne forKey:@"newpasswordone"];
       [dic setObject:newWordTwo forKey:@"newpasswordtwo"];
