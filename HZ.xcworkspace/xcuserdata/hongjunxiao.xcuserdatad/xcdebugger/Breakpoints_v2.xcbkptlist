@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HZ/Publish/Controller/HZRecruitmentViewController.m"
-            timestampString = "483116629.300571"
+            timestampString = "483323653.155707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1158"
-            endingLineNumber = "1158"
+            startingLineNumber = "1167"
+            endingLineNumber = "1167"
             landmarkName = "-down:"
             landmarkType = "5">
          </BreakpointContent>

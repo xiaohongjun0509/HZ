@@ -1116,11 +1116,20 @@
     
     [MbPaser sendResumeRecruitByUserid:self.userid title:self.titleDetail.text company:self.company.text ways:self.zhao position:self.type.titleLabel.text area:self.workPlace.titleLabel.text address:self.placeField.text experience:self.years.titleLabel.text diploma:self.education.titleLabel.text wages:self.money.titleLabel.text demand:self.jobRequirements.text aboutus:self.companyProfile.text linkman:self.name.text phone:self.telephoneNumber.text result:^(RecruitSaveResponse *response, NSError *error) {
        
+        
+        
         if (response.turn == 200) {
-            [self dismissModalViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+                [self dismissModalViewControllerAnimated:YES];
+            });
+            
         }else{
-            
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            });
         }
     }];
     
