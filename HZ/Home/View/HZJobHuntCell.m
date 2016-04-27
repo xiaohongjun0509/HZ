@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (nonatomic, copy) void (^operateBlock)(NSInteger);
 
 @end
 
@@ -56,4 +57,28 @@
 +(CGFloat)cellHeight{
     return 93;
 }
+
+//- (void)addLongGesture:(void (^)(NSInteger))block{
+//    NSArray *gestureArray = self.contentView.gestureRecognizers;
+//    __block BOOL haveLongGes = NO;
+//   [gestureArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//       if ([obj isKindOfClass:[UILongPressGestureRecognizer class]]) {
+//           haveLongGes = YES;
+//           *stop = YES;
+//       }
+//   }];
+//    if (!haveLongGes) {
+//        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(operate)];
+//        self.operateBlock = block;
+//        [self.contentView addGestureRecognizer:longPress];
+//    }else{
+//        self.operateBlock = block;
+//    }
+//}
+//
+//- (void)operate{
+//    if (self.operateBlock) {
+////        self.operateBlock();
+//    }
+//}
 @end

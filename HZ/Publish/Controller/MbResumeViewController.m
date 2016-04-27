@@ -227,7 +227,6 @@
     NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
     self.placeList = [MbPaser paserPlaceByDic:dic];
-
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView1 reloadData];
     });

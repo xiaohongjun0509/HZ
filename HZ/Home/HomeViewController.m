@@ -33,6 +33,7 @@
     [self customScrollview];
     [self customButtons];
     [self  requestBanner];
+    self.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];
     if(!self.cityName){
         self.cityName = @"北京市";
         [[NSUserDefaults standardUserDefaults] setObject:@"北京市" forKey:@"cityname"];

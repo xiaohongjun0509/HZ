@@ -143,7 +143,7 @@
     [super viewDidLoad];
     self.tip1 = @"请描述工作职责等等";
     self.tip2 = @"请介绍贵公司的基本情况";
-   self.title = @"填写招聘信息";
+    self.title = @"填写招聘信息";
     self.view.backgroundColor = [UIColor whiteColor];
   
     self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
@@ -180,8 +180,11 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
     [self.view resignFirstResponder];
     [self.view endEditing:YES];
+    [self.jobRequirements resignFirstResponder];
+//    [[UIApplication sharedApplication].keyWindow endEditing:YES];
 }
 //应聘职位
 -(void)getPosition{
@@ -196,7 +199,7 @@
 //地区
 -(void)getPlace{
  
-    [[NetworkManager manager] startRequest:[NSString stringWithFormat:@"%@area=%@",threeplace,self.cityName] completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    [[NetworkManager manager] startRequest:[NSString stringWithFormat:@"%@area=%@",threeplace,[[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"]] completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
             NSDictionary *dict = (NSDictionary *)responseObject;
             self.placeList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
@@ -1263,10 +1266,7 @@
 
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
+
 
 
 #pragma mark 触摸屏幕回收键盘
@@ -1277,7 +1277,6 @@
 #pragma mark textfield收起键盘方法
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    //[textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     if ([self.titleDetail isEditing]||[self.company isEditing]||[self.placeField isEditing]) {
         
     }else{
@@ -1293,42 +1292,12 @@
    
 }
 
-//- (void)textFieldDidChange:(UITextField *)textField
-//{
-//    
-//    if (textField == self.titleDetail) {
-//        if (textField.text.length > 10) {
-//            textField.text = [textField.text substringToIndex:10];
-//        }
-//    }else if (textField == self.company){
-//        
-//        if (textField.text.length > 20) {
-//            textField.text = [textField.text substringToIndex:20];
-//        }
-//        
-//    }else if (textField == self.placeField){
-//        
-//        if (textField.text.length > 15) {
-//            textField.text = [textField.text substringToIndex:15];
-//        }
-//        
-//    }else if (textField == self.jobRequirements){
-//    
-//        if (textField.text.length > 100) {
-//            textField.text = [textField.text substringToIndex:100];
-//        }
-//    }else if (textField == self.companyProfile){
-//        if (textField.text.length > 100) {
-//            textField.text = [textField.text substringToIndex:100];
-//        }
-//    
-//    }else if (textField == self.name){
-//        if (textField.text.length > 6) {
-//            textField.text = [textField.text substringToIndex:6];
-//        }
-//    
-//    }
-//}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
 
 #pragma mark 编辑之后frame弹回
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -1340,9 +1309,7 @@
         self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y + 216, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
         [UIView commitAnimations];
     }
-    
-    
-   
 }
+
 
 @end

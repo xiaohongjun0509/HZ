@@ -60,7 +60,7 @@
     [super viewDidLoad];
     [self attachBackButton];
     NSString *name = [[NSUserDefaults standardUserDefaults] valueForKey:@"cityname"];
-    self.title = @"企业详情(%@)";
+    self.title = @"企业详情";
     self.view.backgroundColor = [UIColor whiteColor];
     self.array = @[@"钢结构钢一",@"钢结构钢二"];
     self.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];

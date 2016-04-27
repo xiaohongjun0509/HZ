@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "HZJobModel.h"
 #import "HZResumeModel.h"
+
+
+
 static NSString * const kHZJobHuntCell = @"HZJobHuntCell";
 
 @interface HZJobHuntCell : UITableViewCell
@@ -17,7 +20,7 @@ static NSString * const kHZJobHuntCell = @"HZJobHuntCell";
 
 @property (nonatomic, strong) HZResumeModel *resumeModel;
 
-
+//- (void)addLongGesture:(void (^)(NSInteger))block;
 + (CGFloat)cellHeight;
 
 @end
