@@ -43,20 +43,6 @@
 
 -(void)postRequest:(NSString *)url completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler{
     [self startRequest:url completionHandler:completionHandler];
-     //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-//    [request setHTTPMethod:@"POST"];
-//    NSString *str = @"type=focus-c";//设置参数
-//    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-//    [request setHTTPBody:data];
-//    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-//        
-//        if(completionHandler){
-//            completionHandler(nil,responseObject,nil);
-//        }
-//    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-//        NSLog(@"%@",error);
-//    }];
-//    [op start];
+
 }
 @end

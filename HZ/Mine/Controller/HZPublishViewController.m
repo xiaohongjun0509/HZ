@@ -39,19 +39,19 @@
     
     
     HZPublishJobViewController *jobVC = [HZPublishJobViewController new];
-    jobVC.requestOfPublish = YES;
+    jobVC.requestOfPublish = self.requestOfPublish;
     [self addChildViewController:jobVC];
     jobVC.view.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:jobVC.view];
     
     HZPublishResumeViewController *resumeVC = [HZPublishResumeViewController new];
-    resumeVC.requestOfPublish = YES;
+    resumeVC.requestOfPublish = self.requestOfPublish;
     [self addChildViewController:resumeVC];
     resumeVC.view.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:resumeVC.view];
     
     HZPublishEnterpriseViewController *enterpriseVC = [HZPublishEnterpriseViewController new];
-    enterpriseVC.requestOfPublish = YES;
+    enterpriseVC.requestOfPublish = self.requestOfPublish;
     [self addChildViewController:enterpriseVC];
     enterpriseVC.view.frame = CGRectMake(ScreenWidth * 2, 0, ScreenWidth, ScreenHeight - 64);
     [self.scrollView addSubview:enterpriseVC.view];

@@ -123,7 +123,10 @@
     NSString *userid= [[HZUserManager manager] userid];
     NSString *urlPath = self.requestOfPublish ? myfindwork : workCollect;
     WEAKSELF
-    [[NetworkManager manager] postRequest:urlPath parameters:@{@"userid":userid,@"hasNext":[NSString stringWithFormat:@"%ld",self.requestPage] } completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    
+    NSString *tmp = self.requestOfPublish ? myfindwork : workCollect;
+    NSString *url = [NSString stringWithFormat:@"%@userid=%@&hasNext=%d",tmp,userid,self.requestPage];
+    [[NetworkManager manager] postRequest:url completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             return ;
         }
@@ -142,7 +145,30 @@
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
     }];
- 
+    
+
+//    }];
+//    
+//    [[NetworkManager manager] postRequest:urlPath parameters:@{@"userid":[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"],@"hasNext":[NSString stringWithFormat:@"%ld",self.requestPage] } completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//        if (error) {
+//            return ;
+//        }
+//        if (self.requestPage == 1) {
+//            [self.dataList removeAllObjects];
+//        }
+//        NSDictionary *result = responseObject;
+//        NSArray *array = [HZJobModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+//        if (array.count == 0) {
+//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//        }else{
+//            weakSelf.requestPage++;
+//        }
+//        [weakSelf.dataList addObjectsFromArray:array];
+//        [weakSelf.tableView reloadData];
+//        [weakSelf.tableView.mj_header endRefreshing];
+//        [weakSelf.tableView.mj_footer endRefreshing];
+//    }];
+// 
 }
 
 
