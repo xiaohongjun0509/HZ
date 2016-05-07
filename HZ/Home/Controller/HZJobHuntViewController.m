@@ -98,6 +98,7 @@
     self.segmentView = [[HZSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
     WEAKSELF
     self.segmentView.positionBlock = ^{
+        weakSelf.requestPage = 1;
         weakSelf.singlgSelectionController.view.hidden = YES;
         [UIView animateWithDuration:0.3 animations:^{
             weakSelf.postionController.view.hidden = NO;
@@ -107,6 +108,7 @@
     };
     
     self.segmentView.locationBlock = ^{
+        weakSelf.requestPage = 1;
         weakSelf.postionController.view.hidden = YES;
         weakSelf.singlgSelectionController.singleType = HZSingleTypeArea;
         weakSelf.singlgSelectionController.dataList = weakSelf.areaList;
@@ -118,6 +120,7 @@
     };
     
     self.segmentView.salaryBlock = ^{
+        weakSelf.requestPage = 1;
         weakSelf.postionController.view.hidden = YES;
         weakSelf.singlgSelectionController.singleType = HZSingleTypeWage;
         weakSelf.singlgSelectionController.dataList = weakSelf.wageList;
