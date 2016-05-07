@@ -14,6 +14,9 @@
 @interface HZPublishJobViewController ()
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, copy) NSString *operationTitle1;
+@property (nonatomic, copy) NSString *operationTitle2;
+
 @end
 
 @implementation HZPublishJobViewController
@@ -23,9 +26,14 @@
     
     [self adjustTableView];
     [self.tableView.mj_header beginRefreshing];
+    UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(operate:)];
+    [self.tableView addGestureRecognizer:ges];
     if (self.requestOfPublish) {
-        UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(operate:)];
-        [self.tableView addGestureRecognizer:ges];
+        self.operationTitle1 = @"置顶";
+        self.operationTitle2 = @"删除";
+    }else{
+        self.operationTitle1 = @"取消收藏";
+        self.operationTitle2 = @"全部取消收藏";
     }
 }
 
@@ -56,9 +64,8 @@
         UIButton *makeTop = [[UIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), viewWidth-30, 44)];
         [makeTop addTarget:self action:@selector(makeToTop:) forControlEvents:UIControlEventTouchUpInside];
         makeTop.backgroundColor = [UIColor whiteColor];
-        [makeTop setTitle:@"置顶" forState:UIControlStateNormal];
+        [makeTop setTitle:self.operationTitle1 forState:UIControlStateNormal];
         makeTop.tag = 1000 + indexPath.row;
-//        makeTop.contentEdgeInsets = UIEdgeInsetsMake(0, 0, <#CGFloat bottom#>, <#CGFloat right#>)
         [makeTop setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.backBtn addSubview:makeTop];
         
@@ -66,10 +73,9 @@
         [deleteButton addTarget:self action:@selector(makeDelete:) forControlEvents:UIControlEventTouchUpInside];
         deleteButton.tag = 1000 + indexPath.row;
         deleteButton.backgroundColor = [UIColor whiteColor];
-        [deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        [deleteButton setTitle:self.operationTitle2 forState:UIControlStateNormal];
         [deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.backBtn addSubview:deleteButton];
-//        self.view addSubview:self.backBtn
     }
 }
 
@@ -80,29 +86,71 @@
 - (void)makeToTop:(UIButton *)sender{
     NSInteger index = sender.tag - 1000;
     [self.backBtn removeFromSuperview];
-    HZJobModel *model = self.dataList[index];
-    [MbPaser sendMyReleaseRecruitRefreshByRecruitmenid:model.recruitmenid result:^(MyReleaseRecruitRefreshResponse *response, NSError *error) {
-        if (response) {
-            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
+    if (self.requestOfPublish) {//置顶
+        HZJobModel *model = self.dataList[index];
+        [MbPaser sendMyReleaseRecruitRefreshByRecruitmenid:model.recruitmenid result:^(MyReleaseRecruitRefreshResponse *response, NSError *error) {
+            if (response) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                [self refreshData];
+            }
+        }];
+    }else{//取消收藏
+        HZJobModel *model = self.dataList[index];
+        //取消收藏
+        NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
+        [MbPaser sendCancleRecruitmenCollectByUserid:userid recruitmencollid:model.recruitmenid result:^(CancleRecruitmenCollectResponse *response, NSError *error) {
+            if (response.message) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
             [self refreshData];
-        }
-    }];
+            [self.backBtn removeFromSuperview];
+        }];
 
-    
+        
+        
+        
+    }
+
 }
 
 - (void)makeDelete:(UIButton *)sender{
     NSInteger index = sender.tag - 1000;
     [self.backBtn removeFromSuperview];
-    HZJobModel *model = self.dataList[index];
-    [MbPaser sendMyReleaseRecruitDeleteByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] recruitmenid:model.recruitmenid result:^(MyReleaseRecruitDeleteResponse *response, NSError *error) {
-        if (response) {
-            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-            [self refreshData];
+    if (self.requestOfPublish) {
+        HZJobModel *model = self.dataList[index];
+        [MbPaser sendMyReleaseRecruitDeleteByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] recruitmenid:model.recruitmenid result:^(MyReleaseRecruitDeleteResponse *response, NSError *error) {
+            if (response) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                [self refreshData];
+            }
+        }];
+    }else{
+        
+        NSMutableArray* arr = [NSMutableArray array];
+        for (int i = 0; i<self.dataList.count; i++) {
+            HZJobModel *model = [self.dataList objectAtIndex:i];
+            
+            [arr addObject:model.recruitmenid];
+            
         }
-    }];
+        NSString *recuitmentIdArray = [arr componentsJoinedByString:@","];
+        
+        //self.info = [self.lists1 objectAtIndex:indexPath.row];
+        NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
+        //取消收藏
+        [MbPaser sendCancleRecruitmenCollectByUserid:userid recruitmencollid:recuitmentIdArray result:^(CancleRecruitmenCollectResponse *response, NSError *error) {
+            if (response.message) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+            [self refreshData];
+        }];
+
+    }
+
 }
 
 
@@ -125,7 +173,7 @@
     WEAKSELF
     
     NSString *tmp = self.requestOfPublish ? myfindwork : workCollect;
-    NSString *url = [NSString stringWithFormat:@"%@userid=%@&hasNext=%d",tmp,userid,self.requestPage];
+    NSString *url = [NSString stringWithFormat:@"%@userid=%@&hasNext=%ld",tmp,userid,self.requestPage];
     [[NetworkManager manager] postRequest:url completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             return ;

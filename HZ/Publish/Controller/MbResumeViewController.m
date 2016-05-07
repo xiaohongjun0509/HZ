@@ -135,10 +135,12 @@
 
 @implementation MbResumeViewController
 
+#pragma mark - 详细介绍的hack方法
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if (textView == self.introduction) {
+        
+        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y + 200) animated:YES];
         self.movingTV = YES;
-        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y + 200)];
         self.introduction.text = @"";
         self.introduction.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
     }
@@ -146,8 +148,8 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
     if (textView == self.introduction) {
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
         self.movingTV = NO;
-        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y - 200)];
         if (self.introduction.text.length == 0) {
             self.introduction.text = self.tip;
             self.introduction.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
@@ -156,18 +158,24 @@
     
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if (self.movingTV) {
-        
+        if ([self.introduction isFirstResponder]) {
+            [self.introduction resignFirstResponder];
+            self.movingTV = NO;
+        }
     }else{
-        [self.scrollView resignFirstResponder];
-        [self.view endEditing:YES];
-//        [self.introduction resignFirstResponder];
+        if ([self.introduction isFirstResponder]) {
+            //            [self.introduction resignFirstResponder];
+            //            self.movingTV = NO;
+        }
+        //        [self.scrollView resignFirstResponder];
+        //        [self.view endEditing:YES];
+        //        [self.introduction resignFirstResponder];
         
     }
-    
-    
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -883,6 +891,8 @@
 
 }
 
+#pragma mark -
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (tableView==self.tableView) {
         return 2;
@@ -1273,6 +1283,7 @@
 }
 
 
+#pragma mark - private
 -(void)create{
     [self getPlace];
     self.btn2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight)];
@@ -1600,12 +1611,8 @@
 
 }
 
-#pragma mark 触摸屏幕回收键盘
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    [self.view endEditing:YES];
-//}
-#pragma mark textfield收起键盘方法
+
+#pragma mark - textfield收起键盘方法
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if ([self.titleDetail isEditing]||[self.name isEditing]) {
@@ -1615,26 +1622,21 @@
     [UIView beginAnimations:@"Animation" context:nil];
     [UIView setAnimationDuration:0.20];
     [UIView setAnimationBeginsFromCurrentState: YES];
-    self.scrollView.frame = CGRectMake(self.view.frame.origin.x, self.scrollView.frame.origin.y - 216, self.scrollView.frame.size.width, self.view.frame.size.height);
+    [self.scrollView setContentOffset:CGPointMake(0, 250) animated:NO];
     [UIView commitAnimations];
     }
 }
 #pragma mark 编辑之后frame弹回
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
-    
+
     if (self.scrollView.frame.origin.y!=0) {
         [UIView beginAnimations:@"Animation" context:nil];
         [UIView setAnimationDuration:0.20];
         [UIView setAnimationBeginsFromCurrentState: YES];
-        self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y + 216, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
         [UIView commitAnimations];
     }
-    
-    
- 
-    
 }
 
 #pragma mark - UITextField delegate

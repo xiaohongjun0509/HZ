@@ -15,6 +15,8 @@
 @interface HZPublishEnterpriseViewController ()
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, copy) NSString *operationTitle1;
+@property (nonatomic, copy) NSString *operationTitle2;
 @end
 
 @implementation HZPublishEnterpriseViewController
@@ -23,9 +25,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self adjustTableView];
+   
+    
+    
+    UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(operate:)];
+    [self.tableView addGestureRecognizer:ges];
     if (self.requestOfPublish) {
-        UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(operate:)];
-        [self.tableView addGestureRecognizer:ges];
+        self.operationTitle1 = @"置顶";
+        self.operationTitle2 = @"删除";
+    }else{
+        self.operationTitle1 = @"取消收藏";
+        self.operationTitle2 = @"全部取消收藏";
     }
     [self.tableView.mj_header beginRefreshing];
 }
@@ -81,14 +91,26 @@
     NSInteger index = sender.tag - 1000;
     [self.backBtn removeFromSuperview];
     MbUserInfo *model = self.dataList[index];
-    
-    [MbPaser sendMyReleaseEnterpriseRefreshByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] companyid:model.companyid result:^(MyReleaseEnterpriseRefreshResponse *response, NSError *error) {
-        if (response) {
+    if (self.requestOfPublish) {
+        [MbPaser sendMyReleaseEnterpriseRefreshByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] companyid:model.companyid result:^(MyReleaseEnterpriseRefreshResponse *response, NSError *error) {
+            if (response) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                [self refreshData];
+            }
+        }];
+    }
+  
+    //取消收藏
+    [MbPaser sendCancleCompanycollCollectByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] companycollid:model.companyid result:^(CancleCompanycollCollectResponse *response, NSError *error) {
+        if (response.message) {
             UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
-            [self refreshData];
         }
+        [self refreshData];
+        [self.backBtn removeFromSuperview];
     }];
+
     
     
 }
@@ -97,16 +119,37 @@
     NSInteger index = sender.tag - 1000;
     [self.backBtn removeFromSuperview];
     MbUserInfo *model = self.dataList[index];
-    
-    [MbPaser sendMyReleaseEnterpriseDeleteByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] companyid:model.companyid result:^(MyReleaseEnterpriseDeleteResponse *response, NSError *error) {
-        if (response) {
-            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    if (self.requestOfPublish) {
+        [MbPaser sendMyReleaseEnterpriseDeleteByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] companyid:model.companyid result:^(MyReleaseEnterpriseDeleteResponse *response, NSError *error) {
+            if (response) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                
+                [alertView show];
+                [self refreshData];
+            }
             
-            [alertView show];
-            [self refreshData];
+        }];
+    }else{
+        NSMutableArray* arr = [NSMutableArray array];
+        for (int i = 0; i<self.dataList.count; i++) {
+            MbUserInfo *model = [self.dataList objectAtIndex:i];
+            
+            [arr addObject:model.companyid];
+            
         }
+        NSString *tmp = [arr componentsJoinedByString:@","];
         
-    }];
+        NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
+        [MbPaser sendCancleCompanycollCollectByUserid:userid   companycollid:tmp result:^(CancleCompanycollCollectResponse *response, NSError *error) {
+            if (response.message) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+            [self refreshData];
+        }];
+
+    }
+
 }
 
 - (void)adjustTableView{

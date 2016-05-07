@@ -77,11 +77,7 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-//    if ([self.cityName isEqualToString:@"北京市"]) {
-//        self.cityName = @"北京";
-//    }
-    
+    [super viewDidLoad];    
     self.title = [NSString stringWithFormat:@"找工作"];
     [self registerCell:[HZJobHuntCell class]];
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
@@ -146,11 +142,19 @@
 
 - (void)startRequest{
     NSString *urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%ld",findwork,self.cityName,self.requestPage];
-    if (self.position || self.wage || self.area) {
-        urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%ld&position=%@&area=%@&wages=%@",findwork,self.cityName,self.requestPage,self.position,self.area,self.wage];
+    NSMutableString *mutableString = [NSMutableString stringWithString:urlStr];
+    if (self.position) {
+        [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.position]];
+    }
+    if (self.wage) {
+        [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.wage]];
+    }
+    
+    if (self.area) {
+         [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.area]];
     }
     WEAKSELF
-    [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    [[NetworkManager manager] startRequest:mutableString completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){
             NSDictionary *dict = responseObject;
             NSArray *dataList = [HZJobModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];

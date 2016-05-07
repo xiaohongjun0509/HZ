@@ -58,7 +58,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.updateBlock) {
         HZPositionName *nameModel = self.dataList[indexPath.row];
-        self.updateBlock(self.singleType == HZSingleTypeArea ? nameModel.suffer : nameModel.pay);
+        self.updateBlock(self.singleType == HZSingleTypeArea ? nameModel.name : nameModel.pay);
         self.view.hidden = YES;
     }
     

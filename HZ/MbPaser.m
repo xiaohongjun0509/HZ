@@ -119,7 +119,8 @@
         info.companyid = [dictionary objectForKey:@"companyid"];
         info.comtime = [dictionary objectForKey:@"comtime"];
         info.contact = [dictionary objectForKey:@"contact"];
-        info.intelligence = [dictionary objectForKey:@"intelligence"];
+//        info.intelligence = [dictionary objectForKey:@"intelligence"];
+        info.intelligence = [dictionary objectForKey:@"aptitude"];
         info.phone = [dictionary objectForKey:@"phone"];
         info.range = [dictionary objectForKey:@"range"];
         info.tedail = [dictionary objectForKey:@"tedail"];

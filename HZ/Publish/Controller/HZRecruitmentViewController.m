@@ -121,23 +121,7 @@
 @end
 
 @implementation HZRecruitmentViewController
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if (textView == self.jobRequirements) {
-        self.jobRequirements.text = @"";
-    }
-    if (textView == self.companyProfile) {
-        self.companyProfile.text = @"";
-    }
-}
 
-- (void)textViewDidEndEditing:(UITextView *)textView{
-    if (textView == self.jobRequirements &&  self.jobRequirements.text.length == 0) {
-        self.jobRequirements.text = self.tip1;
-    }
-    if (textView == self.companyProfile && self.companyProfile.text.length == 0) {
-        self.companyProfile.text = self.tip2;
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -178,68 +162,16 @@
     
 }
 
-
+#pragma mark - 当手指开始拖拽UIScrollVIew的时候来调用这个方法。
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+        [self.view resignFirstResponder];
+        [self.view endEditing:YES];
+}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    [self.view resignFirstResponder];
-    [self.view endEditing:YES];
-    [self.jobRequirements resignFirstResponder];
-//    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+
 }
 //应聘职位
--(void)getPosition{
-    NSURL *url = [NSURL URLWithString:hopeposition];
-    [[NetworkManager manager] postRequest:hopeposition completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.positionList = [HZPositionModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-        [self.tableView1 reloadData];
-    }];
-
-}
-//地区
--(void)getPlace{
- 
-    [[NetworkManager manager] startRequest:[NSString stringWithFormat:@"%@area=%@",threeplace,[[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"]] completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (!error) {
-            NSDictionary *dict = (NSDictionary *)responseObject;
-            self.placeList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-            [self.tableView1 reloadData];
-        }
-    }];
-}
-
-
-//工作经验
--(void)getExperience{
-    [[NetworkManager manager] postRequest:hopeexperience completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.experienceList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-        [self.tableView1 reloadData];
-    }];
-}
-
-//学历
--(void)getEducation{
-
-    
-    [[NetworkManager manager] postRequest:hopeeducation completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.educationList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-        [self.tableView1 reloadData];
-    }];
-    
-}
-
-//期望薪资
--(void)getSalary{
-    [[NetworkManager manager] postRequest:hopesalary completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        self.salaryList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
-        [self.tableView1 reloadData];
-    }];
-    
-}
-
 -(void)onCreate{
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64)];
     self.scrollView.delegate = self;
@@ -1223,7 +1155,14 @@
 }
 
 
+#pragma mark 触摸屏幕回收键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
 
+
+#pragma mark - textView
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
 //    [self.titleDetail resignFirstResponder];
@@ -1241,6 +1180,28 @@
 
     return YES;
 }
+
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (textView == self.jobRequirements) {
+        self.jobRequirements.text = @"";
+    }
+    if (textView == self.companyProfile) {
+        self.companyProfile.text = @"";
+    }
+    [self.scrollView setContentOffset:CGPointMake(0, 240) animated:NO];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    if (textView == self.jobRequirements &&  self.jobRequirements.text.length == 0) {
+        self.jobRequirements.text = self.tip1;
+    }
+    if (textView == self.companyProfile && self.companyProfile.text.length == 0) {
+        self.companyProfile.text = self.tip2;
+    }
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+}
+
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField==self.telephoneNumber) {
@@ -1269,11 +1230,6 @@
 
 
 
-#pragma mark 触摸屏幕回收键盘
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-}
 #pragma mark textfield收起键盘方法
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -1281,15 +1237,9 @@
         
     }else{
     
-    [UIView beginAnimations:@"Animation" context:nil];
-    [UIView setAnimationDuration:0.20];
-    [UIView setAnimationBeginsFromCurrentState: YES];
-    self.scrollView.frame = CGRectMake(self.view.frame.origin.x, self.scrollView.frame.origin.y - 216, self.scrollView.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
+    [self.scrollView setContentOffset:CGPointMake(0, 280) animated:NO];
         
     }
-    
-   
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -1298,18 +1248,71 @@
 }
 
 
-
-#pragma mark 编辑之后frame弹回
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (self.scrollView.frame.origin.y!=0) {
-        [UIView beginAnimations:@"Animation" context:nil];
-        [UIView setAnimationDuration:0.20];
-        [UIView setAnimationBeginsFromCurrentState: YES];
-        self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y + 216, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-        [UIView commitAnimations];
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+        
     }
 }
+
+
+
+
+#pragma  mark - private 
+-(void)getPosition{
+    NSURL *url = [NSURL URLWithString:hopeposition];
+    [[NetworkManager manager] postRequest:hopeposition completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSDictionary *dict = (NSDictionary *)responseObject;
+        self.positionList = [HZPositionModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        [self.tableView1 reloadData];
+    }];
+    
+}
+//地区
+-(void)getPlace{
+    
+    [[NetworkManager manager] startRequest:[NSString stringWithFormat:@"%@area=%@",threeplace,[[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"]] completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (!error) {
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            self.placeList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+            [self.tableView1 reloadData];
+        }
+    }];
+}
+
+
+//工作经验
+-(void)getExperience{
+    [[NetworkManager manager] postRequest:hopeexperience completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSDictionary *dict = (NSDictionary *)responseObject;
+        self.experienceList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        [self.tableView1 reloadData];
+    }];
+}
+
+//学历
+-(void)getEducation{
+    
+    
+    [[NetworkManager manager] postRequest:hopeeducation completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSDictionary *dict = (NSDictionary *)responseObject;
+        self.educationList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        [self.tableView1 reloadData];
+    }];
+    
+}
+
+//期望薪资
+-(void)getSalary{
+    [[NetworkManager manager] postRequest:hopesalary completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSDictionary *dict = (NSDictionary *)responseObject;
+        self.salaryList = [HZPlaceModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
+        [self.tableView1 reloadData];
+    }];
+    
+}
+
 
 
 @end

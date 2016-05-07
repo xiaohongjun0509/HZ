@@ -100,7 +100,7 @@
     suggestItems = [[NSMutableArray alloc] initWithCapacity:20];
     suggestItems = @[@"市政公用施工总承包特级",@"市政公用施工总承包一级",@"市政公用施工总承包二级",@"市政公用施工总承包三级"];
  
-
+    self.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];
 }
 
 

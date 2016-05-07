@@ -14,6 +14,8 @@
 @interface HZPublishResumeViewController ()
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, copy) NSString *operationTitle1;
+@property (nonatomic, copy) NSString *operationTitle2;
 @end
 
 @implementation HZPublishResumeViewController
@@ -21,9 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self adjustTableView];
+    UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(operate:)];
+    [self.tableView addGestureRecognizer:ges];
     if (self.requestOfPublish) {
-        UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(operate:)];
-        [self.tableView addGestureRecognizer:ges];
+        self.operationTitle1 = @"置顶";
+        self.operationTitle2 = @"删除";
+    }else{
+        self.operationTitle1 = @"取消收藏";
+        self.operationTitle2 = @"全部取消收藏";
     }
     [self.tableView.mj_header beginRefreshing];
 }
@@ -80,14 +87,30 @@
     NSInteger index = sender.tag - 1000;
     [self.backBtn removeFromSuperview];
     HZResumeModel *model = self.dataList[index];
-    
-    [MbPaser sendMyReleaseResumeRefreshByResumeid:model.resumeid result:^(MyReleaseResumeRefreshResponse *response, NSError *error) {
-        if (response) {
-            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
+    if (self.requestOfPublish) {
+        [MbPaser sendMyReleaseResumeRefreshByResumeid:model.resumeid result:^(MyReleaseResumeRefreshResponse *response, NSError *error) {
+            if (response) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                [self refreshData];
+            }
+        }];
+    }else{
+        
+        
+        //取消收藏
+        [MbPaser sendCancleResumecollCollectByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] resumecollid:model.resumeid result:^(CancleResumecollCollectResponse *response, NSError *error) {
+            if (response.message) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
             [self refreshData];
-        }
-    }];
+            [self.backBtn removeFromSuperview];
+        }];
+
+    }
+    
+    
     
     
 }
@@ -95,16 +118,40 @@
 - (void)makeDelete:(UIButton *)sender{
     NSInteger index = sender.tag - 1000;
     [self.backBtn removeFromSuperview];
-    HZResumeModel *model = self.dataList[index];
-    [MbPaser sendMyReleaseResumeDeleteByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] resumeid:model.resumeid result:^(MyReleaseResumeDeleteResponse *response, NSError *error) {
-        if (response) {
-            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    if (self.requestOfPublish) {
+        HZResumeModel *model = self.dataList[index];
+        [MbPaser sendMyReleaseResumeDeleteByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] resumeid:model.resumeid result:^(MyReleaseResumeDeleteResponse *response, NSError *error) {
+            if (response) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                
+                [alertView show];
+                [self refreshData];
+            }
             
-            [alertView show];
-            [self refreshData];
+        }];
+    }else{
+        NSMutableArray* arr = [NSMutableArray array];
+        for (int i = 0; i<self.dataList.count; i++) {
+            HZResumeModel *model = [self.dataList objectAtIndex:i];
+            
+            [arr addObject:model.resumeid];
+            
         }
-        
-    }];
+        NSString *tmp = [arr componentsJoinedByString:@","];
+        //取消收藏
+        [MbPaser sendCancleResumecollCollectByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] resumecollid:tmp result:^(CancleResumecollCollectResponse *response, NSError *error) {
+            if (response.message) {
+                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+            [self refreshData];
+        }];
+
+    }
+    
+    
+    
+  
 }
 - (void)adjustTableView{
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
