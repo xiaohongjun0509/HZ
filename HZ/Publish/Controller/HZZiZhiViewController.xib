@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1na-lS-Vzf">
-                    <rect key="frame" x="0.0" y="328.5" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="329" width="320" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Ejk-6S-2gR"/>
@@ -31,13 +31,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQd-5f-n1M">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egs-eM-EOk">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egs-eM-EOk">
                             <rect key="frame" x="19" y="8" width="241" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNG-vn-iet">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNG-vn-iet">
                             <rect key="frame" x="280" y="10" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="K3t-s1-VbT"/>
+                                <constraint firstAttribute="width" constant="25" id="ft1-A9-YBs"/>
+                            </constraints>
                             <state key="normal" image="tianjia"/>
                             <connections>
                                 <action selector="add:" destination="-1" eventType="touchUpInside" id="VRM-ET-2ty"/>
@@ -46,15 +50,23 @@
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="egs-eM-EOk" secondAttribute="bottom" constant="6" id="0L8-3e-ml7"/>
+                        <constraint firstAttribute="bottom" secondItem="eNG-vn-iet" secondAttribute="bottom" constant="9" id="5TU-tr-uxC"/>
+                        <constraint firstItem="eNG-vn-iet" firstAttribute="leading" secondItem="egs-eM-EOk" secondAttribute="trailing" constant="20" id="Bfz-It-lLe"/>
+                        <constraint firstItem="egs-eM-EOk" firstAttribute="top" secondItem="PQd-5f-n1M" secondAttribute="top" constant="8" id="CLS-9o-BtJ"/>
+                        <constraint firstItem="egs-eM-EOk" firstAttribute="leading" secondItem="PQd-5f-n1M" secondAttribute="leading" constant="19" id="dYh-cJ-4p0"/>
+                        <constraint firstAttribute="trailing" secondItem="eNG-vn-iet" secondAttribute="trailing" constant="15" id="fqD-ZM-4Gn"/>
+                        <constraint firstItem="eNG-vn-iet" firstAttribute="leading" secondItem="egs-eM-EOk" secondAttribute="trailing" constant="20" id="mXO-8U-vYF"/>
+                        <constraint firstItem="eNG-vn-iet" firstAttribute="top" secondItem="PQd-5f-n1M" secondAttribute="top" constant="10" id="xdc-vy-lVp"/>
                         <constraint firstAttribute="height" constant="44" id="yPq-pv-bMV"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UbL-dK-PbO">
-                    <rect key="frame" x="0.0" y="378.5" width="320" height="189.5"/>
+                    <rect key="frame" x="0.0" y="379" width="320" height="189"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JD6-3k-ZKa">
-                    <rect key="frame" x="0.0" y="44" width="320" height="284.5"/>
+                    <rect key="frame" x="0.0" y="44" width="320" height="285"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>

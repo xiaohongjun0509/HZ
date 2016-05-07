@@ -27,7 +27,8 @@
         model.aptitude = self.textfield.text;
         [self.selectedList addObject:model];
         self.textfield.text = @"";
-        self.textfield.delegate = self;
+        
+        
         [self.downTableView reloadData];
     }
 }
@@ -43,7 +44,7 @@
     [self.view bringSubviewToFront:self.containView];
     self.upTableView.delegate = self;
     self.upTableView.dataSource = self;
-    
+    self.textfield.delegate = self;
     [self.upTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     self.selectedList = [NSMutableArray array];
     self.downTableView.delegate = self;
