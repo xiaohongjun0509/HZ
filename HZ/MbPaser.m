@@ -120,7 +120,7 @@
         info.comtime = [dictionary objectForKey:@"comtime"];
         info.contact = [dictionary objectForKey:@"contact"];
 //        info.intelligence = [dictionary objectForKey:@"intelligence"];
-        info.intelligence = [dictionary objectForKey:@"aptitude"];
+        info.intelligence = [[dictionary objectForKey:@"aptitude"] isKindOfClass:[NSArray class]] ? [dictionary objectForKey:@"aptitude"] : nil;
         info.phone = [dictionary objectForKey:@"phone"];
         info.range = [dictionary objectForKey:@"range"];
         info.tedail = [dictionary objectForKey:@"tedail"];
