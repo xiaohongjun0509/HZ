@@ -29,13 +29,12 @@
     [dict setObject:position forKey:@"position"];
     [dict setObject:salary forKey:@"wages"];
     [dict setObject:telephone forKey:@"phone"];
-    if (addeduArray.length==0||addworkArray.length==0) {
-        
-    }else{
-        [dict setObject:addeduArray forKey:@"education"];
-        [dict setObject:addworkArray forKey:@"business"];
+    if(addeduArray.length > 0){
+       [dict setObject:addeduArray forKey:@"education"];
     }
-  
+    if (addworkArray.length > 0) {
+         [dict setObject:addworkArray forKey:@"business"];
+    }
     [dict setObject:jieshao forKey:@"intruduction"];
 
 //

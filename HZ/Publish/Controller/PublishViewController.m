@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布";
-    self.cityName = @"北京市";
+    self.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];
     if (ScreenHeight==480) {
         //求职简历
         self.btn1 = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2-ScreenHeight/10, ScreenHeight/20-5, ScreenHeight/5, ScreenHeight/5)];

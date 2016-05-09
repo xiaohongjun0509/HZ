@@ -200,6 +200,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        HZLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZLocationCell"];
+        [cell update];
+        self.homeVC.cityName = @"北京市";
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
 
     if(indexPath.section > 1){
         NSArray* array = [self.letterResultArr objectAtIndex:indexPath.section - 2];

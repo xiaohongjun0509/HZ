@@ -150,11 +150,11 @@
         [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.position]];
     }
     if (self.wage) {
-        [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.wage]];
+        [mutableString appendString:[NSString stringWithFormat:@"&wage=%@",self.wage]];
     }
     
     if (self.area) {
-         [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.area]];
+         [mutableString appendString:[NSString stringWithFormat:@"&area=%@",self.area]];
     }
     WEAKSELF
     [[NetworkManager manager] startRequest:mutableString completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {

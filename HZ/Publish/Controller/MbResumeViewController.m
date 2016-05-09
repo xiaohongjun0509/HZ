@@ -131,6 +131,7 @@
 @property(nonatomic,assign)CGFloat heit;
 @property (nonatomic, copy) NSString *tip;
 @property (nonatomic, assign) BOOL movingTV;
+
 @end
 
 @implementation MbResumeViewController
@@ -146,37 +147,43 @@
     }
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView{
-    if (textView == self.introduction) {
-        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-        self.movingTV = NO;
-        if (self.introduction.text.length == 0) {
-            self.introduction.text = self.tip;
-            self.introduction.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
-        }
-    }
-    
-}
+//- (void)textViewDidEndEditing:(UITextView *)textView{
+//    if (textView == self.introduction) {
+//        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+//        self.movingTV = NO;
+//        if (self.introduction.text.length == 0) {
+//            self.introduction.text = self.tip;
+//            self.introduction.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+//        }
+//    }
+//    
+//}
 
-
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if (self.movingTV) {
-        if ([self.introduction isFirstResponder]) {
-            [self.introduction resignFirstResponder];
-            self.movingTV = NO;
-        }
-    }else{
-        if ([self.introduction isFirstResponder]) {
-            //            [self.introduction resignFirstResponder];
-            //            self.movingTV = NO;
-        }
-        //        [self.scrollView resignFirstResponder];
-        //        [self.view endEditing:YES];
-        //        [self.introduction resignFirstResponder];
-        
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.introduction resignFirstResponder];
+    if (self.introduction.text.length == 0) {
+        self.introduction.text = self.tip;
+        self.introduction.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     }
 }
+
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    if (self.movingTV) {
+//        if ([self.introduction isFirstResponder]) {
+//            [self.introduction resignFirstResponder];
+//            self.movingTV = NO;
+//        }
+//    }else{
+//        if ([self.introduction isFirstResponder]) {
+//            //            [self.introduction resignFirstResponder];
+//            //            self.movingTV = NO;
+//        }
+//        //        [self.scrollView resignFirstResponder];
+//        //        [self.view endEditing:YES];
+//        //        [self.introduction resignFirstResponder];
+//        
+//    }
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tip = @"详细描述自身的工作能力等等";

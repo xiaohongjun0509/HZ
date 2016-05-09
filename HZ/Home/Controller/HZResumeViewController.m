@@ -16,7 +16,7 @@
 #import "HZSingalSelectionViewController.h"
 @interface HZResumeViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSString *position;
-@property (nonatomic, copy) NSString *area;
+@property (nonatomic, copy) NSString *suffer;
 @property (nonatomic, copy) NSString *wage;
 
 @property (nonatomic, strong) HZTwoSelectionViewController *postionController;
@@ -50,9 +50,9 @@
         WEAKSELF
         _singlgSelectionController = [[HZSingalSelectionViewController alloc] init];
         _singlgSelectionController.updateBlock = ^(NSString *content){
-            if (_singlgSelectionController.singleType == HZSingleTypeArea) {
+            if (_singlgSelectionController.singleType == HZSingleTypeSuffer) {
                 weakSelf.segmentView.locationLabel.text = content;
-                weakSelf.area = content;
+                weakSelf.suffer = content;
                 
             }else{
                 weakSelf.segmentView.salarLabel.text = content;
@@ -88,6 +88,8 @@
      self.segmentView.titleArray = @[@"意向职位",@"工作经验",@"期望薪资"];
     WEAKSELF
     self.segmentView.positionBlock = ^{
+        weakSelf.requestPage = 1;
+        
         weakSelf.singlgSelectionController.view.hidden = YES;
         [UIView animateWithDuration:0.3 animations:^{
             weakSelf.postionController.view.hidden = NO;
@@ -97,8 +99,10 @@
     };
     
     self.segmentView.locationBlock = ^{
+        weakSelf.requestPage = 1;
         weakSelf.postionController.view.hidden = YES;
-        weakSelf.singlgSelectionController.singleType = HZSingleTypeArea;
+        weakSelf.singlgSelectionController.singleType = HZSingleTypeSuffer;
+
         weakSelf.singlgSelectionController.dataList = weakSelf.experienceList;
         [weakSelf.singlgSelectionController.tableView reloadData];
         [UIView animateWithDuration:0.3 animations:^{
@@ -108,6 +112,7 @@
     };
     
     self.segmentView.salaryBlock = ^{
+        weakSelf.requestPage = 1;
         weakSelf.postionController.view.hidden = YES;
         weakSelf.singlgSelectionController.singleType = HZSingleTypeWage;
         weakSelf.singlgSelectionController.dataList = weakSelf.wageList;
@@ -133,6 +138,17 @@
 
 - (void)startRequest{
     NSString *urlStr = [NSString stringWithFormat:@"%@?hasNext=%ld&area=%@",seeresume,self.requestPage,self.cityName];
+    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:urlStr];
+    if (self.position) {
+        [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.position]];
+    }
+    if (self.wage) {
+        [mutableString appendString:[NSString stringWithFormat:@"&pay=%@",self.wage]];
+    }
+    
+    if (self.suffer) {
+        [mutableString appendString:[NSString stringWithFormat:@"&area=%@",self.suffer]];
+    }
     WEAKSELF
     [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){

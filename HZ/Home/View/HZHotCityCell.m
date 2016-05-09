@@ -22,7 +22,7 @@
     width = (ScreenWidth - 70)/3;
     
     beginY = 20;
-    self.hotcity = @[@"北京市",@"上海市",@"广州市",@"深圳市",@"杭州市",@"南京",@"天津市",@"武汉市",@"重庆市"];
+    self.hotcity = @[@"北京市",@"上海市",@"广州市",@"深圳市",@"杭州市",@"南京市",@"天津市",@"武汉市",@"重庆市"];
     [self.hotcity enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *button = [[UIButton alloc] init];
         [button setTitle:obj forState:UIControlStateNormal];

@@ -10,8 +10,9 @@
 
 typedef NS_ENUM(NSInteger,HZSingleType){
     HZSingleTypeUnkown,
-    HZSingleTypeArea,
-    HZSingleTypeWage
+    HZSingleTypeArea,//区域
+    HZSingleTypeWage,//工资
+    HZSingleTypeSuffer//工作年限
 };
 
 @interface HZSingalSelectionViewController : UIViewController

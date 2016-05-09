@@ -40,9 +40,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HZRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HZRightTableViewCell"];
     cell.backgroundColor = [UIColor whiteColor];
-    HZPositionName *areaModel = self.dataList[indexPath.row];
+    HZPositionName *nameModel = self.dataList[indexPath.row];
     cell.label.font = [UIFont systemFontOfSize:13];
-    cell.label.text = self.singleType == HZSingleTypeArea ? (areaModel.name ? areaModel.name : areaModel.suffer) : areaModel.pay;
+    NSString *string = nil;
+    if(nameModel.name.length > 0){
+        string = nameModel.name;
+    }else if(nameModel.pay.length > 0){
+        string = nameModel.pay;
+    }else if (nameModel.suffer.length > 0){
+        string = nameModel.suffer;
+    }else if (nameModel.positioname.length>0){
+        string = nameModel.positioname;
+    }
+    cell.label.text = string;
+//    cell.label.text = self.singleType == HZSingleTypeArea ? (areaModel.name ? areaModel.name : areaModel.suffer) : areaModel.pay;
     return cell;
 }
 
@@ -58,7 +69,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.updateBlock) {
         HZPositionName *nameModel = self.dataList[indexPath.row];
-        self.updateBlock(self.singleType == HZSingleTypeArea ? nameModel.name : nameModel.pay);
+        NSString *string = nil;
+        if(nameModel.name.length > 0){
+            string = nameModel.name;
+        }else if(nameModel.pay.length > 0){
+            string = nameModel.pay;
+        }else if (nameModel.suffer.length > 0){
+            string = nameModel.suffer;
+        }else if (nameModel.positioname.length>0){
+            string = nameModel.positioname;
+        }
+//        self.updateBlock(self.singleType == HZSingleTypeArea ? nameModel.name : nameModel.pay);
+        self.updateBlock(string);
         self.view.hidden = YES;
     }
     

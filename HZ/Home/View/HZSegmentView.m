@@ -111,9 +111,9 @@
     self.arraw2.hidden = YES;
     self.arraw1.hidden = YES;
     self.arraw3.hidden = YES;
-    self.positionLabel.left = self.positionLabel.left + 5;
-     self.locationLabel.left = self.locationLabel.left + 5;
-     self.salarLabel.left = self.salarLabel.left + 5;
+    self.positionLabel.left = self.positionLabel.left + 7;
+     self.locationLabel.left = self.locationLabel.left + 7;
+     self.salarLabel.left = self.salarLabel.left + 7;
     
 }
 

@@ -62,7 +62,7 @@
         UIButton *makeTop = [[UIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), viewWidth-30, 44)];
         [makeTop addTarget:self action:@selector(makeToTop:) forControlEvents:UIControlEventTouchUpInside];
         makeTop.backgroundColor = [UIColor whiteColor];
-        [makeTop setTitle:@"置顶" forState:UIControlStateNormal];
+        [makeTop setTitle:self.operationTitle1 forState:UIControlStateNormal];
         makeTop.tag = 1000 + indexPath.row;
         //        makeTop.contentEdgeInsets = UIEdgeInsetsMake(0, 0, <#CGFloat bottom#>, <#CGFloat right#>)
         [makeTop setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -72,7 +72,7 @@
         [deleteButton addTarget:self action:@selector(makeDelete:) forControlEvents:UIControlEventTouchUpInside];
         deleteButton.tag = 1000 + indexPath.row;
         deleteButton.backgroundColor = [UIColor whiteColor];
-        [deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        [deleteButton setTitle:self.operationTitle2 forState:UIControlStateNormal];
         [deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.backBtn addSubview:deleteButton];
     }

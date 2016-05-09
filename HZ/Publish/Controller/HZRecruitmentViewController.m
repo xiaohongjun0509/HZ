@@ -1165,29 +1165,30 @@
 #pragma mark - textView
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
 //    [self.titleDetail resignFirstResponder];
 //     [self.company resignFirstResponder];
 //     [self.placeField resignFirstResponder];
-//     [self.jobRequirements resignFirstResponder];
+////     [self.jobRequirements resignFirstResponder];
 //     [self.companyProfile resignFirstResponder];
 //     [self.telephoneNumber resignFirstResponder];
-//    if (self.jobRequirements == textView) {
-//        CGRect rect = [textView.text boundingRectWithSize:CGSizeMake(self.introduceWidth, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
-//        
-//        
-//    }
-   
-
     return YES;
 }
 
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if (textView == self.jobRequirements) {
-        self.jobRequirements.text = @"";
+        if([self.tip1 isEqualToString:textView.text]){
+            self.jobRequirements.text = @"";
+        }
     }
     if (textView == self.companyProfile) {
-        self.companyProfile.text = @"";
+        if ([self.tip2 isEqualToString:textView.text]) {
+            self.companyProfile.text = @"";
+        }
     }
     [self.scrollView setContentOffset:CGPointMake(0, 240) animated:NO];
 }

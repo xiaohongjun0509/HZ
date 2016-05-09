@@ -11,4 +11,5 @@
 @interface HZLocationCell : UITableViewCell
 @property (nonatomic, copy) void (^updateCity)(NSString *);
 @property (nonatomic, copy) NSString *city;
+- (void)update;
 @end
