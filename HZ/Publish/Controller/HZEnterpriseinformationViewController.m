@@ -703,8 +703,7 @@
         
     }else{
         
-        NSString *string = [self.buttonTitles componentsJoinedByString:@","];
-        [MbPaser sendInfoCompanyByUserid:self.userid company:self.companyField.text aptitude:string range:self.businessCooperationView.text area:self.place.titleLabel.text address:self.workPlaceField.text contact:self.contactPersonField.text phone:self.telephoneNumberField.text result:^(InfoCompanySaveResponse *response, NSError *error) {
+        [MbPaser sendInfoCompanyByUserid:self.userid company:self.companyField.text aptitude:self.buttonTitles range:self.businessCooperationView.text area:self.place.titleLabel.text address:self.workPlaceField.text contact:self.contactPersonField.text phone:self.telephoneNumberField.text result:^(InfoCompanySaveResponse *response, NSError *error) {
             if(!error) {
                 NSLog(@"%@",[NSThread currentThread]);
                 dispatch_async(dispatch_get_main_queue(), ^{

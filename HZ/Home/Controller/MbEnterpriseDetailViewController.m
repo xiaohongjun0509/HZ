@@ -173,10 +173,11 @@
     
     //竖线1
     CGFloat h = 30;
-    if(self.info.intelligence == nil){
-        
+    if(self.info.intelligence.count  > 0){
+        h = CGRectGetMaxY(self.btn.frame)-CGRectGetMaxY(self.horizontal1.frame)-5;
+    
     }else{
-      h = CGRectGetMaxY(self.btn.frame)-CGRectGetMaxY(self.horizontal1.frame)-5;
+       
     }
     
     self.line1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.qualifications.frame)+10,CGRectGetMaxY(self.horizontal1.frame) + 10, 1,h)];

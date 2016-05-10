@@ -187,7 +187,7 @@
         
         MbResumeViewController *resumeVC = [[MbResumeViewController alloc]init];
         resumeVC.hidesBottomBarWhenPushed = YES;
-        resumeVC.cityName = self.cityName;
+//        resumeVC.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];
         [self presentVC:resumeVC];
     }
 }
@@ -199,7 +199,7 @@
     }else{
         HZRecruitmentViewController *recruitmentVC = [[HZRecruitmentViewController alloc]init];
         
-        recruitmentVC.cityName = self.cityName;
+        recruitmentVC.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];;
         [self presentVC:recruitmentVC];
     }
 }
@@ -210,7 +210,7 @@
         [alertView show];
     }else{
         HZEnterpriseinformationViewController  *enterInformationVC = [[HZEnterpriseinformationViewController alloc]init];
-        enterInformationVC.cityName = self.cityName;
+        enterInformationVC.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];;
         [self presentVC:enterInformationVC];
     }
 }

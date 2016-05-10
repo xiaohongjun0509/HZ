@@ -165,6 +165,7 @@
 //}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];
     self.tip = @"详细描述自身的工作能力等等";
    self.title = @"填写简历信息";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -181,7 +182,8 @@
     self.experienceList = [NSMutableArray array];
     self.positionList = [NSMutableArray array];
     self.salaryList = [NSMutableArray array];
-   
+    self.workArray = [NSMutableArray array];
+    self.eduArray = [NSMutableArray array];
     self.ageArray = @[@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35",@"36",@"37",@"38",@"39",@"40",@"41",@"42",@"43",@"44",@"45",@"46",@"47",@"48",@"49",@"50",@"51",@"52",@"53",@"54",@"55",@"56",@"57",@"58",@"59",@"60",@"61",@"62",@"63",@"64",@"65",@"66",@"67",@"68",@"69",@"70"];
 
     
@@ -783,83 +785,83 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if (self.jsonString1.length==0) {
-        
-    }else if(self.jsonString1.length>0){
-        
-        
-        if ([self.addeduArrayStr containsObject:self.jsonString1]) {
-            
-        }else{
-           
-            if (self.addeduArrayStr.count<=3) {
-                [self.addeduArrayStr insertObject:self.jsonString1 atIndex:0];
-           
-            }else{
-                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"教育经历最多添加4个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-                self.jsonString1 = nil;
-            
-            }
-           
-            NSString* str = [self.addeduArrayStr componentsJoinedByString:@","];
-            NSString* string1 = @"[";
-            NSString* string2 = @"]";
-            self.str1 = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
-        
-        }
-    
-    }
-    if (self.jsonString2.length==0) {
-        
-    }else if(self.jsonString2.length>0){
-        if ([self.addworkArrayStr containsObject:self.jsonString2]) {
-            
-        }else{
-            if (self.addworkArrayStr.count<=4) {
-                [self.addworkArrayStr insertObject:self.jsonString2 atIndex:0];
-                
-            }else{
-                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"工作经历最多添加5个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-                self.jsonString2 = nil;
-            
-            }
-            NSString* str = [self.addworkArrayStr componentsJoinedByString:@","];
-            NSString* string1 = @"[";
-            NSString* string2 = @"]";
-            self.str2 = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
-        }
-    }
-    
-    
-    if ([self.mutDic count]==0) {
-        
-    }else{
-//        [self.addeduArray addObject:self.mutDic];
-        if (self.addeduArray.count<=3) {
-            [self.addeduArray insertObject:self.mutDic atIndex:0];
-        }else{
-        
-        }
-        
-
-        
-    }
-    if ([self.workDic count]==0) {
-        
-    }else{
-        if (self.addworkArray.count<=4) {
-          [self.addworkArray insertObject:self.workDic atIndex:0];
-        }else{
-        
-        
-        }
-        
-        
-        
-        
-    }
+//    if (self.jsonString1.length==0) {
+//        
+//    }else if(self.jsonString1.length>0){
+//        
+//        
+//        if ([self.addeduArrayStr containsObject:self.jsonString1]) {
+//            
+//        }else{
+//           
+//            if (self.addeduArrayStr.count<=3) {
+//                [self.addeduArrayStr insertObject:self.jsonString1 atIndex:0];
+//           
+//            }else{
+//                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"教育经历最多添加4个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [alertView show];
+//                self.jsonString1 = nil;
+//            
+//            }
+//           
+//            NSString* str = [self.addeduArrayStr componentsJoinedByString:@","];
+//            NSString* string1 = @"[";
+//            NSString* string2 = @"]";
+//            self.str1 = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
+//        
+//        }
+//    
+//    }
+//    if (self.jsonString2.length==0) {
+//        
+//    }else if(self.jsonString2.length>0){
+//        if ([self.addworkArrayStr containsObject:self.jsonString2]) {
+//            
+//        }else{
+//            if (self.addworkArrayStr.count<=4) {
+//                [self.addworkArrayStr insertObject:self.jsonString2 atIndex:0];
+//                
+//            }else{
+//                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"工作经历最多添加5个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [alertView show];
+//                self.jsonString2 = nil;
+//            
+//            }
+//            NSString* str = [self.addworkArrayStr componentsJoinedByString:@","];
+//            NSString* string1 = @"[";
+//            NSString* string2 = @"]";
+//            self.str2 = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
+//        }
+//    }
+//    
+//    
+//    if ([self.mutDic count]==0) {
+//        
+//    }else{
+////        [self.addeduArray addObject:self.mutDic];
+//        if (self.addeduArray.count<=3) {
+//            [self.addeduArray insertObject:self.mutDic atIndex:0];
+//        }else{
+//        
+//        }
+//        
+//
+//        
+//    }
+//    if ([self.workDic count]==0) {
+//        
+//    }else{
+//        if (self.addworkArray.count<=4) {
+//          [self.addworkArray insertObject:self.workDic atIndex:0];
+//        }else{
+//        
+//        
+//        }
+//        
+//        
+//        
+//        
+//    }
 
     [self.scrollView removeFromSuperview];
     [self onCreate];
@@ -961,7 +963,7 @@
            
             //教育时间
              self.yeartoyear = [UILabel new];
-             self.yeartoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"startTime"],[dic objectForKey:@"endTime"]];
+             self.yeartoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"Stringervalstart"],[dic objectForKey:@"Stringervalstop"]];
              self.yeartoyear.font = [UIFont systemFontOfSize:labelText];
              self.yeartoyear.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
              CGSize yeartoyearSize = [self.yeartoyear.text sizeWithFont:self.yeartoyear.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
@@ -1426,7 +1428,7 @@
     int age = [self.ageBtn.titleLabel.text intValue];
  
     
-    [MbPaser sendResumeInformationByUserid:self.userid area:self.cityName introduces:self.titleDetail.text name:self.name.text sex:self.sexing age:age education:self.educationBtn.titleLabel.text experience:self.yearsBtn.titleLabel.text position:self.typeBtn.titleLabel.text salary:self.moneyBtn.titleLabel.text telephone:self.telephoneField.text addeduArray:self.str1 addworkArray:self.str2 jieshao:self.introduction.text result:^(ResumeSaveResponse *response, NSError *error) {
+    [MbPaser sendResumeInformationByUserid:self.userid area:self.cityName introduces:self.titleDetail.text name:self.name.text sex:self.sexing age:age education:self.educationBtn.titleLabel.text experience:self.yearsBtn.titleLabel.text position:self.typeBtn.titleLabel.text salary:self.moneyBtn.titleLabel.text telephone:self.telephoneField.text addeduArray:self.addeduArray addworkArray:self.addworkArray jieshao:self.introduction.text result:^(ResumeSaveResponse *response, NSError *error) {
 
         self.str = [NSString stringWithFormat:@"%d",response.turn];
         
@@ -1434,7 +1436,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
-//                [self dismissModalViewControllerAnimated:YES];
+                [self dismissModalViewControllerAnimated:YES];
             });
             
         }else{

@@ -21,4 +21,6 @@
 @property(nonatomic,strong)NSString* jsonString2;
 @property(nonatomic,strong)NSMutableDictionary* workDic;
 @property(nonatomic,strong)NSString* cityName;
+//@property (nonatomic, strong) NSMutableArray *workArray;
+@property (nonatomic, strong) NSMutableArray *eduArray;
 @end

@@ -1184,11 +1184,13 @@
     if (textView == self.jobRequirements) {
         if([self.tip1 isEqualToString:textView.text]){
             self.jobRequirements.text = @"";
+            textView.textColor = [UIColor blackColor];
         }
     }
     if (textView == self.companyProfile) {
         if ([self.tip2 isEqualToString:textView.text]) {
             self.companyProfile.text = @"";
+            textView.textColor = [UIColor blackColor];
         }
     }
     [self.scrollView setContentOffset:CGPointMake(0, 240) animated:NO];
@@ -1197,9 +1199,11 @@
 - (void)textViewDidEndEditing:(UITextView *)textView{
     if (textView == self.jobRequirements &&  self.jobRequirements.text.length == 0) {
         self.jobRequirements.text = self.tip1;
+        textView.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     }
     if (textView == self.companyProfile && self.companyProfile.text.length == 0) {
         self.companyProfile.text = self.tip2;
+        textView.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     }
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
 }
@@ -1235,6 +1239,9 @@
 #pragma mark textfield收起键盘方法
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    if (textField == self.name) {
+        textField.textColor = [UIColor blackColor];
+    }
     if ([self.titleDetail isEditing]||[self.company isEditing]||[self.placeField isEditing]) {
         
     }else{
@@ -1255,6 +1262,9 @@
     if (self.scrollView.frame.origin.y!=0) {
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
         
+    }
+    if (textField==self.name&&textField.text.length==0) {
+        textField.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
     }
 }
 

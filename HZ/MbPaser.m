@@ -12,7 +12,7 @@
 @implementation MbPaser
 
 
-+(void)sendResumeInformationByUserid:(NSString*)userId area:(NSString*)area introduces:(NSString* )introduces name:(NSString* )name sex:(int)sex age:(int)age education:(NSString*)education experience:(NSString*)experience position:(NSString*)position salary:(NSString*)salary telephone:(NSString*)telephone addeduArray:(NSString*)addeduArray addworkArray:(NSString*)addworkArray jieshao:(NSString*)jieshao result:(void(^)(ResumeSaveResponse *response, NSError *error))result{
++(void)sendResumeInformationByUserid:(NSString*)userId area:(NSString*)area introduces:(NSString* )introduces name:(NSString* )name sex:(int)sex age:(int)age education:(NSString*)education experience:(NSString*)experience position:(NSString*)position salary:(NSString*)salary telephone:(NSString*)telephone addeduArray:(NSArray*)addeduArray addworkArray:(NSArray*)addworkArray jieshao:(NSString*)jieshao result:(void(^)(ResumeSaveResponse *response, NSError *error))result{
     //2.设置登录参数
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
   
@@ -29,11 +29,11 @@
     [dict setObject:position forKey:@"position"];
     [dict setObject:salary forKey:@"wages"];
     [dict setObject:telephone forKey:@"phone"];
-    if(addeduArray.length > 0){
-//       [dict setObject:addeduArray forKey:@"education"];
+    if(addeduArray.count > 0){
+
          [dict setObject:addeduArray forKey:@"experienced"];
     }
-    if (addworkArray.length > 0) {
+    if (addworkArray.count > 0) {
          [dict setObject:addworkArray forKey:@"business"];
     }
     [dict setObject:jieshao forKey:@"intruduction"];
@@ -216,7 +216,7 @@
 }
 
 //发布企业信息
-+(void)sendInfoCompanyByUserid:(NSString*)userid company:(NSString*)company aptitude:(NSString*)aptitude range:(NSString*)range area:(NSString*)area address:(NSString*)address contact:(NSString*)contact phone:(NSString*)phone result:(void(^)(InfoCompanySaveResponse *response, NSError *error))result{
++(void)sendInfoCompanyByUserid:(NSString*)userid company:(NSString*)company aptitude:(NSArray*)aptitude range:(NSString*)range area:(NSString*)area address:(NSString*)address contact:(NSString*)contact phone:(NSString*)phone result:(void(^)(InfoCompanySaveResponse *response, NSError *error))result{
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

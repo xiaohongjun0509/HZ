@@ -9,6 +9,7 @@
 #import "HZJobDetailController.h"
 #import "HZResumeDetailCell.h"
 #import "HZResumeDetailTimeUpdateCell.h"
+#import "MbPaser.h"
 @interface HZJobDetailController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray *titleArray;
@@ -44,6 +45,23 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [self footer];
+    [self attachCollect];
+}
+
+- (void)collect{
+    NSString *userid = [[NSUserDefaults standardUserDefaults]stringForKey:@"userid"];
+    if (userid.length) {
+       [MbPaser sendRecruitmenCollectByUserid:userid recruitmenid:self.model.recruitmenid result:^(RecruitmenCollectResponse *response, NSError *error) {
+           
+           UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:(response.turn == 200? @"收藏成功" : @"收藏失败") delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+          
+       }];
+        }else{
+            UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    
 }
 
 - (UIView *)footer{

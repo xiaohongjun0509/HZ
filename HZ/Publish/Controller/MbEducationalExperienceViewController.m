@@ -33,7 +33,6 @@ SRMonthPicker *_datePicker; //时间选择器
 @property(nonatomic,assign)NSInteger tag;
 @property(nonatomic,strong)NSMutableArray* array1;
 @property(nonatomic,strong)NSMutableArray* array2;
-@property(nonatomic,strong)NSMutableDictionary* dic;
 
 @end
 
@@ -45,7 +44,6 @@ SRMonthPicker *_datePicker; //时间选择器
     self.list = @[@"入学时间",@"毕业时间",@"学校名称",@"学       历",@"专       业"];
     self.array1 = [NSMutableArray array];
     self.array2 = [NSMutableArray array];
-    self.dic = [[NSMutableDictionary alloc]init];
     self.startTime = nil;
     self.endTime = nil;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -566,16 +564,13 @@ SRMonthPicker *_datePicker; //时间选择器
         [alertView show];
     }else{
     [self.navigationController popViewControllerAnimated:YES];
-    [self.dic setObject:self.schoolField.text forKey:@"school"];
-    [self.dic setObject:self.degree forKey:@"degree"];
-    [self.dic setObject:self.startTime forKey:@"startTime"];
-    [self.dic setObject:self.endTime forKey:@"endTime"];
-    [self.dic setObject:self.professional.text forKey:@"professional"];
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.dic options:0 error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData
-                                                 encoding:NSUTF8StringEncoding];
-    self.resumeVC.jsonString1 = jsonString;
-    self.resumeVC.mutDic = self.dic;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.schoolField.text forKey:@"school"];
+    [dic setObject:self.degree forKey:@"level"];
+    [dic setObject:self.startTime forKey:@"Stringervalstart"];
+    [dic setObject:self.endTime forKey:@"Stringervalstop"];
+        [dic setObject:self.professional.text?self.professional.text:@"" forKey:@"specialty"];
+    [self.resumeVC.addeduArray addObject:dic];
     }
 }
 @end

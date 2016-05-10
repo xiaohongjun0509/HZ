@@ -31,7 +31,6 @@
 @property(nonatomic,strong)NSMutableArray* array1;
 @property(nonatomic,strong)NSMutableArray* array2;
 @property(nonatomic,strong)NSMutableArray* array3;
-@property(nonatomic,strong)NSMutableDictionary* dic;
 @end
 
 @implementation MbWorkExperienceViewController
@@ -42,7 +41,6 @@
     self.list = @[@"入职时间",@"离职时间",@"公司名称",@"职       位",@"工作内容"];
     self.array1 = [NSMutableArray array];
     self.array2 = [NSMutableArray array];
-    self.dic = [[NSMutableDictionary alloc]init];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight) style:UITableViewStyleGrouped];
@@ -376,16 +374,13 @@
         [alertView show];
     }else{
     [self.navigationController popViewControllerAnimated:YES];
-    [self.dic setObject:self.companyField.text forKey:@"corporate"];
-    [self.dic setObject:self.position.text forKey:@"position"];
-    [self.dic setObject:self.startTime forKey:@"timestart"];
-    [self.dic setObject:self.endTime forKey:@"timestop"];
-        [self.dic setObject:self.inforField.text?self.inforField.text:@"" forKey:@"content"];
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.dic options:0 error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData
-                                                 encoding:NSUTF8StringEncoding];
-    self.resumeVC.jsonString2 = jsonString;
-    self.resumeVC.workDic = self.dic;
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.companyField.text forKey:@"corporate"];
+    [dic setObject:self.position.text forKey:@"position"];
+    [dic setObject:self.startTime forKey:@"timestart"];
+    [dic setObject:self.endTime forKey:@"timestop"];
+    [dic setObject:self.inforField.text?self.inforField.text:@"" forKey:@"content"];
+    [self.resumeVC.addworkArray addObject:dic];
     }
 }
 #pragma mark 触摸屏幕回收键盘
