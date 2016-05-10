@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="92.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrx-aN-oku">
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-YL-yiy">
-                        <rect key="frame" x="66" y="34" width="239" height="18"/>
+                        <rect key="frame" x="268" y="34" width="37" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -66,7 +66,6 @@
                     <constraint firstItem="Bhq-Up-G6w" firstAttribute="top" secondItem="rKh-uN-XIQ" secondAttribute="bottom" constant="7" id="FCI-wa-OLc"/>
                     <constraint firstItem="rKh-uN-XIQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="LEh-48-IdU"/>
                     <constraint firstAttribute="bottom" secondItem="BhQ-Iw-DI3" secondAttribute="bottom" id="SnK-MU-ceO"/>
-                    <constraint firstItem="Zet-YL-yiy" firstAttribute="leading" secondItem="rKh-uN-XIQ" secondAttribute="trailing" constant="15" id="diT-pu-1Eq"/>
                     <constraint firstItem="NhQ-RS-7UO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="eZr-Kh-M9s"/>
                     <constraint firstItem="rKh-uN-XIQ" firstAttribute="leading" secondItem="Hrx-aN-oku" secondAttribute="leading" id="eki-9D-4wl"/>
                     <constraint firstItem="Bhq-Up-G6w" firstAttribute="leading" secondItem="Hrx-aN-oku" secondAttribute="leading" id="keQ-pm-bmW"/>

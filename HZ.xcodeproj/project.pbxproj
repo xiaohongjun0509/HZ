@@ -64,6 +64,8 @@
 		827F99241CBDCE5000439489 /* MbZhongBiaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99201CBDCE5000439489 /* MbZhongBiaoTableViewCell.m */; };
 		827F99251CBDCE5000439489 /* MbZhongBiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99221CBDCE5000439489 /* MbZhongBiaoViewController.m */; };
 		827F99281CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 827F99271CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m */; };
+		82804CB11CE1D4DE00211F7A /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82804CAF1CE1D4DE00211F7A /* libMobClickLibrary.a */; };
+		82804CB31CE1D50A00211F7A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 82804CB21CE1D50A00211F7A /* libz.tbd */; };
 		82912BF01CA63EC100098261 /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BEF1CA63EC100098261 /* HomeBannerModel.m */; };
 		82912BF51CA641E200098261 /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF41CA641E200098261 /* UIImageView+Extension.m */; };
 		82912BF81CA6455B00098261 /* UIViewController+AttachBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82912BF71CA6455B00098261 /* UIViewController+AttachBack.m */; };
@@ -235,6 +237,9 @@
 		827F99221CBDCE5000439489 /* MbZhongBiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbZhongBiaoViewController.m; sourceTree = "<group>"; };
 		827F99261CBDCEC100439489 /* MbZhaoBiaoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbZhaoBiaoTableViewCell.h; sourceTree = "<group>"; };
 		827F99271CBDCEC100439489 /* MbZhaoBiaoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MbZhaoBiaoTableViewCell.m; sourceTree = "<group>"; };
+		82804CAF1CE1D4DE00211F7A /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		82804CB01CE1D4DE00211F7A /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		82804CB21CE1D50A00211F7A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		82912BEE1CA63EC100098261 /* HomeBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		82912BEF1CA63EC100098261 /* HomeBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
 		82912BF31CA641E200098261 /* UIImageView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extension.h"; sourceTree = "<group>"; };
@@ -354,6 +359,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82804CB31CE1D50A00211F7A /* libz.tbd in Frameworks */,
+				82804CB11CE1D4DE00211F7A /* libMobClickLibrary.a in Frameworks */,
 				82EC224C1CCE58EB00812550 /* CoreLocation.framework in Frameworks */,
 				B2E8D2750D31D419724B34FE /* libPods.a in Frameworks */,
 			);
@@ -365,6 +372,7 @@
 		53E82A71EF6831A7AB6071D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82804CB21CE1D50A00211F7A /* libz.tbd */,
 				82EC224B1CCE58EB00812550 /* CoreLocation.framework */,
 				822B11911CA6166D0044CC8C /* Reveal.framework */,
 				72647898094ED1CB1FB960DC /* libPods.a */,
@@ -665,6 +673,8 @@
 		822B11751CA5892E0044CC8C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				82804CAF1CE1D4DE00211F7A /* libMobClickLibrary.a */,
+				82804CB01CE1D4DE00211F7A /* MobClick.h */,
 				82E887241CA77CC000279FBE /* View */,
 				82E8871D1CA7737000279FBE /* Model */,
 				82912C221CA6765900098261 /* Controller */,
@@ -1199,6 +1209,10 @@
 				INFOPLIST_FILE = HZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HZ",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1265,6 +1279,10 @@
 				INFOPLIST_FILE = HZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HZ",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

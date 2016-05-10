@@ -137,8 +137,7 @@
             
         }
         NSString *recuitmentIdArray = [arr componentsJoinedByString:@","];
-        
-        //self.info = [self.lists1 objectAtIndex:indexPath.row];
+
         NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
         //取消收藏
         [MbPaser sendCancleRecruitmenCollectByUserid:userid recruitmencollid:recuitmentIdArray result:^(CancleRecruitmenCollectResponse *response, NSError *error) {

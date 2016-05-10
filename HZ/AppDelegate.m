@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HZTabBarViewController.h"
+#import "MobClick.h"
 @interface AppDelegate ()
 
 @end
@@ -16,6 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [MobClick startWithAppkey:@"57319d02e0f55a5d3d0021be" reportPolicy:BATCH   channelId:@""];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[HZTabBarViewController alloc] init];
     [self.window makeKeyAndVisible];
