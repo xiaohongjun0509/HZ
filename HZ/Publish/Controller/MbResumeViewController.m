@@ -136,28 +136,7 @@
 
 @implementation MbResumeViewController
 
-#pragma mark - 详细介绍的hack方法
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if (textView == self.introduction) {
-        
-        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y + 200) animated:YES];
-        self.movingTV = YES;
-        self.introduction.text = @"";
-        self.introduction.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-    }
-}
 
-//- (void)textViewDidEndEditing:(UITextView *)textView{
-//    if (textView == self.introduction) {
-//        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-//        self.movingTV = NO;
-//        if (self.introduction.text.length == 0) {
-//            self.introduction.text = self.tip;
-//            self.introduction.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
-//        }
-//    }
-//    
-//}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [self.introduction resignFirstResponder];
@@ -1080,7 +1059,7 @@
         NSDictionary* dic = [self.addworkArray objectAtIndex:indexPath.row-1];
             //工作时间
             self.worktoyear = [UILabel new];
-            self.worktoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"startTime"],[dic objectForKey:@"endTime"]];
+            self.worktoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"timestart"],[dic objectForKey:@"timestop"]];
             self.worktoyear.font = [UIFont systemFontOfSize:labelText];
             self.worktoyear.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
             CGSize worktoyearSize = [self.worktoyear.text sizeWithFont:self.worktoyear.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
@@ -1455,7 +1434,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
-                [self dismissModalViewControllerAnimated:YES];
+//                [self dismissModalViewControllerAnimated:YES];
             });
             
         }else{
@@ -1678,13 +1657,37 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
         //在这里做你响应return键的代码
+        [textView resignFirstResponder];
         return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
     }
     
     return YES;
 }
 
+#pragma mark - 详细介绍的hack方法
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (textView == self.introduction) {
+        
+        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y + 200) animated:YES];
+        self.movingTV = YES;
+        if([self.introduction.text isEqualToString:self.tip]){
+             self.introduction.text = @"";
+        }
+        self.introduction.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    }
+}
 
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    if (textView == self.introduction) {
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        self.movingTV = NO;
+        if (self.introduction.text.length == 0) {
+            self.introduction.text = self.tip;
+            self.introduction.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+        }
+    }
+
+}
 
 
 

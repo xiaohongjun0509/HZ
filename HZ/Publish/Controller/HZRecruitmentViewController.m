@@ -630,7 +630,8 @@
     self.name.delegate = self;
     self.name.returnKeyType = UIReturnKeyDone;
     self.name.font = [UIFont systemFontOfSize:labelText];
-    self.name.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    self.name.textColor = [UIColor colorWithRed:119/255.0 green:119/255.0 blue:119/255.0 alpha:1];
+
     self.name.delegate = self;
     self.name.frame = CGRectMake(CGRectGetMaxX(self.line11.frame)+15, CGRectGetMaxY(self.horizontal10.frame) + 15, ScreenWidth/5*3, nameLabelSize.height);
     [self.scrollView addSubview:self.name];

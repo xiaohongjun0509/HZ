@@ -30,7 +30,8 @@
     [dict setObject:salary forKey:@"wages"];
     [dict setObject:telephone forKey:@"phone"];
     if(addeduArray.length > 0){
-       [dict setObject:addeduArray forKey:@"education"];
+//       [dict setObject:addeduArray forKey:@"education"];
+         [dict setObject:addeduArray forKey:@"experienced"];
     }
     if (addworkArray.length > 0) {
          [dict setObject:addworkArray forKey:@"business"];
@@ -60,37 +61,6 @@
         result(res, nil);
 
     }];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    [manager POST:sendjianli parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
-// 
-//        NSLog(@"00000000%@",responseObject);
-//        if ([responseObject isKindOfClass:[NSArray class]]) {
-//            NSLog(@"ffff");
-//        }
-//        
-//        NSString *str = [[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-//
-//        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-//
-//        CommonActionStatus *response = [[CommonActionStatus alloc] initWithJSONObject:jsonObject];
-//        response.message = [jsonObject objectForKey:@"msg"];
-//        response.turn = [[jsonObject objectForKey:@"return"] intValue];
-//        
-//        NSLog(@"%@===%d",response.message,response.turn);
-//        result(response, nil);
-//
-//        
-//        
-//    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"失败: %@", error);
-//    }];
-//    
-    
-    
-   
 
 }
 
