@@ -203,7 +203,6 @@
         UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_co_sel_col.png"] style:UIBarButtonItemStyleDone target:self action:@selector(shoucang1)];
         self.navigationItem.rightBarButtonItem = rightItem;
     }
-    
 }
 
 - (void)shoucang1{

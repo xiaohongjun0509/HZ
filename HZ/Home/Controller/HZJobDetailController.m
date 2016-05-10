@@ -53,8 +53,9 @@
     if (userid.length) {
        [MbPaser sendRecruitmenCollectByUserid:userid recruitmenid:self.model.recruitmenid result:^(RecruitmenCollectResponse *response, NSError *error) {
            
-           UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:(response.turn == 200? @"收藏成功" : @"收藏失败") delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+           UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:(response.turn == 200? @"收藏成功" : @"已收藏,不需重复收藏") delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
+           [self judgetwo];
           
        }];
         }else{
@@ -62,6 +63,32 @@
             [alertView show];
         }
     
+}
+
+-(void)judgetwo{
+    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
+    NSString* path = [NSString stringWithFormat:@"%@userid=%@&recruitmenid=%@",judge1,userid,self.model.recruitmenid];
+    
+    path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:path];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = @"type=focus-c";//设置参数
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
+    
+    NSString* string = [dic objectForKey:@"collectionid"];
+    if ([string isEqualToString:@"0"]) {
+        UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_co_col.png"] style:UIBarButtonItemStyleDone target:self action:@selector(collect)];
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }else if ([string isEqualToString:@"1"]){
+        UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_co_sel_col.png"] style:UIBarButtonItemStyleDone target:self action:@selector(shoucang1)];
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }
 }
 
 - (UIView *)footer{

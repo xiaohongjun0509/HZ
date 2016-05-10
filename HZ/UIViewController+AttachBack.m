@@ -80,7 +80,7 @@
 - (void)attachCollect{
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    UIImage *image = [UIImage imageNamed:@"nav_co_sel_col"];
+    UIImage *image = [UIImage imageNamed:@"nav_co_col"];
     [backButton setImage:image forState:UIControlStateNormal];
     [backButton addTarget:self
                    action:@selector(collect)
