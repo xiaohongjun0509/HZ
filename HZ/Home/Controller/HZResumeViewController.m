@@ -147,7 +147,7 @@
     }
     
     if (self.suffer) {
-        [mutableString appendString:[NSString stringWithFormat:@"&area=%@",self.suffer]];
+        [mutableString appendString:[NSString stringWithFormat:@"&suffer=%@",self.suffer]];
     }
     WEAKSELF
     [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {

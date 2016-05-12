@@ -567,8 +567,8 @@ SRMonthPicker *_datePicker; //时间选择器
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.schoolField.text forKey:@"school"];
     [dic setObject:self.degree forKey:@"level"];
-    [dic setObject:self.startTime forKey:@"Stringervalstart"];
-    [dic setObject:self.endTime forKey:@"Stringervalstop"];
+    [dic setObject:self.startTime forKey:@"intervalstart"];
+    [dic setObject:self.endTime forKey:@"intervalstop"];
         [dic setObject:self.professional.text?self.professional.text:@"" forKey:@"specialty"];
     [self.resumeVC.addeduArray addObject:dic];
     }

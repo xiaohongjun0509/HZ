@@ -146,23 +146,7 @@
     }
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-//    if (self.movingTV) {
-//        if ([self.introduction isFirstResponder]) {
-//            [self.introduction resignFirstResponder];
-//            self.movingTV = NO;
-//        }
-//    }else{
-//        if ([self.introduction isFirstResponder]) {
-//            //            [self.introduction resignFirstResponder];
-//            //            self.movingTV = NO;
-//        }
-//        //        [self.scrollView resignFirstResponder];
-//        //        [self.view endEditing:YES];
-//        //        [self.introduction resignFirstResponder];
-//        
-//    }
-//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityname"];
@@ -784,84 +768,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-//    if (self.jsonString1.length==0) {
-//        
-//    }else if(self.jsonString1.length>0){
-//        
-//        
-//        if ([self.addeduArrayStr containsObject:self.jsonString1]) {
-//            
-//        }else{
-//           
-//            if (self.addeduArrayStr.count<=3) {
-//                [self.addeduArrayStr insertObject:self.jsonString1 atIndex:0];
-//           
-//            }else{
-//                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"教育经历最多添加4个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                self.jsonString1 = nil;
-//            
-//            }
-//           
-//            NSString* str = [self.addeduArrayStr componentsJoinedByString:@","];
-//            NSString* string1 = @"[";
-//            NSString* string2 = @"]";
-//            self.str1 = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
-//        
-//        }
-//    
-//    }
-//    if (self.jsonString2.length==0) {
-//        
-//    }else if(self.jsonString2.length>0){
-//        if ([self.addworkArrayStr containsObject:self.jsonString2]) {
-//            
-//        }else{
-//            if (self.addworkArrayStr.count<=4) {
-//                [self.addworkArrayStr insertObject:self.jsonString2 atIndex:0];
-//                
-//            }else{
-//                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"工作经历最多添加5个" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                self.jsonString2 = nil;
-//            
-//            }
-//            NSString* str = [self.addworkArrayStr componentsJoinedByString:@","];
-//            NSString* string1 = @"[";
-//            NSString* string2 = @"]";
-//            self.str2 = [NSString stringWithFormat:@"%@%@%@",string1,str,string2];
-//        }
-//    }
-//    
-//    
-//    if ([self.mutDic count]==0) {
-//        
-//    }else{
-////        [self.addeduArray addObject:self.mutDic];
-//        if (self.addeduArray.count<=3) {
-//            [self.addeduArray insertObject:self.mutDic atIndex:0];
-//        }else{
-//        
-//        }
-//        
-//
-//        
-//    }
-//    if ([self.workDic count]==0) {
-//        
-//    }else{
-//        if (self.addworkArray.count<=4) {
-//          [self.addworkArray insertObject:self.workDic atIndex:0];
-//        }else{
-//        
-//        
-//        }
-//        
-//        
-//        
-//        
-//    }
+
 
     [self.scrollView removeFromSuperview];
     [self onCreate];
@@ -963,7 +870,7 @@
            
             //教育时间
              self.yeartoyear = [UILabel new];
-             self.yeartoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"Stringervalstart"],[dic objectForKey:@"Stringervalstop"]];
+             self.yeartoyear.text = [NSString stringWithFormat:@"%@-%@",[dic objectForKey:@"intervalstart"],[dic objectForKey:@"intervalstop"]];
              self.yeartoyear.font = [UIFont systemFontOfSize:labelText];
              self.yeartoyear.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
              CGSize yeartoyearSize = [self.yeartoyear.text sizeWithFont:self.yeartoyear.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];

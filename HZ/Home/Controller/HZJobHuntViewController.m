@@ -144,13 +144,13 @@
 }
 
 - (void)startRequest{
-    NSString *urlStr = [NSString stringWithFormat:@"%@?area=%@&hasNext=%ld",findwork,self.cityName,self.requestPage];
+    NSString *urlStr = [NSString stringWithFormat:@"%@area=%@&hasNext=%ld",findwork,self.cityName,self.requestPage];
     NSMutableString *mutableString = [NSMutableString stringWithString:urlStr];
     if (self.position) {
         [mutableString appendString:[NSString stringWithFormat:@"&position=%@",self.position]];
     }
     if (self.wage) {
-        [mutableString appendString:[NSString stringWithFormat:@"&wage=%@",self.wage]];
+        [mutableString appendString:[NSString stringWithFormat:@"&wages=%@",self.wage]];
     }
     
     if (self.area) {

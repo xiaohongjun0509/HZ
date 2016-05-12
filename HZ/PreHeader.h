@@ -62,7 +62,7 @@
 //发布企业信息
 #define sendqiye @"http://www.bruli.cn/index.php/Release/hz_info_company?"
 //找工作
-#define findwork @"http://www.bruli.cn/index.php/Index/hz_recruitmen"
+#define findwork @"http://www.bruli.cn/index.php/Index/hz_recruitmen?"
 //工作收藏
 #define collectionwork @"http://www.bruli.cn/index.php/Index/hz_recruitmen_collect?"
 //看简历
