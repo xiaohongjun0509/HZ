@@ -133,20 +133,24 @@
         for (int i = 0; i<self.dataList.count; i++) {
             HZJobModel *model = [self.dataList objectAtIndex:i];
             
-            [arr addObject:model.recruitmenid];
+            [arr addObject:model];
             
         }
-        NSString *recuitmentIdArray = [arr componentsJoinedByString:@","];
+//        NSString *recuitmentIdArray = [arr componentsJoinedByString:@","];
 
         NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
         //取消收藏
-        [MbPaser sendCancleRecruitmenCollectByUserid:userid recruitmencollid:recuitmentIdArray result:^(CancleRecruitmenCollectResponse *response, NSError *error) {
-            if (response.message) {
-                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            }
-            [self refreshData];
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            HZJobModel *model = obj;
+            [MbPaser sendCancleRecruitmenCollectByUserid:userid recruitmencollid:model.recruitmenid result:^(CancleRecruitmenCollectResponse *response, NSError *error) {
+//                if (response.message) {
+//                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                    [alertView show];
+//                }
+                [self refreshData];
+            }];
         }];
+        
 
     }
 

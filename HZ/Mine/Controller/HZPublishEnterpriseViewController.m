@@ -134,19 +134,25 @@
         for (int i = 0; i<self.dataList.count; i++) {
             MbUserInfo *model = [self.dataList objectAtIndex:i];
             
-            [arr addObject:model.companyid];
+            [arr addObject:model];
             
         }
-        NSString *tmp = [arr componentsJoinedByString:@","];
+        
+        
+//        NSString *tmp = [arr componentsJoinedByString:@","];
         
         NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
-        [MbPaser sendCancleCompanycollCollectByUserid:userid   companycollid:tmp result:^(CancleCompanycollCollectResponse *response, NSError *error) {
-            if (response.message) {
-                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            }
-            [self refreshData];
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            MbUserInfo *model = obj;
+            [MbPaser sendCancleCompanycollCollectByUserid:userid   companycollid:model.companyid result:^(CancleCompanycollCollectResponse *response, NSError *error) {
+                if (response.message) {
+//                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                    [alertView show];
+                }
+                [self refreshData];
+            }];
         }];
+       
 
     }
 

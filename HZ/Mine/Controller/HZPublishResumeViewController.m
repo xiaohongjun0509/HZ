@@ -134,24 +134,22 @@
         for (int i = 0; i<self.dataList.count; i++) {
             HZResumeModel *model = [self.dataList objectAtIndex:i];
             
-            [arr addObject:model.resumeid];
+            [arr addObject:model];
             
         }
-        NSString *tmp = [arr componentsJoinedByString:@","];
-        //取消收藏
-        [MbPaser sendCancleResumecollCollectByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] resumecollid:tmp result:^(CancleResumecollCollectResponse *response, NSError *error) {
-            if (response.message) {
-                UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            }
-            [self refreshData];
+//        NSString *tmp = [arr componentsJoinedByString:@","];
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            HZResumeModel *model = obj;
+            [MbPaser sendCancleResumecollCollectByUserid:[[NSUserDefaults standardUserDefaults] stringForKey:@"userid"] resumecollid:model.resumeid result:^(CancleResumecollCollectResponse *response, NSError *error) {
+                if (response.message) {
+//                    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                    [alertView show];
+                }
+                [self refreshData];
+            }];
         }];
-
+        
     }
-    
-    
-    
-  
 }
 - (void)adjustTableView{
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);

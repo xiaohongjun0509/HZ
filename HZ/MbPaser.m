@@ -414,7 +414,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSMutableDictionary* dic = [[NSMutableDictionary alloc]init];
     [dic setObject:userid forKey:@"userid"];
-    [dic setObject:resumecollid forKey:@"resumecollid"];
+    [dic setObject:resumecollid forKey:@"remcol_id"];
     [manager POST:cancleJianliCollect parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         
