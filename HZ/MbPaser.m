@@ -239,8 +239,9 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     request.HTTPMethod = @"POST";
     request.URL = [NSURL URLWithString:sendqiye];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     request.HTTPBody = data;
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

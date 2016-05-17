@@ -1057,8 +1057,9 @@
         if (response.turn == 200) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                alert.delegate = self;
                 [alert show];
-                [self dismissModalViewControllerAnimated:YES];
+                
             });
             
         }else{
@@ -1074,6 +1075,9 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag==200) {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    if (buttonIndex == 0) {
         [self dismissModalViewControllerAnimated:YES];
     }
 

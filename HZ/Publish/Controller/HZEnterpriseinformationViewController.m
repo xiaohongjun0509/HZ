@@ -197,10 +197,10 @@
     self.count = 0;
     
     if (self.buttonTitles.count>0) {
-        for (NSString* string in self.buttonTitles) {
+        for (NSDictionary *dict in self.buttonTitles) {
             //添加的资质
             self.zizhiBtn = [[UIButton alloc]init];
-            [self.zizhiBtn setTitle:string forState:UIControlStateNormal];
+            [self.zizhiBtn setTitle:dict[@"aptitude"] forState:UIControlStateNormal];
             [self.zizhiBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             self.zizhiBtn.titleLabel.font = [UIFont systemFontOfSize:labelText-1];
             self.zizhiBtn.frame = CGRectMake(imageView.frame.origin.x, CGRectGetMaxY(self.searchBar.frame) + 10 + self.count*(labelSize.height+20), self.searchBar.frame.size.width, labelSize.height+10);
@@ -708,9 +708,9 @@
                 NSLog(@"%@",[NSThread currentThread]);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"发布成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    alertView.delegate = self;
                     self.str = [NSString stringWithFormat:@"%d",response.turn];
                     [alertView show];
-                    [self dismissModalViewControllerAnimated:YES];
                 });
 
             }else{
@@ -732,14 +732,17 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==0) {
         if ([self.str isEqualToString:@"200"]) {
-            [self.navigationController popViewControllerAnimated:YES];
+            
+             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
    
 }
 
+#pragma mark - textView
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if (self.businessCooperationView == textView) {
         self.businessCooperationView.text = @"";

@@ -139,7 +139,7 @@
         }
         
         
-//        NSString *tmp = [arr componentsJoinedByString:@","];
+        NSString *tmp = [arr componentsJoinedByString:@","];
         
         NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userid"];
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

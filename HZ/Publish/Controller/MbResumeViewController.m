@@ -902,7 +902,7 @@
              [cell addSubview:self.education];
             
              self.educationLevel = [UILabel new];
-             self.educationLevel.text = [dic objectForKey:@"degree"];
+             self.educationLevel.text = [dic objectForKey:@"level"];
            
              self.educationLevel.font = [UIFont systemFontOfSize:labelText];
              self.educationLevel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
@@ -919,7 +919,7 @@
              [cell addSubview:self.professional];
             
              self.professionalType = [UILabel new];
-             self.professionalType.text = [dic objectForKey:@"professional"];
+             self.professionalType.text = [dic objectForKey:@"specialty"];
              self.professionalType.font = [UIFont systemFontOfSize:labelText];
              self.professionalType.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
              CGSize professionalTypeSize = [self.professionalType.text sizeWithFont:self.professionalType.font constrainedToSize:CGSizeMake(300, 300) lineBreakMode:NSLineBreakByWordWrapping];
@@ -935,8 +935,6 @@
             self.deleteBtn.backgroundColor = [UIColor redColor];
             self.deleteBtn.layer.cornerRadius = 4;
             self.deleteBtn.layer.masksToBounds = YES;
-//            self.deleteBtn.layer.borderColor = [UIColor blackColor].CGColor;
-//            self.deleteBtn.layer.borderWidth = 1;
             self.deleteBtn.tag = indexPath.row-1;
             
             [self.deleteBtn addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
@@ -984,7 +982,7 @@
             [cell addSubview:self.company];
             
             self.companyLabel = [UILabel new];
-            self.companyLabel.text = [dic objectForKey:@"company"];
+            self.companyLabel.text = [dic objectForKey:@"corporate"];
             self.companyLabel.font = [UIFont systemFontOfSize:labelText];
             self.companyLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
             CGSize companyLabelSize = [self.companyLabel.text sizeWithFont:self.companyLabel.font constrainedToSize:CGSizeMake(viewWidth - companySize.width - 110, 300) lineBreakMode:NSLineBreakByWordWrapping];
@@ -1019,7 +1017,7 @@
             
             self.workContent = [UILabel new];
             
-            self.workContent.text = [dic objectForKey:@"infor"];
+            self.workContent.text = [dic objectForKey:@"content"];
             self.workContent.numberOfLines = 0;
             self.workContent.font = [UIFont systemFontOfSize:labelText];
             self.workContent.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
@@ -1482,11 +1480,10 @@
     if (buttonIndex==1) {
         if (self.deleteTag!=0) {
             [self.addeduArray removeObjectAtIndex:self.deleteTag-1];//移除数据源的数据
-            [self.addeduArrayStr removeObjectAtIndex:self.deleteTag-1];
         }else if (self.deleteTag1!=0){
         
         [self.addworkArray removeObjectAtIndex:self.deleteTag1-1];//移除数据源的数据
-        [self.addworkArrayStr removeObjectAtIndex:self.deleteTag1-1];
+       
         }
         self.deleteTag = 0;
         self.deleteTag1 = 0;

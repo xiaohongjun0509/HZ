@@ -115,7 +115,8 @@
     
     [self.selectedList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         HZZiZhiModel *model = obj;
-        [self.buttonTitles addObject:model.aptitude];
+        NSDictionary *dict = @{@"aptitude":model.aptitude,@"aptitudesid":model.aptitudeid};
+        [self.buttonTitles addObject:dict];
     }];
 
 }
