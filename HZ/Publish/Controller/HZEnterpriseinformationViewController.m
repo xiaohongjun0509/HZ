@@ -745,7 +745,9 @@
 #pragma mark - textView
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if (self.businessCooperationView == textView) {
-        self.businessCooperationView.text = @"";
+        if([textView.text isEqualToString:@"请介绍贵公司提供的商业合作"]){
+            self.businessCooperationView.text = @"";
+        }
         self.businessCooperationView.textColor = [UIColor blackColor];
     }
 }

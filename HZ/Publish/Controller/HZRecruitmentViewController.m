@@ -1078,7 +1078,7 @@
         [self dismissModalViewControllerAnimated:YES];
     }
     if (buttonIndex == 0) {
-        [self dismissModalViewControllerAnimated:YES];
+//        [self dismissModalViewControllerAnimated:YES];
     }
 
 

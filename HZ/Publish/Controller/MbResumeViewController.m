@@ -1340,8 +1340,9 @@
         if (response.turn == 200) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                alert.tag = 1111;
                 [alert show];
-                [self dismissModalViewControllerAnimated:YES];
+                
             });
             
         }else{
@@ -1476,7 +1477,11 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
   
- 
+    if (alertView.tag == 1111) {
+        [self dismissModalViewControllerAnimated:YES];
+        return;
+    }
+    
     if (buttonIndex==1) {
         if (self.deleteTag!=0) {
             [self.addeduArray removeObjectAtIndex:self.deleteTag-1];//移除数据源的数据

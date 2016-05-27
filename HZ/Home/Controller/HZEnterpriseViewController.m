@@ -72,7 +72,7 @@
 - (void)startRequest{
         NSURL *url = [NSURL URLWithString:enterpriseList];
         //第二步，创建请求
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
         [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
         NSString *str =[NSString stringWithFormat:@"area=%@&hasNext=%ld",self.cityName,self.requestPage];//设置参数
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
