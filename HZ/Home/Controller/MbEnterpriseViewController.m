@@ -86,8 +86,6 @@
     [self startRequest];
 }
 -(void)startRequest{
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
         NSString* path = [NSString stringWithFormat:@"%@?area=%@&hasNext=%@",enterpriseList,self.cityName,@(self.freshCount).stringValue];
         NSURL *url = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         //第二步，创建请求
@@ -98,11 +96,13 @@
         [request setHTTPBody:data];
         //第三步，连接服务器
         NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
     if (received) {
         NSDictionary* dic =[NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingAllowFragments error:nil];
         NSArray* array = [dic objectForKey:@"data"];
         if (array.count==0) {
-            self.lists = [MbPaser paserEnterpriseByDic:self.dictionary];
+//            self.lists = [MbPaser paserEnterpriseByDic:self.dictionary];
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -110,8 +110,8 @@
             });
         }else{
             self.freshCount++;
-            self.lists = [MbPaser paserEnterpriseByDic:dic];
-            self.dictionary = dic;
+            [self.lists addObjectsFromArray: [MbPaser paserEnterpriseByDic:dic]];
+//            self.dictionary = dic;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });

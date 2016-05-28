@@ -80,7 +80,7 @@
     [super viewDidLoad];    
     self.title = [NSString stringWithFormat:@"找工作"];
     [self registerCell:[HZJobHuntCell class]];
-    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44 + 64, 0);
     [self.tableView.mj_header beginRefreshing];
     [self attachBackButton];
     [self attachSegmentView];
@@ -159,20 +159,21 @@
     WEAKSELF
     [[NetworkManager manager] startRequest:mutableString completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
             NSDictionary *dict = responseObject;
             NSArray *dataList = [HZJobModel mj_objectArrayWithKeyValuesArray:dict[@"data"]];
             if(self.requestPage == 1){
                 [weakSelf.dataList removeAllObjects];
             }
             if (dataList.count == 0) {
-                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                [weakSelf.tableView.mj_footer noticeNoMoreData];
+//                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }else{
                 [weakSelf.dataList addObjectsFromArray:dataList];
                 weakSelf.requestPage++;
             }
             [weakSelf.tableView reloadData];
-            [weakSelf.tableView.mj_header endRefreshing];
-            [weakSelf.tableView.mj_footer endRefreshing];
         }
     }];
 

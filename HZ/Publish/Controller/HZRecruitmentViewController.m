@@ -1058,6 +1058,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:response.message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 alert.delegate = self;
+                alert.tag = 1024;
                 [alert show];
                 
             });
@@ -1080,6 +1081,11 @@
     if (buttonIndex == 0) {
 //        [self dismissModalViewControllerAnimated:YES];
     }
+    
+    if (alertView.tag == 1024) {
+         [self dismissModalViewControllerAnimated:YES];
+    }
+    
 
 
 }

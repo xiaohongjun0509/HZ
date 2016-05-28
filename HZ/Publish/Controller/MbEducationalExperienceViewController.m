@@ -554,7 +554,10 @@ SRMonthPicker *_datePicker; //时间选择器
     self.tableView.frame =CGRectMake(0, 0, viewWidth, viewHeight);
 }
 
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 //完成
 -(void)done{

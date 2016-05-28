@@ -74,7 +74,7 @@
     
     self.title = @"看简历";
     [self registerCell:[HZJobHuntCell class]];
-    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 44 + 64, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView.mj_header beginRefreshing];
     [self attachBackButton];
@@ -152,6 +152,8 @@
     WEAKSELF
     [[NetworkManager manager] startRequest:urlStr completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if(!error){
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
             NSDictionary *dict = responseObject;
             [HZResumeModel mj_setupObjectClassInArray:^NSDictionary *{
                 return @{@"experienced":@"HZResumeExperienceModel",@"business":@"HZResumeBusinessModel"};
@@ -167,9 +169,6 @@
                 [weakSelf.tableView reloadData];
                 weakSelf.requestPage++;
             }
-            
-            [weakSelf.tableView.mj_header endRefreshing];
-            [weakSelf.tableView.mj_footer endRefreshing];
             
         }
     }];
