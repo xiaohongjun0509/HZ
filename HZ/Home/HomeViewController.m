@@ -142,6 +142,7 @@
     zhaobiaoButton.backgroundColor = HEXCOLOR(0x999999);
     [zhaobiaoButton setNeedsLayout];
     [zhaobiaoButton layoutIfNeeded];
+    zhaobiaoButton.hidden = YES;
 }
 
 - (void)findWork{

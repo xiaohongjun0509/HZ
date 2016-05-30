@@ -38,6 +38,7 @@
     self.searchField = [[UITextField alloc]initWithFrame:CGRectMake(50, 10, viewWidth-100, 30)];
     self.searchField.placeholder = @"请输入企业资质/公司名称";
     self.searchField.delegate = self;
+    self.searchField.hidden = YES;
     [self.searchField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
       self.searchField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchField.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -52,12 +53,14 @@
     UILabel* line = [[UILabel alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(self.searchField.frame), viewWidth - 100, 1)];
     line.backgroundColor = [UIColor colorWithRed:227/255.0 green:227/255.0 blue:229/255.0 alpha:1];
     [self.view addSubview:line];
+    line.hidden = YES;
     //搜索按钮
     self.searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.searchField.frame)+5, 15, 20, 20)];
+    self.searchBtn.hidden = YES;
     [self.searchBtn setBackgroundImage:[UIImage imageNamed:@"home_4_search.png"] forState:UIControlStateNormal];
     [self.searchBtn addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.searchBtn];
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, viewWidth, viewHeight-50-64)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight-64)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[MbEnterpriseTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
